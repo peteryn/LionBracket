@@ -7,19 +7,23 @@ export function MatchNode({
 }: NodeProps<MatchNode>) {
     return (
         <div className="react-flow__node-default">
-            {/* {data.label && <div>{data.label}</div>} */}
-
             <div>
                 {data.team1}
+                <input id="t1" type="text" style={{width: 10, marginLeft: 10}} onChange={(e) => declareWinner(e, 'team1')} />
             </div>
             <div>
                 {data.team2}
+                <input id="t2" type="text" style={{width: 10, marginLeft: 10}} />
             </div>
 
             <StartingNode isStarting={data.isStarting ?? false}></StartingNode>
             <EndingNode isEnding={data.isEnding ?? false}></EndingNode>
         </div>
     )
+}
+
+function declareWinner(e: any, team: string) {
+    console.log(`Winner declared for ${team}: ${e.target.value}`);
 }
 
 function StartingNode({isStarting}: {isStarting: boolean}) {
