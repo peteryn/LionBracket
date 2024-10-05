@@ -17,7 +17,7 @@ export const initialNodes: AppNode[] = [
 		type: "match",
 		position: { x: -500, y: -125 },
 		data: { team1: "G2", team2: "BDS", isStarting: true },
-	},
+	},	
 	{
 		id: "c",
 		type: "match",
@@ -30,5 +30,5 @@ export const nodeTypes = {
 	"position-logger": PositionLoggerNode,
 	// Add any of your custom nodes here!
 	"vertical-input": VerticalInputNode,
-	match: MatchNode,
+	"match": MatchNode,
 } satisfies NodeTypes;
