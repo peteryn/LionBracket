@@ -6,21 +6,24 @@ export function MatchNode({
     data,
 }: NodeProps<MatchNode>) {
 
-function declareWinner(e: any, team: string) {
-    console.log(`Winner declared for ${team}: ${e.target.value}`);
-    const newEdge: Edge = {
-            id: `edge-${team}`,
-            source: 'a', // Replace with actual source node ID
-            target: 'c', // Replace with actual target node ID
-            type: 'smoothstep', // or any other type you prefer
-        };
-    data.update(newEdge)
-}
+    function declareWinner(e: any, team: string) {
+        console.log(`Winner declared for ${team}: ${e.target.value}`);
+        const newEdge: Edge = {
+                id: `edge-${team}`,
+                source: 'a', // Replace with actual source node ID
+                target: 'c', // Replace with actual target node ID
+                type: 'smoothstep', // or any other type you prefer
+            };
+        data.update(newEdge)
+    }
+
+    const team1Id = data.round.concat(data.matchNumber);
+
     return (
         <div className="react-flow__node-default">
             <div>
                 {data.team1}
-                <input id="t1" type="text" style={{width: 10, marginLeft: 10}} onChange={(e) => declareWinner(e, 'team1')} />
+                <input id={team1Id} type="text" style={{width: 10, marginLeft: 10}} onChange={(e) => declareWinner(e, 'team1')} />
             </div>
             <div>
                 {data.team2}

@@ -23,13 +23,6 @@ export default function App() {
     [setEdges]
   );
 
-  const nodesWithProps = nodes.map(node => ({
-    ...node,
-    data: {
-      ...node.data,
-      onEdgesChange
-    }
-  }));
 
   for (let i = 0; i < nodes.length; i++) {
     nodes[i].data.update = onConnect
