@@ -4,61 +4,33 @@ import { PositionLoggerNode } from "./PositionLoggerNode";
 import { VerticalInputNode } from "./VerticalInputNode";
 import { MatchNode } from "./MatchNode";
 import { AppNode } from "./types";
+import { Match } from "./Match";
 
-export const initialNodes: AppNode[] = [
-	{
-		id: "r1m1",
-		type: "match",
-		position: { x: -500, y: -200 },
-		data: {
-			team1: "NRG",
-			team2: "VITALITY",
-			isStarting: true,
-			round: "r1",
-			matchNumber: "m1",
-			target: "r2m1",
-			targetPos: "u",
-		},
-	},
-	{
-		id: "r1m2",
-		type: "match",
-		position: { x: -500, y: -125 },
-		data: {
-			team1: "G2",
-			team2: "BDS",
-			isStarting: true,
-			round: "r1",
-			matchNumber: "m2",
-			target: "r2m1",
-			targetPos: "",
-		},
-	},
-	{
-		id: "r2m1",
-		type: "match",
-		position: { x: -300, y: -162.5 },
-		data: {
-			team1: "",
-			team2: "",
-			isStarting: false,
-			round: "r2",
-			matchNumber: "m1",
-		},
-	},
-];
+export const initialNodes: AppNode[] = [];
 
-function test() {
-	const newNode: AppNode = {
-		id: "r1m3",
-		type: "match",
-		position: { x: -500, y: 0 },
-		data: { team1: "NRG", team2: "VITALITY", isStarting: true, round: "r1", matchNumber: "m1" },
-	};
-	initialNodes.push(newNode);
+
+function create4TeamSingleElimination(bracketId: string) {
+	const m1 = new Match(bracketId, "r1", "m1", "NRG", "Vitality", true);
+	const m2 = new Match(bracketId, "r1", "m2", "Falcons", "G2", true);
+	const m3 = new Match(bracketId, "r2", "m1", "", "");
+	m1.target = m3.getNodeId();
+	m2.target = m3.getNodeId();
+	// TODO: write efficient way to calculate coordinate positions
+	initialNodes.push(createMatchNode(m1, -500, -200));
+	initialNodes.push(createMatchNode(m2, -500, -125));
+	initialNodes.push(createMatchNode(m3, -250, -162.5));
 }
 
-test();
+function createMatchNode(data: Match, x: number, y: number): AppNode {
+	return {
+		id: data.getNodeId(),
+		type: "match",
+		position: { x: x, y: y },
+		data: data,
+	};
+}
+
+create4TeamSingleElimination("b1");
 
 export const nodeTypes = {
 	"position-logger": PositionLoggerNode,

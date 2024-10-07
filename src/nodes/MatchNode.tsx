@@ -3,8 +3,10 @@ import { Handle, Position, type NodeProps, type Edge } from "@xyflow/react";
 import { type MatchNode } from "./types";
 
 export function MatchNode({ data }: NodeProps<MatchNode>) {
-	const team1Id = data.round.concat(data.matchNumber).concat("u");
-	const team2Id = data.round.concat(data.matchNumber).concat("l");
+	const node = data;
+
+	const team1Id = node.getTeam1InputId();
+	const team2Id = node.getTeam2InputId();
 
 	function declareWinner() {
 		const score1 = getScore(team1Id);
@@ -17,10 +19,11 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 			}
 			const newEdge: Edge = {
 				id: team1Id.concat("w"),
-				source: data.round.concat(data.matchNumber),
+				source: data.getNodeId(),
 				target: data.target,
 				type: "smoothstep",
 			};
+			console.log(newEdge);
 			data.update(newEdge);
 		} else if (score1 < score2) {
 			console.log("Team 2 won!");
@@ -28,14 +31,6 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 		} else {
 			console.log("It's a draw.");
 		}
-
-		// const newEdge: Edge = {
-		//         id: `edge-${team}`,
-		//         source: 'a', // Replace with actual source node ID
-		//         target: 'c', // Replace with actual target node ID
-		//         type: 'smoothstep', // or any other type you prefer
-		//     };
-		// data.update(newEdge)
 	}
 
 	return (
@@ -74,6 +69,7 @@ function getScore(id: string): number {
 	}
 }
 
+// TODO: work on creating unqiue ids for handles
 function StartingNode({ isStarting }: { isStarting: boolean }) {
 	if (!isStarting) {
 		return (
