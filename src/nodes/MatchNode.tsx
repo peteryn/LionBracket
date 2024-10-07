@@ -6,13 +6,28 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 	const team1Id = data.round.concat(data.matchNumber).concat("u");
 	const team2Id = data.round.concat(data.matchNumber).concat("l");
 
-	function declareWinner(e: any, team: string) {
-		const value1 = (document.getElementById(team1Id) as HTMLInputElement).value;
-		const value2 = (document.getElementById(team2Id) as HTMLInputElement).value;
-		if (value2 == "") {
-			console.log("val 2 is nothing");
+	function declareWinner() {
+		const score1 = getScore(team1Id);
+		const score2 = getScore(team2Id);
+
+		if (score1 > score2) {
+			console.log("Team 1 won!");
+			if (!data.target) {
+				return;
+			}
+			const newEdge: Edge = {
+				id: team1Id.concat("w"),
+				source: data.round.concat(data.matchNumber),
+				target: data.target,
+				type: "smoothstep",
+			};
+			data.update(newEdge);
+		} else if (score1 < score2) {
+			console.log("Team 2 won!");
+			data.remove("new");
+		} else {
+			console.log("It's a draw.");
 		}
-		console.log(`team1: ${value1}, team2: ${value2}`);
 
 		// const newEdge: Edge = {
 		//         id: `edge-${team}`,
@@ -31,12 +46,17 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 					id={team1Id}
 					type="text"
 					style={{ width: 10, marginLeft: 10 }}
-					onChange={(e) => declareWinner(e, "team1")}
+					onChange={declareWinner}
 				/>
 			</div>
 			<div>
 				{data.team2}
-				<input id={team2Id} type="text" style={{ width: 10, marginLeft: 10 }} />
+				<input
+					id={team2Id}
+					type="text"
+					style={{ width: 10, marginLeft: 10 }}
+					onChange={declareWinner}
+				/>
 			</div>
 
 			<StartingNode isStarting={data.isStarting ?? false}></StartingNode>
