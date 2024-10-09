@@ -41,4 +41,20 @@ export class Match {
 	getTeam2InputId() {
 		return this.getNodeId().concat("l");
 	}
+
+	getSrcHandle1Id() {
+		return this.getNodeId().concat("s1");
+	}
+
+	getSrcHandle2Id() {
+		return this.getNodeId().concat("s2");
+	}
+
+	getDestHandle1Id() {
+		return this.getNodeId().concat("d1");
+	}
+
+	getDestHandle2Id() {
+		return this.getNodeId().concat("d2");
+	}
 }

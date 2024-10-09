@@ -5,12 +5,9 @@ import { type MatchNode } from "./types";
 export function MatchNode({ data }: NodeProps<MatchNode>) {
 	const node = data;
 
-	const team1Id = node.getTeam1InputId();
-	const team2Id = node.getTeam2InputId();
-
 	function declareWinner() {
-		const score1 = getScore(team1Id);
-		const score2 = getScore(team2Id);
+		const score1 = getScore(node.getTeam1InputId());
+		const score2 = getScore(node.getTeam2InputId());
 
 		if (score1 > score2) {
 			console.log("Team 1 won!");
@@ -18,7 +15,7 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 				return;
 			}
 			const newEdge: Edge = {
-				id: team1Id.concat("w"),
+				id: node.getTeam1InputId().concat("w"),
 				source: data.getNodeId(),
 				target: data.target,
 				type: "smoothstep",
@@ -36,26 +33,26 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 	return (
 		<div className="react-flow__node-default">
 			<div>
-				{data.team1}
+				{node.team1}
 				<input
-					id={team1Id}
+					id={node.getTeam1InputId()}
 					type="text"
 					style={{ width: 10, marginLeft: 10 }}
 					onChange={declareWinner}
 				/>
 			</div>
 			<div>
-				{data.team2}
+				{node.team2}
 				<input
-					id={team2Id}
+					id={node.getTeam2InputId()}
 					type="text"
 					style={{ width: 10, marginLeft: 10 }}
 					onChange={declareWinner}
 				/>
 			</div>
 
-			<StartingNode isStarting={data.isStarting ?? false}></StartingNode>
-			<EndingNode isEnding={data.isEnding ?? false}></EndingNode>
+			<StartingNode isStarting={node.isStarting ?? false}></StartingNode>
+			<EndingNode isEnding={node.isEnding ?? false}></EndingNode>
 		</div>
 	);
 }
