@@ -24,7 +24,6 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 			data.update(newEdge);
 		} else if (score1 < score2) {
 			console.log("Team 2 won!");
-			data.remove("new");
 		} else {
 			console.log("It's a draw.");
 		}
