@@ -1,9 +1,12 @@
-import { Handle, Position, type NodeProps, type Edge } from "@xyflow/react";
+import { Handle, Position, type NodeProps, type Edge, useUpdateNodeInternals } from "@xyflow/react";
 
 import { type MatchNode } from "./types";
+import { useEffect, useState } from "react";
 
 export function MatchNode({ data }: NodeProps<MatchNode>) {
 	const node = data;
+
+	const updateNodeInternals = useUpdateNodeInternals();
 
 	function declareWinner() {
 		const score1 = getScore(node.getTeam1InputId());
@@ -16,10 +19,16 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 			}
 			const newEdge: Edge = {
 				id: node.getTeam1InputId().concat("w"),
-				source: data.getNodeId(),
-				target: data.target,
-				type: "smoothstep",
+				source: node.getNodeId(),
+				target: node.target!.getNodeId(),
+				// sourceHandle: data.getOutputHandle1Id(),
+				// targetHandle: data.target.getInputHandle1Id(),
+				sourceHandle: "b1r1m1o1",
+				targetHandle: "b1r2m1i1",
+				type: "straight",
 			};
+			console.log(data.getOutputHandle1Id());
+			console.log(data.target.getInputHandle1Id());
 			console.log(newEdge);
 			data.update(newEdge);
 		} else if (score1 < score2) {
@@ -29,12 +38,13 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 		}
 	}
 
+	// updateNodeInternals(node.getNodeId());
+	// TODO Refactor matchnode to split out starting node, middle node, and ending node with their respective number of handles
 	return (
 		<div className="react-flow__node-default">
 			<div>
-				{/* {node.team1} */}
 				{node.team1?.name}
-				<img src={node.team1?.logo} alt="" height={10} width={10}/>
+				<img src={node.team1?.logo} alt="" height={10} width={10} />
 				<input
 					id={node.getTeam1InputId()}
 					type="text"
@@ -43,9 +53,8 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 				/>
 			</div>
 			<div>
-				{/* {node.team2} */}
 				{node.team2?.name}
-				<img src={node.team2?.logo} alt="" height={10} width={10}/>
+				<img src={node.team2?.logo} alt="" height={10} width={10} />
 				<input
 					id={node.getTeam2InputId()}
 					type="text"
@@ -54,8 +63,16 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 				/>
 			</div>
 
-			<StartingNode isStarting={node.isStarting ?? false}></StartingNode>
-			<EndingNode isEnding={node.isEnding ?? false}></EndingNode>
+			<StartingNode
+				isStarting={node.isStarting ?? false}
+				id1={node.getInputHandle1Id()}
+				id2={node.getInputHandle1Id()}
+			></StartingNode>
+			<EndingNode
+				isEnding={node.isEnding ?? false}
+				id1={node.getOutputHandle1Id()}
+				id2={node.getOutputHandle2Id()}
+			></EndingNode>
 		</div>
 	);
 }
@@ -70,12 +87,12 @@ function getScore(id: string): number {
 }
 
 // TODO: work on creating unqiue ids for handles
-function StartingNode({ isStarting }: { isStarting: boolean }) {
+function StartingNode({ isStarting, id1, id2 }: { isStarting: boolean; id1: string; id2: string }) {
 	if (!isStarting) {
 		return (
 			<>
-				<Handle type="target" position={Position.Left} id="a" style={{ top: 20 }} />
-				<Handle type="target" position={Position.Left} id="b" style={{ top: 40 }} />
+				<Handle type="source" position={Position.Left} id={id1} style={{ top: 20 }} />
+				<Handle type="source" position={Position.Left} id={id2} style={{ top: 40 }} />
 			</>
 		);
 	} else {
@@ -83,12 +100,12 @@ function StartingNode({ isStarting }: { isStarting: boolean }) {
 	}
 }
 
-function EndingNode({ isEnding }: { isEnding: boolean }) {
+function EndingNode({ isEnding, id1, id2 }: { isEnding: boolean; id1: string; id2: string }) {
 	if (!isEnding) {
 		return (
 			<>
-				<Handle type="source" position={Position.Right} id="c" style={{ top: 20 }} />
-				<Handle type="source" position={Position.Right} id="d" style={{ top: 40 }} />
+				<Handle type="target" position={Position.Right} id={id1} style={{ top: 20 }} />
+				<Handle type="target" position={Position.Right} id={id2} style={{ top: 40 }} />
 			</>
 		);
 	} else {

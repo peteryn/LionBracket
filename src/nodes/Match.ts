@@ -11,7 +11,7 @@ export class Match {
 	bracketId: string;
 	roundId: string;
 	matchId: string;
-	target?: string;
+	target?: Match;
 	targetPos?: string;
 
 	constructor(
@@ -44,19 +44,19 @@ export class Match {
 		return this.getNodeId().concat("l");
 	}
 
-	getSrcHandle1Id() {
-		return this.getNodeId().concat("s1");
+	getOutputHandle1Id() {
+		return this.getNodeId().concat("o1");
 	}
 
-	getSrcHandle2Id() {
-		return this.getNodeId().concat("s2");
+	getOutputHandle2Id() {
+		return this.getNodeId().concat("o2");
 	}
 
-	getDestHandle1Id() {
-		return this.getNodeId().concat("d1");
+	getInputHandle1Id() {
+		return this.getNodeId().concat("i1");
 	}
 
-	getDestHandle2Id() {
-		return this.getNodeId().concat("d2");
+	getInputHandle2Id() {
+		return this.getNodeId().concat("i2");
 	}
 }

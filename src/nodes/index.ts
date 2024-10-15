@@ -18,8 +18,8 @@ function create4TeamSingleElimination(bracketId: string) {
 	const m1 = new Match(bracketId, "r1", "m1", nrg, vitality, true);
 	const m2 = new Match(bracketId, "r1", "m2", g2, falcons, true);
 	const m3 = new Match(bracketId, "r2", "m1", undefined, undefined);
-	m1.target = m3.getNodeId();
-	m2.target = m3.getNodeId();
+	m1.target = m3;
+	m2.target = m3;
 	// TODO: write efficient way to calculate coordinate positions
 	initialNodes.push(createMatchNode(m1, -500, -200));
 	initialNodes.push(createMatchNode(m2, -500, -125));
