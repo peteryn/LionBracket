@@ -32,7 +32,9 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 	return (
 		<div className="react-flow__node-default">
 			<div>
-				{node.team1}
+				{/* {node.team1} */}
+				{node.team1?.name}
+				<img src={node.team1?.logo} alt="" height={10} width={10}/>
 				<input
 					id={node.getTeam1InputId()}
 					type="text"
@@ -41,7 +43,9 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 				/>
 			</div>
 			<div>
-				{node.team2}
+				{/* {node.team2} */}
+				{node.team2?.name}
+				<img src={node.team2?.logo} alt="" height={10} width={10}/>
 				<input
 					id={node.getTeam2InputId()}
 					type="text"

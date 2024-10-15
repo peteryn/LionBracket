@@ -1,7 +1,9 @@
+import { Team } from "../teams/Team";
+
 export class Match {
 	[key: string]: unknown;
-	team1: string = "";
-	team2: string = "";
+	team1: Team | undefined;
+	team2: Team | undefined;
 	isStarting?: boolean;
 	isEnding?: boolean;
 	update?: any;
@@ -16,8 +18,8 @@ export class Match {
 		bracketId: string,
 		roundId: string,
 		matchId: string,
-		team1: string,
-		team2: string,
+		team1: Team | undefined,
+		team2: Team | undefined,
 		isStarting = false,
 		isEnding = false
 	) {

@@ -32,7 +32,7 @@ export default function App() {
 
 	for (let i = 0; i < nodes.length; i++) {
 		nodes[i].data.update = onConnect;
-        nodes[i].data.remove = removeEdge;
+		nodes[i].data.remove = removeEdge;
 	}
 
 	return (
