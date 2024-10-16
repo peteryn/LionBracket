@@ -2,24 +2,22 @@ import { Handle, Position, type NodeProps, type Edge } from "@xyflow/react";
 
 import { type MatchNode } from "./types";
 import { useCallback } from "react";
+import { getScore } from "./helper/score";
 
 export function StartingMatchNode({ data }: NodeProps<MatchNode>) {
 	const onChange = useCallback((evt: any) => {
+		console.log("callback called")
 		console.log(evt.target.value);
 		const score1 = getScore(data.getTeam1InputId());
 		const score2 = getScore(data.getTeam2InputId());
 		console.log(score1);
 		console.log(score2);
-		// b1r1m1o1
-		// b1r2m1i2
 		const newEdge: Edge = {
 			id: data.getTeam1InputId().concat("w"),
 			source: data.getNodeId(),
 			target: data.target!.getNodeId(),
-			// sourceHandle: data.getOutputHandle1Id(),
-			// targetHandle: data.target.getInputHandle1Id(),
-			sourceHandle: "b1r1m1o1",
-			targetHandle: "b1r2m1i1",
+			sourceHandle: data.getOutputHandle1Id(),
+			targetHandle: data.target!.getInputHandle1Id(),
 			type: "straight",
 		};
 		data.update(newEdge);
@@ -67,13 +65,4 @@ export function StartingMatchNode({ data }: NodeProps<MatchNode>) {
 			/>
 		</div>
 	);
-}
-
-function getScore(id: string): number {
-	const stringValue = (document.getElementById(id) as HTMLInputElement).value;
-	if (stringValue === "") {
-		return 0;
-	} else {
-		return Number(stringValue);
-	}
 }
