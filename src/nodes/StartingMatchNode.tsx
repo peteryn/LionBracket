@@ -3,10 +3,11 @@ import { Handle, Position, type NodeProps, type Edge } from "@xyflow/react";
 import { type MatchNode } from "./types";
 import { useCallback } from "react";
 import { getScore } from "./helper/score";
+import MatchComponent from "./MatchComponent";
 
 export function StartingMatchNode({ data }: NodeProps<MatchNode>) {
-	const onChange = useCallback((evt: any) => {
-		console.log("callback called")
+	const onChange = useCallback((evt: React.ChangeEvent<HTMLInputElement>) => {
+		console.log("callback called");
 		console.log(evt.target.value);
 		const score1 = getScore(data.getTeam1InputId());
 		const score2 = getScore(data.getTeam2InputId());
@@ -26,30 +27,7 @@ export function StartingMatchNode({ data }: NodeProps<MatchNode>) {
 	return (
 		// We add this class to use the same styles as React Flow's default nodes.
 		<div className="react-flow__node-default">
-			<h1>Hi</h1>
-
-			<div>
-				{data.team1?.name}
-				<img src={data.team1?.logo} alt="" height={10} width={10} />
-				<input
-					id={data.getTeam1InputId()}
-					type="text"
-					style={{ width: 10, marginLeft: 10 }}
-					onChange={onChange}
-					className="nodrag"
-				/>
-			</div>
-			<div>
-				{data.team2?.name}
-				<img src={data.team2?.logo} alt="" height={10} width={10} />
-				<input
-					id={data.getTeam2InputId()}
-					type="text"
-					style={{ width: 10, marginLeft: 10 }}
-					onChange={onChange}
-					className="nodrag"
-				/>
-			</div>
+			<MatchComponent data={data} onChange={onChange}></MatchComponent>
 
 			<Handle
 				type="source"

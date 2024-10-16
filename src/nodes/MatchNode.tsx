@@ -5,9 +5,6 @@ import { useEffect, useState } from "react";
 
 export function MatchNode({ data }: NodeProps<MatchNode>) {
 	const node = data;
-
-	const updateNodeInternals = useUpdateNodeInternals();
-
 	function declareWinner() {
 		const score1 = getScore(node.getTeam1InputId());
 		const score2 = getScore(node.getTeam2InputId());
@@ -21,9 +18,6 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 				id: node.getTeam1InputId().concat("w"),
 				source: node.getNodeId(),
 				target: node.target!.getNodeId(),
-				// sourceHandle: data.getOutputHandle1Id(),
-				// targetHandle: data.target.getInputHandle1Id(),
-				sourceHandle: "b1r1m1o1",
 				targetHandle: "b1r2m1i1",
 				type: "straight",
 			};
@@ -38,8 +32,6 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 		}
 	}
 
-	// updateNodeInternals(node.getNodeId());
-	// TODO Refactor matchnode to split out starting node, middle node, and ending node with their respective number of handles
 	return (
 		<div className="react-flow__node-default">
 			<div>
