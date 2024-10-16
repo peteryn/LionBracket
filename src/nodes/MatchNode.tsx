@@ -30,7 +30,7 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 			console.log(data.getOutputHandle1Id());
 			console.log(data.target.getInputHandle1Id());
 			console.log(newEdge);
-			data.update(newEdge);
+			// data.update(newEdge);
 		} else if (score1 < score2) {
 			console.log("Team 2 won!");
 		} else {
