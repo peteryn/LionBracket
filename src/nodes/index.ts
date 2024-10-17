@@ -1,7 +1,5 @@
 import type { NodeTypes } from "@xyflow/react";
 
-import { PositionLoggerNode } from "./PositionLoggerNode";
-import { VerticalInputNode } from "./VerticalInputNode";
 import { MatchNode } from "./MatchNode";
 import { AppNode } from "./types";
 import { Match } from "./Match";
@@ -84,9 +82,7 @@ function createMatchNode(data: Match, x: number, y: number): AppNode {
 create2Team("b1");
 
 export const nodeTypes = {
-	"position-logger": PositionLoggerNode,
 	// Add any of your custom nodes here!
-	"vertical-input": VerticalInputNode,
 	"starting-match": StartingMatchNode,
 	"ending-match": EndingMatchNode,
 	match: MatchNode,
