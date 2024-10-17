@@ -1,7 +1,8 @@
-import { Handle, Position, type NodeProps, type Edge, useUpdateNodeInternals } from "@xyflow/react";
+import { Handle, Position, type NodeProps, type Edge } from "@xyflow/react";
 
 import { type MatchNode } from "./types";
-import { useEffect, useState } from "react";
+import MatchComponent from "./MatchComponent";
+import { getScore } from "../helper/score";
 
 export function MatchNode({ data }: NodeProps<MatchNode>) {
 	const node = data;
@@ -34,73 +35,33 @@ export function MatchNode({ data }: NodeProps<MatchNode>) {
 
 	return (
 		<div className="react-flow__node-default">
-			<div>
-				{node.team1?.name}
-				<img src={node.team1?.logo} alt="" height={10} width={10} />
-				<input
-					id={node.getTeam1InputId()}
-					type="text"
-					style={{ width: 10, marginLeft: 10 }}
-					onChange={declareWinner}
-				/>
-			</div>
-			<div>
-				{node.team2?.name}
-				<img src={node.team2?.logo} alt="" height={10} width={10} />
-				<input
-					id={node.getTeam2InputId()}
-					type="text"
-					style={{ width: 10, marginLeft: 10 }}
-					onChange={declareWinner}
-				/>
-			</div>
+			<Handle
+				type="target"
+				position={Position.Left}
+				id={data.getInputHandle1Id()}
+				style={{ top: 20 }}
+			/>
+			<Handle
+				type="target"
+				position={Position.Left}
+				id={data.getInputHandle2Id()}
+				style={{ top: 40 }}
+			/>
 
-			<StartingNode
-				isStarting={node.isStarting ?? false}
-				id1={node.getInputHandle1Id()}
-				id2={node.getInputHandle1Id()}
-			></StartingNode>
-			<EndingNode
-				isEnding={node.isEnding ?? false}
-				id1={node.getOutputHandle1Id()}
-				id2={node.getOutputHandle2Id()}
-			></EndingNode>
+			<MatchComponent data={data} onChange={declareWinner}></MatchComponent>
+
+			<Handle
+				type="source"
+				position={Position.Right}
+				id={data.getOutputHandle1Id()}
+				style={{ top: 20 }}
+			/>
+			<Handle
+				type="source"
+				position={Position.Right}
+				id={data.getOutputHandle1Id()}
+				style={{ top: 40 }}
+			/>
 		</div>
 	);
-}
-
-function getScore(id: string): number {
-	const stringValue = (document.getElementById(id) as HTMLInputElement).value;
-	if (stringValue === "") {
-		return 0;
-	} else {
-		return Number(stringValue);
-	}
-}
-
-// TODO: work on creating unqiue ids for handles
-function StartingNode({ isStarting, id1, id2 }: { isStarting: boolean; id1: string; id2: string }) {
-	if (!isStarting) {
-		return (
-			<>
-				<Handle type="source" position={Position.Left} id={id1} style={{ top: 20 }} />
-				<Handle type="source" position={Position.Left} id={id2} style={{ top: 40 }} />
-			</>
-		);
-	} else {
-		return null;
-	}
-}
-
-function EndingNode({ isEnding, id1, id2 }: { isEnding: boolean; id1: string; id2: string }) {
-	if (!isEnding) {
-		return (
-			<>
-				<Handle type="target" position={Position.Right} id={id1} style={{ top: 20 }} />
-				<Handle type="target" position={Position.Right} id={id2} style={{ top: 40 }} />
-			</>
-		);
-	} else {
-		return null;
-	}
 }

@@ -3,7 +3,7 @@ import {Handle, Position, type NodeProps, type Edge} from "@xyflow/react";
 import { type MatchNode } from "./types";
 import MatchComponent from "./MatchComponent";
 import { useCallback } from "react";
-import { getScore } from "./helper/score";
+import { getScore } from "../helper/score";
 
 export function EndingMatchNode({ data }: NodeProps<MatchNode>) {
 
