@@ -1,0 +1,3 @@
+[submodule "BreezeBracket"]
+	path = BreezeBracket
+	url = git@github.com:peteryn/BreezeBracket.git
