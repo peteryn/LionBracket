@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import {
 	ReactFlow,
 	Background,
@@ -7,36 +7,62 @@ import {
 	addEdge,
 	useNodesState,
 	useEdgesState,
+	applyEdgeChanges,
+	applyNodeChanges,
 	type OnConnect,
+	Position,
 } from "@xyflow/react";
 
 import "@xyflow/react/dist/style.css";
 
 import { initialNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
-import { SwissBracket } from "../BracketLion/SwissBracket";
 
-const swiss = new SwissBracket();
 
 export default function App() {
-	const [nodes, , onNodesChange] = useNodesState(initialNodes);
-	const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-	const onConnect: OnConnect = useCallback(
-		(connection) => setEdges((edges) => addEdge(connection, edges)),
-		[setEdges]
-	);
+	// const initialNodes = [
+	// 	{
+	// 		id: "-1",
+	// 		data: { label: "Hello" },
+	// 		position: { x: -200, y: 0 },
+	// 	},
+	// 	// {
+	// 	// 	id: "2",
+	// 	// 	data: { label: "World" },
+	// 	// 	position: { x: 100, y: 100 },
+	// 	// },
+	// ];
 
-	const removeEdge = useCallback(
-		(edgeId: string) => {
-			setEdges((edges) => edges.filter((edge) => edge.id !== edgeId));
-		},
-		[setEdges]
-	);
+	// let idVal = 0;
+	// let xVal = 0;
+	// let yVal = 0;
+	// swiss.levelOrderTraversal(swiss.rootRound, undefined, (level) => {
+	// 	yVal = 0;
+	// 	level.forEach((node) => {
+	// 		const obj = {
+	// 			id: idVal.toString(),
+	// 			data: { label: node.name },
+	// 			position: { x: xVal, y: yVal },
+	// 		};
+	// 		idVal++;
+	// 		yVal += 100;
+	// 		initialNodes.push(obj);
+	// 	});
+	// 	xVal += 200;
+	// });
 
-	for (let i = 0; i < nodes.length; i++) {
-		nodes[i].data.update = onConnect;
-		nodes[i].data.remove = removeEdge;
-	}
+	const [nodes, setNodes] = useState(initialNodes);
+	const [edges, setEdges] = useState(initialEdges);
+
+	const onNodesChange = useCallback(
+		(changes: any) => setNodes((nds) => applyNodeChanges(changes, nds)),
+		[]
+	);
+	const onEdgesChange = useCallback(
+		(changes: any) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+		[]
+	);
+	const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 
 	return (
 		<ReactFlow

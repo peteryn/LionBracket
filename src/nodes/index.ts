@@ -6,6 +6,11 @@ import { Match } from "./Match";
 import { Team } from "../teams/Team";
 import { StartingMatchNode } from "./StartingMatchNode";
 import { EndingMatchNode } from "./EndingMatchNode";
+import { RoundNodeComponent } from "./RoundNodeComponent";
+
+import { SwissBracket } from "../../BracketLion/SwissBracket";
+import { RoundNodeType } from "./RoundNodeType";
+export const swiss = new SwissBracket();
 
 export const initialNodes: AppNode[] = [
 	// { id: "a", position: { x: 0, y: 0 }, data: {} },
@@ -51,22 +56,18 @@ function create2Team(bracketId: string) {
 	const m2 = new Match(bracketId, "r2", "m1", g2, falcons, true);
 	m1.target = m2;
 
-	initialNodes.push(
-		{
-			id: m1.getNodeId(),
-			type: "starting-match",
-			position: {x: -200, y:0},
-			data: m1
-		}
-	)
-	initialNodes.push(
-		{
-			id: m2.getNodeId(),
-			type: "ending-match",
-			position: {x: 200, y:0},
-			data: m2
-		}
-	)
+	initialNodes.push({
+		id: m1.getNodeId(),
+		type: "starting-match",
+		position: { x: -200, y: 0 },
+		data: m1,
+	});
+	initialNodes.push({
+		id: m2.getNodeId(),
+		type: "ending-match",
+		position: { x: 200, y: 0 },
+		data: m2,
+	});
 }
 
 function createMatchNode(data: Match, x: number, y: number): AppNode {
@@ -78,12 +79,76 @@ function createMatchNode(data: Match, x: number, y: number): AppNode {
 	};
 }
 
+function createSwissNodes() {
+	// initialNodes.push({
+	// 	id: "1",
+	// 	type: "round-node-component",
+	// 	position: {x: 0, y: 0},
+	// 	data: {label: "hi"},
+	// })
+
+	let idVal = 0;
+	let xVal = 0;
+	let yVal = 0;
+	swiss.levelOrderTraversal(swiss.rootRound, undefined, (level) => {
+		yVal = 0;
+		if (level.length === 1) {
+			level.forEach((node) => {
+				const roundNodeType = new RoundNodeType(node.name);
+				const obj: AppNode = {
+					id: node.name,
+					position: { x: xVal, y: yVal },
+					data: roundNodeType,
+					type: "round-node-component",
+				};
+				initialNodes.push(obj);
+				idVal++;
+				yVal += 100;
+			});
+		}
+		if (level.length === 2) {
+			yVal = -50;
+			level.forEach((node) => {
+				const roundNodeType = new RoundNodeType(node.name);
+				const obj: AppNode = {
+					id: node.name,
+					position: { x: xVal, y: yVal },
+					data: roundNodeType,
+					type: "round-node-component",
+				};
+				initialNodes.push(obj);
+				idVal++;
+				yVal += 100;
+			});
+		}
+		if (level.length === 3) {
+			yVal = -100;
+			level.forEach((node) => {
+				const roundNodeType = new RoundNodeType(node.name);
+				const obj: AppNode = {
+					id: node.name,
+					position: { x: xVal, y: yVal },
+					data: roundNodeType,
+					type: "round-node-component",
+				};
+				initialNodes.push(obj);
+				idVal++;
+				yVal += 100;
+			});
+		}
+
+		xVal += 225;
+	});
+}
+
 // create4TeamSingleElimination("b1");
-create2Team("b1");
+// create2Team("b1");
+createSwissNodes();
 
 export const nodeTypes = {
 	// Add any of your custom nodes here!
 	"starting-match": StartingMatchNode,
 	"ending-match": EndingMatchNode,
+	"round-node-component": RoundNodeComponent,
 	match: MatchNode,
 } satisfies NodeTypes;
