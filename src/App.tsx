@@ -37,6 +37,7 @@ export default function App() {
 
 	return (
 		<ReactFlow
+			colorMode="dark"
 			nodes={nodes}
 			nodeTypes={nodeTypes}
 			onNodesChange={onNodesChange}
