@@ -1,0 +1,3 @@
+[submodule "BracketLion"]
+	path = BracketLion
+	url = git@github.com:peteryn/BracketLion.git
