@@ -14,6 +14,9 @@ import "@xyflow/react/dist/style.css";
 
 import { initialNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
+import { SwissBracket } from "../BracketLion/SwissBracket";
+
+const swiss = new SwissBracket();
 
 export default function App() {
 	const [nodes, , onNodesChange] = useNodesState(initialNodes);
