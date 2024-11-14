@@ -4,20 +4,26 @@ import { swiss } from ".";
 import { getScore } from "../helper/score";
 
 export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
-	const matchesComponents = data.roundNode.matches.map((match) => {
+	const matches = data.parentSwissBracket.roundNodes.get(data.name)?.matches;
+	if (!matches) {
+		throw new Error();
+	}
+	const matchesComponents = matches.map((match) => {
 		if (match.matchRecord) {
 			const upperInputId = `${match.id}upper`;
 			const lowerInputId = `${match.id}lower`;
 
 			function onChange() {
+				console.log("in onchange")
 				const upperTeamWins = getScore(upperInputId);
 				const lowerTeamWins = getScore(lowerInputId);
-				const matchRecord = swiss.getMatchRecordById(match.id);
+				const matchRecord = data.parentSwissBracket.getMatchRecordById(match.id);
 				if (matchRecord) {
 					matchRecord.upperTeamWins = upperTeamWins;
 					matchRecord.lowerTeamWins = lowerTeamWins;
-					swiss.setMatchRecordById(match.id, matchRecord);
-					console.log(swiss.roundNodes.get("0-1")?.matches[0].matchRecord);
+					data.parentSwissBracket.setMatchRecordById(match.id, matchRecord);
+					data.updateSwissFun(data.parentSwissBracket);
+					console.log(data.parentSwissBracket.roundNodes.get("1-0")?.matches[0].matchRecord)
 				}
 			}
 
