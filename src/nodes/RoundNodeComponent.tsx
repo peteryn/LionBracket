@@ -4,7 +4,7 @@ import { swiss } from ".";
 import { getScore } from "../helper/score";
 
 export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
-	const matches = data.roundNode.matches.map((match) => {
+	const matchesComponents = data.roundNode.matches.map((match) => {
 		if (match.matchRecord) {
 			const upperInputId = `${match.id}upper`;
 			const lowerInputId = `${match.id}lower`;
@@ -58,8 +58,8 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 		// We add this class to use the same styles as React Flow's default nodes.
 		<div className="react-flow__node-default">
 			<Handle type="target" position={Position.Left} id={"a"} />
-			<p>{data.name}</p>
-			<div>{matches}</div>
+			{/* <p>{data.name}</p> */}
+			<div>{matchesComponents}</div>
 			<Handle type="source" position={Position.Right} id={"b"} />
 		</div>
 	);
