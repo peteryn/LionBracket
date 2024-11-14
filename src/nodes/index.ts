@@ -94,7 +94,7 @@ function createSwissNodes() {
 		yVal = 0;
 		if (level.length === 1) {
 			level.forEach((node) => {
-				const roundNodeType = new RoundNodeType(node.name);
+				const roundNodeType = new RoundNodeType(node.name, node);
 				const obj: AppNode = {
 					id: node.name,
 					position: { x: xVal, y: yVal },
@@ -107,9 +107,9 @@ function createSwissNodes() {
 			});
 		}
 		if (level.length === 2) {
-			yVal = -50;
+			yVal = -100;
 			level.forEach((node) => {
-				const roundNodeType = new RoundNodeType(node.name);
+				const roundNodeType = new RoundNodeType(node.name, node);
 				const obj: AppNode = {
 					id: node.name,
 					position: { x: xVal, y: yVal },
@@ -118,13 +118,13 @@ function createSwissNodes() {
 				};
 				initialNodes.push(obj);
 				idVal++;
-				yVal += 100;
+				yVal += 250;
 			});
 		}
 		if (level.length === 3) {
 			yVal = -100;
 			level.forEach((node) => {
-				const roundNodeType = new RoundNodeType(node.name);
+				const roundNodeType = new RoundNodeType(node.name, node);
 				const obj: AppNode = {
 					id: node.name,
 					position: { x: xVal, y: yVal },

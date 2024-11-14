@@ -23,3 +23,8 @@ body,
 	object-fit: contain;
     margin-right: 0.4rem;
 }
+
+.matches-area {
+	display: flex;
+	justify-content: center;
+}
