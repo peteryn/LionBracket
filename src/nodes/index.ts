@@ -81,17 +81,6 @@ export const initialNodes: AppNode[] = [
 // }
 
 function createSwissNodes() {
-	// initialNodes.push({
-	// 	id: "1",
-	// 	type: "round-node-component",
-	// 	position: {x: 0, y: 0},
-	// 	data: {label: "hi"},
-	// })
-
-	// const nameToUpdateHandler: Map<string, [Match[], React.Dispatch<React.SetStateAction<Match[]>>]> = new Map();
-	// swiss.levelOrderTraversal(swiss.rootRound, (node) => {
-	// 	nameToUpdateHandler.set(node.name, useState(node.matches))
-	// })
 
 	let idVal = 0;
 	let xVal = 0;
