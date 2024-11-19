@@ -22,7 +22,7 @@ import { initialEdges, edgeTypes } from "./edges";
 export default function App() {
 	const [swissB, setSwissB] = useState(swiss);
 
-	const [nodes, setNodes] = useState(initialNodes);
+	const [nodes, setNodes, updateNodes] = useNodesState(initialNodes);
 	const [edges, setEdges] = useState(initialEdges);
 
 	nodes.forEach(node => node.data.parentSwissBracket = swissB);
