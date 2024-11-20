@@ -1,6 +1,5 @@
 import { Handle, Position, type NodeProps, type Edge } from "@xyflow/react";
 import { type RoundNodeComponent } from "./types";
-import { swiss } from ".";
 import { getScore } from "../helper/score";
 
 export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
@@ -14,7 +13,7 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 			const lowerInputId = `${match.id}lower`;
 
 			function onChange() {
-				console.log("in onchange")
+				console.log("in onchange");
 				const upperTeamWins = getScore(upperInputId);
 				const lowerTeamWins = getScore(lowerInputId);
 				const matchRecord = data.parentSwissBracket.getMatchRecordById(match.id);
@@ -22,37 +21,49 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 					matchRecord.upperTeamWins = upperTeamWins;
 					matchRecord.lowerTeamWins = lowerTeamWins;
 					data.parentSwissBracket.setMatchRecordById(match.id, matchRecord);
-					data.updateSwissFun(data.parentSwissBracket);
-					console.log(data.parentSwissBracket.roundNodes.get("1-0")?.matches[0].matchRecord)
+					if (data.updateSwissFun) {
+						console.log("should have called setSwissB");
+						data.updateSwissFun(data.parentSwissBracket);
+
+						console.log(
+							data.parentSwissBracket.roundNodes.get("1-0")?.matches[0].matchRecord
+						);
+					}
+					if (data.setMyString) {
+						console.log("changed string");
+						data.setMyString("hi");
+					}
 				}
 			}
 
 			return (
 				<div key={match.id} className="matches-area">
 					<table>
-						<tr>
-							<td>{match.matchRecord.upperTeam.seed}</td>
-							<td>
-								<input
-									id={upperInputId}
-									type="text"
-									style={{ width: 10 }}
-									className="nodrag"
-									onChange={onChange}
-								/>
-							</td>
-							<td>vs</td>
-							<td>
-								<input
-									id={lowerInputId}
-									type="text"
-									style={{ width: 10 }}
-									className="nodrag"
-									onChange={onChange}
-								/>
-							</td>
-							<td>{match.matchRecord.lowerTeam.seed}</td>
-						</tr>
+						<tbody>
+							<tr>
+								<td>{match.matchRecord.upperTeam.seed}</td>
+								<td>
+									<input
+										id={upperInputId}
+										type="text"
+										style={{ width: 10 }}
+										className="nodrag"
+										onChange={onChange}
+									/>
+								</td>
+								<td>vs</td>
+								<td>
+									<input
+										id={lowerInputId}
+										type="text"
+										style={{ width: 10 }}
+										className="nodrag"
+										onChange={onChange}
+									/>
+								</td>
+								<td>{match.matchRecord.lowerTeam.seed}</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			);
@@ -63,6 +74,7 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 	return (
 		// We add this class to use the same styles as React Flow's default nodes.
 		<div className="react-flow__node-default">
+			<h1>{data.message}</h1>
 			<Handle type="target" position={Position.Left} id={"a"} />
 			{/* <p>{data.name}</p> */}
 			<div>{matchesComponents}</div>

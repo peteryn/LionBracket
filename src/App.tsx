@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
 	ReactFlow,
 	Background,
@@ -15,28 +15,56 @@ import {
 
 import "@xyflow/react/dist/style.css";
 
-import { initialNodes, nodeTypes, swiss } from "./nodes";
+import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
-
+import { SwissBracket } from "../BracketLion/SwissBracket";
 
 export default function App() {
-	const [swissB, setSwissB] = useState(swiss);
+	const [swissB, setSwissB] = useState(new SwissBracket());
+	const [myString, setMyString] = useState("default");
 
-	const [nodes, setNodes, updateNodes] = useNodesState(initialNodes);
-	const [edges, setEdges] = useState(initialEdges);
+	const initialNodes = createSwissNodes(swissB);
 
-	nodes.forEach(node => node.data.parentSwissBracket = swissB);
-	nodes.forEach(node => node.data.updateSwissFun = setSwissB);
+	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+	const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-	const onNodesChange = useCallback(
-		(changes: any) => setNodes((nds) => applyNodeChanges(changes, nds)),
-		[]
-	);
-	const onEdgesChange = useCallback(
-		(changes: any) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-		[]
-	);
-	const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
+	// nodes.forEach((node) => (node.data.parentSwissBracket = swissB));
+	nodes.map((node) => {
+		node.data.parentSwissBracket = swissB;
+	});
+	nodes.forEach((node) => (node.data.updateSwissFun = setSwissB));
+	nodes.forEach((node) => (node.data.setMyString = setMyString));
+
+	nodes.map((node) => {
+		if (node.id === "1-0") {
+			node.data.message = myString;
+		}
+	});
+
+	// useEffect(() => {
+	// 	console.log("in use effect");
+	// 	setNodes((nds) =>
+	// 		nds.map((node) => {
+	// 			if (node.id === "1-0") {
+	// 				// it's important that you create a new node object
+	// 				// in order to notify react flow about the change
+	// 				return {
+	// 					...node,
+	// 					style: {
+	// 						...node.style,
+	// 					},
+	// 				};
+	// 			}
+	// 			return node;
+	// 		})
+	// 	);
+	// }, [swissB, setNodes, myString]);
+
+	useEffect(() => {
+		console.log("in use effect");
+		setNodes(createSwissNodes(swissB));
+	}, [swissB, setNodes, myString]);
+
 
 	return (
 		<ReactFlow
@@ -45,9 +73,8 @@ export default function App() {
 			nodeTypes={nodeTypes}
 			onNodesChange={onNodesChange}
 			edges={edges}
-			edgeTypes={edgeTypes}
 			onEdgesChange={onEdgesChange}
-			onConnect={onConnect}
+			edgeTypes={edgeTypes}
 			fitView
 			minZoom={1}
 			maxZoom={4}

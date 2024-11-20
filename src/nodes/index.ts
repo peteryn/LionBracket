@@ -13,7 +13,7 @@ import { RoundNodeType } from "./RoundNodeType";
 import { useState } from "react";
 export const swiss = new SwissBracket();
 
-export const initialNodes: AppNode[] = [
+export let initialNodes: AppNode[] = [
 	// { id: "a", position: { x: 0, y: 0 }, data: {} },
 ];
 
@@ -80,8 +80,8 @@ export const initialNodes: AppNode[] = [
 // 	};
 // }
 
-function createSwissNodes() {
-
+export function createSwissNodes(swiss: SwissBracket) {
+	const initialNodes: AppNode[] = [];
 	let idVal = 0;
 	let xVal = 0;
 	let yVal = 0;
@@ -97,7 +97,7 @@ function createSwissNodes() {
 		}
 
 		level.forEach((node) => {
-			const roundNodeType = new RoundNodeType(node.name, node);
+			const roundNodeType = new RoundNodeType(node.name, node, swiss, undefined, "default");
 			const obj: AppNode = {
 				id: node.name,
 				position: { x: xVal, y: yVal },
@@ -111,11 +111,12 @@ function createSwissNodes() {
 
 		xVal += 225;
 	});
+	return initialNodes;
 }
 
 // create4TeamSingleElimination("b1");
 // create2Team("b1");
-createSwissNodes();
+initialNodes = createSwissNodes(swiss);
 
 export const nodeTypes = {
 	// Add any of your custom nodes here!
