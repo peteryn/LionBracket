@@ -1,9 +1,10 @@
 import { Handle, Position, type NodeProps, type Edge } from "@xyflow/react";
 import { type RoundNodeComponent } from "./types";
 import { getScore } from "../helper/score";
+import { globalSwiss } from "../App";
 
 export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
-	const matches = data.parentSwissBracket.roundNodes.get(data.name)?.matches;
+	const matches = globalSwiss.roundNodes.get(data.name)?.matches;
 	if (!matches) {
 		throw new Error();
 	}
@@ -16,17 +17,33 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 				console.log("in onchange");
 				const upperTeamWins = getScore(upperInputId);
 				const lowerTeamWins = getScore(lowerInputId);
-				const matchRecord = data.parentSwissBracket.getMatchRecordById(match.id);
+				const matchRecord = globalSwiss.getMatchRecordById(match.id);
 				if (matchRecord) {
 					matchRecord.upperTeamWins = upperTeamWins;
 					matchRecord.lowerTeamWins = lowerTeamWins;
-					data.parentSwissBracket.setMatchRecordById(match.id, matchRecord);
+					globalSwiss.setMatchRecordById(match.id, matchRecord);
 					if (data.updateSwissFun) {
 						console.log("should have called setSwissB");
-						data.updateSwissFun(data.parentSwissBracket);
+						const cloned = structuredClone(globalSwiss)
+						cloned.evaluationSort = globalSwiss.evaluationSort
+						cloned.getEliminatedTeams = globalSwiss.getEliminatedTeams
+						cloned.getMatch = globalSwiss.getMatch
+						cloned.getMatchHistory = globalSwiss.getMatchHistory
+						cloned.getMatchRecord = globalSwiss.getMatchRecord
+						cloned.getMatchRecordById = globalSwiss.getMatchRecordById
+						cloned.getPromotedTeams = globalSwiss.getPromotedTeams;
+						cloned.levelOrderTraversal = globalSwiss.levelOrderTraversal
+						cloned.playedAlready = globalSwiss.playedAlready
+						cloned.printLevels = globalSwiss.printLevels
+						cloned.seedBasedMatchups = globalSwiss.seedBasedMatchups
+						cloned.setMatchRecord = globalSwiss.setMatchRecord
+						cloned.setMatchRecordById = globalSwiss.setMatchRecordById
+						cloned.swissSort = globalSwiss.swissSort
+						cloned.updateRounds = globalSwiss.updateRounds
+						data.updateSwissFun(cloned);
 
 						console.log(
-							data.parentSwissBracket.roundNodes.get("1-0")?.matches[0].matchRecord
+							globalSwiss.roundNodes.get("1-0")?.matches[0].matchRecord
 						);
 					}
 					if (data.setMyString) {

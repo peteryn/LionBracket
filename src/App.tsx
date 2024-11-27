@@ -15,12 +15,28 @@ import {
 
 import "@xyflow/react/dist/style.css";
 
+export const globalSwiss = new SwissBracket();
+
 import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
 import { SwissBracket } from "../BracketLion/SwissBracket";
 
+// UI can render future rounds correctly
+// UI problem has to deal with the useEffect
+// const round1 = globalSwiss.rootRound;
+// round1.matches.forEach((match) => {
+// 	const mr = globalSwiss.getMatchRecordById(match.id);
+// 	if (!mr) {
+// 		console.log("big problem");
+// 	}
+// 	mr!.upperTeamWins = 1;
+// 	globalSwiss.setMatchRecordById(match.id, mr!);
+// });
+// console.log(globalSwiss.roundNodes.get("1-0")?.matches[0]);
+
 export default function App() {
-	const [swissB, setSwissB] = useState(new SwissBracket());
+	const [swissB, setSwissB] = useState(globalSwiss);
+
 	const [myString, setMyString] = useState("default");
 
 	const initialNodes = createSwissNodes(swissB);
@@ -62,9 +78,10 @@ export default function App() {
 
 	useEffect(() => {
 		console.log("in use effect");
-		setNodes(createSwissNodes(swissB));
+		const updatedNodes = createSwissNodes(swissB)
+		setNodes(updatedNodes);
+		console.log();
 	}, [swissB, setNodes, myString]);
-
 
 	return (
 		<ReactFlow
