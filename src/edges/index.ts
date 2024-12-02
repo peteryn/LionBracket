@@ -2,13 +2,15 @@ import type { Edge, EdgeTypes } from "@xyflow/react";
 
 import { swiss } from "../nodes";
 
+import { levelOrderTraversal } from "../../BracketLion/SwissBracket";
+
 export const initialEdges: Edge[] = [
 	// { id: 'a->c', source: 'a', target: 'c', animated: true },
 	// { id: 'b->d', source: 'b', target: 'd' },
 	// { id: 'c->d', source: 'c', target: 'd', animated: true },
 ];
 
-swiss.levelOrderTraversal(swiss.rootRound, (node) => {
+levelOrderTraversal(swiss.data.rootRound, (node) => {
 	if (node.winningRound) {
 		const id = `${node.name}->${node.winningRound.name}`;
 		initialEdges.push({

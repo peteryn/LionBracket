@@ -15,7 +15,7 @@ import {
 
 import "@xyflow/react/dist/style.css";
 
-export const globalSwiss = new SwissBracket();
+export const globalSwiss: SwissBracket = new SwissBracket();
 
 import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
@@ -35,11 +35,11 @@ import { SwissBracket } from "../BracketLion/SwissBracket";
 // console.log(globalSwiss.roundNodes.get("1-0")?.matches[0]);
 
 export default function App() {
-	const [swissB, setSwissB] = useState(globalSwiss);
+	const [swissB, setSwissB] = useState(globalSwiss.data);
 
 	const [myString, setMyString] = useState("default");
 
-	const initialNodes = createSwissNodes(swissB);
+	const initialNodes = createSwissNodes(globalSwiss);
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -78,7 +78,7 @@ export default function App() {
 
 	useEffect(() => {
 		console.log("in use effect");
-		const updatedNodes = createSwissNodes(swissB)
+		const updatedNodes = createSwissNodes(globalSwiss)
 		setNodes(updatedNodes);
 		console.log();
 	}, [swissB, setNodes, myString]);

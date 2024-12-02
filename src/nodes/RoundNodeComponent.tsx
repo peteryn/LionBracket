@@ -1,10 +1,10 @@
 import { Handle, Position, type NodeProps, type Edge } from "@xyflow/react";
-import { type RoundNodeComponent } from "./types";
-import { getScore } from "../helper/score";
-import { globalSwiss } from "../App";
+import { type RoundNodeComponent } from "./types.ts";
+import { getScore } from "../helper/score.ts";
+import { globalSwiss } from "../App.tsx";
 
 export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
-	const matches = globalSwiss.roundNodes.get(data.name)?.matches;
+	const matches = globalSwiss.data.roundNodes.get(data.name)?.matches;
 	if (!matches) {
 		throw new Error();
 	}
@@ -24,27 +24,11 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 					globalSwiss.setMatchRecordById(match.id, matchRecord);
 					if (data.updateSwissFun) {
 						console.log("should have called setSwissB");
-						const cloned = structuredClone(globalSwiss)
-						cloned.evaluationSort = globalSwiss.evaluationSort
-						cloned.getEliminatedTeams = globalSwiss.getEliminatedTeams
-						cloned.getMatch = globalSwiss.getMatch
-						cloned.getMatchHistory = globalSwiss.getMatchHistory
-						cloned.getMatchRecord = globalSwiss.getMatchRecord
-						cloned.getMatchRecordById = globalSwiss.getMatchRecordById
-						cloned.getPromotedTeams = globalSwiss.getPromotedTeams;
-						cloned.levelOrderTraversal = globalSwiss.levelOrderTraversal
-						cloned.playedAlready = globalSwiss.playedAlready
-						cloned.printLevels = globalSwiss.printLevels
-						cloned.seedBasedMatchups = globalSwiss.seedBasedMatchups
-						cloned.setMatchRecord = globalSwiss.setMatchRecord
-						cloned.setMatchRecordById = globalSwiss.setMatchRecordById
-						cloned.swissSort = globalSwiss.swissSort
-						cloned.updateRounds = globalSwiss.updateRounds
+						const cloned = structuredClone(globalSwiss.data);
+						globalSwiss.data = cloned;
 						data.updateSwissFun(cloned);
 
-						console.log(
-							globalSwiss.roundNodes.get("1-0")?.matches[0].matchRecord
-						);
+						console.log(globalSwiss.data.roundNodes.get("1-0")?.matches[0].matchRecord);
 					}
 					if (data.setMyString) {
 						console.log("changed string");

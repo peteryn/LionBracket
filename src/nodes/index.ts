@@ -8,7 +8,7 @@ import { StartingMatchNode } from "./StartingMatchNode";
 import { EndingMatchNode } from "./EndingMatchNode";
 import { RoundNodeComponent } from "./RoundNodeComponent";
 
-import { SwissBracket } from "../../BracketLion/SwissBracket";
+import { SwissBracket, levelOrderTraversal } from "../../BracketLion/SwissBracket";
 import { RoundNodeType } from "./RoundNodeType";
 import { useState } from "react";
 export const swiss = new SwissBracket();
@@ -22,7 +22,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 	let idVal = 0;
 	let xVal = 0;
 	let yVal = 0;
-	swiss.levelOrderTraversal(swiss.rootRound, undefined, (level) => {
+	levelOrderTraversal(swiss.data.rootRound, undefined, (level) => {
 		yVal = 0;
 		if (level.length === 1) {
 		}
