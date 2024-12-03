@@ -14,7 +14,6 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 			const lowerInputId = `${match.id}lower`;
 
 			function onChange() {
-				console.log("in onchange");
 				const upperTeamWins = getScore(upperInputId);
 				const lowerTeamWins = getScore(lowerInputId);
 				const matchRecord = globalSwiss.getMatchRecordById(match.id);
@@ -23,16 +22,9 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 					matchRecord.lowerTeamWins = lowerTeamWins;
 					globalSwiss.setMatchRecordById(match.id, matchRecord);
 					if (data.updateSwissFun) {
-						console.log("should have called setSwissB");
 						const cloned = structuredClone(globalSwiss.data);
 						globalSwiss.data = cloned;
 						data.updateSwissFun(cloned);
-
-						console.log(globalSwiss.data.roundNodes.get("1-0")?.matches[0].matchRecord);
-					}
-					if (data.setMyString) {
-						console.log("changed string");
-						data.setMyString("hi");
 					}
 				}
 			}
@@ -75,7 +67,6 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 	return (
 		// We add this class to use the same styles as React Flow's default nodes.
 		<div className="react-flow__node-default">
-			<h1>{data.message}</h1>
 			<Handle type="target" position={Position.Left} id={"a"} />
 			{/* <p>{data.name}</p> */}
 			<div>{matchesComponents}</div>

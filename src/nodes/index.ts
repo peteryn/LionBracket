@@ -2,20 +2,15 @@ import type { NodeTypes } from "@xyflow/react";
 
 import { MatchNode } from "./MatchNode";
 import { AppNode } from "./types";
-import { Match } from "../../BracketLion/models";
-import { Team } from "../teams/Team";
 import { StartingMatchNode } from "./StartingMatchNode";
 import { EndingMatchNode } from "./EndingMatchNode";
 import { RoundNodeComponent } from "./RoundNodeComponent";
 
 import { SwissBracket, levelOrderTraversal } from "../../BracketLion/SwissBracket";
 import { RoundNodeType } from "./RoundNodeType";
-import { useState } from "react";
 export const swiss = new SwissBracket();
 
-export let initialNodes: AppNode[] = [
-	// { id: "a", position: { x: 0, y: 0 }, data: {} },
-];
+export let initialNodes: AppNode[] = [];
 
 export function createSwissNodes(swiss: SwissBracket) {
 	const initialNodes: AppNode[] = [];
@@ -34,7 +29,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 		}
 
 		level.forEach((node) => {
-			const roundNodeType = new RoundNodeType(node.name, node, swiss, undefined, "default");
+			const roundNodeType = new RoundNodeType(node.name, node, undefined);
 			const obj: AppNode = {
 				id: node.name,
 				position: { x: xVal, y: yVal },
@@ -51,8 +46,6 @@ export function createSwissNodes(swiss: SwissBracket) {
 	return initialNodes;
 }
 
-// create4TeamSingleElimination("b1");
-// create2Team("b1");
 initialNodes = createSwissNodes(swiss);
 
 export const nodeTypes = {

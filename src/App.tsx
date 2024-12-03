@@ -29,16 +29,11 @@ export default function App() {
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-	nodes.map((node) => {
-		node.data.parentSwissBracket = swissB;
-	});
 	nodes.forEach((node) => (node.data.updateSwissFun = setSwissB));
 
 	useEffect(() => {
-		console.log("in use effect");
 		const updatedNodes = createSwissNodes(globalSwiss);
 		setNodes(updatedNodes);
-		console.log();
 	}, [swissB, setNodes]);
 
 	return (
