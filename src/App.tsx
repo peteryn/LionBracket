@@ -1,19 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	ReactFlow,
 	Background,
 	Controls,
 	MiniMap,
-	addEdge,
 	useNodesState,
 	useEdgesState,
-	applyEdgeChanges,
-	applyNodeChanges,
-	type OnConnect,
-	Position,
 } from "@xyflow/react";
 
-import "@xyflow/react/dist/style.css";
+import "@xyflow/react/dist/base.css";
 
 export const globalSwiss: SwissBracket = new SwissBracket();
 
@@ -27,7 +22,7 @@ export default function App() {
 	const initialNodes = createSwissNodes(globalSwiss);
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-	const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
 	nodes.forEach((node) => (node.data.updateSwissFun = setSwissB));
 

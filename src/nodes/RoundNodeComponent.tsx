@@ -2,6 +2,7 @@ import { Handle, Position, type NodeProps, type Edge } from "@xyflow/react";
 import { type RoundNodeComponent } from "./types.ts";
 import { getScore } from "../helper/score.ts";
 import { globalSwiss } from "../App.tsx";
+import VersusRoundComponent from "./VersusRoundComponent.tsx";
 
 export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 	const matches = globalSwiss.data.roundNodes.get(data.name)?.matches;
@@ -30,35 +31,36 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 			}
 
 			return (
-				<div key={match.id} className="matches-area">
-					<table>
-						<tbody>
-							<tr>
-								<td>{match.matchRecord.upperTeam.seed}</td>
-								<td>
-									<input
-										id={upperInputId}
-										type="text"
-										style={{ width: 10 }}
-										className="nodrag"
-										onChange={onChange}
-									/>
-								</td>
-								<td>vs</td>
-								<td>
-									<input
-										id={lowerInputId}
-										type="text"
-										style={{ width: 10 }}
-										className="nodrag"
-										onChange={onChange}
-									/>
-								</td>
-								<td>{match.matchRecord.lowerTeam.seed}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<VersusRoundComponent key={match.id} match={match}></VersusRoundComponent>
+				// <div key={match.id} className="matches-area">
+				// 	<table>
+				// 		<tbody>
+				// 			<tr>
+				// 				<td>{match.matchRecord.upperTeam.seed}</td>
+				// 				<td>
+				// 					<input
+				// 						id={upperInputId}
+				// 						type="text"
+				// 						style={{ width: 10 }}
+				// 						className="nodrag"
+				// 						onChange={onChange}
+				// 					/>
+				// 				</td>
+				// 				<td>vs</td>
+				// 				<td>
+				// 					<input
+				// 						id={lowerInputId}
+				// 						type="text"
+				// 						style={{ width: 10 }}
+				// 						className="nodrag"
+				// 						onChange={onChange}
+				// 					/>
+				// 				</td>
+				// 				<td>{match.matchRecord.lowerTeam.seed}</td>
+				// 			</tr>
+				// 		</tbody>
+				// 	</table>
+				// </div>
 			);
 		} else {
 			return <div key={match.id}>TBD vs TBD</div>;
