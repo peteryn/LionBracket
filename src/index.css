@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -33,7 +35,16 @@ body,
 	justify-content: center;
 }
 
+.versus-area {
+
+	border-right: 4px solid #595e67;
+	border-left: 4px solid #595e67;
+	border-bottom: 4px solid #595e67;
+	border-radius: 0 0 4px 4px;
+}
+
 .versus-container {
+	box-sizing: border-box;
 	display: grid;
 	grid-template-columns: 1fr auto 1fr;
 	width: 100%;
@@ -105,8 +116,22 @@ input:focus {
 }
 
 .react-flow__node {
-	border: 1px solid #5a5d67;
+	/* border: 1px solid #5a5d67;
+	border-radius: 8px; */
+	border: none;
 }
 .react-flow__node-default {
-	border: 3px solid #5a5d67;
+	/* border: 3px solid #5a5d67;
+	border-radius: 8px; */
+	border: none;
+}
+
+.versus-section-round-title {
+	text-align: center;
+	font-size: larger;
+	background-color: #2c95d9;
+	border-radius: 4px 4px 0px 0px; 
+}
+
+.react-flow__handle {
 }
