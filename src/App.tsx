@@ -41,10 +41,10 @@ export default function App() {
 			onEdgesChange={onEdgesChange}
 			edgeTypes={edgeTypes}
 			fitView
-			minZoom={1}
+			minZoom={0.5}
 			maxZoom={4}
 		>
-			<Background />
+			<Background color="#141414" />
 			<MiniMap />
 			<Controls />
 		</ReactFlow>

@@ -129,6 +129,7 @@ input:focus {
 .versus-section-round-title {
 	text-align: center;
 	font-size: larger;
+	min-height: 24px;
 	background-color: #2c95d9;
 	border-radius: 4px 4px 0px 0px; 
 }
