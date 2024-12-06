@@ -134,4 +134,5 @@ input:focus {
 }
 
 .react-flow__handle {
+	background-color: #595e67;
 }
