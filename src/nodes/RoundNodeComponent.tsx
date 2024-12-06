@@ -9,63 +9,13 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 	if (!matches) {
 		throw new Error();
 	}
-	const matchesComponents = matches.map((match) => {
-		const upperInputId = `${match.id}upper`;
-		const lowerInputId = `${match.id}lower`;
-
-		function onChange() {
-			const upperTeamWins = getScore(upperInputId);
-			const lowerTeamWins = getScore(lowerInputId);
-			const matchRecord = globalSwiss.getMatchRecordById(match.id);
-			if (matchRecord) {
-				matchRecord.upperTeamWins = upperTeamWins;
-				matchRecord.lowerTeamWins = lowerTeamWins;
-				globalSwiss.setMatchRecordById(match.id, matchRecord);
-				if (data.updateSwissFun) {
-					const cloned = structuredClone(globalSwiss.data);
-					globalSwiss.data = cloned;
-					data.updateSwissFun(cloned);
-				}
-			}
-		}
-
-		return (
-			<VersusRoundComponent
-				key={match.id}
-				match={match}
-				updateSwissFun={data.updateSwissFun}
-			></VersusRoundComponent>
-			// <div key={match.id} className="matches-area">
-			// 	<table>
-			// 		<tbody>
-			// 			<tr>
-			// 				<td>{match.matchRecord.upperTeam.seed}</td>
-			// 				<td>
-			// 					<input
-			// 						id={upperInputId}
-			// 						type="text"
-			// 						style={{ width: 10 }}
-			// 						className="nodrag"
-			// 						onChange={onChange}
-			// 					/>
-			// 				</td>
-			// 				<td>vs</td>
-			// 				<td>
-			// 					<input
-			// 						id={lowerInputId}
-			// 						type="text"
-			// 						style={{ width: 10 }}
-			// 						className="nodrag"
-			// 						onChange={onChange}
-			// 					/>
-			// 				</td>
-			// 				<td>{match.matchRecord.lowerTeam.seed}</td>
-			// 			</tr>
-			// 		</tbody>
-			// 	</table>
-			// </div>
-		);
-	});
+	const matchesComponents = matches.map((match) => (
+		<VersusRoundComponent
+			key={match.id}
+			match={match}
+			updateSwissFun={data.updateSwissFun}
+		></VersusRoundComponent>
+	));
 	return (
 		// We add this class to use the same styles as React Flow's default nodes.
 		<div className="react-flow__node-default">

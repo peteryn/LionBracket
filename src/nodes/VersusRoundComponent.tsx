@@ -2,6 +2,7 @@ import { Match } from "../../BracketLion/models";
 import { SwissBracketData } from "../../BracketLion/SwissBracketData";
 import { getScore } from "../helper/score";
 import { globalSwiss } from "../App";
+import TeamBox from "./TeamBox";
 
 export default function VersusRoundComponent({
 	match,
@@ -29,34 +30,47 @@ export default function VersusRoundComponent({
 			}
 		}
 	}
+	const paths: string[] = [
+		"g2",
+		"geng",
+		"og",
+		"ssg",
+		"luminosity",
+		"m80",
+		"cloud9",
+		"shopify",
+		"snowmen",
+		"dignitas",
+		"moist",
+		"nrg",
+		"spate",
+		"zero2one",
+		"gbuffo",
+		"incorrect",
+	];
+
+	let upperImagePath = "";
+	let lowerImagePath = "";
+	if (match.matchRecord) {
+		upperImagePath = `/logos/${paths[match.matchRecord.upperTeam.seed - 1]}.png`;
+		lowerImagePath = `/logos/${paths[match.matchRecord.lowerTeam.seed - 1]}.png`;
+	}
 
 	return (
 		<div className="versus-container" key={match.id}>
-			<div className="team-container">
-				<div className="image-container">
-					<img src="/logos/100.png" alt="" className="" />
-				</div>
-				<input
-					id={upperInputId}
-					type="text"
-					className="nodrag score-input"
-					onChange={onChange}
-				/>
-			</div>
+			<TeamBox
+				onChange={onChange}
+				inputId={upperInputId}
+				imagePath={upperImagePath}
+			></TeamBox>
 			<div className="versus-section">
 				<h3>VS</h3>
 			</div>
-			<div className="team-container">
-				<div className="image-container">
-					<img src="/logos/vitality.png" alt="" />
-				</div>
-				<input
-					id={lowerInputId}
-					type="text"
-					className="nodrag score-input"
-					onChange={onChange}
-				/>
-			</div>
+			<TeamBox
+				onChange={onChange}
+				inputId={lowerInputId}
+				imagePath={lowerImagePath}
+			></TeamBox>
 		</div>
 	);
 }
