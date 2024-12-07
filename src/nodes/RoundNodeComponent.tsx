@@ -1,8 +1,8 @@
-import { Handle, Position, type NodeProps, type Edge } from "@xyflow/react";
+import { Handle, Position, type NodeProps } from "@xyflow/react";
 import { type RoundNodeComponent } from "./types.ts";
-import { getScore } from "../helper/score.ts";
 import { globalSwiss } from "../App.tsx";
 import VersusRoundComponent from "./VersusRoundComponent.tsx";
+import { addColor } from "../helper/color.ts";
 
 export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 	const matches = globalSwiss.data.roundNodes.get(data.name)?.matches;
@@ -33,26 +33,4 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 			<Handle type="source" position={Position.Right} id={"b"} />
 		</div>
 	);
-}
-
-export function addColor(discriminator: string, classes: string, colorClasses: string[]) {
-	switch (discriminator) {
-		case "1-0":
-		case "2-0":
-			classes += colorClasses[0];
-			break;
-		case "0-1":
-		case "1-1":
-		case "2-1":
-			classes += colorClasses[1];
-			break;
-		case "0-2":
-		case "1-2":
-		case "2-2":
-			classes += colorClasses[2];
-			break;
-		default:
-			classes += colorClasses[3];
-	}
-	return classes;
 }

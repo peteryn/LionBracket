@@ -3,7 +3,7 @@ import { SwissBracketData } from "../../BracketLion/SwissBracketData";
 import { getScore } from "../helper/score";
 import { globalSwiss } from "../App";
 import TeamBox from "./TeamBox";
-import { addColor } from "./RoundNodeComponent";
+import { addColor } from "../helper/color";
 
 export default function VersusRoundComponent({
 	match,
