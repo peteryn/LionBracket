@@ -3,6 +3,7 @@ import { SwissBracketData } from "../../BracketLion/SwissBracketData";
 import { getScore } from "../helper/score";
 import { globalSwiss } from "../App";
 import TeamBox from "./TeamBox";
+import { addColor } from "./RoundNodeComponent";
 
 export default function VersusRoundComponent({
 	match,
@@ -55,6 +56,15 @@ export default function VersusRoundComponent({
 		upperImagePath = `/logos/${paths[match.matchRecord.upperTeam.seed - 1]}.png`;
 		lowerImagePath = `/logos/${paths[match.matchRecord.lowerTeam.seed - 1]}.png`;
 	}
+	let classes = "versus ";
+	if (match.roundNode) {
+		classes = addColor(match.roundNode.name, classes, [
+			"round-winning-text",
+			"round-middle-text",
+			"round-losing-text",
+			"round-start-text",
+		]);
+	}
 
 	return (
 		<div className="versus-container" key={match.id}>
@@ -64,7 +74,7 @@ export default function VersusRoundComponent({
 				imagePath={upperImagePath}
 			></TeamBox>
 			<div className="versus-section">
-				<h3>VS</h3>
+				<h3 className={classes}>VS</h3>
 			</div>
 			<TeamBox
 				onChange={onChange}

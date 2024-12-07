@@ -1,13 +1,17 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
+	--blue: #2c95d9;
+	--green: #19bb70;
+	--yellow: #eab34f;
+	--red: #dd3542;
 }
 
 html,
@@ -36,7 +40,6 @@ body,
 }
 
 .versus-area {
-
 	border-right: 4px solid #595e67;
 	border-left: 4px solid #595e67;
 	border-bottom: 4px solid #595e67;
@@ -73,7 +76,8 @@ body,
 	width: 100px;
 }
 
-.team-container, .versus-section {
+.team-container,
+.versus-section {
 	padding: 0.75em 0;
 }
 
@@ -81,15 +85,15 @@ body,
 	/* width: 100%; */
 	/* max-height: 150px; */
 	max-height: 100%;
-    max-width: 100%;
-    width: auto;
-    height: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
 
 .score-input {
@@ -112,7 +116,7 @@ body,
 }
 
 input:focus {
-  outline: none;
+	outline: none;
 }
 
 .react-flow__node {
@@ -128,12 +132,57 @@ input:focus {
 
 .versus-section-round-title {
 	text-align: center;
-	font-size: larger;
+	font-size: 24px;
 	min-height: 24px;
-	background-color: #2c95d9;
-	border-radius: 4px 4px 0px 0px; 
+	border-radius: 4px 4px 0px 0px;
 }
 
 .react-flow__handle {
 	background-color: #595e67;
+}
+
+.round-start {
+	background-color: var(--blue);
+}
+
+.round-winning {
+	background-color: var(--green);
+}
+
+.round-middle {
+	background-color: var(--yellow);
+}
+
+.round-losing {
+	background-color: var(--red);
+}
+
+.round-start-text {
+	color: var(--blue);
+}
+
+.round-winning-text {
+	color: var(--green);
+}
+
+.round-middle-text {
+	color: var(--yellow);
+}
+
+.round-losing-text {
+	color: var(--red);
+}
+
+.versus {
+	font-family: "bourgeois";
+	font-size: 24px;
+}
+
+.bourgeois {
+	font-family: "bourgeois";
+}
+
+@font-face {
+	font-family: "bourgeois"; /*a name to be used later*/
+	src: url("/fonts/Bourgeois-Ultra.otf"); /*URL to font*/
 }
