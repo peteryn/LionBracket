@@ -10,7 +10,7 @@ export function StartingNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 		<div className="react-flow__node-default">
 			<p className={classes}>{data.name}</p>
 			<div className="versus-area">{matchesComponents}</div>
-			<Handle type="source" position={Position.Right} id={"b"} />
+			<Handle type="source" position={Position.Right} id={data.outputHandleId} />
 		</div>
 	);
 }

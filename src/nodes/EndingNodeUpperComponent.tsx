@@ -9,9 +9,9 @@ export function EndingNodeUpperComponent({ data }: NodeProps<RoundNodeComponent>
 		// We add this class to use the same styles as React Flow's default nodes.
 		<div className="react-flow__node-default">
 			<p className={classes}>{data.name}</p>
-			<Handle type="target" position={Position.Left} id={"a"} />
+			<Handle type="target" position={Position.Left} id={data.inputHandleId} />
 			<div className="versus-area">{matchesComponents}</div>
-			<Handle type="source" position={Position.Right} id={"b"} />
+			<Handle type="source" position={Position.Right} id={data.outputHandleId} />
 		</div>
 	);
 }

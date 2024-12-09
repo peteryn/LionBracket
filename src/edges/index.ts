@@ -13,6 +13,8 @@ levelOrderTraversal(swiss.data.rootRound, (node) => {
 			id: id,
 			source: node.name,
 			target: node.winningRound.name,
+			sourceHandle: `${node.name}:Output`,
+			targetHandle: `${node.winningRound.name}:Input`,
 			type: "step"
 		});
 	}
@@ -22,6 +24,8 @@ levelOrderTraversal(swiss.data.rootRound, (node) => {
 			id: id,
 			source: node.name,
 			target: node.losingRound.name,
+			sourceHandle: `${node.name}:Output`,
+			targetHandle: `${node.losingRound.name}:Input`,
 			type: "step"
 		});
 	}
