@@ -1,9 +1,6 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import { type RoundNodeComponent } from "./types.ts";
-import { globalSwiss } from "../App.tsx";
-import VersusRoundComponent from "./VersusRoundComponent.tsx";
-import { addColor } from "../helper/color.ts";
-import { RoundNodeType } from "./RoundNodeType.ts";
+import { createMatches, createRoundCSS } from "../helper/roundNodeHelper.tsx";
 
 export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 	const matchesComponents = createMatches(data);
@@ -17,30 +14,4 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 			<Handle type="source" position={Position.Right} id={data.outputHandleId} />
 		</div>
 	);
-}
-
-export function createMatches(data: RoundNodeType) {
-	const matches = globalSwiss.data.roundNodes.get(data.name)?.matches;
-	if (!matches) {
-		throw new Error();
-	}
-	const matchesComponents = matches.map((match) => (
-		<VersusRoundComponent
-			key={match.id}
-			match={match}
-			updateSwissFun={data.updateSwissFun}
-		></VersusRoundComponent>
-	));
-	return matchesComponents;
-}
-
-export function createRoundCSS(name: string) {
-	let classes = "versus-section-round-title bourgeois ";
-	classes = addColor(name, classes, [
-		"round-winning",
-		"round-middle",
-		"round-losing",
-		"round-start",
-	]);
-	return classes;
 }

@@ -1,15 +1,17 @@
 import { Match } from "../../BracketLion/models";
 import { SwissBracketData } from "../../BracketLion/SwissBracketData";
 import { getScore } from "../helper/score";
-import { globalSwiss } from "../App";
 import TeamBox from "./TeamBox";
 import { addColor } from "../helper/color";
+import { SwissBracket } from "../../BracketLion/SwissBracket";
 
 export default function VersusRoundComponent({
 	match,
+	swissBracket,
 	updateSwissFun,
 }: {
 	match: Match;
+	swissBracket: SwissBracket;
 	updateSwissFun: React.Dispatch<React.SetStateAction<SwissBracketData>> | undefined;
 }) {
 	const upperInputId = `${match.id}upper`;
@@ -19,14 +21,14 @@ export default function VersusRoundComponent({
 		const upperTeamWins = getScore(upperInputId);
 		const lowerTeamWins = getScore(lowerInputId);
 		console.log("in onchange");
-		const matchRecord = globalSwiss.getMatchRecordById(match.id);
+		const matchRecord = swissBracket.getMatchRecordById(match.id);
 		if (matchRecord) {
 			matchRecord.upperTeamWins = upperTeamWins;
 			matchRecord.lowerTeamWins = lowerTeamWins;
-			globalSwiss.setMatchRecordById(match.id, matchRecord);
+			swissBracket.setMatchRecordById(match.id, matchRecord);
 			if (updateSwissFun) {
-				const cloned = structuredClone(globalSwiss.data);
-				globalSwiss.data = cloned;
+				const cloned = structuredClone(swissBracket.data);
+				swissBracket.data = cloned;
 				updateSwissFun(cloned);
 			}
 		}

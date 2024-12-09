@@ -44,6 +44,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 			const roundNodeType = new RoundNodeType(
 				node.name,
 				node,
+				swiss,
 				undefined,
 				inputHandleId,
 				outputHandleId
