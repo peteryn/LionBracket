@@ -4,7 +4,7 @@ import { globalSwiss } from "../App.tsx";
 import VersusRoundComponent from "./VersusRoundComponent.tsx";
 import { addColor } from "../helper/color.ts";
 
-export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
+export function EndingNodeUpperComponent({ data }: NodeProps<RoundNodeComponent>) {
 	const matches = globalSwiss.data.roundNodes.get(data.name)?.matches;
 	if (!matches) {
 		throw new Error();
@@ -27,9 +27,9 @@ export function RoundNodeComponent({ data }: NodeProps<RoundNodeComponent>) {
 		// We add this class to use the same styles as React Flow's default nodes.
 		<div className="react-flow__node-default">
 			<p className={classes}>{data.name}</p>
-			<Handle type="target" position={Position.Left} id={data.inputHandleId} />
+			<Handle type="target" position={Position.Left} id={"a"} />
 			<div className="versus-area">{matchesComponents}</div>
-			<Handle type="source" position={Position.Right} id={data.outputHandleId} />
+			<Handle type="source" position={Position.Right} id={"b"} />
 		</div>
 	);
 }
