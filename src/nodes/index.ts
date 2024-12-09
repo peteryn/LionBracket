@@ -1,4 +1,4 @@
-import type { NodeTypes } from "@xyflow/react";
+import { type NodeTypes } from "@xyflow/react";
 
 import { AppNode } from "./types";
 import { StartingMatchNode } from "./StartingMatchNode";
@@ -9,6 +9,8 @@ import { SwissBracket, levelOrderTraversal } from "../../BracketLion/SwissBracke
 import { RoundNodeType } from "./RoundNodeType";
 import { StartingNodeComponent } from "./StartingNodeComponent";
 import { EndingNodeUpperComponent } from "./EndingNodeUpperComponent";
+import { QualifiedNodeComponent } from "./QualifiedNodeComponent";
+import { ExitNodeType } from "./ExitNodeType";
 export const swiss = new SwissBracket();
 
 export let initialNodes: AppNode[] = [];
@@ -61,6 +63,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 					};
 					break;
 				case "2-0":
+				case "2-1":
 					obj = {
 						id: node.name,
 						position: { x: xVal, y: yVal },
@@ -78,6 +81,17 @@ export function createSwissNodes(swiss: SwissBracket) {
 			}
 
 			initialNodes.push(obj);
+
+			if (node.name === "2-0") {
+				let qualObj: AppNode = {
+					id: `test`,
+					position: { x: xVal + 350, y: yVal },
+					data: new ExitNodeType(),
+					type: "qualified-node-component",
+				};
+				initialNodes.push(qualObj);
+			}
+
 			idVal++;
 
 			const numMatches = node.numTeams / 2;
@@ -109,4 +123,5 @@ export const nodeTypes = {
 	"round-node-component": RoundNodeComponent,
 	"starting-node-component": StartingNodeComponent,
 	"ending-node-upper-component": EndingNodeUpperComponent,
+	"qualified-node-component": QualifiedNodeComponent,
 } satisfies NodeTypes;

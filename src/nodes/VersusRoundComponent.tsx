@@ -1,7 +1,7 @@
 import { Match } from "../../BracketLion/models";
 import { SwissBracketData } from "../../BracketLion/SwissBracketData";
 import { getScore } from "../helper/score";
-import TeamBox from "./TeamBox";
+import TeamInputArea from "./TeamInputArea";
 import { addColor } from "../helper/color";
 import { SwissBracket } from "../../BracketLion/SwissBracket";
 
@@ -70,19 +70,19 @@ export default function VersusRoundComponent({
 
 	return (
 		<div className="versus-container" key={match.id}>
-			<TeamBox
+			<TeamInputArea
 				onChange={onChange}
 				inputId={upperInputId}
 				imagePath={upperImagePath}
-			></TeamBox>
+			></TeamInputArea>
 			<div className="versus-section">
 				<h3 className={classes}>VS</h3>
 			</div>
-			<TeamBox
+			<TeamInputArea
 				onChange={onChange}
 				inputId={lowerInputId}
 				imagePath={lowerImagePath}
-			></TeamBox>
+			></TeamInputArea>
 		</div>
 	);
 }

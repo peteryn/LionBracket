@@ -186,3 +186,18 @@ input:focus {
 	font-family: "bourgeois"; /*a name to be used later*/
 	src: url("/fonts/Bourgeois-Ultra.otf"); /*URL to font*/
 }
+
+.qualified-handle {
+	top: 23.75%;
+}
+
+.qualified {
+	background-color: var(--green);
+	border-radius: 4px;
+	padding: 0 0.25em 0.25em;
+}
+
+.qualified-area {
+	display: flex;
+	gap: 0.4em;
+}

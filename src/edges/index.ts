@@ -15,7 +15,7 @@ levelOrderTraversal(swiss.data.rootRound, (node) => {
 			target: node.winningRound.name,
 			sourceHandle: `${node.name}:Output`,
 			targetHandle: `${node.winningRound.name}:Input`,
-			type: "step"
+			type: "step",
 		});
 	}
 	if (node.losingRound) {
@@ -26,9 +26,18 @@ levelOrderTraversal(swiss.data.rootRound, (node) => {
 			target: node.losingRound.name,
 			sourceHandle: `${node.name}:Output`,
 			targetHandle: `${node.losingRound.name}:Input`,
-			type: "step"
+			type: "step",
 		});
 	}
+});
+
+initialEdges.push({
+	id: "new",
+	source: "2-0",
+	target: "test",
+	sourceHandle: "a",
+	targetHandle: `q1`,
+	type: "step",
 });
 
 export const edgeTypes = {

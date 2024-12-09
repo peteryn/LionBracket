@@ -1,4 +1,4 @@
-export default function TeamBox({
+export default function TeamInputArea({
 	onChange,
 	inputId,
 	imagePath,
