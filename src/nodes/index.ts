@@ -86,7 +86,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 				let qualObj: AppNode = {
 					id: `test`,
 					position: { x: xVal + 350, y: yVal },
-					data: new ExitNodeType(),
+					data: new ExitNodeType(swiss, "2-0"),
 					type: "qualified-node-component",
 				};
 				initialNodes.push(qualObj);
