@@ -11,6 +11,6 @@ export type RoundNodeComponent = Node<RoundNodeType, "round-node-component">;
 export type StartingNodeComponent = Node<RoundNodeType, "starting-node-component">;
 export type EndingNodeUpperComponent = Node<RoundNodeType, "ending-node-upper-component">;
 
-export type QualifiedNodeComponent = Node<ExitNodeType, "qualified-node-component">;
+export type ExitNodeComponent = Node<ExitNodeType, "qualified-node-component">;
 
-export type AppNode = RoundNodeComponent | StartingNodeComponent | EndingNodeUpperComponent | QualifiedNodeComponent;
+export type AppNode = RoundNodeComponent | StartingNodeComponent | EndingNodeUpperComponent | ExitNodeComponent;

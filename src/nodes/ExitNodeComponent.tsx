@@ -1,8 +1,8 @@
 import { Handle, NodeProps, Position } from "@xyflow/react";
 import { TeamBox } from "../helper/TeamBox";
-import { type QualifiedNodeComponent } from "./types.ts";
+import { type ExitNodeComponent } from "./types.ts";
 
-export function QualifiedNodeComponent({ data }: NodeProps<QualifiedNodeComponent>) {
+export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 	const round = data.swissBracket.data.roundNodes.get(data.parent);
 	if (!round) {
 		return;

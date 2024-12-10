@@ -9,7 +9,7 @@ import { SwissBracket, levelOrderTraversal } from "../../BracketLion/SwissBracke
 import { RoundNodeType } from "./RoundNodeType";
 import { StartingNodeComponent } from "./StartingNodeComponent";
 import { EndingNodeUpperComponent } from "./EndingNodeUpperComponent";
-import { QualifiedNodeComponent } from "./QualifiedNodeComponent";
+import { ExitNodeComponent } from "./ExitNodeComponent";
 import { ExitNodeType } from "./ExitNodeType";
 export const swiss = new SwissBracket();
 
@@ -123,5 +123,5 @@ export const nodeTypes = {
 	"round-node-component": RoundNodeComponent,
 	"starting-node-component": StartingNodeComponent,
 	"ending-node-upper-component": EndingNodeUpperComponent,
-	"qualified-node-component": QualifiedNodeComponent,
+	"qualified-node-component": ExitNodeComponent,
 } satisfies NodeTypes;
