@@ -123,6 +123,14 @@ export function createSwissNodes(swiss: SwissBracket) {
 					),
 					type: "exit-node-component",
 				};
+
+				if (node.name === "2-1") {
+					qualObj.position.y = 102.75
+				}
+				if (node.name === "2-2") {
+					qualObj.position.y = 283.75
+				}
+
 				initialNodes.push(qualObj);
 			}
 
@@ -139,8 +147,17 @@ export function createSwissNodes(swiss: SwissBracket) {
 					),
 					type: "exit-node-component",
 				};
+				if (node.name === "1-2") {
+					qualObj.position.y = 643.25;
+				}
+				
+				if (node.name === "2-2") {
+					qualObj.position.y = 458
+				}
+
 				initialNodes.push(qualObj);
 			}
+
 
 			idVal++;
 
