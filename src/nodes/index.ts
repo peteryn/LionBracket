@@ -63,6 +63,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 						position: { x: xVal, y: yVal },
 						data: roundNodeType,
 						type: "starting-node-component",
+						draggable: false
 					};
 					break;
 				case "2-0":
@@ -72,6 +73,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 						position: { x: xVal, y: yVal },
 						data: roundNodeType,
 						type: "ending-node-upper-component",
+						draggable: false
 					};
 					break;
 				case "2-2":
@@ -80,6 +82,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 						position: { x: xVal, y: yVal },
 						data: roundNodeType,
 						type: "ending-node-middle-component",
+						draggable: false
 					};
 					break;
 				default:
@@ -88,6 +91,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 						position: { x: xVal, y: yVal },
 						data: roundNodeType,
 						type: "round-node-component",
+						draggable: false
 					};
 			}
 
