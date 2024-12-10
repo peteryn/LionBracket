@@ -11,6 +11,7 @@ import { StartingNodeComponent } from "./StartingNodeComponent";
 import { EndingNodeUpperComponent } from "./EndingNodeUpperComponent";
 import { ExitNodeComponent } from "./ExitNodeComponent";
 import { ExitNodeType } from "./ExitNodeType";
+import { EndingNodeMiddleComponent } from "./EndingNodeMiddleComponent";
 export const swiss = new SwissBracket();
 
 export let initialNodes: AppNode[] = [];
@@ -66,12 +67,19 @@ export function createSwissNodes(swiss: SwissBracket) {
 					break;
 				case "2-0":
 				case "2-1":
-				case "2-2":
 					obj = {
 						id: node.name,
 						position: { x: xVal, y: yVal },
 						data: roundNodeType,
 						type: "ending-node-upper-component",
+					};
+					break;
+				case "2-2":
+					obj = {
+						id: node.name,
+						position: { x: xVal, y: yVal },
+						data: roundNodeType,
+						type: "ending-node-middle-component",
 					};
 					break;
 				default:
@@ -126,5 +134,6 @@ export const nodeTypes = {
 	"round-node-component": RoundNodeComponent,
 	"starting-node-component": StartingNodeComponent,
 	"ending-node-upper-component": EndingNodeUpperComponent,
+	"ending-node-middle-component": EndingNodeMiddleComponent,
 	"qualified-node-component": ExitNodeComponent,
 } satisfies NodeTypes;

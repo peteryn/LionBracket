@@ -10,7 +10,13 @@ export type EndingMatchNode = Node<Match, "ending-match">;
 export type RoundNodeComponent = Node<RoundNodeType, "round-node-component">;
 export type StartingNodeComponent = Node<RoundNodeType, "starting-node-component">;
 export type EndingNodeUpperComponent = Node<RoundNodeType, "ending-node-upper-component">;
+export type EndingNodeMiddleComponent = Node<RoundNodeType, "ending-node-middle-component">;
 
 export type ExitNodeComponent = Node<ExitNodeType, "qualified-node-component">;
 
-export type AppNode = RoundNodeComponent | StartingNodeComponent | EndingNodeUpperComponent | ExitNodeComponent;
+export type AppNode =
+	| RoundNodeComponent
+	| StartingNodeComponent
+	| EndingNodeUpperComponent
+	| ExitNodeComponent
+	| EndingNodeMiddleComponent;
