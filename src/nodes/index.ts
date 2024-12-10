@@ -12,6 +12,7 @@ import { EndingNodeUpperComponent } from "./EndingNodeUpperComponent";
 import { ExitNodeComponent } from "./ExitNodeComponent";
 import { ExitNodeType } from "./ExitNodeType";
 import { EndingNodeMiddleComponent } from "./EndingNodeMiddleComponent";
+import { EndingNodeLowerComponent } from "./EndingNodeLowerComponent";
 export const swiss = new SwissBracket();
 
 export let initialNodes: AppNode[] = [];
@@ -45,6 +46,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 			const inputHandleId = `${node.name}:Input`;
 			const outputHandleId = `${node.name}:Output`;
 			const qualifiedHandleId = `${node.name}:QualifiedOutput`;
+			const eliminatedHandleId = `${node.name}:EliminatedOutput`;
 			const roundNodeType = new RoundNodeType(
 				node.name,
 				node,
@@ -52,7 +54,8 @@ export function createSwissNodes(swiss: SwissBracket) {
 				undefined,
 				inputHandleId,
 				outputHandleId,
-				qualifiedHandleId
+				qualifiedHandleId,
+				eliminatedHandleId
 			);
 
 			let obj: AppNode | undefined;
@@ -63,7 +66,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 						position: { x: xVal, y: yVal },
 						data: roundNodeType,
 						type: "starting-node-component",
-						draggable: false
+						draggable: false,
 					};
 					break;
 				case "2-0":
@@ -73,7 +76,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 						position: { x: xVal, y: yVal },
 						data: roundNodeType,
 						type: "ending-node-upper-component",
-						draggable: false
+						draggable: false,
 					};
 					break;
 				case "2-2":
@@ -82,7 +85,17 @@ export function createSwissNodes(swiss: SwissBracket) {
 						position: { x: xVal, y: yVal },
 						data: roundNodeType,
 						type: "ending-node-middle-component",
-						draggable: false
+						draggable: false,
+					};
+					break;
+				case "0-2":
+				case "1-2":
+					obj = {
+						id: node.name,
+						position: { x: xVal, y: yVal },
+						data: roundNodeType,
+						type: "ending-node-lower-component",
+						draggable: false,
 					};
 					break;
 				default:
@@ -91,7 +104,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 						position: { x: xVal, y: yVal },
 						data: roundNodeType,
 						type: "round-node-component",
-						draggable: false
+						draggable: false,
 					};
 			}
 
@@ -101,8 +114,30 @@ export function createSwissNodes(swiss: SwissBracket) {
 				let qualObj: AppNode = {
 					id: `${node.name}:Qualified`,
 					position: { x: xVal + 350, y: yVal },
-					data: new ExitNodeType(swiss, node.name, `${node.name}:QualifiedInput`),
-					type: "qualified-node-component",
+					data: new ExitNodeType(
+						"QUALIFIED",
+						"round-winning",
+						swiss,
+						node.name,
+						`${node.name}:QualifiedInput`
+					),
+					type: "exit-node-component",
+				};
+				initialNodes.push(qualObj);
+			}
+
+			if (node.name === "0-2" || node.name === "1-2" || node.name === "2-2") {
+				let qualObj: AppNode = {
+					id: `${node.name}:Eliminated`,
+					position: { x: xVal + 350, y: 800 },
+					data: new ExitNodeType(
+						"ELIMINATED",
+						"round-losing",
+						swiss,
+						node.name,
+						`${node.name}:EliminatedInput`
+					),
+					type: "exit-node-component",
 				};
 				initialNodes.push(qualObj);
 			}
@@ -139,5 +174,6 @@ export const nodeTypes = {
 	"starting-node-component": StartingNodeComponent,
 	"ending-node-upper-component": EndingNodeUpperComponent,
 	"ending-node-middle-component": EndingNodeMiddleComponent,
-	"qualified-node-component": ExitNodeComponent,
+	"ending-node-lower-component": EndingNodeLowerComponent,
+	"exit-node-component": ExitNodeComponent,
 } satisfies NodeTypes;

@@ -39,9 +39,11 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
         }
 	}
 
+	const colorClass = `react-flow__node-default qualified ${data.colorClass}`;
+
 	return (
-		<div className="react-flow__node-default qualified">
-			<p className="versus-section-round-title bourgeois">QUALIFIED</p>
+		<div className={colorClass}>
+			<p className="versus-section-round-title bourgeois">{data.title}</p>
 			<Handle type="target" position={Position.Left} id={data.inputHandleId} />
 			<div className="qualified-area">
                 {exitTeams}
