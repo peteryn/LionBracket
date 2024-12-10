@@ -29,15 +29,17 @@ levelOrderTraversal(swiss.data.rootRound, (node) => {
 			type: "step",
 		});
 	}
-});
 
-initialEdges.push({
-	id: "new",
-	source: "2-0",
-	target: "test",
-	sourceHandle: "a",
-	targetHandle: `q1`,
-	type: "step",
+	if (node.name.split("-")[0] === "2") {
+		initialEdges.push({
+			id: `${node.name}->qualified`,
+			source: `${node.name}`,
+			target: `${node.name}:Qualified`,
+			sourceHandle: `${node.name}:QualifiedOutput`,
+			targetHandle: `${node.name}:QualifiedInput`,
+			type: "step",
+		});
+	}
 });
 
 export const edgeTypes = {

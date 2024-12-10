@@ -43,13 +43,15 @@ export function createSwissNodes(swiss: SwissBracket) {
 		level.forEach((node) => {
 			const inputHandleId = `${node.name}:Input`;
 			const outputHandleId = `${node.name}:Output`;
+			const qualifiedHandleId = `${node.name}:QualifiedOutput`;
 			const roundNodeType = new RoundNodeType(
 				node.name,
 				node,
 				swiss,
 				undefined,
 				inputHandleId,
-				outputHandleId
+				outputHandleId,
+				qualifiedHandleId
 			);
 
 			let obj: AppNode | undefined;
@@ -64,6 +66,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 					break;
 				case "2-0":
 				case "2-1":
+				case "2-2":
 					obj = {
 						id: node.name,
 						position: { x: xVal, y: yVal },
@@ -82,11 +85,11 @@ export function createSwissNodes(swiss: SwissBracket) {
 
 			initialNodes.push(obj);
 
-			if (node.name === "2-0") {
+			if (node.name === "2-0" || node.name === "2-1" || node.name === "2-2") {
 				let qualObj: AppNode = {
-					id: `test`,
+					id: `${node.name}:Qualified`,
 					position: { x: xVal + 350, y: yVal },
-					data: new ExitNodeType(swiss, "2-0"),
+					data: new ExitNodeType(swiss, node.name, `${node.name}:QualifiedInput`),
 					type: "qualified-node-component",
 				};
 				initialNodes.push(qualObj);

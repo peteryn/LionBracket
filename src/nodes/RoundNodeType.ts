@@ -10,6 +10,7 @@ export class RoundNodeType {
 	updateSwissFun: React.Dispatch<React.SetStateAction<SwissBracketData>> | undefined;
 	inputHandleId: string;
 	outputHandleId: string;
+	qualifiedHandleId: string;
 
 	constructor(
 		name: string,
@@ -17,7 +18,8 @@ export class RoundNodeType {
 		swissBracket: SwissBracket,
 		updateSwissFun: React.Dispatch<React.SetStateAction<SwissBracketData>> | undefined,
 		inputHandleId: string,
-		outputHandleId: string
+		outputHandleId: string,
+		qualifiedHandleId: string
 	) {
 		this.name = name;
 		this.roundNode = roundNode;
@@ -25,5 +27,6 @@ export class RoundNodeType {
 		this.updateSwissFun = updateSwissFun;
 		this.inputHandleId = inputHandleId;
 		this.outputHandleId = outputHandleId;
+		this.qualifiedHandleId = qualifiedHandleId;
 	}
 }

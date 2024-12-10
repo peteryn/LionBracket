@@ -42,7 +42,7 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 	return (
 		<div className="react-flow__node-default qualified">
 			<p className="versus-section-round-title bourgeois">QUALIFIED</p>
-			<Handle type="target" position={Position.Left} id={"q1"} />
+			<Handle type="target" position={Position.Left} id={data.inputHandleId} />
 			<div className="qualified-area">
                 {exitTeams}
             </div>

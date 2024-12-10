@@ -12,7 +12,13 @@ export function EndingNodeUpperComponent({ data }: NodeProps<RoundNodeComponent>
 			<Handle type="target" position={Position.Left} id={data.inputHandleId} />
 			<div className="versus-area">{matchesComponents}</div>
 			<Handle type="source" position={Position.Right} id={data.outputHandleId} />
-			<Handle type="source" position={Position.Right} id={"a"} className="qualified-handle"/>
+			<Handle
+				type="source"
+				isConnectable={false}
+				position={Position.Right}
+				id={data.qualifiedHandleId}
+				className="qualified-handle"
+			/>
 		</div>
 	);
 }
