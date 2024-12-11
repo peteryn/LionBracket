@@ -59,14 +59,14 @@ export default function VersusRoundComponent({
 		lowerImagePath = `/logos/${paths[match.matchRecord.lowerTeam.seed - 1]}.png`;
 	}
 	let classes = "versus ";
-	if (match.roundNode) {
-		classes = addColor(match.roundNode.name, classes, [
-			"round-winning-text",
-			"round-middle-text",
-			"round-losing-text",
-			"round-start-text",
-		]);
-	}
+	const roundNodeName = match.id.split(".")[0];
+
+	classes = addColor(roundNodeName, classes, [
+		"round-winning-text",
+		"round-middle-text",
+		"round-losing-text",
+		"round-start-text",
+	]);
 
 	return (
 		<div className="versus-container" key={match.id}>
