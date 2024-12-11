@@ -1,8 +1,6 @@
 import { type NodeTypes } from "@xyflow/react";
 
 import { AppNode } from "./types";
-import { StartingMatchNode } from "./StartingMatchNode";
-import { EndingMatchNode } from "./EndingMatchNode";
 import { RoundNodeComponent } from "./RoundNodeComponent";
 
 import { SwissBracket, levelOrderTraversal } from "../../BracketLion/SwissBracket";
@@ -125,10 +123,10 @@ export function createSwissNodes(swiss: SwissBracket) {
 				};
 
 				if (node.name === "2-1") {
-					qualObj.position.y = 102.75
+					qualObj.position.y = 102.75;
 				}
 				if (node.name === "2-2") {
-					qualObj.position.y = 283.75
+					qualObj.position.y = 283.75;
 				}
 
 				initialNodes.push(qualObj);
@@ -150,14 +148,13 @@ export function createSwissNodes(swiss: SwissBracket) {
 				if (node.name === "1-2") {
 					qualObj.position.y = 643.25;
 				}
-				
+
 				if (node.name === "2-2") {
-					qualObj.position.y = 458
+					qualObj.position.y = 458;
 				}
 
 				initialNodes.push(qualObj);
 			}
-
 
 			idVal++;
 
@@ -185,8 +182,6 @@ initialNodes = createSwissNodes(swiss);
 
 export const nodeTypes = {
 	// Add any of your custom nodes here!
-	"starting-match": StartingMatchNode,
-	"ending-match": EndingMatchNode,
 	"round-node-component": RoundNodeComponent,
 	"starting-node-component": StartingNodeComponent,
 	"ending-node-upper-component": EndingNodeUpperComponent,
