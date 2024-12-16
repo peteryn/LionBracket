@@ -37,6 +37,8 @@ export default function App() {
 
 	useEffect(() => {
 		const updatedNodes = createSwissNodes(globalSwiss);
+		console.log("in useeffect");
+		console.log(globalSwiss.data)
 		setNodes(updatedNodes);
 	}, [swissB, setNodes]);
 

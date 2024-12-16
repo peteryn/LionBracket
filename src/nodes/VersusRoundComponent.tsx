@@ -5,6 +5,7 @@ import TeamInputArea from "./TeamInputArea";
 import { addColor } from "../helper/color";
 import { SwissBracket } from "../../BracketLion/SwissBracket";
 import { serializeBracket } from "../helper/serializer";
+import { useState } from "react";
 
 export default function VersusRoundComponent({
 	match,
@@ -18,20 +19,37 @@ export default function VersusRoundComponent({
 	const upperInputId = `${match.id}upper`;
 	const lowerInputId = `${match.id}lower`;
 
-	function onChange(e: React.FocusEvent<HTMLInputElement>) {
+	let upperScore = 0;
+	let lowerScore = 0;
+	if (match.matchRecord) {
+		upperScore = match.matchRecord.upperTeamWins;
+		lowerScore = match.matchRecord.lowerTeamWins;
+	}
+
+	const [upperTeamScore, setUpperTeamScore] = useState(upperScore);
+	const [lowerTeamScore, setLowerTeamScore] = useState(lowerScore);
+
+	function onChange() {
 		const upperTeamWins = getScore(upperInputId);
 		const lowerTeamWins = getScore(lowerInputId);
+		setUpperTeamScore(upperTeamWins);
+		setLowerTeamScore(lowerTeamWins);
 		const matchRecord = swissBracket.getMatchRecordById(match.id);
 		if (matchRecord) {
 			matchRecord.upperTeamWins = upperTeamWins;
 			matchRecord.lowerTeamWins = lowerTeamWins;
 			swissBracket.setMatchRecordById(match.id, matchRecord);
+			swissBracket.setMatchRecordWithValueById(match.id, upperTeamWins, lowerTeamWins);
 			if (updateSwissFun) {
 				const cloned = structuredClone(swissBracket.data);
 				swissBracket.data = cloned;
 				updateSwissFun(cloned);
-				serializeBracket(swissBracket.data)
+				serializeBracket(swissBracket.data);
+			} else {
+				console.log("very bad error");
 			}
+		} else {
+			console.log("match record doesnt exist bad error");
 		}
 	}
 	const paths: string[] = [
@@ -69,13 +87,28 @@ export default function VersusRoundComponent({
 		"round-start-text",
 	]);
 
+	let colorClass = addColor(roundNodeName, "", [
+		"round-winning-text",
+		"round-middle-text",
+		"round-losing-text",
+		"round-start-text",
+	]);
+	let upperClass = "";
+	let lowerClass = "";
+	if (upperTeamScore > lowerTeamScore) {
+		upperClass = colorClass;
+	} else if (upperTeamScore < lowerTeamScore) {
+		lowerClass = colorClass;
+	}
+
 	return (
 		<div className="versus-container" key={match.id}>
 			<TeamInputArea
 				updateFun={onChange}
 				inputId={upperInputId}
 				imagePath={upperImagePath}
-				startingScore={match.matchRecord?.upperTeamWins}
+				startingScore={upperTeamScore}
+				colorClass={upperClass}
 			></TeamInputArea>
 			<div className="versus-section">
 				<h3 className={classes}>VS</h3>
@@ -84,7 +117,8 @@ export default function VersusRoundComponent({
 				updateFun={onChange}
 				inputId={lowerInputId}
 				imagePath={lowerImagePath}
-				startingScore={match.matchRecord?.lowerTeamWins}
+				startingScore={lowerTeamScore}
+				colorClass={lowerClass}
 			></TeamInputArea>
 		</div>
 	);

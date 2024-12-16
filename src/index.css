@@ -12,6 +12,8 @@
 	--green: #19bb70;
 	--yellow: #eab34f;
 	--red: #dd3542;
+	--rl-orange: #e57018;
+	--rl-blue: #3e56c4;
 }
 
 html,
@@ -104,7 +106,7 @@ body,
 	/* border-radius: 2px; */
 	width: 15px;
 	text-align: center;
-	font-size: 1em;
+	font-size: 1.3em;
 }
 
 .versus-section {
@@ -173,6 +175,14 @@ input:focus {
 
 .round-losing-text {
 	color: var(--red);
+}
+
+.rl-orange-text {
+	color: var(--rl-orange)
+}
+
+.rl-blue-text {
+	color: var(--rl-blue)
 }
 
 .versus {

@@ -3,16 +3,20 @@ export default function TeamInputArea({
 	inputId,
 	imagePath,
 	startingScore,
+	colorClass,
 }: {
 	updateFun: (e: React.FocusEvent<HTMLInputElement>) => void;
 	inputId: string;
 	imagePath: string;
 	startingScore: number | undefined;
+	colorClass: string;
 }) {
 	let score = "0";
 	if (startingScore) {
 		score = startingScore.toString();
 	}
+
+	const classes = `nodrag score-input ${colorClass}`
 
 	return (
 		<div className="team-container">
@@ -22,7 +26,7 @@ export default function TeamInputArea({
 			<input
 				id={inputId}
 				type="text"
-				className="nodrag score-input"
+				className={classes}
 				onFocus={(e) => e.target.select()}
 				onChange={updateFun}
 				value={score}
