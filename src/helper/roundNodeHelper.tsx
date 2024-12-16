@@ -3,7 +3,7 @@ import { addColor } from "./color.ts";
 import { RoundNodeType } from "../nodes/RoundNodeType.ts";
 
 export function createMatches(data: RoundNodeType) {
-	const matches = data.swissBracket.data.roundNodes.get(data.name)?.matches;
+	const matches = data.swissBracket.getRoundNode(data.name)?.matches;
 	if (!matches) {
 		throw new Error();
 	}

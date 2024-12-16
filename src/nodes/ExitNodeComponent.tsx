@@ -3,7 +3,7 @@ import { TeamBox } from "../helper/TeamBox";
 import { type ExitNodeComponent } from "./types.ts";
 
 export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
-	const round = data.swissBracket.data.roundNodes.get(data.parent);
+	const round = data.swissBracket.getRoundNode(data.parent);
 	if (!round) {
 		return;
 	}
@@ -31,7 +31,7 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 				"gbuffo",
 				"incorrect",
 			];
-			const path = `/logos/${paths[team.seed - 1]}.png`;
+			const path = `/logos/${paths[team- 1]}.png`;
 			exitTeams.push(<TeamBox key={i} imagePath={path}></TeamBox>);
 		}
         else {

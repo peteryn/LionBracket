@@ -11,29 +11,29 @@ import {
 import "@xyflow/react/dist/base.css";
 
 export const globalSwiss: SwissBracket = new SwissBracket();
-const swissData = globalSwiss.data;
-console.log(swissData.matches)
-const matchesMapSerialized = JSON.stringify(Array.from(swissData.matches.entries()));
-const roundNodesMapSerialized = JSON.stringify(Array.from(swissData.roundNodes.entries()));
-const rootRoundSerialized = JSON.stringify(swissData.rootRound);
-const teams = JSON.stringify(swissData.teams);
+// const swissData = globalSwiss.data;
+// console.log(swissData.matches)
+// const matchesMapSerialized = JSON.stringify(Array.from(swissData.matches.entries()));
+// const roundNodesMapSerialized = JSON.stringify(Array.from(swissData.roundNodes.entries()));
+// const rootRoundSerialized = JSON.stringify(swissData.rootRound);
+// const teams = JSON.stringify(swissData.teams);
 
-localStorage.setItem("matches", matchesMapSerialized);
-localStorage.setItem("roundNodes", roundNodesMapSerialized);
-localStorage.setItem("rootRound", rootRoundSerialized);
-localStorage.setItem("teams", teams);
+// localStorage.setItem("matches", matchesMapSerialized);
+// localStorage.setItem("roundNodes", roundNodesMapSerialized);
+// localStorage.setItem("rootRound", rootRoundSerialized);
+// localStorage.setItem("teams", teams);
 
-const storedMatches = localStorage.getItem("matches");
-const storedRoundNodes = localStorage.getItem("roundNodes");
-const storedRootRound = localStorage.getItem("rootRound");
-const storedTeams = localStorage.getItem("teams");
+// const storedMatches = localStorage.getItem("matches");
+// const storedRoundNodes = localStorage.getItem("roundNodes");
+// const storedRootRound = localStorage.getItem("rootRound");
+// const storedTeams = localStorage.getItem("teams");
 
-if (storedMatches && storedRoundNodes && storedRootRound && storedTeams) {
-	swissData.matches = new Map(JSON.parse(storedMatches));
-	swissData.roundNodes = new Map(JSON.parse(storedRoundNodes));
-	swissData.rootRound = JSON.parse(storedRootRound);
-	swissData.teams = JSON.parse(storedTeams);
-}
+// if (storedMatches && storedRoundNodes && storedRootRound && storedTeams) {
+// 	swissData.matches = new Map(JSON.parse(storedMatches));
+// 	swissData.roundNodes = new Map(JSON.parse(storedRoundNodes));
+// 	swissData.rootRound = JSON.parse(storedRootRound);
+// 	swissData.teams = JSON.parse(storedTeams);
+// }
 
 import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";

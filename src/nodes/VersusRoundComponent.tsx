@@ -20,7 +20,6 @@ export default function VersusRoundComponent({
 	function onChange() {
 		const upperTeamWins = getScore(upperInputId);
 		const lowerTeamWins = getScore(lowerInputId);
-		console.log("in onchange");
 		const matchRecord = swissBracket.getMatchRecordById(match.id);
 		if (matchRecord) {
 			matchRecord.upperTeamWins = upperTeamWins;
@@ -55,8 +54,8 @@ export default function VersusRoundComponent({
 	let upperImagePath = "";
 	let lowerImagePath = "";
 	if (match.matchRecord) {
-		upperImagePath = `/logos/${paths[match.matchRecord.upperTeam.seed - 1]}.png`;
-		lowerImagePath = `/logos/${paths[match.matchRecord.lowerTeam.seed - 1]}.png`;
+		upperImagePath = `/logos/${paths[match.matchRecord.upperTeam - 1]}.png`;
+		lowerImagePath = `/logos/${paths[match.matchRecord.lowerTeam - 1]}.png`;
 	}
 	let classes = "versus ";
 	const roundNodeName = match.id.split(".")[0];
