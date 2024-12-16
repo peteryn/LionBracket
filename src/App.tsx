@@ -6,13 +6,15 @@ import {
 	MiniMap,
 	useNodesState,
 	useEdgesState,
+	Panel,
 } from "@xyflow/react";
 import "@xyflow/react/dist/base.css";
 
 import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
 import { SwissBracket } from "../BracketLion/SwissBracket";
-import { deserializeStoredBracket, serializeBracket } from "./helper/serializer";
+import { clearBracket, deserializeStoredBracket, serializeBracket } from "./helper/serializer";
+import { MatchRecord } from "../BracketLion/models";
 
 export const globalSwiss: SwissBracket = new SwissBracket();
 const swissData = deserializeStoredBracket();
@@ -38,6 +40,18 @@ export default function App() {
 		setNodes(updatedNodes);
 	}, [swissB, setNodes]);
 
+	const resetBracket = () => {
+		// to reset the bracket we simply set all first round matches to 0-0
+		for (let i = 0; i < swissB.rootRound.matches.length; i++) {
+			const mr = globalSwiss.getMatchRecord("0-0", i) as MatchRecord;
+			mr.lowerTeamWins = 0;
+			mr.upperTeamWins = 0;
+			globalSwiss.setMatchRecord("0-0", i, mr);
+		}
+		setSwissB(structuredClone(globalSwiss.data));
+		clearBracket(globalSwiss.data);
+	};
+
 	return (
 		<ReactFlow
 			colorMode="dark"
@@ -54,6 +68,9 @@ export default function App() {
 			<Background color="#141414" />
 			<MiniMap />
 			<Controls />
+			<Panel position="bottom-center" className="reset-panel">
+				<button onClick={resetBracket}>Reset</button>
+			</Panel>
 		</ReactFlow>
 	);
 }

@@ -6,11 +6,15 @@ export function serializeBracket(swissBracketData: SwissBracketData) {
 
 export function deserializeStoredBracket() {
 	const storedRootRound = localStorage.getItem("rootRound");
-    let swissBracketData: SwissBracketData | undefined;
+	let swissBracketData: SwissBracketData | undefined;
 
 	if (storedRootRound) {
 		swissBracketData = JSON.parse(storedRootRound);
 	}
 
-    return swissBracketData
+	return swissBracketData;
+}
+
+export function clearBracket(swissBracketData: SwissBracketData) {
+	localStorage.setItem("rootRound", JSON.stringify(swissBracketData));
 }

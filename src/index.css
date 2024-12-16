@@ -202,3 +202,12 @@ input:focus {
 	display: flex;
 	gap: 0.4em;
 }
+
+.reset-panel {
+	border-radius: 4px;
+}
+
+.reset-panel button {
+	margin: 0;
+	padding: 0.25em;
+}
