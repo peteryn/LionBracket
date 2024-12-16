@@ -4,6 +4,7 @@ import { getScore } from "../helper/score";
 import TeamInputArea from "./TeamInputArea";
 import { addColor } from "../helper/color";
 import { SwissBracket } from "../../BracketLion/SwissBracket";
+import { serializeBracket } from "../helper/serializer";
 
 export default function VersusRoundComponent({
 	match,
@@ -17,7 +18,7 @@ export default function VersusRoundComponent({
 	const upperInputId = `${match.id}upper`;
 	const lowerInputId = `${match.id}lower`;
 
-	function onChange() {
+	function onChange(e: React.FocusEvent<HTMLInputElement>) {
 		const upperTeamWins = getScore(upperInputId);
 		const lowerTeamWins = getScore(lowerInputId);
 		const matchRecord = swissBracket.getMatchRecordById(match.id);
@@ -29,6 +30,7 @@ export default function VersusRoundComponent({
 				const cloned = structuredClone(swissBracket.data);
 				swissBracket.data = cloned;
 				updateSwissFun(cloned);
+				serializeBracket(swissBracket.data)
 			}
 		}
 	}
@@ -70,17 +72,19 @@ export default function VersusRoundComponent({
 	return (
 		<div className="versus-container" key={match.id}>
 			<TeamInputArea
-				onChange={onChange}
+				updateFun={onChange}
 				inputId={upperInputId}
 				imagePath={upperImagePath}
+				startingScore={match.matchRecord?.upperTeamWins}
 			></TeamInputArea>
 			<div className="versus-section">
 				<h3 className={classes}>VS</h3>
 			</div>
 			<TeamInputArea
-				onChange={onChange}
+				updateFun={onChange}
 				inputId={lowerInputId}
 				imagePath={lowerImagePath}
+				startingScore={match.matchRecord?.lowerTeamWins}
 			></TeamInputArea>
 		</div>
 	);
