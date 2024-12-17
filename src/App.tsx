@@ -13,8 +13,8 @@ import "@xyflow/react/dist/base.css";
 import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
 import { SwissBracket } from "../BracketLion/SwissBracket";
-import { clearBracket, deserializeStoredBracket, serializeBracket } from "./helper/serializer";
-import { MatchRecord } from "../BracketLion/models";
+import { deserializeStoredBracket, serializeBracket } from "./helper/serializer";
+import { SwissBracketData } from "../BracketLion/SwissBracketData";
 
 export const globalSwiss: SwissBracket = new SwissBracket();
 const swissData = deserializeStoredBracket();
@@ -44,14 +44,16 @@ export default function App() {
 
 	const resetBracket = () => {
 		// to reset the bracket we simply set all first round matches to 0-0
-		for (let i = 0; i < swissB.rootRound.matches.length; i++) {
-			const mr = globalSwiss.getMatchRecord("0-0", i) as MatchRecord;
-			mr.lowerTeamWins = 0;
-			mr.upperTeamWins = 0;
-			globalSwiss.setMatchRecord("0-0", i, mr);
-		}
-		setSwissB(structuredClone(globalSwiss.data));
-		clearBracket(globalSwiss.data);
+		// for (let i = 0; i < swissB.rootRound.matches.length; i++) {
+		// 	const mr = globalSwiss.getMatchRecord("0-0", i) as MatchRecord;
+		// 	mr.lowerTeamWins = 0;
+		// 	mr.upperTeamWins = 0;
+		// 	globalSwiss.setMatchRecord("0-0", i, mr);
+		// }
+		const newData = new SwissBracketData(16, 3) // TODO make this based off of global structure
+		globalSwiss.data = newData;
+		setSwissB(newData);
+		serializeBracket(newData);
 	};
 
 	return (
