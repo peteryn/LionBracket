@@ -71,10 +71,7 @@ export function deserializeStoredBracket() {
 		round4Lower.losingRound = undefined;
 
 		rootRoundResult = rootRound;
-		console.log("in if");
 	}
 
-	console.log("end of deserializer");
-	console.log(rootRoundResult);
 	return rootRoundResult;
 }

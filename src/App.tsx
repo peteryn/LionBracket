@@ -37,6 +37,7 @@ export default function App() {
 
 	useEffect(() => {
 		const updatedNodes = createSwissNodes(globalSwiss);
+		console.log("nodes should be rerendered");
 		setNodes(updatedNodes);
 	}, [swissB, setNodes]);
 

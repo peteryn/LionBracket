@@ -26,14 +26,16 @@ export default function VersusRoundComponent({
 		lowerScore = match.matchRecord.lowerTeamWins;
 	}
 
-	const [upperTeamScore, setUpperTeamScore] = useState(upperScore);
-	const [lowerTeamScore, setLowerTeamScore] = useState(lowerScore);
+	const upperTeamScore = upperScore;
+	const lowerTeamScore = lowerScore;
+	// const [upperTeamScore, setUpperTeamScore] = useState(upperScore);
+	// const [lowerTeamScore, setLowerTeamScore] = useState(lowerScore);
 
 	function onChange() {
 		const upperTeamWins = getScore(upperInputId);
 		const lowerTeamWins = getScore(lowerInputId);
-		setUpperTeamScore(upperTeamWins);
-		setLowerTeamScore(lowerTeamWins);
+		// setUpperTeamScore(upperTeamWins);
+		// setLowerTeamScore(lowerTeamWins);
 		const matchRecord = swissBracket.getMatchRecordById(match.id);
 		if (matchRecord) {
 			matchRecord.upperTeamWins = upperTeamWins;
