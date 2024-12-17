@@ -17,10 +17,10 @@ import { deserializeStoredBracket, serializeBracket } from "./helper/serializer"
 import { SwissBracketData } from "../BracketLion/SwissBracketData";
 
 export const globalSwiss: SwissBracket = new SwissBracket();
-const swissData = deserializeStoredBracket();
-if (swissData) {
-	console.log(swissData);
-	globalSwiss.data = swissData;
+const rootRound = deserializeStoredBracket();
+if (rootRound) {
+	console.log(rootRound);
+	globalSwiss.data.rootRound = rootRound;
 }
 
 serializeBracket(globalSwiss.data);
@@ -37,8 +37,6 @@ export default function App() {
 
 	useEffect(() => {
 		const updatedNodes = createSwissNodes(globalSwiss);
-		console.log("in useeffect");
-		console.log(globalSwiss.data)
 		setNodes(updatedNodes);
 	}, [swissB, setNodes]);
 
