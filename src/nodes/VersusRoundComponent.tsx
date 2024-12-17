@@ -5,7 +5,6 @@ import TeamInputArea from "./TeamInputArea";
 import { addColor } from "../helper/color";
 import { SwissBracket } from "../../BracketLion/SwissBracket";
 import { serializeBracket } from "../helper/serializer";
-import { useState } from "react";
 
 export default function VersusRoundComponent({
 	match,
@@ -26,16 +25,9 @@ export default function VersusRoundComponent({
 		lowerScore = match.matchRecord.lowerTeamWins;
 	}
 
-	const upperTeamScore = upperScore;
-	const lowerTeamScore = lowerScore;
-	// const [upperTeamScore, setUpperTeamScore] = useState(upperScore);
-	// const [lowerTeamScore, setLowerTeamScore] = useState(lowerScore);
-
 	function onChange() {
 		const upperTeamWins = getScore(upperInputId);
 		const lowerTeamWins = getScore(lowerInputId);
-		// setUpperTeamScore(upperTeamWins);
-		// setLowerTeamScore(lowerTeamWins);
 		const matchRecord = swissBracket.getMatchRecordById(match.id);
 		if (matchRecord) {
 			matchRecord.upperTeamWins = upperTeamWins;
@@ -97,9 +89,9 @@ export default function VersusRoundComponent({
 	]);
 	let upperClass = "";
 	let lowerClass = "";
-	if (upperTeamScore > lowerTeamScore) {
+	if (upperScore > lowerScore) {
 		upperClass = colorClass;
-	} else if (upperTeamScore < lowerTeamScore) {
+	} else if (upperScore < lowerScore) {
 		lowerClass = colorClass;
 	}
 
@@ -109,7 +101,7 @@ export default function VersusRoundComponent({
 				updateFun={onChange}
 				inputId={upperInputId}
 				imagePath={upperImagePath}
-				startingScore={upperTeamScore}
+				startingScore={upperScore}
 				colorClass={upperClass}
 			></TeamInputArea>
 			<div className="versus-section">
@@ -119,7 +111,7 @@ export default function VersusRoundComponent({
 				updateFun={onChange}
 				inputId={lowerInputId}
 				imagePath={lowerImagePath}
-				startingScore={lowerTeamScore}
+				startingScore={lowerScore}
 				colorClass={lowerClass}
 			></TeamInputArea>
 		</div>
