@@ -19,7 +19,6 @@ import { SwissBracketData } from "../BracketLion/SwissBracketData";
 export const globalSwiss: SwissBracket = new SwissBracket();
 const rootRound = deserializeStoredBracket();
 if (rootRound) {
-	console.log(rootRound);
 	globalSwiss.data.rootRound = rootRound;
 }
 
@@ -37,18 +36,10 @@ export default function App() {
 
 	useEffect(() => {
 		const updatedNodes = createSwissNodes(globalSwiss);
-		console.log("nodes should be rerendered");
 		setNodes(updatedNodes);
 	}, [swissB, setNodes]);
 
 	const resetBracket = () => {
-		// to reset the bracket we simply set all first round matches to 0-0
-		// for (let i = 0; i < swissB.rootRound.matches.length; i++) {
-		// 	const mr = globalSwiss.getMatchRecord("0-0", i) as MatchRecord;
-		// 	mr.lowerTeamWins = 0;
-		// 	mr.upperTeamWins = 0;
-		// 	globalSwiss.setMatchRecord("0-0", i, mr);
-		// }
 		const newData = new SwissBracketData(16, 3) // TODO make this based off of global structure
 		globalSwiss.data = newData;
 		setSwissB(newData);
