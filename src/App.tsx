@@ -7,6 +7,8 @@ import {
 	useNodesState,
 	useEdgesState,
 	Panel,
+	getNodesBounds,
+	useReactFlow,
 } from "@xyflow/react";
 import "@xyflow/react/dist/base.css";
 

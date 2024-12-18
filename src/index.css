@@ -59,6 +59,10 @@ body,
 	border-bottom: 1px solid black;
 }
 
+.versus-container:last-child {
+  border-bottom: none;
+}
+
 .team-container {
 	width: 100%;
 	display: flex;
@@ -205,6 +209,7 @@ input:focus {
 .qualified {
 	border-radius: 4px;
 	padding: 0 0.25em 0.25em;
+	width: 258px;
 }
 
 .qualified-area {

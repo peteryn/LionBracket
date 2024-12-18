@@ -27,10 +27,10 @@ export function createSwissNodes(swiss: SwissBracket) {
 		if (levelNumber === 1) {
 		}
 		if (levelNumber === 2) {
-			yVal = -25;
+			yVal = -29;
 		}
 		if (levelNumber === 3) {
-			yVal = -50;
+			yVal = -58;
 		}
 		if (levelNumber === 4) {
 			yVal = 79;
@@ -161,14 +161,15 @@ export function createSwissNodes(swiss: SwissBracket) {
 			idVal++;
 
 			const numMatches = node.numTeams / 2;
-			const headerOffset = 30; // 29
-			const versusHeight = 104;
+			const headerOffset = 36; // 29
+			const versusHeight = 114;
+			const borderWidth = 2
 			const gap = 20;
-			yVal += numMatches * versusHeight + headerOffset + gap;
+			yVal += numMatches * versusHeight + headerOffset + gap + borderWidth;
 			// header offset must be found through trial and error
-			// r1: 30 + 8*104 = 862
-			// r2: 30*2 + 8*104 + 20 = 912
-			// r3: 30*3 + 8*104 + 40 = 962
+			// r1: 36 + 8*114 = 950
+			// r2: 36*2 + 8*114 + 20 = 1004
+			// r3: 36*3 + 8*114 + 40 = 1060 + 6
 			// r4: 30*2 + 6*104 + 20 = 704
 			// r5: 30 + 3*104 = 342
 			// example: to center r5
