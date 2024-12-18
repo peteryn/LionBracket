@@ -8,10 +8,17 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 		return;
 	}
 
-	const exitTeams: JSX.Element[] = [];
+	let exitTeams;
+	if (data.isPromoted) {
+		exitTeams = round.promotionTeams;
+	} else {
+		exitTeams = round.eliminatedTeams
+	}
+
+	const exitTeamsComponents: JSX.Element[] = [];
 	for (let i = 0; i < round.numTeams / 2; i++) {
-		if (i < round.promotionTeams.length) {
-			const team = round.promotionTeams[i];
+		if (i < exitTeams.length) {
+			const team = exitTeams[i];
 
 			const paths: string[] = [
 				"g2",
@@ -32,10 +39,10 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 				"incorrect",
 			];
 			const path = `/logos/${paths[team- 1]}.png`;
-			exitTeams.push(<TeamBox key={i} imagePath={path}></TeamBox>);
+			exitTeamsComponents.push(<TeamBox key={i} imagePath={path}></TeamBox>);
 		}
         else {
-			exitTeams.push(<TeamBox key={i} imagePath=""></TeamBox>);
+			exitTeamsComponents.push(<TeamBox key={i} imagePath=""></TeamBox>);
         }
 	}
 
@@ -46,7 +53,7 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 			<p className="versus-section-round-title bourgeois">{data.title}</p>
 			<Handle type="target" position={Position.Left} id={data.inputHandleId} />
 			<div className="qualified-area">
-                {exitTeams}
+                {exitTeamsComponents}
             </div>
 		</div>
 	);

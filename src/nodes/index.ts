@@ -117,7 +117,8 @@ export function createSwissNodes(swiss: SwissBracket) {
 						"round-winning",
 						swiss,
 						node.name,
-						`${node.name}:QualifiedInput`
+						`${node.name}:QualifiedInput`,
+						true
 					),
 					type: "exit-node-component",
 				};
@@ -141,7 +142,8 @@ export function createSwissNodes(swiss: SwissBracket) {
 						"round-losing",
 						swiss,
 						node.name,
-						`${node.name}:EliminatedInput`
+						`${node.name}:EliminatedInput`,
+						false
 					),
 					type: "exit-node-component",
 				};
