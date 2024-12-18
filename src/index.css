@@ -206,15 +206,53 @@ input:focus {
 .qualified-handle {
 }
 
-.qualified {
+.exit {
 	border-radius: 4px;
 	padding: 0 0.25em 0.25em;
 	width: 258px;
 }
 
 .qualified-area {
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+	/* grid-template-columns: 1fr 1fr 1fr; */
 	gap: 0.4em;
+}
+
+
+.exit-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	gap: 0.5em;
+	background-color: #1b1d22;
+	padding: 0.75em 0;
+}
+
+.exit-img-container {
+	width: 100%;
+	/* max-height: 150px; */
+	flex-grow: 4;
+	position: relative;
+	height: 50px;
+	width: 60px;
+}
+
+.exit-img-container img {
+	/* width: 100%; */
+	/* max-height: 150px; */
+	max-height: 100%;
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
 
 .reset-panel {
