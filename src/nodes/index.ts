@@ -33,10 +33,10 @@ export function createSwissNodes(swiss: SwissBracket) {
 			yVal = -58;
 		}
 		if (levelNumber === 4) {
-			yVal = 79;
+			yVal = 85;
 		}
 		if (levelNumber === 5) {
-			yVal = 260;
+			yVal = 285;
 		}
 		levelNumber++;
 
@@ -123,11 +123,14 @@ export function createSwissNodes(swiss: SwissBracket) {
 					type: "exit-node-component",
 				};
 
+				if (node.name === "2-0") {
+					qualObj.position.y = -29 - 20;
+				}
 				if (node.name === "2-1") {
-					qualObj.position.y = 102.75;
+					qualObj.position.y = 171 - 20;
 				}
 				if (node.name === "2-2") {
-					qualObj.position.y = 283.75;
+					qualObj.position.y += 76 - 10;
 				}
 
 				initialNodes.push(qualObj);
@@ -147,12 +150,15 @@ export function createSwissNodes(swiss: SwissBracket) {
 					),
 					type: "exit-node-component",
 				};
+				if (node.name === "0-2") {
+					qualObj.position.y = 865 + 20;
+				}
 				if (node.name === "1-2") {
-					qualObj.position.y = 643.25;
+					qualObj.position.y = 664 + 20;
 				}
 
 				if (node.name === "2-2") {
-					qualObj.position.y = 488.3;
+					qualObj.position.y = 475 + 10;
 				}
 
 				initialNodes.push(qualObj);
@@ -163,15 +169,15 @@ export function createSwissNodes(swiss: SwissBracket) {
 			const numMatches = node.numTeams / 2;
 			const headerOffset = 36; // 29
 			const versusHeight = 114;
-			const borderWidth = 2
+			const borderWidth = 2;
 			const gap = 20;
 			yVal += numMatches * versusHeight + headerOffset + gap + borderWidth;
 			// header offset must be found through trial and error
-			// r1: 36 + 8*114 = 950
+			// r1: 36 + 8*114 + 2 = 950
 			// r2: 36*2 + 8*114 + 20 = 1004
 			// r3: 36*3 + 8*114 + 40 = 1060 + 6
-			// r4: 30*2 + 6*104 + 20 = 704
-			// r5: 30 + 3*104 = 342
+			// r4: 36*2 + 6*114 + 20 + 2*2 = 780
+			// r5: 36 + 3*114 + 2 = 350
 			// example: to center r5
 			// yVal = (r1 - r5) / 2
 		});
