@@ -17,7 +17,6 @@ export function EndingNodeLowerComponent({ data }: NodeProps<RoundNodeComponent>
 				position={Position.Right}
 				id={data.eliminatedHandleId}
 				className="qualified-handle"
-				style={{ top: '76.25%' }}
 			/>
 		</div>
 	);

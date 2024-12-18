@@ -152,7 +152,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 				}
 
 				if (node.name === "2-2") {
-					qualObj.position.y = 458;
+					qualObj.position.y = 488.3;
 				}
 
 				initialNodes.push(qualObj);
