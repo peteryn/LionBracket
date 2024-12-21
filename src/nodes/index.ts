@@ -3,7 +3,10 @@ import { type NodeTypes } from "@xyflow/react";
 import { AppNode } from "./types";
 import { RoundNodeComponent } from "./RoundNodeComponent";
 
-import { SwissBracket, levelOrderTraversal } from "../../BracketLion/SwissBracket";
+import {
+	SwissBracket,
+	levelOrderTraversal,
+} from "../../BracketLion//src/swiss_bracket/swiss_bracket";
 import { RoundNodeType } from "./RoundNodeType";
 import { StartingNodeComponent } from "./StartingNodeComponent";
 import { EndingNodeUpperComponent } from "./EndingNodeUpperComponent";
@@ -11,7 +14,7 @@ import { ExitNodeComponent } from "./ExitNodeComponent";
 import { ExitNodeType } from "./ExitNodeType";
 import { EndingNodeMiddleComponent } from "./EndingNodeMiddleComponent";
 import { EndingNodeLowerComponent } from "./EndingNodeLowerComponent";
-export const swiss = new SwissBracket();
+export const swiss = new SwissBracket(16, 3, "GAME_DIFF", "sb");
 
 export let initialNodes: AppNode[] = [];
 
@@ -166,7 +169,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 
 			idVal++;
 
-			const numMatches = node.numTeams / 2;
+			const numMatches = node.numSeeds / 2;
 			const headerOffset = 36; // 29
 			const versusHeight = 114;
 			const borderWidth = 2;
@@ -187,7 +190,7 @@ export function createSwissNodes(swiss: SwissBracket) {
 	return initialNodes;
 }
 
-initialNodes = createSwissNodes(swiss);
+// initialNodes = createSwissNodes(swiss);
 
 export const nodeTypes = {
 	// Add any of your custom nodes here!

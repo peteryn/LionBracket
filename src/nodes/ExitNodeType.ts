@@ -1,4 +1,4 @@
-import { SwissBracket } from "../../BracketLion/SwissBracket";
+import { SwissBracket } from "../../BracketLion/src/swiss_bracket/swiss_bracket";
 
 export class ExitNodeType {
 	[key: string]: unknown;
@@ -7,11 +7,18 @@ export class ExitNodeType {
 	swissBracket: SwissBracket;
 	parent: string;
 	inputHandleId: string;
-	isPromoted: boolean
+	isPromoted: boolean;
 
-	constructor(title: string, colorClass: string, swissBracket: SwissBracket, parent: string, inputHandleId: string, isPromoted: boolean) {
-		this.title = title
-		this.colorClass = colorClass
+	constructor(
+		title: string,
+		colorClass: string,
+		swissBracket: SwissBracket,
+		parent: string,
+		inputHandleId: string,
+		isPromoted: boolean
+	) {
+		this.title = title;
+		this.colorClass = colorClass;
 		this.swissBracket = swissBracket;
 		this.parent = parent;
 		this.inputHandleId = inputHandleId;

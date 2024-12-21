@@ -1,9 +1,10 @@
-import { Match } from "../../BracketLion/models";
-import { SwissBracketData } from "../../BracketLion/SwissBracketData";
+import { Match } from "../../BracketLion/src/models/match";
+import { SwissBracket } from "../../BracketLion/src/swiss_bracket/swiss_bracket";
+import { SwissBracketData } from "../../BracketLion/src/swiss_bracket/swiss_bracket_data";
+
 import { getScore } from "../helper/score";
 import TeamInputArea from "./TeamInputArea";
 import { addColor } from "../helper/color";
-import { SwissBracket } from "../../BracketLion/SwissBracket";
 import { serializeBracket } from "../helper/serializer";
 
 export default function VersusRoundComponent({
@@ -21,8 +22,8 @@ export default function VersusRoundComponent({
 	let upperScore = 0;
 	let lowerScore = 0;
 	if (match.matchRecord) {
-		upperScore = match.matchRecord.upperTeamWins;
-		lowerScore = match.matchRecord.lowerTeamWins;
+		upperScore = match.matchRecord.upperSeedWins;
+		lowerScore = match.matchRecord.lowerSeedWins;
 	}
 
 	function onChange() {
@@ -30,8 +31,8 @@ export default function VersusRoundComponent({
 		const lowerTeamWins = getScore(lowerInputId);
 		const matchRecord = swissBracket.getMatchRecordById(match.id);
 		if (matchRecord) {
-			matchRecord.upperTeamWins = upperTeamWins;
-			matchRecord.lowerTeamWins = lowerTeamWins;
+			matchRecord.upperSeedWins = upperTeamWins;
+			matchRecord.lowerSeedWins = lowerTeamWins;
 			swissBracket.setMatchRecordById(match.id, matchRecord);
 			swissBracket.setMatchRecordWithValueById(match.id, upperTeamWins, lowerTeamWins);
 			if (updateSwissFun) {
@@ -68,8 +69,8 @@ export default function VersusRoundComponent({
 	let upperImagePath = "";
 	let lowerImagePath = "";
 	if (match.matchRecord) {
-		upperImagePath = `/logos/${paths[match.matchRecord.upperTeam - 1]}.png`;
-		lowerImagePath = `/logos/${paths[match.matchRecord.lowerTeam - 1]}.png`;
+		upperImagePath = `/logos/${paths[match.matchRecord.upperSeed - 1]}.png`;
+		lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
 	}
 	let classes = "versus ";
 	const roundNodeName = match.id.split(".")[0];

@@ -1,6 +1,6 @@
-import { RoundNode } from "../../BracketLion/models";
-import { levelOrderTraversal } from "../../BracketLion/SwissBracket";
-import { SwissBracketData } from "../../BracketLion/SwissBracketData";
+import { SwissBracketData } from "../../BracketLion/src/swiss_bracket/swiss_bracket_data";
+import { levelOrderTraversal } from "../../BracketLion/src/swiss_bracket/swiss_bracket";
+import { RoundNode } from "../../BracketLion/src/models/round_node";
 
 export function serializeBracket(swissBracketData: SwissBracketData) {
 	levelOrderTraversal(swissBracketData.rootRound, (node) => {

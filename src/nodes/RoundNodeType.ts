@@ -1,6 +1,6 @@
-import { RoundNode } from "../../BracketLion/models";
-import { SwissBracketData } from "../../BracketLion/SwissBracketData";
-import { SwissBracket } from "../../BracketLion/SwissBracket";
+import { RoundNode } from "../../BracketLion/src/models/round_node";
+import { SwissBracket } from "../../BracketLion/src/swiss_bracket/swiss_bracket";
+import { SwissBracketData } from "../../BracketLion/src/swiss_bracket/swiss_bracket_data";
 
 export class RoundNodeType {
 	[key: string]: unknown;

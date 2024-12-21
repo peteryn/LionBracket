@@ -2,7 +2,7 @@ import type { Edge, EdgeTypes } from "@xyflow/react";
 
 import { swiss } from "../nodes";
 
-import { levelOrderTraversal } from "../../BracketLion/SwissBracket";
+import { levelOrderTraversal } from "../../BracketLion/src/swiss_bracket/swiss_bracket";
 
 export const initialEdges: Edge[] = [];
 

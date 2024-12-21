@@ -7,18 +7,17 @@ import {
 	useNodesState,
 	useEdgesState,
 	Panel,
-	getNodesBounds,
-	useReactFlow,
 } from "@xyflow/react";
 import "@xyflow/react/dist/base.css";
 
+import { SwissBracket } from "../BracketLion/src/swiss_bracket/swiss_bracket";
+import { SwissBracketData } from "../BracketLion/src/swiss_bracket/swiss_bracket_data";
+
 import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
-import { SwissBracket } from "../BracketLion/SwissBracket";
 import { deserializeStoredBracket, serializeBracket } from "./helper/serializer";
-import { SwissBracketData } from "../BracketLion/SwissBracketData";
 
-export const globalSwiss: SwissBracket = new SwissBracket();
+export const globalSwiss: SwissBracket = new SwissBracket(16, 3, "GAME_DIFF", "sb");
 const rootRound = deserializeStoredBracket();
 if (rootRound) {
 	globalSwiss.data.rootRound = rootRound;
@@ -42,7 +41,7 @@ export default function App() {
 	}, [swissB, setNodes]);
 
 	const resetBracket = () => {
-		const newData = new SwissBracketData(16, 3) // TODO make this based off of global structure
+		const newData = new SwissBracketData(16, 3, "sb") // TODO make this based off of global structure
 		globalSwiss.data = newData;
 		setSwissB(newData);
 		serializeBracket(newData);

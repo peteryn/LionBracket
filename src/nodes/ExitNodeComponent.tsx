@@ -10,13 +10,13 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 
 	let exitTeams;
 	if (data.isPromoted) {
-		exitTeams = round.promotionTeams;
+		exitTeams = round.promotionSeeds;
 	} else {
-		exitTeams = round.eliminatedTeams
+		exitTeams = round.eliminationSeeds;
 	}
 
 	const exitTeamsComponents: JSX.Element[] = [];
-	for (let i = 0; i < round.numTeams / 2; i++) {
+	for (let i = 0; i < round.numSeeds / 2; i++) {
 		if (i < exitTeams.length) {
 			const team = exitTeams[i];
 
