@@ -1,6 +1,7 @@
 import { Handle, NodeProps, Position } from "@xyflow/react";
 import { TeamBox } from "../helper/TeamBox";
 import { type ExitNodeComponent } from "./types.ts";
+import { paths } from "../helper/TeamsTranslator.ts";
 
 export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 	const round = data.swissBracket.getRoundNode(data.parent);
@@ -20,24 +21,6 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 		if (i < exitTeams.length) {
 			const team = exitTeams[i];
 
-			const paths: string[] = [
-				"g2",
-				"geng",
-				"og",
-				"ssg",
-				"luminosity",
-				"m80",
-				"cloud9",
-				"shopify",
-				"snowmen",
-				"dignitas",
-				"moist",
-				"nrg",
-				"spate",
-				"zero2one",
-				"gbuffo",
-				"incorrect",
-			];
 			const path = `/logos/${paths[team- 1]}.png`;
 			exitTeamsComponents.push(<TeamBox key={i} imagePath={path}></TeamBox>);
 		}

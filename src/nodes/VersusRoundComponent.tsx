@@ -6,6 +6,7 @@ import { getScore } from "../helper/score";
 import TeamInputArea from "./TeamInputArea";
 import { addColor } from "../helper/color";
 import { serializeBracket } from "../helper/serializer";
+import { paths } from "../helper/TeamsTranslator";
 
 export default function VersusRoundComponent({
 	match,
@@ -47,24 +48,6 @@ export default function VersusRoundComponent({
 			console.log("match record doesnt exist bad error");
 		}
 	}
-	const paths: string[] = [
-		"g2",
-		"geng",
-		"og",
-		"ssg",
-		"luminosity",
-		"m80",
-		"cloud9",
-		"shopify",
-		"snowmen",
-		"dignitas",
-		"moist",
-		"nrg",
-		"spate",
-		"zero2one",
-		"gbuffo",
-		"incorrect",
-	];
 
 	let upperImagePath = "";
 	let lowerImagePath = "";
