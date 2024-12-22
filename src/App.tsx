@@ -18,7 +18,7 @@ import { initialEdges, edgeTypes } from "./edges";
 import { deserializeStoredBracket, serializeBracket } from "./helper/serializer";
 
 export const globalSwiss: SwissBracket = new SwissBracket(16, 3, "GAME_DIFF", "sb");
-const rootRound = deserializeStoredBracket();
+const rootRound = deserializeStoredBracket("sb");
 if (rootRound) {
 	globalSwiss.data.rootRound = rootRound;
 }

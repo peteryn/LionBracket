@@ -2,75 +2,90 @@ import { SwissBracketData } from "../../BracketLion/src/swiss_bracket/swiss_brac
 import { levelOrderTraversal } from "../../BracketLion/src/swiss_bracket/swiss_bracket";
 import { RoundNode } from "../../BracketLion/src/models/round_node";
 
-export function serializeBracket(swissBracketData: SwissBracketData) {
-	levelOrderTraversal(swissBracketData.rootRound, (node) => {
-		localStorage.setItem(node.name, JSON.stringify(node));
-	});
+type swissBracketStorage = {
+	bracketId: string;
+	roundNodes: [string, RoundNode][];
+};
 
-	// localStorage.setItem("rootRound", JSON.stringify(swissBracketData));
-	// TODO, basically, nodes with 2 parents are not being serialized correctly
-	// we need to manually store each round node when serializing
-	// then when deserializing, we need to manually construct the graph again
-	//
-	// right now, 2-0 and 0-2 are updating correctly bc they have only one parent
-	// 1-1 can't update because there are actually 2 1-1 references in memory since it
-	// has 2 parents.
+export function serializeBracket(swissBracketData: SwissBracketData) {
+	const bracketId = swissBracketData.bracketId;
+	const rootRoundCopy = structuredClone(swissBracketData.rootRound);
+	const roundNodes: Map<string, RoundNode> = new Map();
+	levelOrderTraversal(rootRoundCopy, (node) => {
+		roundNodes.set(node.name, node);
+	});
+	const roundNodeEntries = Array.from(roundNodes.entries());
+	roundNodeEntries.forEach(([, roundNode]) => {
+		roundNode.winningRound = undefined;
+		roundNode.losingRound = undefined;
+	});
+	const serializedBracket: swissBracketStorage = {
+		bracketId: swissBracketData.bracketId,
+		roundNodes: roundNodeEntries,
+	};
+	localStorage.setItem(bracketId, JSON.stringify(serializedBracket));
 }
 
-export function deserializeStoredBracket() {
-	const storedRootRound = localStorage.getItem("0-0");
-	const storedRound2Upper = localStorage.getItem("1-0");
-	const storedRound2Lower = localStorage.getItem("0-1");
-	const storedRound3Upper = localStorage.getItem("2-0");
-	const storedRound3Middle = localStorage.getItem("1-1");
-	const storedRound3Lower = localStorage.getItem("0-2");
-	const storedRound4Upper = localStorage.getItem("2-1");
-	const storedRound4Lower = localStorage.getItem("1-2");
-	const storedRound5 = localStorage.getItem("2-2");
-
+export function deserializeStoredBracket(bracketId: string) {
+	const serializedBracketString = localStorage.getItem(bracketId);
 	let rootRoundResult: RoundNode | undefined;
-	if (
-		storedRootRound &&
-		storedRound2Upper &&
-		storedRound2Lower &&
-		storedRound3Upper &&
-		storedRound3Middle &&
-		storedRound3Lower &&
-		storedRound4Upper &&
-		storedRound4Lower &&
-		storedRound5
-	) {
-		const rootRound: RoundNode = JSON.parse(storedRootRound);
-		const round2Upper: RoundNode = JSON.parse(storedRound2Upper);
-		const round2Lower: RoundNode = JSON.parse(storedRound2Lower);
-		const round3Upper: RoundNode = JSON.parse(storedRound3Upper);
-		const round3Middle: RoundNode = JSON.parse(storedRound3Middle);
-		const round3Lower: RoundNode = JSON.parse(storedRound3Lower);
-		const round4Upper: RoundNode = JSON.parse(storedRound4Upper);
-		const round4Lower: RoundNode = JSON.parse(storedRound4Lower);
-		const round5: RoundNode = JSON.parse(storedRound5);
+	if (serializedBracketString) {
+		const swissBracket: swissBracketStorage = JSON.parse(serializedBracketString);
+		const roundNodes = new Map(swissBracket.roundNodes);
 
-		rootRound.winningRound = round2Upper;
-		rootRound.losingRound = round2Lower;
+		const storedRootRound = roundNodes.get("0-0");
+		const storedRound2Upper = roundNodes.get("1-0");
+		const storedRound2Lower = roundNodes.get("0-1");
+		const storedRound3Upper = roundNodes.get("2-0");
+		const storedRound3Middle = roundNodes.get("1-1");
+		const storedRound3Lower = roundNodes.get("0-2");
+		const storedRound4Upper = roundNodes.get("2-1");
+		const storedRound4Lower = roundNodes.get("1-2");
+		const storedRound5 = roundNodes.get("2-2");
 
-		round2Upper.winningRound = round3Upper;
-		round2Upper.losingRound = round3Middle;
-		round2Lower.winningRound = round3Middle;
-		round2Lower.losingRound = round3Lower;
+		if (
+			storedRootRound &&
+			storedRound2Upper &&
+			storedRound2Lower &&
+			storedRound3Upper &&
+			storedRound3Middle &&
+			storedRound3Lower &&
+			storedRound4Upper &&
+			storedRound4Lower &&
+			storedRound5
+		) {
+			const rootRound: RoundNode = storedRootRound;
+			const round2Upper: RoundNode = storedRound2Upper;
+			const round2Lower: RoundNode = storedRound2Lower;
+			const round3Upper: RoundNode = storedRound3Upper;
+			const round3Middle: RoundNode = storedRound3Middle;
+			const round3Lower: RoundNode = storedRound3Lower;
+			const round4Upper: RoundNode = storedRound4Upper;
+			const round4Lower: RoundNode = storedRound4Lower;
+			const round5: RoundNode = storedRound5;
 
-		round3Upper.winningRound = undefined;
-		round3Upper.losingRound = round4Upper;
-		round3Middle.winningRound = round4Upper;
-		round3Middle.losingRound = round4Lower;
-		round3Lower.winningRound = round4Lower;
-		round3Lower.losingRound = undefined;
+			rootRound.winningRound = round2Upper;
+			rootRound.losingRound = round2Lower;
 
-		round4Upper.winningRound = undefined;
-		round4Upper.losingRound = round5;
-		round4Lower.winningRound = round5;
-		round4Lower.losingRound = undefined;
+			round2Upper.winningRound = round3Upper;
+			round2Upper.losingRound = round3Middle;
+			round2Lower.winningRound = round3Middle;
+			round2Lower.losingRound = round3Lower;
 
-		rootRoundResult = rootRound;
+			round3Upper.winningRound = undefined;
+			round3Upper.losingRound = round4Upper;
+			round3Middle.winningRound = round4Upper;
+			round3Middle.losingRound = round4Lower;
+			round3Lower.winningRound = round4Lower;
+			round3Lower.losingRound = undefined;
+
+			round4Upper.winningRound = undefined;
+			round4Upper.losingRound = round5;
+			round4Lower.winningRound = round5;
+			round4Lower.losingRound = undefined;
+
+			rootRoundResult = rootRound;
+		}
 	}
 
 	return rootRoundResult;
