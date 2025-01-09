@@ -3,10 +3,8 @@ import { type NodeTypes } from "@xyflow/react";
 import { AppNode } from "./types";
 import { RoundNodeComponent } from "./RoundNodeComponent";
 
-import {
-  SwissBracket,
-  levelOrderTraversal,
-} from "../../LionBracketEngine//src/swiss_bracket/swiss_bracket";
+import { SwissBracket } from "../../LionBracketEngine//src/swiss_bracket/swiss_bracket";
+import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { RoundNodeType } from "./RoundNodeType";
 import { StartingNodeComponent } from "./StartingNodeComponent";
 import { EndingNodeUpperComponent } from "./EndingNodeUpperComponent";
@@ -14,7 +12,7 @@ import { ExitNodeComponent } from "./ExitNodeComponent";
 import { ExitNodeType } from "./ExitNodeType";
 import { EndingNodeMiddleComponent } from "./EndingNodeMiddleComponent";
 import { EndingNodeLowerComponent } from "./EndingNodeLowerComponent";
-export const swiss = new SwissBracket(16, 3, "GAME_DIFF", "sb");
+export const swiss = new SwissBracket(16, 3);
 
 export let initialNodes: AppNode[] = [];
 
@@ -24,7 +22,7 @@ export function createSwissNodes(swiss: SwissBracket) {
   let xVal = 0;
   let yVal = 0;
   let levelNumber = 1;
-  levelOrderTraversal(swiss.data.rootRound, undefined, (level) => {
+  levelOrderTraversal(swiss.rootRound, undefined, (level) => {
     yVal = 0;
     // TODO: rewrite to use the formulas described below
     if (levelNumber === 1) {

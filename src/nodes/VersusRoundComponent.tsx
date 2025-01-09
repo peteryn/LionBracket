@@ -1,6 +1,5 @@
 import { Match } from "../../LionBracketEngine/src/models/match";
 import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
-import { SwissBracketData } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket_data";
 
 import { getScore } from "../helper/score";
 import TeamInputArea from "./TeamInputArea";

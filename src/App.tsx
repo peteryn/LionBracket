@@ -11,7 +11,6 @@ import {
 import "@xyflow/react/dist/base.css";
 
 import { SwissBracket } from "../LionBracketEngine/src/swiss_bracket/swiss_bracket";
-import { SwissBracketData } from "../LionBracketEngine/src/swiss_bracket/swiss_bracket_data";
 
 import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
@@ -20,21 +19,16 @@ import {
   serializeBracket,
 } from "./helper/serializer";
 
-export const globalSwiss: SwissBracket = new SwissBracket(
-  16,
-  3,
-  "GAME_DIFF",
-  "sb"
-);
+export const globalSwiss: SwissBracket = new SwissBracket(16, 3);
 const rootRound = deserializeStoredBracket("sb");
 if (rootRound) {
-  globalSwiss.data.rootRound = rootRound;
+  globalSwiss.rootRound = rootRound;
 }
 
-serializeBracket(globalSwiss.data);
+serializeBracket(globalSwiss.rootRound);
 
 export default function App() {
-  const [swissB, setSwissB] = useState(globalSwiss.data);
+  const [swissB, setSwissB] = useState(globalSwiss.rootRound);
 
   const initialNodes = createSwissNodes(globalSwiss);
 
@@ -49,10 +43,10 @@ export default function App() {
   }, [swissB, setNodes]);
 
   const resetBracket = () => {
-    const newData = new SwissBracketData(16, 3, "sb"); // TODO make this based off of global structure
-    globalSwiss.data = newData;
-    setSwissB(newData);
-    serializeBracket(newData);
+    // const newData = new SwissBracketData(16, 3, "sb"); // TODO make this based off of global structure
+    // globalSwiss.data = newData;
+    // setSwissB(newData);
+    // serializeBracket(newData);
   };
 
   return (

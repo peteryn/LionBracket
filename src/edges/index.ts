@@ -2,30 +2,30 @@ import type { Edge, EdgeTypes } from "@xyflow/react";
 
 import { swiss } from "../nodes";
 
-import { levelOrderTraversal } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
+import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 
 export const initialEdges: Edge[] = [];
 
-levelOrderTraversal(swiss.data.rootRound, (node) => {
-  if (node.winningRound) {
-    const id = `${node.name}->${node.winningRound.name}`;
+levelOrderTraversal(swiss.rootRound, (node) => {
+  if (node.upperRound) {
+    const id = `${node.name}->${node.upperRound.name}`;
     initialEdges.push({
       id: id,
       source: node.name,
-      target: node.winningRound.name,
+      target: node.upperRound.name,
       sourceHandle: `${node.name}:Output`,
-      targetHandle: `${node.winningRound.name}:Input`,
+      targetHandle: `${node.upperRound.name}:Input`,
       type: "step",
     });
   }
-  if (node.losingRound) {
-    const id = `${node.name}->${node.losingRound.name}`;
+  if (node.lowerRound) {
+    const id = `${node.name}->${node.lowerRound.name}`;
     initialEdges.push({
       id: id,
       source: node.name,
-      target: node.losingRound.name,
+      target: node.lowerRound.name,
       sourceHandle: `${node.name}:Output`,
-      targetHandle: `${node.losingRound.name}:Input`,
+      targetHandle: `${node.lowerRound.name}:Input`,
       type: "step",
     });
   }

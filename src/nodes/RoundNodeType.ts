@@ -1,6 +1,5 @@
 import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
 import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
-import { SwissBracketData } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket_data";
 
 export class RoundNodeType {
   [key: string]: unknown;
