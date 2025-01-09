@@ -1,4 +1,4 @@
-import { Match } from "../../LionBracketEngine/src/models/match";
+import { SwissMatch } from "../../LionBracketEngine/src/models/match";
 import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
 
 import { getScore } from "../helper/score";
@@ -6,18 +6,20 @@ import TeamInputArea from "./TeamInputArea";
 import { addColor } from "../helper/color";
 import { serializeBracket } from "../helper/serializer";
 import { paths } from "../helper/TeamsTranslator";
+import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
 
 export default function VersusRoundComponent({
   match,
   swissBracket,
   updateSwissFun,
 }: {
-  match: Match;
+  match: SwissMatch;
   swissBracket: SwissBracket;
   updateSwissFun:
-    | React.Dispatch<React.SetStateAction<SwissBracketData>>
+    | React.Dispatch<React.SetStateAction<RoundNode>>
     | undefined;
 }) {
+
   const upperInputId = `${match.id}upper`;
   const lowerInputId = `${match.id}lower`;
 
@@ -31,21 +33,16 @@ export default function VersusRoundComponent({
   function onChange() {
     const upperTeamWins = getScore(upperInputId);
     const lowerTeamWins = getScore(lowerInputId);
-    const matchRecord = swissBracket.getMatchRecordById(match.id);
+    const matchRecord = swissBracket.getMatchRecord(match.id);
     if (matchRecord) {
       matchRecord.upperSeedWins = upperTeamWins;
       matchRecord.lowerSeedWins = lowerTeamWins;
-      swissBracket.setMatchRecordById(match.id, matchRecord);
-      swissBracket.setMatchRecordWithValueById(
-        match.id,
-        upperTeamWins,
-        lowerTeamWins
-      );
+      swissBracket.setMatchRecord(match.id, matchRecord);
       if (updateSwissFun) {
-        const cloned = structuredClone(swissBracket.data);
-        swissBracket.data = cloned;
+        const cloned = structuredClone(swissBracket.rootRound);
+        swissBracket.rootRound = cloned;
         updateSwissFun(cloned);
-        serializeBracket(swissBracket.data);
+        serializeBracket(swissBracket.rootRound);
       } else {
         console.log("very bad error");
       }

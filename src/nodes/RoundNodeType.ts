@@ -7,7 +7,7 @@ export class RoundNodeType {
   roundNode: RoundNode;
   swissBracket: SwissBracket;
   updateSwissFun:
-    | React.Dispatch<React.SetStateAction<SwissBracketData>>
+    | React.Dispatch<React.SetStateAction<RoundNode>>
     | undefined;
   inputHandleId: string;
   outputHandleId: string;
@@ -19,7 +19,7 @@ export class RoundNodeType {
     roundNode: RoundNode,
     swissBracket: SwissBracket,
     updateSwissFun:
-      | React.Dispatch<React.SetStateAction<SwissBracketData>>
+      | React.Dispatch<React.SetStateAction<RoundNode>>
       | undefined,
     inputHandleId: string,
     outputHandleId: string,
