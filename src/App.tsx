@@ -6,15 +6,24 @@ import {
 	MiniMap,
 	useNodesState,
 	useEdgesState,
+	Panel,
 } from "@xyflow/react";
-
 import "@xyflow/react/dist/base.css";
 
-export const globalSwiss: SwissBracket = new SwissBracket();
+import { SwissBracket } from "../BracketLion/src/swiss_bracket/swiss_bracket";
+import { SwissBracketData } from "../BracketLion/src/swiss_bracket/swiss_bracket_data";
 
 import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
-import { SwissBracket } from "../BracketLion/SwissBracket";
+import { deserializeStoredBracket, serializeBracket } from "./helper/serializer";
+
+export const globalSwiss: SwissBracket = new SwissBracket(16, 3, "GAME_DIFF", "sb");
+const rootRound = deserializeStoredBracket("sb");
+if (rootRound) {
+	globalSwiss.data.rootRound = rootRound;
+}
+
+serializeBracket(globalSwiss.data);
 
 export default function App() {
 	const [swissB, setSwissB] = useState(globalSwiss.data);
@@ -30,6 +39,13 @@ export default function App() {
 		const updatedNodes = createSwissNodes(globalSwiss);
 		setNodes(updatedNodes);
 	}, [swissB, setNodes]);
+
+	const resetBracket = () => {
+		const newData = new SwissBracketData(16, 3, "sb") // TODO make this based off of global structure
+		globalSwiss.data = newData;
+		setSwissB(newData);
+		serializeBracket(newData);
+	};
 
 	return (
 		<ReactFlow
@@ -47,6 +63,9 @@ export default function App() {
 			<Background color="#141414" />
 			<MiniMap />
 			<Controls />
+			<Panel position="bottom-center" className="reset-panel">
+				<button onClick={resetBracket}>Reset</button>
+			</Panel>
 		</ReactFlow>
 	);
 }

@@ -1,0 +1,18 @@
+export const paths: string[] = [
+	"g2",
+	"geng",
+	"og",
+	"ssg",
+	"luminosity",
+	"m80",
+	"cloud9",
+	"shopify",
+	"snowmen",
+	"dignitas",
+	"moist",
+	"nrg",
+	"spate",
+	"zero2one",
+	"gbuffo",
+	"incorrect",
+];
