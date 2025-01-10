@@ -19,7 +19,7 @@ import {
   serializeBracket,
 } from "./helper/serializer";
 
-export const globalSwiss: SwissBracketFlow = new SwissBracketFlow(16, 3);
+export let globalSwiss: SwissBracketFlow = new SwissBracketFlow(16, 3);
 const rootRound = deserializeStoredBracket("sb");
 if (rootRound) {
   globalSwiss.rootRound = rootRound;
@@ -43,11 +43,9 @@ export default function App() {
   }, [swissB, setNodes]);
 
   const resetBracket = () => {
-    // const newData = new SwissBracketData(16, 3, "sb"); // TODO make this based off of global structure
-    // globalSwiss.data = newData;
-    // setSwissB(newData);
-    // serializeBracket(newData);
-	console.log(globalSwiss.rootRound.upperRound?.matches)
+    globalSwiss = new SwissBracketFlow(16, 3);
+    setSwissB(globalSwiss.rootRound);
+    serializeBracket(globalSwiss.rootRound, "sb");
   };
 
   return (
