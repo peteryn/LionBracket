@@ -1,26 +1,22 @@
-import { SwissBracketData } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket_data";
-import { levelOrderTraversal } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
+import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
 
 type swissBracketStorage = {
-  bracketId: string;
   roundNodes: [string, RoundNode][];
 };
 
-export function serializeBracket(swissBracketData: SwissBracketData) {
-  const bracketId = swissBracketData.bracketId;
-  const rootRoundCopy = structuredClone(swissBracketData.rootRound);
+export function serializeBracket(rootRound: RoundNode, bracketId: string) {
+  const rootRoundCopy = structuredClone(rootRound);
   const roundNodes: Map<string, RoundNode> = new Map();
   levelOrderTraversal(rootRoundCopy, (node) => {
     roundNodes.set(node.name, node);
   });
   const roundNodeEntries = Array.from(roundNodes.entries());
   roundNodeEntries.forEach(([, roundNode]) => {
-    roundNode.winningRound = undefined;
-    roundNode.losingRound = undefined;
+    roundNode.upperRound = undefined;
+    roundNode.lowerRound = undefined;
   });
   const serializedBracket: swissBracketStorage = {
-    bracketId: swissBracketData.bracketId,
     roundNodes: roundNodeEntries,
   };
   localStorage.setItem(bracketId, JSON.stringify(serializedBracket));
@@ -66,25 +62,25 @@ export function deserializeStoredBracket(bracketId: string) {
       const round4Lower: RoundNode = storedRound4Lower;
       const round5: RoundNode = storedRound5;
 
-      rootRound.winningRound = round2Upper;
-      rootRound.losingRound = round2Lower;
+      rootRound.upperRound = round2Upper;
+      rootRound.lowerRound = round2Lower;
 
-      round2Upper.winningRound = round3Upper;
-      round2Upper.losingRound = round3Middle;
-      round2Lower.winningRound = round3Middle;
-      round2Lower.losingRound = round3Lower;
+      round2Upper.upperRound = round3Upper;
+      round2Upper.lowerRound = round3Middle;
+      round2Lower.upperRound = round3Middle;
+      round2Lower.lowerRound = round3Lower;
 
-      round3Upper.winningRound = undefined;
-      round3Upper.losingRound = round4Upper;
-      round3Middle.winningRound = round4Upper;
-      round3Middle.losingRound = round4Lower;
-      round3Lower.winningRound = round4Lower;
-      round3Lower.losingRound = undefined;
+      round3Upper.upperRound = undefined;
+      round3Upper.lowerRound = round4Upper;
+      round3Middle.upperRound = round4Upper;
+      round3Middle.lowerRound = round4Lower;
+      round3Lower.upperRound = round4Lower;
+      round3Lower.lowerRound = undefined;
 
-      round4Upper.winningRound = undefined;
-      round4Upper.losingRound = round5;
-      round4Lower.winningRound = round5;
-      round4Lower.losingRound = undefined;
+      round4Upper.upperRound = undefined;
+      round4Upper.lowerRound = round5;
+      round4Lower.upperRound = round5;
+      round4Lower.lowerRound = undefined;
 
       rootRoundResult = rootRound;
     }

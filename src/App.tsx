@@ -25,7 +25,7 @@ if (rootRound) {
   globalSwiss.rootRound = rootRound;
 }
 
-serializeBracket(globalSwiss.rootRound);
+serializeBracket(globalSwiss.rootRound, "sb");
 
 export default function App() {
   const [swissB, setSwissB] = useState(globalSwiss.rootRound);

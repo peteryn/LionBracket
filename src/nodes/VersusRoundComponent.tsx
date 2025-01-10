@@ -42,7 +42,7 @@ export default function VersusRoundComponent({
         const cloned = structuredClone(swissBracket.rootRound);
         swissBracket.rootRound = cloned;
         updateSwissFun(cloned);
-        serializeBracket(swissBracket.rootRound);
+        serializeBracket(swissBracket.rootRound, "sb");
       } else {
         console.log("very bad error");
       }
