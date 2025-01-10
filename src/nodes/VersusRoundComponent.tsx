@@ -7,6 +7,7 @@ import { addColor } from "../helper/color";
 import { serializeBracket } from "../helper/serializer";
 import { paths } from "../helper/TeamsTranslator";
 import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
+import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
 export default function VersusRoundComponent({
   match,
@@ -14,11 +15,10 @@ export default function VersusRoundComponent({
   updateSwissFun,
 }: {
   match: SwissMatch;
-  swissBracket: SwissBracket;
-  updateSwissFun:
-    | React.Dispatch<React.SetStateAction<RoundNode>>
-    | undefined;
+  swissBracket: SwissBracketFlow;
+  updateSwissFun: React.Dispatch<React.SetStateAction<RoundNode>> | undefined;
 }) {
+  const roundNodeName = match.id.split(".")[0];
 
   const upperInputId = `${match.id}upper`;
   const lowerInputId = `${match.id}lower`;
@@ -39,6 +39,7 @@ export default function VersusRoundComponent({
       matchRecord.lowerSeedWins = lowerTeamWins;
       swissBracket.setMatchRecord(match.id, matchRecord);
       if (updateSwissFun) {
+        swissBracket.updateFlow(swissBracket.getRoundNode(roundNodeName));
         const cloned = structuredClone(swissBracket.rootRound);
         swissBracket.rootRound = cloned;
         updateSwissFun(cloned);
@@ -58,7 +59,6 @@ export default function VersusRoundComponent({
     lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
   }
   let classes = "versus ";
-  const roundNodeName = match.id.split(".")[0];
 
   classes = addColor(roundNodeName, classes, [
     "round-winning-text",

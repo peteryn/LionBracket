@@ -3,7 +3,7 @@ import { type NodeTypes } from "@xyflow/react";
 import { AppNode } from "./types";
 import { RoundNodeComponent } from "./RoundNodeComponent";
 
-import { SwissBracket } from "../../LionBracketEngine//src/swiss_bracket/swiss_bracket";
+import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { RoundNodeType } from "./RoundNodeType";
 import { StartingNodeComponent } from "./StartingNodeComponent";
@@ -12,11 +12,11 @@ import { ExitNodeComponent } from "./ExitNodeComponent";
 import { ExitNodeType } from "./ExitNodeType";
 import { EndingNodeMiddleComponent } from "./EndingNodeMiddleComponent";
 import { EndingNodeLowerComponent } from "./EndingNodeLowerComponent";
-export const swiss = new SwissBracket(16, 3);
+export const swiss = new SwissBracketFlow(16, 3);
 
 export let initialNodes: AppNode[] = [];
 
-export function createSwissNodes(swiss: SwissBracket) {
+export function createSwissNodes(swiss: SwissBracketFlow) {
   const initialNodes: AppNode[] = [];
   let idVal = 0;
   let xVal = 0;

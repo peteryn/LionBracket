@@ -10,7 +10,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/base.css";
 
-import { SwissBracket } from "../LionBracketEngine/src/swiss_bracket/swiss_bracket";
+import { SwissBracketFlow } from "../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
 import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
@@ -19,7 +19,7 @@ import {
   serializeBracket,
 } from "./helper/serializer";
 
-export const globalSwiss: SwissBracket = new SwissBracket(16, 3);
+export const globalSwiss: SwissBracketFlow = new SwissBracketFlow(16, 3);
 const rootRound = deserializeStoredBracket("sb");
 if (rootRound) {
   globalSwiss.rootRound = rootRound;
@@ -47,6 +47,7 @@ export default function App() {
     // globalSwiss.data = newData;
     // setSwissB(newData);
     // serializeBracket(newData);
+	console.log(globalSwiss.rootRound.upperRound?.matches)
   };
 
   return (
