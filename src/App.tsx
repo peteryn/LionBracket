@@ -11,12 +11,10 @@ import {
 import "@xyflow/react/dist/base.css";
 
 import { SwissBracketFlow } from "../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
-import { AFLBracketFlow } from "../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
 
 import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
 import { deserializeStoredBracket, serializeBracket } from "./helper/serializer";
-import { MatchNode } from "../LionBracketEngine/src/models/match_node";
 
 export let globalSwiss: SwissBracketFlow = new SwissBracketFlow(16, 3);
 const rootRound = deserializeStoredBracket("sb");
@@ -25,45 +23,26 @@ if (rootRound) {
 }
 serializeBracket(globalSwiss.rootRound, "sb");
 
-export let globalAFL = new AFLBracketFlow();
-export type aflRoot = {
-	upperQuarterFinal1: MatchNode;
-	upperQuarterFinal2: MatchNode;
-	lowerBracketRound1: MatchNode;
-	lowerBracketRound2: MatchNode;
-};
-
 export default function App() {
-	const aflData: aflRoot = {
-		upperQuarterFinal1: globalAFL.upperQuarterFinal1,
-		upperQuarterFinal2: globalAFL.upperQuarterFinal2,
-		lowerBracketRound1: globalAFL.lowerBracketRound1,
-		lowerBracketRound2: globalAFL.lowerBracketRound2,
-	};
-	const [aflB, setAFLB] = useState(aflData);
+	const [swissB, setSwissB] = useState(globalSwiss.rootRound);
 
-	const initialNodes = [];
+	const initialNodes = createSwissNodes(globalSwiss);
+
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
-	// const [swissB, setSwissB] = useState(globalSwiss.rootRound);
 
-	// const initialNodes = createSwissNodes(globalSwiss);
+	nodes.forEach((node) => (node.data.updateSwissFun = setSwissB));
 
-	// const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-	// const [edges, , onEdgesChange] = useEdgesState(initialEdges);
+	useEffect(() => {
+		const updatedNodes = createSwissNodes(globalSwiss);
+		setNodes(updatedNodes);
+	}, [swissB, setNodes]);
 
-	// nodes.forEach((node) => (node.data.updateSwissFun = setSwissB));
-
-	// useEffect(() => {
-	// 	const updatedNodes = createSwissNodes(globalSwiss);
-	// 	setNodes(updatedNodes);
-	// }, [swissB, setNodes]);
-
-	// const resetBracket = () => {
-	// 	globalSwiss = new SwissBracketFlow(16, 3);
-	// 	setSwissB(globalSwiss.rootRound);
-	// 	serializeBracket(globalSwiss.rootRound, "sb");
-	// };
+	const resetBracket = () => {
+		globalSwiss = new SwissBracketFlow(16, 3);
+		setSwissB(globalSwiss.rootRound);
+		serializeBracket(globalSwiss.rootRound, "sb");
+	};
 
 	return (
 		<ReactFlow
@@ -81,9 +60,9 @@ export default function App() {
 			<Background color="#141414" />
 			<MiniMap />
 			<Controls />
-			{/* <Panel position="bottom-center" className="reset-panel">
+			<Panel position="bottom-center" className="reset-panel">
 				<button onClick={resetBracket}>Reset</button>
-			</Panel> */}
+			</Panel>
 		</ReactFlow>
 	);
 }
