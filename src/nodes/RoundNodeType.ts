@@ -1,11 +1,11 @@
 import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
-import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
+import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
 export class RoundNodeType {
   [key: string]: unknown;
   name: string;
   roundNode: RoundNode;
-  swissBracket: SwissBracket;
+  swissBracket: SwissBracketFlow;
   updateSwissFun:
     | React.Dispatch<React.SetStateAction<RoundNode>>
     | undefined;
@@ -17,7 +17,7 @@ export class RoundNodeType {
   constructor(
     name: string,
     roundNode: RoundNode,
-    swissBracket: SwissBracket,
+    swissBracket: SwissBracketFlow,
     updateSwissFun:
       | React.Dispatch<React.SetStateAction<RoundNode>>
       | undefined,
