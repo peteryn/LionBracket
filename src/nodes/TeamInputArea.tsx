@@ -16,7 +16,7 @@ export default function TeamInputArea({
 		score = startingScore.toString();
 	}
 
-	const classes = `nodrag score-input ${colorClass}`
+	const classes = `nodrag score-input ${colorClass} bourgeois`;
 
 	return (
 		<div className="team-container">
