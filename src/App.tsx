@@ -16,14 +16,13 @@ import { createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
 import { deserializeStoredBracket, serializeBracket } from "./helper/serializer";
 
-export let globalSwiss: SwissBracketFlow = new SwissBracketFlow(16, 3);
-const rootRound = deserializeStoredBracket("sb");
-if (rootRound) {
-	globalSwiss.rootRound = rootRound;
-}
-serializeBracket(globalSwiss.rootRound, "sb");
-
 export default function App() {
+	let globalSwiss: SwissBracketFlow = new SwissBracketFlow(16, 3);
+	const rootRound = deserializeStoredBracket("sb");
+	if (rootRound) {
+		globalSwiss.rootRound = rootRound;
+	}
+	serializeBracket(globalSwiss.rootRound, "sb");
 	const [swissB, setSwissB] = useState(globalSwiss.rootRound);
 
 	const initialNodes = createSwissNodes(globalSwiss);
