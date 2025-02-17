@@ -21,12 +21,11 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 		if (i < exitTeams.length) {
 			const team = exitTeams[i];
 
-			const path = `/logos/${paths[team- 1]}.png`;
+			const path = `/logos/${paths[team - 1]}.png`;
 			exitTeamsComponents.push(<TeamBox key={i} imagePath={path}></TeamBox>);
-		}
-        else {
+		} else {
 			exitTeamsComponents.push(<TeamBox key={i} imagePath=""></TeamBox>);
-        }
+		}
 	}
 
 	const colorClass = `react-flow__node-default exit ${data.colorClass}`;
@@ -35,9 +34,7 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 		<div className={colorClass}>
 			<p className="versus-section-round-title bourgeois">{data.title}</p>
 			<Handle type="target" position={Position.Left} id={data.inputHandleId} />
-			<div className="qualified-area">
-                {exitTeamsComponents}
-            </div>
+			<div className="qualified-area">{exitTeamsComponents}</div>
 		</div>
 	);
 }
