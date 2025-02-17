@@ -18,7 +18,7 @@ export const swiss = new SwissBracketFlow(16, 3);
 export let initialNodes: AppNode[] = [];
 
 export function createSwissNodes(swiss: SwissBracketFlow) {
-	const coordinates = createCoordinates(0, 0, swiss);
+	const coordinates = createCoordinates(-400, 300, swiss);
 	const initialNodes: AppNode[] = [];
 	let idVal = 0;
 	let xVal = 0;
@@ -68,7 +68,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				xCalc = res[0];
 				yCalc = res[1];
 			}
-			
+
 			switch (node.name) {
 				case "0-0":
 					obj = {
@@ -145,6 +145,18 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 					qualObj.position.y += 76 - 10;
 				}
 
+				let xCalc = 0;
+				let yCalc = 0;
+				const res = coordinates.get(`${node.level}:Qualified`);
+				if (res) {
+					xCalc = res[0];
+					yCalc = res[1];
+				} else {
+					console.log("ERROR")
+				}
+				qualObj.position.x = xCalc;
+				qualObj.position.y = yCalc;
+
 				initialNodes.push(qualObj);
 			}
 
@@ -172,6 +184,16 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				if (node.name === "2-2") {
 					qualObj.position.y = 475 + 10;
 				}
+
+				let xCalc = 0;
+				let yCalc = 0;
+				const res = coordinates.get(`${node.level}:Eliminated`);
+				if (res) {
+					xCalc = res[0];
+					yCalc = res[1];
+				}
+				qualObj.position.x = xCalc;
+				qualObj.position.y = yCalc;
 
 				initialNodes.push(qualObj);
 			}
@@ -232,10 +254,12 @@ function createCoordinates(boundingXValue: number, boundingYValue: number, swiss
 	const SWISS_HEIGHT = 960;
 	const SWISS_WIDTH = 2008;
 	const SWISS_MIDDLE_HEIGHT = boundingYValue + SWISS_HEIGHT / 2;
-	const SWISS_NODE_VERTICAL_GAP = 20;
+	const VERTICAL_GAP = 20;
 	const SWISS_NODE_HORIZONTAL_GAP = 92;
 	const SWISS_NODE_WIDTH = 258;
 	const SWISS_HORIZONTAL_OFFSET = SWISS_NODE_WIDTH + SWISS_NODE_HORIZONTAL_GAP;
+
+	const EXIT_NODE_HEIGHT = 116;
 
 	const nodeCoordinates: Map<string, number[]> = new Map();
 	let xVal = boundingXValue;
@@ -243,22 +267,39 @@ function createCoordinates(boundingXValue: number, boundingYValue: number, swiss
 	levelOrderTraversal(swiss.rootRound, undefined, (level) => {
 		const numNodes = level.length;
 
-		let roundHeight = (numNodes - 1) * SWISS_NODE_VERTICAL_GAP;
+		let roundHeight = (numNodes - 1) * VERTICAL_GAP;
 		for (const node of level) {
 			roundHeight += 36 + 4 + node.matches.length * 100;
 		}
 
 		const heightDiff = SWISS_HEIGHT - roundHeight;
 		const heightOffset = heightDiff / 2;
+		const levelNumber = level[0].level;
 
 		yVal = boundingYValue + heightOffset;
 		level.forEach((node) => {
 			nodeCoordinates.set(node.name, [xVal, yVal]);
 			const nodeHeight = 36 + 4 + node.matches.length * 100;
-			yVal += SWISS_NODE_VERTICAL_GAP + nodeHeight;
+			yVal += VERTICAL_GAP + nodeHeight;
 		});
+
+		if (levelNumber === 4 || levelNumber === 5) {
+			const qualifiedExitHeight = boundingYValue + heightOffset - VERTICAL_GAP - EXIT_NODE_HEIGHT;
+			nodeCoordinates.set(`${levelNumber - 1}:Qualified`, [xVal, qualifiedExitHeight]);
+			nodeCoordinates.set(`${levelNumber - 1}:Eliminated`, [xVal, yVal]);
+		}
+
 		xVal += SWISS_HORIZONTAL_OFFSET;
 	});
+
+	const finalExitHeight = EXIT_NODE_HEIGHT * 2 + VERTICAL_GAP;
+	const heightDiff = SWISS_HEIGHT - finalExitHeight;
+	const heightOffset = heightDiff / 2;
+	nodeCoordinates.set(`${5}:Qualified`, [xVal, boundingYValue + heightOffset]);
+	nodeCoordinates.set(`${5}:Eliminated`, [
+		xVal,
+		boundingYValue + heightOffset + EXIT_NODE_HEIGHT + VERTICAL_GAP,
+	]);
 
 	return nodeCoordinates;
 }
