@@ -18,7 +18,7 @@ export const swiss = new SwissBracketFlow(16, 3);
 export let initialNodes: AppNode[] = [];
 
 export function createSwissNodes(swiss: SwissBracketFlow) {
-	const coordinates = createCoordinates(-400, 300, swiss);
+	const coordinates = createCoordinates(0, 0, swiss);
 	const initialNodes: AppNode[] = [];
 	let idVal = 0;
 	let xVal = 0;
