@@ -30,17 +30,17 @@ body,
 
 .round-node {
 	box-sizing: content-box;
-	height: calc(36px + 8 * 100px + 4px);
-	width: calc(250px + 2 * 4px);
-	background-color: #fff;
+	height: calc(36px + 8*100px + 4px);
+	width: calc(250px + 2*4px);
+	background-color: #FFF;	
 }
 
 .round-node1 {
 	box-sizing: content-box;
-	height: calc(32px + 4 * 100px + 4px);
-	width: calc(250px + 2 * 4px);
+	height: calc(32px + 4*100px + 4px);
+	width: calc(250px + 2*4px);
 	color: black;
-	background-color: #fff;
+	background-color: #FFF;	
 }
 
 .team-area {
@@ -246,7 +246,7 @@ input:focus {
 	box-sizing: content-box;
 	border-radius: 4px;
 	width: 258px;
-	height: calc(36px + 80px);
+	height: calc(36px + 74px);
 }
 
 .qualified-area {
@@ -256,7 +256,7 @@ input:focus {
 	gap: 4px;
 	width: 250px;
 	margin-left: 4px;
-	height: 76px;
+	height: 70px;
 }
 
 .exit-container {
@@ -265,9 +265,8 @@ input:focus {
 	flex-direction: column;
 	align-items: center;
 	height: 100%;
-	gap: 0.5em;
 	background-color: #1b1d22;
-	padding: 0.75em 0;
+	padding: 8px 0;
 	border-radius: 2px;
 }
 

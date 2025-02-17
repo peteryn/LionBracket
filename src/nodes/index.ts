@@ -259,7 +259,7 @@ function createCoordinates(boundingXValue: number, boundingYValue: number, swiss
 	const SWISS_NODE_WIDTH = 258;
 	const SWISS_HORIZONTAL_OFFSET = SWISS_NODE_WIDTH + SWISS_NODE_HORIZONTAL_GAP;
 
-	const EXIT_NODE_HEIGHT = 116;
+	const EXIT_NODE_HEIGHT = 110;
 
 	const nodeCoordinates: Map<string, number[]> = new Map();
 	let xVal = boundingXValue;
