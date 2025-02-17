@@ -30,17 +30,17 @@ body,
 
 .round-node {
 	box-sizing: content-box;
-	height: calc(36px + 8*100px + 4px);
-	width: calc(250px + 2*4px);
-	background-color: #FFF;	
+	height: calc(36px + 8 * 100px + 4px);
+	width: calc(250px + 2 * 4px);
+	background-color: #fff;
 }
 
 .round-node1 {
 	box-sizing: content-box;
-	height: calc(32px + 4*100px + 4px);
-	width: calc(250px + 2*4px);
+	height: calc(32px + 4 * 100px + 4px);
+	width: calc(250px + 2 * 4px);
 	color: black;
-	background-color: #FFF;	
+	background-color: #fff;
 }
 
 .team-area {
