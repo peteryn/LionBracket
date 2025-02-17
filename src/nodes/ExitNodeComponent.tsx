@@ -28,7 +28,7 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 		}
 	}
 
-	const colorClass = `react-flow__node-default exit ${data.colorClass}`;
+	const colorClass = `react-flow__node-default exit ${data.colorClass} nodrag`;
 
 	return (
 		<div className={colorClass}>
