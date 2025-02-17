@@ -60,7 +60,7 @@ body,
 }
 
 .versus-container:last-child {
-  border-bottom: none;
+	border-bottom: none;
 }
 
 .team-container {
@@ -182,11 +182,11 @@ input:focus {
 }
 
 .rl-orange-text {
-	color: var(--rl-orange)
+	color: var(--rl-orange);
 }
 
 .rl-blue-text {
-	color: var(--rl-blue)
+	color: var(--rl-blue);
 }
 
 .versus {
@@ -218,7 +218,6 @@ input:focus {
 	/* grid-template-columns: 1fr 1fr 1fr; */
 	gap: 0.4em;
 }
-
 
 .exit-container {
 	width: 100%;
