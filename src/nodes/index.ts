@@ -12,11 +12,13 @@ import { ExitNodeComponent } from "./ExitNodeComponent";
 import { ExitNodeType } from "./ExitNodeType";
 import { EndingNodeMiddleComponent } from "./EndingNodeMiddleComponent";
 import { EndingNodeLowerComponent } from "./EndingNodeLowerComponent";
+import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
 export const swiss = new SwissBracketFlow(16, 3);
 
 export let initialNodes: AppNode[] = [];
 
 export function createSwissNodes(swiss: SwissBracketFlow) {
+	const coordinates = createCoordinates(0, 0, swiss);
 	const initialNodes: AppNode[] = [];
 	let idVal = 0;
 	let xVal = 0;
@@ -58,11 +60,20 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 			);
 
 			let obj: AppNode | undefined;
+
+			let xCalc = 0;
+			let yCalc = 0;
+			const res = coordinates.get(node.name);
+			if (res) {
+				xCalc = res[0];
+				yCalc = res[1];
+			}
+			
 			switch (node.name) {
 				case "0-0":
 					obj = {
 						id: node.name,
-						position: { x: xVal, y: yVal },
+						position: { x: xCalc, y: yCalc },
 						data: roundNodeType,
 						type: "starting-node-component",
 						draggable: false,
@@ -72,7 +83,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				case "2-1":
 					obj = {
 						id: node.name,
-						position: { x: xVal, y: yVal },
+						position: { x: xCalc, y: yCalc },
 						data: roundNodeType,
 						type: "ending-node-upper-component",
 						draggable: false,
@@ -81,7 +92,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				case "2-2":
 					obj = {
 						id: node.name,
-						position: { x: xVal, y: yVal },
+						position: { x: xCalc, y: yCalc },
 						data: roundNodeType,
 						type: "ending-node-middle-component",
 						draggable: false,
@@ -91,7 +102,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				case "1-2":
 					obj = {
 						id: node.name,
-						position: { x: xVal, y: yVal },
+						position: { x: xCalc, y: yCalc },
 						data: roundNodeType,
 						type: "ending-node-lower-component",
 						draggable: false,
@@ -100,7 +111,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				default:
 					obj = {
 						id: node.name,
-						position: { x: xVal, y: yVal },
+						position: { x: xCalc, y: yCalc },
 						data: roundNodeType,
 						type: "round-node-component",
 						draggable: false,
@@ -189,6 +200,68 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 }
 
 // initialNodes = createSwissNodes(swiss);
+
+/*
+new dimensions
+round node height: 36px for header + numMatches*100px + 4px bottom border
+round node width: 258px
+h-gap between rounds is 350px - 258px = 92px
+v-gap between rounds is 20px
+
+height increase from r1 to r2 and r2 to r3 is 30px each
+
+graph width = 5*92 + 6*258 - 2008
+graph height = 2*(36+2*100+4) + (36+4*100+4) + 2*(20) = 960
+graph middle = 480
+
+r1 node: 36 + 8*100 + 4 = 840
+r2: 2*(36 + 4*100 + 4) + 20 = 900
+r3: 960
+960 - 840 = 120
+120 / 4 = 30 so 30 is the height mentioned on line 200
+
+r4: 2(36 + 3*100 + 4) + 20 = 700
+r5: (36 + 3*100 + 4) = 340
+
+exit node height: 36 + 80 = 116
+exit node width: 258px
+
+*/
+
+function createCoordinates(boundingXValue: number, boundingYValue: number, swiss: SwissBracket) {
+	const SWISS_HEIGHT = 960;
+	const SWISS_WIDTH = 2008;
+	const SWISS_MIDDLE_HEIGHT = boundingYValue + SWISS_HEIGHT / 2;
+	const SWISS_NODE_VERTICAL_GAP = 20;
+	const SWISS_NODE_HORIZONTAL_GAP = 92;
+	const SWISS_NODE_WIDTH = 258;
+	const SWISS_HORIZONTAL_OFFSET = SWISS_NODE_WIDTH + SWISS_NODE_HORIZONTAL_GAP;
+
+	const nodeCoordinates: Map<string, number[]> = new Map();
+	let xVal = boundingXValue;
+	let yVal = boundingYValue;
+	levelOrderTraversal(swiss.rootRound, undefined, (level) => {
+		const numNodes = level.length;
+
+		let roundHeight = (numNodes - 1) * SWISS_NODE_VERTICAL_GAP;
+		for (const node of level) {
+			roundHeight += 36 + 4 + node.matches.length * 100;
+		}
+
+		const heightDiff = SWISS_HEIGHT - roundHeight;
+		const heightOffset = heightDiff / 2;
+
+		yVal = boundingYValue + heightOffset;
+		level.forEach((node) => {
+			nodeCoordinates.set(node.name, [xVal, yVal]);
+			const nodeHeight = 36 + 4 + node.matches.length * 100;
+			yVal += SWISS_NODE_VERTICAL_GAP + nodeHeight;
+		});
+		xVal += SWISS_HORIZONTAL_OFFSET;
+	});
+
+	return nodeCoordinates;
+}
 
 export const nodeTypes = {
 	// Add any of your custom nodes here!
