@@ -3,10 +3,7 @@ import { addColor } from "./color.ts";
 import { RoundNodeType } from "../nodes/RoundNodeType.ts";
 
 export function createMatches(data: RoundNodeType) {
-	const matches = data.swissBracket.getRoundNode(data.name)?.matches;
-	if (!matches) {
-		throw new Error();
-	}
+	const matches = data.roundNode.matches;
 	const matchesComponents = matches.map((match) => (
 		<VersusRoundComponent
 			key={match.id}
