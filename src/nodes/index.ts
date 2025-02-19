@@ -29,7 +29,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 			const eliminatedHandleId = `${node.name}:EliminatedOutput`;
 			const roundNodeType = new RoundNodeType(
 				node.name,
-				node,
+				node.matches,
 				swiss,
 				undefined,
 				inputHandleId,

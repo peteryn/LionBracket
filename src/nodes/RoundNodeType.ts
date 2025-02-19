@@ -1,10 +1,11 @@
 import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
+import { Match, SwissMatch } from "../../LionBracketEngine/src/models/match";
 import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
 export class RoundNodeType {
 	[key: string]: unknown;
 	name: string;
-	roundNode: RoundNode;
+	matches: Match[] | SwissMatch[];
 	swissBracket: SwissBracketFlow;
 	updateSwissFun: React.Dispatch<React.SetStateAction<RoundNode>> | undefined;
 	inputHandleId: string;
@@ -14,7 +15,7 @@ export class RoundNodeType {
 
 	constructor(
 		name: string,
-		roundNode: RoundNode,
+		matches: Match[] | SwissMatch[],
 		swissBracket: SwissBracketFlow,
 		updateSwissFun: React.Dispatch<React.SetStateAction<RoundNode>> | undefined,
 		inputHandleId: string,
@@ -23,7 +24,7 @@ export class RoundNodeType {
 		eliminatedHandleId: string
 	) {
 		this.name = name;
-		this.roundNode = roundNode;
+		this.matches = matches;
 		this.swissBracket = swissBracket;
 		this.updateSwissFun = updateSwissFun;
 		this.inputHandleId = inputHandleId;
