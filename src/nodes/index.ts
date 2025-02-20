@@ -13,6 +13,7 @@ import { ExitNodeType } from "./ExitNodeType";
 import { EndingNodeMiddleComponent } from "./EndingNodeMiddleComponent";
 import { EndingNodeLowerComponent } from "./EndingNodeLowerComponent";
 import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
+import { Major1SwissBracket } from "../../LionBracketEngine/src/models/bracket";
 export const swiss = new SwissBracketFlow(16, 3);
 
 export let initialNodes: AppNode[] = [];
@@ -21,6 +22,10 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 	const coordinates = createCoordinates(0, 0, swiss);
 	const initialNodes: AppNode[] = [];
 	let idVal = 0;
+	const swissBracketWrapper: Major1SwissBracket = {
+		bracketType: "M1SwissBracket",
+		bracketObject: swiss
+	}
 	levelOrderTraversal(swiss.rootRound, undefined, (level) => {
 		level.forEach((node) => {
 			const inputHandleId = `${node.name}:Input`;
@@ -30,7 +35,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 			const roundNodeType = new RoundNodeType(
 				node.name,
 				node.matches,
-				swiss,
+				swissBracketWrapper,
 				undefined,
 				inputHandleId,
 				outputHandleId,

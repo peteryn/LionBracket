@@ -9,8 +9,8 @@ export function createMatches(data: RoundNodeType) {
 	const matchesComponents = matches.map((match) => (
 		<VersusRoundComponent
 			key={match.id}
-			match={match as SwissMatch}
-			swissBracket={data.swissBracket}
+			match={match}
+			bracketWrapper={data.swissBracket}
 			updateSwissFun={data.updateSwissFun}
 		></VersusRoundComponent>
 	));
