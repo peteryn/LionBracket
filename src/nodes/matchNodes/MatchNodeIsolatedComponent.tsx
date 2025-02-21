@@ -1,28 +1,29 @@
 import { NodeProps } from "@xyflow/react";
 import { type MatchNodeIsolatedComponent } from "../types.ts";
+import MatchTeamInputArea from "./MatchTeamInputArea.tsx";
 
-export function MatchNodeIsolatedComponent({data}: NodeProps<MatchNodeIsolatedComponent>) {
-    return (
-        <div className="match-node">
-            <div className="match-node-area">
-                <div className="match-team-area">
-                    <div className="match-team-area-image-container">
-                        <img src="/logos/g2.png" alt="" />
-                    </div>
-                    <div className="match-team-area-name bourgeois">G2 Esports</div>
-                    <div>input</div>
-                </div>
+export function MatchNodeIsolatedComponent({ data }: NodeProps<MatchNodeIsolatedComponent>) {
+	return (
+		<div className="match-node">
+			<div className="match-node-area">
+				<MatchTeamInputArea
+					updateFun={() => {}}
+					inputId="test"
+                    teamName="G2 Esports"
+					imagePath="/logos/g2.png"
+                    startingScore={0}
+                    colorClass=""
+				></MatchTeamInputArea>
 
-                <div className="match-team-area">
-                    <div className="match-team-area-image-container">
-                        <img src="/logos/vitality.png" alt="" />
-                    </div>
-                    <div className="match-team-area-name">Vitality</div>
-                    <div>input</div>
-                </div>
-
-
-            </div>
-        </div>
-    )
+				<MatchTeamInputArea
+					updateFun={() => {}}
+					inputId="test"
+                    teamName="Vitality"
+					imagePath="/logos/vitality.png"
+                    startingScore={0}
+                    colorClass=""
+				></MatchTeamInputArea>
+			</div>
+		</div>
+	);
 }

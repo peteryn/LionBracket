@@ -35,9 +35,7 @@ export default function App() {
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
 	nodes.forEach((node) => {
-		if (node.data.updateSwissFun) {
-			node.data.updateSwissFun = setSwissB;
-		}
+		node.data.updateSwissFun = setSwissB;
 	});
 
 	useEffect(() => {

@@ -66,9 +66,14 @@ body,
 
 .match-team-area {
 	display: grid;
-	grid-template-columns: 50px auto 50px;
+	grid-template-columns: 50px auto auto;
 	align-items: center;
-	margin: 8px 0;
+	margin: 4px 0;
+}
+
+.match-team-area-score {
+	justify-self: end;
+	padding-right: 12px;
 }
 
 .match-team-area-image-container {
@@ -92,6 +97,8 @@ body,
 
 .match-team-area-name {
 	padding-left: 4px;
+	font-size: 20px;
+	max-height: 100%;
 }
 
 
@@ -280,9 +287,21 @@ input:focus {
 	font-family: "bourgeois";
 }
 
+.bebas-neue-regular {
+  font-family: "Bebas Neue", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 @font-face {
 	font-family: "bourgeois"; /*a name to be used later*/
 	src: url("/fonts/Bourgeois-Ultra.otf"); /*URL to font*/
+}
+
+@font-face {
+	font-family: "Bebas Neue";
+	src: url("/fonts/BebasNeue-Regular.otf")
 }
 
 .qualified-handle {
