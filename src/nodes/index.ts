@@ -13,7 +13,8 @@ import { ExitNodeType } from "./ExitNodeType";
 import { EndingNodeMiddleComponent } from "./EndingNodeMiddleComponent";
 import { EndingNodeLowerComponent } from "./EndingNodeLowerComponent";
 import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
-import { Major1SwissBracket } from "../../LionBracketEngine/src/models/bracket";
+import { Major1AFLBracket, Major1SwissBracket } from "../../LionBracketEngine/src/models/bracket";
+import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
 export const swiss = new SwissBracketFlow(16, 3);
 
 export let initialNodes: AppNode[] = [];
@@ -24,8 +25,8 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 	let idVal = 0;
 	const swissBracketWrapper: Major1SwissBracket = {
 		bracketType: "M1SwissBracket",
-		bracketObject: swiss
-	}
+		bracketObject: swiss,
+	};
 	levelOrderTraversal(swiss.rootRound, undefined, (level) => {
 		level.forEach((node) => {
 			const inputHandleId = `${node.name}:Input`;
@@ -242,6 +243,118 @@ function createCoordinates(boundingXValue: number, boundingYValue: number, swiss
 	]);
 
 	return nodeCoordinates;
+}
+
+export function createAFLNodes(afl: AFLBracketFlow) {
+	// const coordinates = createCoordinates(0, 0, swiss);
+	// const initialNodes: AppNode[] = [];
+
+	// const aflWrapper: Major1AFLBracket = {
+	// 	bracketType: "M1AFLBracket",
+	// 	bracketObject: afl,
+	// };
+
+	// const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
+
+	// const lb = [lbr1, lbr2];
+	// const uqf = [uqf1, uqf2];
+	// const lqf = [lbqf1, lbqf2];
+	// const sf = [sf1, sf2];
+	// const gfr = [gf];
+
+	// const rounds = [lb, uqf, lqf, sf, gfr];
+	// const roundNames = ["Upper Bracket Round 1", "Lower Bracket Round 1"]
+	// rounds.forEach((round) => {
+
+	// 	const inputHandleId = `${node.name}:Input`;
+	// 	const outputHandleId = `${node.name}:Output`;
+	// 	const qualifiedHandleId = `${node.name}:QualifiedOutput`;
+	// 	const eliminatedHandleId = `${node.name}:EliminatedOutput`;
+
+	// 	const roundNodeType = new RoundNodeType(node.name);
+	// });
+
+	// levelOrderTraversal(afl.lowerBracketRound1, undefined, (level) => {
+	// 	level.forEach((node) => {
+	// 		const inputHandleId = `${node.name}:Input`;
+	// 		const outputHandleId = `${node.name}:Output`;
+	// 		const qualifiedHandleId = `${node.name}:QualifiedOutput`;
+	// 		const eliminatedHandleId = `${node.name}:EliminatedOutput`;
+	// 		const roundNodeType = new RoundNodeType(
+	// 			node.name,
+	// 			[],
+	// 			aflWrapper,
+	// 			undefined,
+	// 			inputHandleId,
+	// 			outputHandleId,
+	// 			qualifiedHandleId,
+	// 			eliminatedHandleId
+	// 		);
+
+	// 		let obj: AppNode | undefined;
+
+	// 		let xCalc = 0;
+	// 		let yCalc = 0;
+	// 		const res = coordinates.get(node.name);
+	// 		if (res) {
+	// 			xCalc = res[0];
+	// 			yCalc = res[1];
+	// 		}
+
+	// 		switch (node.name) {
+	// 			case "0-0":
+	// 				obj = {
+	// 					id: node.name,
+	// 					position: { x: xCalc, y: yCalc },
+	// 					data: roundNodeType,
+	// 					type: "starting-node-component",
+	// 					draggable: false,
+	// 				};
+	// 				break;
+	// 			case "2-0":
+	// 			case "2-1":
+	// 				obj = {
+	// 					id: node.name,
+	// 					position: { x: xCalc, y: yCalc },
+	// 					data: roundNodeType,
+	// 					type: "ending-node-upper-component",
+	// 					draggable: false,
+	// 				};
+	// 				break;
+	// 			case "2-2":
+	// 				obj = {
+	// 					id: node.name,
+	// 					position: { x: xCalc, y: yCalc },
+	// 					data: roundNodeType,
+	// 					type: "ending-node-middle-component",
+	// 					draggable: false,
+	// 				};
+	// 				break;
+	// 			case "0-2":
+	// 			case "1-2":
+	// 				obj = {
+	// 					id: node.name,
+	// 					position: { x: xCalc, y: yCalc },
+	// 					data: roundNodeType,
+	// 					type: "ending-node-lower-component",
+	// 					draggable: false,
+	// 				};
+	// 				break;
+	// 			default:
+	// 				obj = {
+	// 					id: node.name,
+	// 					position: { x: xCalc, y: yCalc },
+	// 					data: roundNodeType,
+	// 					type: "round-node-component",
+	// 					draggable: false,
+	// 				};
+	// 		}
+
+	// 		initialNodes.push(obj);
+	// 	});
+	// });
+	// return initialNodes;
+	return [];
 }
 
 export const nodeTypes = {

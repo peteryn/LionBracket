@@ -12,9 +12,10 @@ import "@xyflow/react/dist/base.css";
 
 import { SwissBracketFlow } from "../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
-import { createSwissNodes, nodeTypes } from "./nodes";
+import { createAFLNodes, createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
 import { deserializeStoredBracket, serializeBracket } from "./helper/serializer";
+import { AFLBracketFlow } from "../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
 
 export default function App() {
 	let globalSwiss: SwissBracketFlow = new SwissBracketFlow(16, 3);
@@ -25,7 +26,10 @@ export default function App() {
 	serializeBracket(globalSwiss.rootRound, "sb");
 	const [swissB, setSwissB] = useState(globalSwiss.rootRound);
 
-	const initialNodes = createSwissNodes(globalSwiss);
+	const globalAFL: AFLBracketFlow = new AFLBracketFlow();
+	const swissNodes = createSwissNodes(globalSwiss);
+	const aflNodes = createAFLNodes(globalAFL);
+	const initialNodes = swissNodes.concat(aflNodes);
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
