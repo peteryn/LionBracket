@@ -1,11 +1,12 @@
 import type { Edge, EdgeTypes } from "@xyflow/react";
 
-import { swiss } from "../nodes";
 
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
+import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
 export const initialEdges: Edge[] = [];
 
+const swiss = new SwissBracketFlow();
 levelOrderTraversal(swiss.rootRound, (node) => {
   if (node.upperRound) {
     const id = `${node.name}->${node.upperRound.name}`;

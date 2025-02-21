@@ -1,7 +1,6 @@
 import VersusRoundComponent from "../nodes/VersusRoundComponent.tsx";
 import { addColor } from "./color.ts";
 import { RoundNodeType } from "../nodes/RoundNodeType.ts";
-import { SwissMatch } from "../../LionBracketEngine/src/models/match.ts";
 
 export function createMatches(data: RoundNodeType) {
 	const matches = data.matches;

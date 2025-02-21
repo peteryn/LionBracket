@@ -34,10 +34,16 @@ export default function App() {
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
-	nodes.forEach((node) => (node.data.updateSwissFun = setSwissB));
+	nodes.forEach((node) => {
+		if (node.data.updateSwissFun) {
+			node.data.updateSwissFun = setSwissB;
+		}
+	});
 
 	useEffect(() => {
-		const updatedNodes = createSwissNodes(globalSwiss);
+		const swissNodes = createSwissNodes(globalSwiss);
+		const aflNodes = createAFLNodes(globalAFL);
+		const updatedNodes = swissNodes.concat(aflNodes);
 		setNodes(updatedNodes);
 	}, [swissB, setNodes]);
 

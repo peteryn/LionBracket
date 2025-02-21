@@ -13,9 +13,12 @@ import { ExitNodeType } from "./ExitNodeType";
 import { EndingNodeMiddleComponent } from "./EndingNodeMiddleComponent";
 import { EndingNodeLowerComponent } from "./EndingNodeLowerComponent";
 import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
-import { Major1AFLBracket, Major1SwissBracket } from "../../LionBracketEngine/src/models/bracket";
+import { Major1SwissBracket } from "../../LionBracketEngine/src/models/bracket";
 import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
-export const swiss = new SwissBracketFlow(16, 3);
+import { MatchNodeIsolatedComponent } from "./matchNodes/MatchNodeIsolatedComponent";
+import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
+import { Match } from "../../LionBracketEngine/src/models/match";
+import { MatchNodeType } from "./MatchNodeType";
 
 export let initialNodes: AppNode[] = [];
 
@@ -354,7 +357,35 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 	// 	});
 	// });
 	// return initialNodes;
-	return [];
+
+	const matchNode = new MatchNode("test", true);
+	matchNode.match = new Match("test", 0);
+	matchNode.match.matchRecord = {
+		type: "FullRecord",
+		upperSeed: 1,
+		upperSeedWins: 0,
+		lowerSeed: 2,
+		lowerSeedWins: 1,
+	};
+
+	const matchNodeType = new MatchNodeType(
+		"test",
+		matchNode,
+		undefined,
+		"test:Input",
+		"test:Output",
+		"test:QualifiedOutput",
+		"test:ElimiantedOutput"
+	);
+
+	let testNode: AppNode = {
+		id: `testNode`,
+		position: { x: 0, y: 960 },
+		data: matchNodeType,
+		type: "match-node-isolated-component",
+	};
+
+	return [testNode];
 }
 
 export const nodeTypes = {
@@ -365,4 +396,5 @@ export const nodeTypes = {
 	"ending-node-middle-component": EndingNodeMiddleComponent,
 	"ending-node-lower-component": EndingNodeLowerComponent,
 	"exit-node-component": ExitNodeComponent,
+	"match-node-isolated-component": MatchNodeIsolatedComponent,
 } satisfies NodeTypes;
