@@ -7,24 +7,16 @@ export class MatchNodeType {
 	updateFun: React.Dispatch<React.SetStateAction<MatchNode>> | undefined;
 	inputHandleId: string;
 	outputHandleId: string;
-	qualifiedHandleId: string;
-	eliminatedHandleId: string;
+	ghostInputHandleId: string;
+	championOutputHandleId: string;
 
-	constructor(
-		name: string,
-		matchNode: MatchNode,
-		updateFun: React.Dispatch<React.SetStateAction<MatchNode>> | undefined,
-		inputHandleId: string,
-		outputHandleId: string,
-		qualifiedHandleId: string,
-		eliminatedHandleId: string
-	) {
-		this.name = name;
+	constructor(matchNode: MatchNode) {
+		this.name = matchNode.name;
 		this.matchNode = matchNode;
-		this.updateFun = updateFun;
-		this.inputHandleId = inputHandleId;
-		this.outputHandleId = outputHandleId;
-		this.qualifiedHandleId = qualifiedHandleId;
-		this.eliminatedHandleId = eliminatedHandleId;
+		this.updateFun = undefined;
+		this.inputHandleId = `${matchNode.name}:Input`;
+		this.outputHandleId = `${matchNode.name}:Output`;
+		this.ghostInputHandleId = `${matchNode.name}:GhostInput`;
+		this.championOutputHandleId = `${matchNode.name}:ChamptionOutput`;
 	}
 }

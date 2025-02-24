@@ -426,24 +426,96 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 
 	const ghostNode: AppNode = {
 		id: "ghostNode",
-		position: {x: -50, y: 950 + 30 - 2.5 },
+		position: { x: -50, y: 950 + 30 - 2.5 },
 		data: {},
-		type: "ghost-node"
-	}
+		type: "ghost-node",
+	};
 
+	const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
 
-	// const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
+	const lb = [lbr1, lbr2];
+	const uqf = [uqf1, uqf2];
+	const lqf = [lbqf1, lbqf2];
+	const sf = [sf1, sf2];
+	const gfr = [gf];
 
-	// const lb = [lbr1, lbr2];
-	// const uqf = [uqf1, uqf2];
-	// const lqf = [lbqf1, lbqf2];
-	// const sf = [sf1, sf2];
-	// const gfr = [gf];
+	const rounds = [lb, uqf, lqf, sf, gfr];
+	const roundNames = ["Upper Bracket Round 1", "Lower Bracket Round 1"];
 
-	// const rounds = [lb, uqf, lqf, sf, gfr];
-	// const roundNames = ["Upper Bracket Round 1", "Lower Bracket Round 1"]
+	const lbr1AppNode: AppNode = {
+		id: lbr1.name,
+		position: { x: 0, y: 1400 },
+		data: new MatchNodeType(lbr1),
+		type: "match-node-starting-component",
+	};
 
-	return [node1, ghostNode];
+	const lbr2AppNode: AppNode = {
+		id: lbr2.name,
+		position: { x: 0, y: 1400 + 40 + 100 },
+		data: new MatchNodeType(lbr2),
+		type: "match-node-starting-component",
+	};
+
+	const lbqf1AppNode: AppNode = {
+		id: lbqf1.name,
+		position: { x: 0 + 258 + 92, y: 1400 - 20 },
+		data: new MatchNodeType(lbqf1),
+		type: "match-node-middle-component2",
+	};
+
+	const lbqf2AppNode: AppNode = {
+		id: lbqf2.name,
+		position: { x: 0 + 258 + 92, y: 1400 - 20 + 40 + 100 },
+		data: new MatchNodeType(lbqf2),
+		type: "match-node-middle-component2",
+	};
+
+	const uqf1AppNode: AppNode = {
+		id: uqf1.name,
+		position: { x: 0 + 258 + 92, y: 1400 - 20 - 350 },
+		data: new MatchNodeType(uqf1),
+		type: "match-node-isolated-component",
+	};
+
+	const uqf2AppNode: AppNode = {
+		id: uqf2.name,
+		position: { x: 0 + 258 + 92, y: 1400 - 20 - 350 + 100 + 40 },
+		data: new MatchNodeType(uqf2),
+		type: "match-node-isolated-component",
+	};
+
+	const sf1AppNode: AppNode = {
+		id: sf1.name,
+		position: { x: 0 + 2 * (258 + 92), y: 1400 - 40 },
+		data: new MatchNodeType(sf1),
+		type: "match-node-middle-component2",
+	};
+
+	const sf2AppNode: AppNode = {
+		id: sf2.name,
+		position: { x: 0 + 2 * (258 + 92), y: 1400 - 40 + 40 + 100 },
+		data: new MatchNodeType(sf2),
+		type: "match-node-middle-component2",
+	};
+
+	const gfAppNode: AppNode = {
+		id: gf.name,
+		position: { x: 0 + 3 * (258 + 92), y: 1400 - 40 + 70 },
+		data: new MatchNodeType(gf),
+		type: "match-node-ending-component",
+	};
+
+	return [
+		lbr1AppNode,
+		lbr2AppNode,
+		uqf1AppNode,
+		uqf2AppNode,
+		lbqf1AppNode,
+		lbqf2AppNode,
+		sf1AppNode,
+		sf2AppNode,
+		gfAppNode,
+	];
 }
 
 export const nodeTypes = {
@@ -459,5 +531,5 @@ export const nodeTypes = {
 	"match-node-ending-component": MatchNodeEndingComponent,
 	"match-node-middle-component": MatchNodeMiddleComponent,
 	"match-node-middle-component2": MatchNodeMiddleComponent2,
-	"ghost-node": GhostNode
+	"ghost-node": GhostNode,
 } satisfies NodeTypes;
