@@ -23,6 +23,7 @@ import { MatchNodeStartingComponent } from "./matchNodes/MatchNodeStartingCompon
 import { MatchNodeEndingComponent } from "./matchNodes/MatchNodeEndingComponent";
 import { MatchNodeMiddleComponent } from "./matchNodes/MatchNodeMiddleComponent";
 import { MatchNodeMiddleComponent2 } from "./matchNodes/MatchNodeMiddleComponent2";
+import { GhostNode } from "./GhostNode";
 
 export let initialNodes: AppNode[] = [];
 
@@ -423,6 +424,13 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 		node2 = testNode;
 	}
 
+	const ghostNode: AppNode = {
+		id: "ghostNode",
+		position: {x: -50, y: 960 },
+		data: {updateSwissFun: undefined},
+		type: "ghost-node"
+	}
+
 
 	// const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
 
@@ -435,7 +443,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 	// const rounds = [lb, uqf, lqf, sf, gfr];
 	// const roundNames = ["Upper Bracket Round 1", "Lower Bracket Round 1"]
 
-	return [node1, node2];
+	return [node1, node2, ghostNode];
 }
 
 export const nodeTypes = {
@@ -451,4 +459,5 @@ export const nodeTypes = {
 	"match-node-ending-component": MatchNodeEndingComponent,
 	"match-node-middle-component": MatchNodeMiddleComponent,
 	"match-node-middle-component2": MatchNodeMiddleComponent2,
+	"ghost-node": GhostNode
 } satisfies NodeTypes;

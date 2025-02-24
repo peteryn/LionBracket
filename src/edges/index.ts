@@ -54,6 +54,14 @@ levelOrderTraversal(swiss.rootRound, (node) => {
   }
 });
 
+initialEdges.push({
+  id: "ghostTest",
+  source: "gh",
+  target: "testNode",
+  sourceHandle: "ghostEdge",
+  targetHandle: "test:Input"
+})
+
 export const edgeTypes = {
   // Add your custom edge types here!
 } satisfies EdgeTypes;

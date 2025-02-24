@@ -35,6 +35,7 @@ export default function App() {
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
 	nodes.forEach((node) => {
+		// TODO: make it so that only nodes that require this are set
 		node.data.updateSwissFun = setSwissB;
 	});
 
