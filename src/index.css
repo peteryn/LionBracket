@@ -28,6 +28,10 @@ body,
 	margin: 0;
 }
 
+.no-handle {
+	min-width: 0px;
+}
+
 .round-node {
 	box-sizing: content-box;
 	height: calc(36px + 8*100px + 4px);

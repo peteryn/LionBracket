@@ -56,10 +56,12 @@ levelOrderTraversal(swiss.rootRound, (node) => {
 
 initialEdges.push({
   id: "ghostTest",
-  source: "gh",
+  source: "ghostNode",
   target: "testNode",
   sourceHandle: "ghostEdge",
-  targetHandle: "test:Input"
+  targetHandle: "test:Input",
+  type: "step",
+  style: { strokeWidth: 2}
 })
 
 export const edgeTypes = {

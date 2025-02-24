@@ -33,7 +33,7 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 	return (
 		<div className={colorClass}>
 			<p className="versus-section-round-title bourgeois">{data.title}</p>
-			<Handle type="target" position={Position.Left} id={data.inputHandleId} />
+			<Handle type="target" position={Position.Left} id={data.inputHandleId} className="" />
 			<div className="qualified-area">{exitTeamsComponents}</div>
 		</div>
 	);

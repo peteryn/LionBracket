@@ -5,10 +5,10 @@ export function GhostNode() {
 		<div style={{ width: 5, height: 5 }}>
 			<Handle
                 id="ghostEdge"
-				type="target"
-				position={Position.Top}
-				// isConnectable={false}
-				style={{ background: "white" }}
+				type="source"
+				position={Position.Right}
+				isConnectable={false}
+				style={{ background: "", opacity: 0 }}
 			/>
 		</div>
 	);

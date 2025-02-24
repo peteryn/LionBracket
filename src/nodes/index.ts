@@ -387,7 +387,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 
 		let testNode: AppNode = {
 			id: `testNode`,
-			position: { x: 0, y: 960 },
+			position: { x: 0, y: 950 },
 			data: matchNodeType,
 			type: "match-node-middle-component2",
 		};
@@ -426,7 +426,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 
 	const ghostNode: AppNode = {
 		id: "ghostNode",
-		position: {x: -50, y: 960 },
+		position: {x: -50, y: 950 + 33 - 2.5 },
 		data: {updateSwissFun: undefined},
 		type: "ghost-node"
 	}
@@ -443,7 +443,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 	// const rounds = [lb, uqf, lqf, sf, gfr];
 	// const roundNames = ["Upper Bracket Round 1", "Lower Bracket Round 1"]
 
-	return [node1, node2, ghostNode];
+	return [node1, ghostNode];
 }
 
 export const nodeTypes = {
