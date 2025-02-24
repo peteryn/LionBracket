@@ -14,6 +14,8 @@ export type ExitNodeComponent = Node<ExitNodeType, "exit-node-component">;
 
 export type MatchNodeIsolatedComponent = Node<MatchNodeType, "match-node-isolated-component">;
 export type MatchNodeStartingComponent = Node<MatchNodeType, "match-node-starting-component">;
+export type MatchNodeEndingComponent = Node<MatchNodeType, "match-node-ending-component">;
+export type MatchNodeMiddleComponent = Node<MatchNodeType, "match-node-middle-component">;
 
 export type AppNode =
 	| RoundNodeComponent
@@ -23,4 +25,6 @@ export type AppNode =
 	| EndingNodeMiddleComponent
 	| EndingNodeLowerComponent
 	| MatchNodeIsolatedComponent
-	| MatchNodeStartingComponent;
+	| MatchNodeStartingComponent
+	| MatchNodeEndingComponent
+	| MatchNodeMiddleComponent;

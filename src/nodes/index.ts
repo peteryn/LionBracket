@@ -20,6 +20,8 @@ import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
 import { Match } from "../../LionBracketEngine/src/models/match";
 import { MatchNodeType } from "./MatchNodeType";
 import { MatchNodeStartingComponent } from "./matchNodes/MatchNodeStartingComponent";
+import { MatchNodeEndingComponent } from "./matchNodes/MatchNodeEndingComponent";
+import { MatchNodeMiddleComponent } from "./matchNodes/MatchNodeMiddleComponent";
 
 export let initialNodes: AppNode[] = [];
 
@@ -383,7 +385,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 		id: `testNode`,
 		position: { x: 0, y: 960 },
 		data: matchNodeType,
-		type: "match-node-starting-component",
+		type: "match-node-middle-component",
 	};
 
 	// const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
@@ -410,4 +412,6 @@ export const nodeTypes = {
 	"exit-node-component": ExitNodeComponent,
 	"match-node-isolated-component": MatchNodeIsolatedComponent,
 	"match-node-starting-component": MatchNodeStartingComponent,
+	"match-node-ending-component": MatchNodeEndingComponent,
+	"match-node-middle-component": MatchNodeMiddleComponent
 } satisfies NodeTypes;
