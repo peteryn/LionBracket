@@ -22,6 +22,7 @@ import { MatchNodeType } from "./MatchNodeType";
 import { MatchNodeStartingComponent } from "./matchNodes/MatchNodeStartingComponent";
 import { MatchNodeEndingComponent } from "./matchNodes/MatchNodeEndingComponent";
 import { MatchNodeMiddleComponent } from "./matchNodes/MatchNodeMiddleComponent";
+import { MatchNodeMiddleComponent2 } from "./matchNodes/MatchNodeMiddleComponent2";
 
 export let initialNodes: AppNode[] = [];
 
@@ -361,32 +362,67 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 	// });
 	// return initialNodes;
 
-	const matchNode = new MatchNode("test", true);
-	matchNode.match = new Match("test", 0);
-	matchNode.match.matchRecord = {
-		type: "FullRecord",
-		upperSeed: 1,
-		upperSeedWins: 0,
-		lowerSeed: 2,
-		lowerSeedWins: 1,
-	};
+	let node1;
+	{
+		const matchNode = new MatchNode("test", true);
+		matchNode.match = new Match("test", 0);
+		matchNode.match.matchRecord = {
+			type: "FullRecord",
+			upperSeed: 1,
+			upperSeedWins: 0,
+			lowerSeed: 2,
+			lowerSeedWins: 1,
+		};
 
-	const matchNodeType = new MatchNodeType(
-		"test",
-		matchNode,
-		undefined,
-		"test:Input",
-		"test:Output",
-		"test:QualifiedOutput",
-		"test:ElimiantedOutput"
-	);
+		const matchNodeType = new MatchNodeType(
+			"test",
+			matchNode,
+			undefined,
+			"test:Input",
+			"test:Output",
+			"test:QualifiedOutput",
+			"test:ElimiantedOutput"
+		);
 
-	let testNode: AppNode = {
-		id: `testNode`,
-		position: { x: 0, y: 960 },
-		data: matchNodeType,
-		type: "match-node-middle-component",
-	};
+		let testNode: AppNode = {
+			id: `testNode`,
+			position: { x: 0, y: 960 },
+			data: matchNodeType,
+			type: "match-node-middle-component2",
+		};
+		node1 = testNode;
+	}
+	let node2;
+	{
+		const matchNode = new MatchNode("test", true);
+		matchNode.match = new Match("test", 0);
+		matchNode.match.matchRecord = {
+			type: "FullRecord",
+			upperSeed: 1,
+			upperSeedWins: 0,
+			lowerSeed: 2,
+			lowerSeedWins: 1,
+		};
+
+		const matchNodeType = new MatchNodeType(
+			"test",
+			matchNode,
+			undefined,
+			"test:Input",
+			"test:Output",
+			"test:QualifiedOutput",
+			"test:ElimiantedOutput"
+		);
+
+		let testNode: AppNode = {
+			id: `testNode2`,
+			position: { x: 350, y: 960 - 17 },
+			data: matchNodeType,
+			type: "match-node-middle-component",
+		};
+		node2 = testNode;
+	}
+
 
 	// const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
 
@@ -399,7 +435,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 	// const rounds = [lb, uqf, lqf, sf, gfr];
 	// const roundNames = ["Upper Bracket Round 1", "Lower Bracket Round 1"]
 
-	return [testNode];
+	return [node1, node2];
 }
 
 export const nodeTypes = {
@@ -413,5 +449,6 @@ export const nodeTypes = {
 	"match-node-isolated-component": MatchNodeIsolatedComponent,
 	"match-node-starting-component": MatchNodeStartingComponent,
 	"match-node-ending-component": MatchNodeEndingComponent,
-	"match-node-middle-component": MatchNodeMiddleComponent
+	"match-node-middle-component": MatchNodeMiddleComponent,
+	"match-node-middle-component2": MatchNodeMiddleComponent2,
 } satisfies NodeTypes;
