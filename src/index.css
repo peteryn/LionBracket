@@ -28,6 +28,10 @@ body,
 	margin: 0;
 }
 
+.react-flow__handle {
+	min-width: 0px;
+}
+
 .no-handle {
 	min-width: 0px;
 }
