@@ -47,7 +47,7 @@ export default function VersusRoundComponent({
 						updateSwissFun(cloned);
 						serializeBracket(bracket.rootRound, "sb");
 					} else {
-						console.log("very bad error");
+						console.log("updateSwissFun doesn't exist when it should");
 					}
 				} else {
 					console.log("match record doesnt exist bad error");

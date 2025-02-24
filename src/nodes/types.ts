@@ -18,7 +18,7 @@ export type MatchNodeEndingComponent = Node<MatchNodeType, "match-node-ending-co
 export type MatchNodeMiddleComponent = Node<MatchNodeType, "match-node-middle-component">;
 export type MatchNodeMiddleComponent2 = Node<MatchNodeType, "match-node-middle-component2">;
 
-export type GhostNode = Node<{updateSwissFun: undefined}, "ghost-node">;
+export type GhostNode = Node<{}, "ghost-node">;
 
 export type AppNode =
 	| RoundNodeComponent

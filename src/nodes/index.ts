@@ -426,8 +426,8 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 
 	const ghostNode: AppNode = {
 		id: "ghostNode",
-		position: {x: -50, y: 950 + 33 - 2.5 },
-		data: {updateSwissFun: undefined},
+		position: {x: -50, y: 950 + 30 - 2.5 },
+		data: {},
 		type: "ghost-node"
 	}
 

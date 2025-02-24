@@ -34,9 +34,12 @@ export default function App() {
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
+	// for some reason this code must run after useNodesState
 	nodes.forEach((node) => {
 		// TODO: make it so that only nodes that require this are set
-		node.data.updateSwissFun = setSwissB;
+		if ("updateSwissFun" in node.data) {
+			node.data.updateSwissFun = setSwissB;
+		}
 	});
 
 	useEffect(() => {
