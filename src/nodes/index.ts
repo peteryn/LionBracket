@@ -292,6 +292,23 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 		.concat(sf.map(createMap("match-node-middle-component2")))
 		.concat(gfr.map(createMap("match-node-ending-component")));
 
+	{
+		let xCalc = 0;
+		let yCalc = 0;
+		const res = coordinates.get("lowerQuarterFinal1GhostNode");
+		if (res) {
+			xCalc = res[0];
+			yCalc = res[1];
+		}
+		const lowerQuarterFinal1GhostNode: AppNode = {
+			id: "lowerQuarterFinal1GhostNode",
+			position: { x: xCalc, y: yCalc },
+			data: { name: "lqf1gn", outputHandleId: "lqf1gn:Output" },
+			type: "ghost-node",
+		};
+		initialAFLNodes.push(lowerQuarterFinal1GhostNode);
+	}
+
 	return initialAFLNodes;
 }
 
@@ -325,6 +342,10 @@ function createAFLCoordinates(boundingXValue: number, boundingYValue: number, af
 		boundingXValue + HORIZONTAL_OFFSET,
 		boundingYValue + UPPER_BRACKET_OFFSET + NODE_RAISE_VALUE,
 	]);
+	nodeCoordinates.set("lowerQuarterFinal1GhostNode", [
+		boundingXValue + HORIZONTAL_OFFSET - 50,
+		boundingYValue + UPPER_BRACKET_OFFSET + 7.5,
+	])
 	nodeCoordinates.set(lbqf2.name, [
 		boundingXValue + HORIZONTAL_OFFSET,
 		boundingYValue + UPPER_BRACKET_OFFSET + NODE_RAISE_VALUE + VERTICAL_OFFSET,

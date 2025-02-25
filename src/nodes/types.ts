@@ -2,6 +2,7 @@ import type { Node } from "@xyflow/react";
 import { RoundNodeType } from "./RoundNodeType";
 import { ExitNodeType } from "./ExitNodeType";
 import { MatchNodeType } from "./MatchNodeType";
+import { GhostNodeType } from "./GhostNodeType";
 import { MatchNodeStartingComponent } from "./matchNodes/MatchNodeStartingComponent";
 
 export type RoundNodeComponent = Node<RoundNodeType, "round-node-component">;
@@ -18,7 +19,7 @@ export type MatchNodeEndingComponent = Node<MatchNodeType, "match-node-ending-co
 export type MatchNodeMiddleComponent = Node<MatchNodeType, "match-node-middle-component">;
 export type MatchNodeMiddleComponent2 = Node<MatchNodeType, "match-node-middle-component2">;
 
-export type GhostNode = Node<{}, "ghost-node">;
+export type GhostNode = Node<GhostNodeType, "ghost-node">;
 
 export type AppNode =
 	| RoundNodeComponent

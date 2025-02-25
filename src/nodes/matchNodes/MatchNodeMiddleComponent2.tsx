@@ -26,7 +26,7 @@ export function MatchNodeMiddleComponent2({ data }: NodeProps<MatchNodeIsolatedC
 				<Handle
 					type="target"
 					position={Position.Left}
-					id="test2"
+					id={`${data.inputHandleId}Ghost`}
 					style={{ top: "30px" }}
 				></Handle>
 				<Handle

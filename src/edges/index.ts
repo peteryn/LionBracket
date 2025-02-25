@@ -113,6 +113,16 @@ initialEdges.push({
 	style: { strokeWidth: 2 },
 });
 
+initialEdges.push({
+	id: "lqf1gn->lqf1",
+	source: "lowerQuarterFinal1GhostNode",
+	target: "lowerQuarterFinal1",
+	sourceHandle: "lqf1gn:Output",
+	targetHandle: "lowerQuarterFinal1:InputGhost",
+	type: "step",
+	style: { strokeWidth: 2 },
+})
+
 export const edgeTypes = {
 	// Add your custom edge types here!
 } satisfies EdgeTypes;
