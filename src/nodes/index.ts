@@ -17,7 +17,6 @@ import { Major1SwissBracket } from "../../LionBracketEngine/src/models/bracket";
 import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
 import { MatchNodeIsolatedComponent } from "./matchNodes/MatchNodeIsolatedComponent";
 import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
-import { Match } from "../../LionBracketEngine/src/models/match";
 import { MatchNodeType } from "./MatchNodeType";
 import { MatchNodeStartingComponent } from "./matchNodes/MatchNodeStartingComponent";
 import { MatchNodeEndingComponent } from "./matchNodes/MatchNodeEndingComponent";
@@ -172,8 +171,6 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 	return initialNodes;
 }
 
-// initialNodes = createSwissNodes(swiss);
-
 /*
 new dimensions
 round node height: 36px for header + numMatches*100px + 4px bottom border
@@ -254,183 +251,6 @@ function createCoordinates(boundingXValue: number, boundingYValue: number, swiss
 }
 
 export function createAFLNodes(afl: AFLBracketFlow) {
-	// const coordinates = createCoordinates(0, 0, swiss);
-	// const initialNodes: AppNode[] = [];
-
-	// const aflWrapper: Major1AFLBracket = {
-	// 	bracketType: "M1AFLBracket",
-	// 	bracketObject: afl,
-	// };
-
-	// const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
-
-	// const lb = [lbr1, lbr2];
-	// const uqf = [uqf1, uqf2];
-	// const lqf = [lbqf1, lbqf2];
-	// const sf = [sf1, sf2];
-	// const gfr = [gf];
-
-	// const rounds = [lb, uqf, lqf, sf, gfr];
-	// const roundNames = ["Upper Bracket Round 1", "Lower Bracket Round 1"]
-	// rounds.forEach((round) => {
-
-	// 	const inputHandleId = `${node.name}:Input`;
-	// 	const outputHandleId = `${node.name}:Output`;
-	// 	const qualifiedHandleId = `${node.name}:QualifiedOutput`;
-	// 	const eliminatedHandleId = `${node.name}:EliminatedOutput`;
-
-	// 	const roundNodeType = new RoundNodeType(node.name);
-	// });
-
-	// levelOrderTraversal(afl.lowerBracketRound1, undefined, (level) => {
-	// 	level.forEach((node) => {
-	// 		const inputHandleId = `${node.name}:Input`;
-	// 		const outputHandleId = `${node.name}:Output`;
-	// 		const qualifiedHandleId = `${node.name}:QualifiedOutput`;
-	// 		const eliminatedHandleId = `${node.name}:EliminatedOutput`;
-	// 		const roundNodeType = new RoundNodeType(
-	// 			node.name,
-	// 			[],
-	// 			aflWrapper,
-	// 			undefined,
-	// 			inputHandleId,
-	// 			outputHandleId,
-	// 			qualifiedHandleId,
-	// 			eliminatedHandleId
-	// 		);
-
-	// 		let obj: AppNode | undefined;
-
-	// 		let xCalc = 0;
-	// 		let yCalc = 0;
-	// 		const res = coordinates.get(node.name);
-	// 		if (res) {
-	// 			xCalc = res[0];
-	// 			yCalc = res[1];
-	// 		}
-
-	// 		switch (node.name) {
-	// 			case "0-0":
-	// 				obj = {
-	// 					id: node.name,
-	// 					position: { x: xCalc, y: yCalc },
-	// 					data: roundNodeType,
-	// 					type: "starting-node-component",
-	// 					draggable: false,
-	// 				};
-	// 				break;
-	// 			case "2-0":
-	// 			case "2-1":
-	// 				obj = {
-	// 					id: node.name,
-	// 					position: { x: xCalc, y: yCalc },
-	// 					data: roundNodeType,
-	// 					type: "ending-node-upper-component",
-	// 					draggable: false,
-	// 				};
-	// 				break;
-	// 			case "2-2":
-	// 				obj = {
-	// 					id: node.name,
-	// 					position: { x: xCalc, y: yCalc },
-	// 					data: roundNodeType,
-	// 					type: "ending-node-middle-component",
-	// 					draggable: false,
-	// 				};
-	// 				break;
-	// 			case "0-2":
-	// 			case "1-2":
-	// 				obj = {
-	// 					id: node.name,
-	// 					position: { x: xCalc, y: yCalc },
-	// 					data: roundNodeType,
-	// 					type: "ending-node-lower-component",
-	// 					draggable: false,
-	// 				};
-	// 				break;
-	// 			default:
-	// 				obj = {
-	// 					id: node.name,
-	// 					position: { x: xCalc, y: yCalc },
-	// 					data: roundNodeType,
-	// 					type: "round-node-component",
-	// 					draggable: false,
-	// 				};
-	// 		}
-
-	// 		initialNodes.push(obj);
-	// 	});
-	// });
-	// return initialNodes;
-
-	let node1;
-	{
-		const matchNode = new MatchNode("test", true);
-		matchNode.match = new Match("test", 0);
-		matchNode.match.matchRecord = {
-			type: "FullRecord",
-			upperSeed: 1,
-			upperSeedWins: 0,
-			lowerSeed: 2,
-			lowerSeedWins: 1,
-		};
-
-		const matchNodeType = new MatchNodeType(
-			"test",
-			matchNode,
-			undefined,
-			"test:Input",
-			"test:Output",
-			"test:QualifiedOutput",
-			"test:ElimiantedOutput"
-		);
-
-		let testNode: AppNode = {
-			id: `testNode`,
-			position: { x: 0, y: 950 },
-			data: matchNodeType,
-			type: "match-node-middle-component2",
-		};
-		node1 = testNode;
-	}
-	let node2;
-	{
-		const matchNode = new MatchNode("test", true);
-		matchNode.match = new Match("test", 0);
-		matchNode.match.matchRecord = {
-			type: "FullRecord",
-			upperSeed: 1,
-			upperSeedWins: 0,
-			lowerSeed: 2,
-			lowerSeedWins: 1,
-		};
-
-		const matchNodeType = new MatchNodeType(
-			"test",
-			matchNode,
-			undefined,
-			"test:Input",
-			"test:Output",
-			"test:QualifiedOutput",
-			"test:ElimiantedOutput"
-		);
-
-		let testNode: AppNode = {
-			id: `testNode2`,
-			position: { x: 350, y: 960 - 17 },
-			data: matchNodeType,
-			type: "match-node-middle-component",
-		};
-		node2 = testNode;
-	}
-
-	const ghostNode: AppNode = {
-		id: "ghostNode",
-		position: { x: -50, y: 950 + 30 - 2.5 },
-		data: {},
-		type: "ghost-node",
-	};
-
 	const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
 
 	const lb = [lbr1, lbr2];
@@ -438,9 +258,6 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 	const lqf = [lbqf1, lbqf2];
 	const sf = [sf1, sf2];
 	const gfr = [gf];
-
-	const rounds = [lb, uqf, lqf, sf, gfr];
-	const roundNames = ["Upper Bracket Round 1", "Lower Bracket Round 1"];
 
 	const coordinates = createAFLCoordinates(350, 1100, afl);
 
@@ -476,80 +293,6 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 		.concat(gfr.map(createMap("match-node-ending-component")));
 
 	return initialAFLNodes;
-	// const lbr1AppNode: AppNode = {
-	// 	id: lbr1.name,
-	// 	position: { x: 0, y: 1400 },
-	// 	data: new MatchNodeType(lbr1),
-	// 	type: "match-node-starting-component",
-	// };
-
-	// const lbr2AppNode: AppNode = {
-	// 	id: lbr2.name,
-	// 	position: { x: 0, y: 1400 + 40 + 100 },
-	// 	data: new MatchNodeType(lbr2),
-	// 	type: "match-node-starting-component",
-	// };
-
-	// const lbqf1AppNode: AppNode = {
-	// 	id: lbqf1.name,
-	// 	position: { x: 0 + 258 + 92, y: 1400 - 20 },
-	// 	data: new MatchNodeType(lbqf1),
-	// 	type: "match-node-middle-component2",
-	// };
-
-	// const lbqf2AppNode: AppNode = {
-	// 	id: lbqf2.name,
-	// 	position: { x: 0 + 258 + 92, y: 1400 - 20 + 40 + 100 },
-	// 	data: new MatchNodeType(lbqf2),
-	// 	type: "match-node-middle-component2",
-	// };
-
-	// const uqf1AppNode: AppNode = {
-	// 	id: uqf1.name,
-	// 	position: { x: 0 + 258 + 92, y: 1400 - 20 - 350 },
-	// 	data: new MatchNodeType(uqf1),
-	// 	type: "match-node-isolated-component",
-	// };
-
-	// const uqf2AppNode: AppNode = {
-	// 	id: uqf2.name,
-	// 	position: { x: 0 + 258 + 92, y: 1400 - 20 - 350 + 100 + 40 },
-	// 	data: new MatchNodeType(uqf2),
-	// 	type: "match-node-isolated-component",
-	// };
-
-	// const sf1AppNode: AppNode = {
-	// 	id: sf1.name,
-	// 	position: { x: 0 + 2 * (258 + 92), y: 1400 - 40 },
-	// 	data: new MatchNodeType(sf1),
-	// 	type: "match-node-middle-component2",
-	// };
-
-	// const sf2AppNode: AppNode = {
-	// 	id: sf2.name,
-	// 	position: { x: 0 + 2 * (258 + 92), y: 1400 - 40 + 40 + 100 },
-	// 	data: new MatchNodeType(sf2),
-	// 	type: "match-node-middle-component2",
-	// };
-
-	// const gfAppNode: AppNode = {
-	// 	id: gf.name,
-	// 	position: { x: 0 + 3 * (258 + 92), y: 1400 - 40 + 70 },
-	// 	data: new MatchNodeType(gf),
-	// 	type: "match-node-ending-component",
-	// };
-
-	// return [
-	// 	lbr1AppNode,
-	// 	lbr2AppNode,
-	// 	uqf1AppNode,
-	// 	uqf2AppNode,
-	// 	lbqf1AppNode,
-	// 	lbqf2AppNode,
-	// 	sf1AppNode,
-	// 	sf2AppNode,
-	// 	gfAppNode,
-	// ];
 }
 
 function createAFLCoordinates(boundingXValue: number, boundingYValue: number, afl: AFLBracketFlow) {
