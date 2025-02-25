@@ -292,22 +292,26 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 		.concat(sf.map(createMap("match-node-middle-component2")))
 		.concat(gfr.map(createMap("match-node-ending-component")));
 
-	{
+	function createGhostNode(ghostId: string, ghostShortened: string) {
 		let xCalc = 0;
 		let yCalc = 0;
-		const res = coordinates.get("lowerQuarterFinal1GhostNode");
+		const res = coordinates.get(ghostId);
 		if (res) {
 			xCalc = res[0];
 			yCalc = res[1];
 		}
-		const lowerQuarterFinal1GhostNode: AppNode = {
-			id: "lowerQuarterFinal1GhostNode",
+		const ghostNode: AppNode = {
+			id: ghostId,
 			position: { x: xCalc, y: yCalc },
-			data: { name: "lqf1gn", outputHandleId: "lqf1gn:Output" },
+			data: { name: ghostShortened, outputHandleId: `${ghostShortened}:Output` },
 			type: "ghost-node",
 		};
-		initialAFLNodes.push(lowerQuarterFinal1GhostNode);
+		initialAFLNodes.push(ghostNode);
 	}
+	createGhostNode("lowerQuarterFinal1GhostNode", "lqf1gn");
+	createGhostNode("lowerQuarterFinal2GhostNode", "lqf2gn");
+	createGhostNode("semiFinal1GhostNode", "sf1gn");
+	createGhostNode("semiFinal2GhostNode", "sf2gn");
 
 	return initialAFLNodes;
 }
@@ -345,19 +349,31 @@ function createAFLCoordinates(boundingXValue: number, boundingYValue: number, af
 	nodeCoordinates.set("lowerQuarterFinal1GhostNode", [
 		boundingXValue + HORIZONTAL_OFFSET - 50,
 		boundingYValue + UPPER_BRACKET_OFFSET + 7.5,
-	])
+	]);
 	nodeCoordinates.set(lbqf2.name, [
 		boundingXValue + HORIZONTAL_OFFSET,
 		boundingYValue + UPPER_BRACKET_OFFSET + NODE_RAISE_VALUE + VERTICAL_OFFSET,
+	]);
+	nodeCoordinates.set("lowerQuarterFinal2GhostNode", [
+		boundingXValue + HORIZONTAL_OFFSET - 50,
+		boundingYValue + UPPER_BRACKET_OFFSET + 7.5 + VERTICAL_OFFSET,
 	]);
 
 	nodeCoordinates.set(sf1.name, [
 		boundingXValue + 2 * HORIZONTAL_OFFSET,
 		boundingYValue + UPPER_BRACKET_OFFSET + 2 * NODE_RAISE_VALUE,
 	]);
+	nodeCoordinates.set("semiFinal1GhostNode", [
+		boundingXValue + 2 * HORIZONTAL_OFFSET - 50,
+		boundingYValue + UPPER_BRACKET_OFFSET + 1 * NODE_RAISE_VALUE + 7.5,
+	]);
 	nodeCoordinates.set(sf2.name, [
 		boundingXValue + 2 * HORIZONTAL_OFFSET,
 		boundingYValue + UPPER_BRACKET_OFFSET + 2 * NODE_RAISE_VALUE + VERTICAL_OFFSET,
+	]);
+	nodeCoordinates.set("semiFinal2GhostNode", [
+		boundingXValue + 2 * HORIZONTAL_OFFSET - 50,
+		boundingYValue + UPPER_BRACKET_OFFSET + 1 * NODE_RAISE_VALUE + VERTICAL_OFFSET + 7.5,
 	]);
 
 	nodeCoordinates.set(gf.name, [

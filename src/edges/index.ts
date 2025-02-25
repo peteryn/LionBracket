@@ -123,6 +123,36 @@ initialEdges.push({
 	style: { strokeWidth: 2 },
 })
 
+initialEdges.push({
+	id: "lqf2gn->lqf2",
+	source: "lowerQuarterFinal2GhostNode",
+	target: "lowerQuarterFinal2",
+	sourceHandle: "lqf2gn:Output",
+	targetHandle: "lowerQuarterFinal2:InputGhost",
+	type: "step",
+	style: { strokeWidth: 2 },
+})
+
+initialEdges.push({
+	id: "sf1gn->sf1",
+	source: "semiFinal1GhostNode",
+	target: "semiFinal1",
+	sourceHandle: "sf1gn:Output",
+	targetHandle: "semiFinal1:InputGhost",
+	type: "step",
+	style: { strokeWidth: 2 },
+})
+
+initialEdges.push({
+	id: "sf2gn->sf2",
+	source: "semiFinal2GhostNode",
+	target: "semiFinal2",
+	sourceHandle: "sf2gn:Output",
+	targetHandle: "semiFinal2:InputGhost",
+	type: "step",
+	style: { strokeWidth: 2 },
+})
+
 export const edgeTypes = {
 	// Add your custom edge types here!
 } satisfies EdgeTypes;
