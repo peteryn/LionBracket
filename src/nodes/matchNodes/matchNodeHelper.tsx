@@ -1,3 +1,4 @@
+import { getScore } from "../../helper/score";
 import { paths } from "../../helper/TeamsTranslator";
 import { MatchNodeType } from "../MatchNodeType";
 import MatchTeamInputArea from "./MatchTeamInputArea";
@@ -6,6 +7,25 @@ export function createMatches(data: MatchNodeType) {
 	const match = data.matchNode.match;
 	const upperInputId = `${match.id}upper`;
 	const lowerInputId = `${match.id}lower`;
+
+	function onChange() {
+		const upperTeamWins = getScore(upperInputId);
+		const lowerTeamWins = getScore(lowerInputId);
+		const bracket = data.bracket;
+		const matchRecord = bracket.getMatchRecord(match.id);
+		// console.log(`upper team wins: ${upperTeamWins}`)
+		// console.log(`lower team wins: ${lowerTeamWins}`)
+		// console.log(`bracket: ${bracket}`)
+		// console.log(`matchRecord: ${matchRecord}`)
+		if (matchRecord?.type === "FullRecord") {
+			matchRecord.upperSeedWins = upperTeamWins;
+			matchRecord.lowerSeedWins = lowerTeamWins;
+			bracket.setMatchRecord(match.id, matchRecord);
+			if (data.updateFun) {
+				bracket.updateFlow(data.matchNode);
+			}
+		}
+	}
 
 	let teamAreas;
 	switch (match.matchRecord?.type) {
@@ -18,7 +38,7 @@ export function createMatches(data: MatchNodeType) {
 			teamAreas = (
 				<>
 					<MatchTeamInputArea
-						updateFun={() => {}}
+						updateFun={onChange}
 						inputId={upperInputId}
 						teamName={upperTeamName}
 						imagePath={upperImagePath}
@@ -27,7 +47,7 @@ export function createMatches(data: MatchNodeType) {
 					></MatchTeamInputArea>
 
 					<MatchTeamInputArea
-						updateFun={() => {}}
+						updateFun={onChange}
 						inputId={lowerInputId}
 						teamName={lowerTeamName}
 						imagePath={lowerImagePath}

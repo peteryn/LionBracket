@@ -278,7 +278,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 			const appNode: AppNode = {
 				id: node.name,
 				position: { x: xCalc, y: yCalc },
-				data: new MatchNodeType(node),
+				data: new MatchNodeType(node, afl),
 				type: s,
 			};
 			return appNode;
