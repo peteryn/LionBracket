@@ -26,19 +26,19 @@ export function MatchNodeMiddleComponent2({ data }: NodeProps<MatchNodeIsolatedC
 				<Handle
 					type="target"
 					position={Position.Left}
-					id={data.inputHandleId}
+					id="test2"
 					style={{ top: "30px" }}
 				></Handle>
 				<Handle
 					type="target"
 					position={Position.Left}
-					id="test3"
+					id={data.inputHandleId}
 					style={{ top: "70px" }}
 				></Handle>
 				<Handle
 					type="source"
 					position={Position.Right}
-					id="test4"
+					id={data.outputHandleId}
 				></Handle>
 			</div>
 		</div>
