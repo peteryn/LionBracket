@@ -55,7 +55,7 @@ export default function App() {
 		const updatedNodes = swissNodes.concat(aflNodes);
 		setNodes(updatedNodes);
 		console.log("use effect version");
-		console.log(globalAFL.upperQuarterFinal1);
+		console.log(globalAFL.lowerBracketRound1.upperRound);
 	}, [swissB, aflB, setNodes]);
 
 	const resetBracket = () => {
