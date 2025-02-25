@@ -1,28 +1,14 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import { type MatchNodeIsolatedComponent } from "../types.ts";
-import MatchTeamInputArea from "./MatchTeamInputArea.tsx";
+import { createMatches } from "./matchNodeHelper.tsx";
 
 export function MatchNodeMiddleComponent2({ data }: NodeProps<MatchNodeIsolatedComponent>) {
+	const teamAreas = createMatches(data);
+
 	return (
 		<div className="match-node">
 			<div className="match-node-area">
-				<MatchTeamInputArea
-					updateFun={() => {}}
-					inputId="test"
-					teamName="G2 Esports"
-					imagePath="/logos/g2.png"
-					startingScore={0}
-					colorClass=""
-				></MatchTeamInputArea>
-
-				<MatchTeamInputArea
-					updateFun={() => {}}
-					inputId="test"
-					teamName="Vitality"
-					imagePath="/logos/vitality.png"
-					startingScore={0}
-					colorClass=""
-				></MatchTeamInputArea>
+				{teamAreas}
 				<Handle
 					type="target"
 					position={Position.Left}
@@ -35,11 +21,7 @@ export function MatchNodeMiddleComponent2({ data }: NodeProps<MatchNodeIsolatedC
 					id={data.inputHandleId}
 					style={{ top: "70px" }}
 				></Handle>
-				<Handle
-					type="source"
-					position={Position.Right}
-					id={data.outputHandleId}
-				></Handle>
+				<Handle type="source" position={Position.Right} id={data.outputHandleId}></Handle>
 			</div>
 		</div>
 	);
