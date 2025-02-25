@@ -6,7 +6,7 @@ export class MatchNodeType {
 	name: string;
 	matchNode: MatchNode;
 	bracket: AFLBracketFlow;
-	updateFun: React.Dispatch<React.SetStateAction<MatchNode>> | undefined;
+	updateFun: React.Dispatch<React.SetStateAction<MatchNode[]>> | undefined;
 	inputHandleId: string;
 	outputHandleId: string;
 	ghostInputHandleId: string;

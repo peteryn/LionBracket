@@ -27,6 +27,8 @@ export default function App() {
 	const [swissB, setSwissB] = useState(globalSwiss.rootRound);
 
 	const globalAFL: AFLBracketFlow = new AFLBracketFlow();
+	const [aflB, setAflB] = useState(globalAFL.getAllMatchNodes());
+
 	const swissNodes = createSwissNodes(globalSwiss);
 	const aflNodes = createAFLNodes(globalAFL);
 	const initialNodes = swissNodes.concat(aflNodes);
@@ -40,14 +42,21 @@ export default function App() {
 		if ("updateSwissFun" in node.data) {
 			node.data.updateSwissFun = setSwissB;
 		}
+		if ("updateFun" in node.data) {
+			node.data.updateFun = setAflB;
+		}
 	});
 
 	useEffect(() => {
+		console.log("in useEffect");
+		globalAFL.buildBracket(aflB);
 		const swissNodes = createSwissNodes(globalSwiss);
 		const aflNodes = createAFLNodes(globalAFL);
 		const updatedNodes = swissNodes.concat(aflNodes);
 		setNodes(updatedNodes);
-	}, [swissB, setNodes]);
+		console.log("use effect version");
+		console.log(globalAFL.upperQuarterFinal1);
+	}, [swissB, aflB, setNodes]);
 
 	const resetBracket = () => {
 		globalSwiss = new SwissBracketFlow(16, 3);
