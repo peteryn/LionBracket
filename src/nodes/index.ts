@@ -442,80 +442,169 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 	const rounds = [lb, uqf, lqf, sf, gfr];
 	const roundNames = ["Upper Bracket Round 1", "Lower Bracket Round 1"];
 
-	const lbr1AppNode: AppNode = {
-		id: lbr1.name,
-		position: { x: 0, y: 1400 },
-		data: new MatchNodeType(lbr1),
-		type: "match-node-starting-component",
-	};
+	const coordinates = createAFLCoordinates(350, 1100, afl);
 
-	const lbr2AppNode: AppNode = {
-		id: lbr2.name,
-		position: { x: 0, y: 1400 + 40 + 100 },
-		data: new MatchNodeType(lbr2),
-		type: "match-node-starting-component",
-	};
+	type MatchNodeComponentTypes =
+		| "match-node-starting-component"
+		| "match-node-middle-component2"
+		| "match-node-isolated-component"
+		| "match-node-ending-component";
+	function createMap(s: MatchNodeComponentTypes) {
+		return (node: MatchNode) => {
+			let xCalc = 0;
+			let yCalc = 0;
+			const res = coordinates.get(node.name);
+			if (res) {
+				xCalc = res[0];
+				yCalc = res[1];
+			}
+			const appNode: AppNode = {
+				id: node.name,
+				position: { x: xCalc, y: yCalc },
+				data: new MatchNodeType(node),
+				type: s,
+			};
+			return appNode;
+		};
+	}
 
-	const lbqf1AppNode: AppNode = {
-		id: lbqf1.name,
-		position: { x: 0 + 258 + 92, y: 1400 - 20 },
-		data: new MatchNodeType(lbqf1),
-		type: "match-node-middle-component2",
-	};
+	const initialAFLNodes: AppNode[] = lb
+		.map(createMap("match-node-starting-component"))
+		.concat(uqf.map(createMap("match-node-isolated-component")))
+		.concat(lqf.map(createMap("match-node-middle-component2")))
+		.concat(sf.map(createMap("match-node-middle-component2")))
+		.concat(gfr.map(createMap("match-node-ending-component")));
 
-	const lbqf2AppNode: AppNode = {
-		id: lbqf2.name,
-		position: { x: 0 + 258 + 92, y: 1400 - 20 + 40 + 100 },
-		data: new MatchNodeType(lbqf2),
-		type: "match-node-middle-component2",
-	};
+	return initialAFLNodes;
+	// const lbr1AppNode: AppNode = {
+	// 	id: lbr1.name,
+	// 	position: { x: 0, y: 1400 },
+	// 	data: new MatchNodeType(lbr1),
+	// 	type: "match-node-starting-component",
+	// };
 
-	const uqf1AppNode: AppNode = {
-		id: uqf1.name,
-		position: { x: 0 + 258 + 92, y: 1400 - 20 - 350 },
-		data: new MatchNodeType(uqf1),
-		type: "match-node-isolated-component",
-	};
+	// const lbr2AppNode: AppNode = {
+	// 	id: lbr2.name,
+	// 	position: { x: 0, y: 1400 + 40 + 100 },
+	// 	data: new MatchNodeType(lbr2),
+	// 	type: "match-node-starting-component",
+	// };
 
-	const uqf2AppNode: AppNode = {
-		id: uqf2.name,
-		position: { x: 0 + 258 + 92, y: 1400 - 20 - 350 + 100 + 40 },
-		data: new MatchNodeType(uqf2),
-		type: "match-node-isolated-component",
-	};
+	// const lbqf1AppNode: AppNode = {
+	// 	id: lbqf1.name,
+	// 	position: { x: 0 + 258 + 92, y: 1400 - 20 },
+	// 	data: new MatchNodeType(lbqf1),
+	// 	type: "match-node-middle-component2",
+	// };
 
-	const sf1AppNode: AppNode = {
-		id: sf1.name,
-		position: { x: 0 + 2 * (258 + 92), y: 1400 - 40 },
-		data: new MatchNodeType(sf1),
-		type: "match-node-middle-component2",
-	};
+	// const lbqf2AppNode: AppNode = {
+	// 	id: lbqf2.name,
+	// 	position: { x: 0 + 258 + 92, y: 1400 - 20 + 40 + 100 },
+	// 	data: new MatchNodeType(lbqf2),
+	// 	type: "match-node-middle-component2",
+	// };
 
-	const sf2AppNode: AppNode = {
-		id: sf2.name,
-		position: { x: 0 + 2 * (258 + 92), y: 1400 - 40 + 40 + 100 },
-		data: new MatchNodeType(sf2),
-		type: "match-node-middle-component2",
-	};
+	// const uqf1AppNode: AppNode = {
+	// 	id: uqf1.name,
+	// 	position: { x: 0 + 258 + 92, y: 1400 - 20 - 350 },
+	// 	data: new MatchNodeType(uqf1),
+	// 	type: "match-node-isolated-component",
+	// };
 
-	const gfAppNode: AppNode = {
-		id: gf.name,
-		position: { x: 0 + 3 * (258 + 92), y: 1400 - 40 + 70 },
-		data: new MatchNodeType(gf),
-		type: "match-node-ending-component",
-	};
+	// const uqf2AppNode: AppNode = {
+	// 	id: uqf2.name,
+	// 	position: { x: 0 + 258 + 92, y: 1400 - 20 - 350 + 100 + 40 },
+	// 	data: new MatchNodeType(uqf2),
+	// 	type: "match-node-isolated-component",
+	// };
 
-	return [
-		lbr1AppNode,
-		lbr2AppNode,
-		uqf1AppNode,
-		uqf2AppNode,
-		lbqf1AppNode,
-		lbqf2AppNode,
-		sf1AppNode,
-		sf2AppNode,
-		gfAppNode,
-	];
+	// const sf1AppNode: AppNode = {
+	// 	id: sf1.name,
+	// 	position: { x: 0 + 2 * (258 + 92), y: 1400 - 40 },
+	// 	data: new MatchNodeType(sf1),
+	// 	type: "match-node-middle-component2",
+	// };
+
+	// const sf2AppNode: AppNode = {
+	// 	id: sf2.name,
+	// 	position: { x: 0 + 2 * (258 + 92), y: 1400 - 40 + 40 + 100 },
+	// 	data: new MatchNodeType(sf2),
+	// 	type: "match-node-middle-component2",
+	// };
+
+	// const gfAppNode: AppNode = {
+	// 	id: gf.name,
+	// 	position: { x: 0 + 3 * (258 + 92), y: 1400 - 40 + 70 },
+	// 	data: new MatchNodeType(gf),
+	// 	type: "match-node-ending-component",
+	// };
+
+	// return [
+	// 	lbr1AppNode,
+	// 	lbr2AppNode,
+	// 	uqf1AppNode,
+	// 	uqf2AppNode,
+	// 	lbqf1AppNode,
+	// 	lbqf2AppNode,
+	// 	sf1AppNode,
+	// 	sf2AppNode,
+	// 	gfAppNode,
+	// ];
+}
+
+function createAFLCoordinates(boundingXValue: number, boundingYValue: number, afl: AFLBracketFlow) {
+	const VERTICAL_GAP = 40;
+	const HORIZONTAL_GAP = 92;
+	const AFL_NODE_HEIGHT = 100;
+	const AFL_NODE_WIDTH = 258;
+	const HORIZONTAL_OFFSET = HORIZONTAL_GAP + AFL_NODE_WIDTH;
+	const VERTICAL_OFFSET = VERTICAL_GAP + AFL_NODE_HEIGHT;
+	const UPPER_BRACKET_GAP = AFL_NODE_HEIGHT + 20;
+	const UPPER_BRACKET_OFFSET = 2 * AFL_NODE_HEIGHT + VERTICAL_GAP + UPPER_BRACKET_GAP;
+	const NODE_RAISE_VALUE = -20;
+
+	const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
+
+	const nodeCoordinates: Map<string, number[]> = new Map();
+	nodeCoordinates.set(uqf1.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue]);
+	nodeCoordinates.set(uqf2.name, [
+		boundingXValue + HORIZONTAL_OFFSET,
+		boundingYValue + VERTICAL_OFFSET,
+	]);
+
+	nodeCoordinates.set(lbr1.name, [boundingXValue, boundingYValue + UPPER_BRACKET_OFFSET]);
+	nodeCoordinates.set(lbr2.name, [
+		boundingXValue,
+		boundingYValue + UPPER_BRACKET_OFFSET + VERTICAL_OFFSET,
+	]);
+
+	nodeCoordinates.set(lbqf1.name, [
+		boundingXValue + HORIZONTAL_OFFSET,
+		boundingYValue + UPPER_BRACKET_OFFSET + NODE_RAISE_VALUE,
+	]);
+	nodeCoordinates.set(lbqf2.name, [
+		boundingXValue + HORIZONTAL_OFFSET,
+		boundingYValue + UPPER_BRACKET_OFFSET + NODE_RAISE_VALUE + VERTICAL_OFFSET,
+	]);
+
+	nodeCoordinates.set(sf1.name, [
+		boundingXValue + 2 * HORIZONTAL_OFFSET,
+		boundingYValue + UPPER_BRACKET_OFFSET + 2 * NODE_RAISE_VALUE,
+	]);
+	nodeCoordinates.set(sf2.name, [
+		boundingXValue + 2 * HORIZONTAL_OFFSET,
+		boundingYValue + UPPER_BRACKET_OFFSET + 2 * NODE_RAISE_VALUE + VERTICAL_OFFSET,
+	]);
+
+	nodeCoordinates.set(gf.name, [
+		boundingXValue + 3 * HORIZONTAL_OFFSET,
+		boundingYValue +
+			UPPER_BRACKET_OFFSET +
+			2 * NODE_RAISE_VALUE +
+			(AFL_NODE_HEIGHT + VERTICAL_GAP) / 2,
+	]);
+
+	return nodeCoordinates;
 }
 
 export const nodeTypes = {
