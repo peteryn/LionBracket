@@ -6,7 +6,7 @@ export function MatchNodeIsolatedComponent({ data }: NodeProps<MatchNodeIsolated
 	
 	const teamAreas = createMatches(data);
 	return (
-		<div className="match-node">
+		<div className="match-node nodrag">
 			<div className="match-node-area">
 				{teamAreas}
 			</div>

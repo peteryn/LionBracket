@@ -21,9 +21,10 @@ export default function MatchTeamInputArea({
 			<div className="match-team-area-name bebas-neue-regular">{teamName}</div>
 			<div className="match-team-area-score">
 				<input
-                    id={inputId}
+					id={inputId}
 					onChange={updateFun}
 					type="text"
+					onFocus={(e) => e.target.select()}
 					className="score-input bourgeois"
 					value={startingScore}
 				/>
