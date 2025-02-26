@@ -73,7 +73,7 @@ export function createMatches(data: MatchNodeType) {
 			const upperTeamName = paths[match.matchRecord.upperSeed - 1];
 			teamAreas = (
 				<MatchTeamInputArea
-					updateFun={() => {}}
+					updateFun={undefined}
 					inputId={upperInputId}
 					teamName={upperTeamName}
 					imagePath={upperImagePath}
@@ -88,7 +88,7 @@ export function createMatches(data: MatchNodeType) {
 			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1];
 			teamAreas = (
 				<MatchTeamInputArea
-					updateFun={() => {}}
+					updateFun={undefined}
 					inputId={lowerInputId}
 					teamName={lowerTeamName}
 					imagePath={lowerImagePath}
