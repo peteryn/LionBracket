@@ -5,7 +5,7 @@ import { createMatches } from "./matchNodeHelper.tsx";
 export function MatchNodeMiddleComponent({ data }: NodeProps<MatchNodeIsolatedComponent>) {
 	const teamAreas = createMatches(data);
 	return (
-		<div className="match-node nodrag">
+		<div className="match-node">
 			<div className="match-node-area">
 				{teamAreas}
 				<Handle type="source" position={Position.Right} id={data.outputHandleId}></Handle>

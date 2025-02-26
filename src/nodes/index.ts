@@ -135,6 +135,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 						true
 					),
 					type: "exit-node-component",
+					draggable: false
 				};
 
 				initialNodes.push(qualObj);
@@ -161,6 +162,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 						false
 					),
 					type: "exit-node-component",
+					draggable: false
 				};
 
 				initialNodes.push(qualObj);
@@ -280,6 +282,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 				position: { x: xCalc, y: yCalc },
 				data: new MatchNodeType(node, afl),
 				type: s,
+				draggable: false
 			};
 			return appNode;
 		};
@@ -305,6 +308,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 			position: { x: xCalc, y: yCalc },
 			data: { name: ghostShortened, outputHandleId: `${ghostShortened}:Output` },
 			type: "ghost-node",
+			draggable: false
 		};
 		initialAFLNodes.push(ghostNode);
 	}
