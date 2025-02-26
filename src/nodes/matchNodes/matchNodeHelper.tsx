@@ -42,6 +42,16 @@ export function createMatches(data: MatchNodeType) {
 			const lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
 			const upperTeamName = paths[match.matchRecord.upperSeed - 1];
 			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1];
+			let colorClassUpper = "";
+			let colorClassLower = "";
+			if (match.matchRecord.upperSeedWins > match.matchRecord.lowerSeedWins) {
+				colorClassUpper = "round-winning-text";
+				// colorClassLower = "round-losing-text";
+			}
+			if (match.matchRecord.lowerSeedWins > match.matchRecord.upperSeedWins) {
+				colorClassUpper = "round-losing-text";
+				// colorClassLower = "round-winning-text";
+			}
 
 			teamAreas = (
 				<>
@@ -52,7 +62,7 @@ export function createMatches(data: MatchNodeType) {
 						teamName={upperTeamName}
 						imagePath={upperImagePath}
 						startingScore={match.matchRecord.upperSeedWins}
-						colorClass=""
+						colorClass={colorClassUpper}
 					></MatchTeamInputArea>
 
 					<MatchTeamInputArea
@@ -62,7 +72,7 @@ export function createMatches(data: MatchNodeType) {
 						teamName={lowerTeamName}
 						imagePath={lowerImagePath}
 						startingScore={match.matchRecord.lowerSeedWins}
-						colorClass=""
+						colorClass={colorClassLower}
 					></MatchTeamInputArea>
 				</>
 			);
@@ -89,16 +99,16 @@ export function createMatches(data: MatchNodeType) {
 			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1];
 			teamAreas = (
 				<>
-				<div></div>
-				<MatchTeamInputArea
-					updateFun={() => {}}
-					showScore={false}
-					inputId={lowerInputId}
-					teamName={lowerTeamName}
-					imagePath={lowerImagePath}
-					startingScore={match.matchRecord.lowerSeedWins}
-					colorClass=""
-				></MatchTeamInputArea>
+					<div></div>
+					<MatchTeamInputArea
+						updateFun={() => {}}
+						showScore={false}
+						inputId={lowerInputId}
+						teamName={lowerTeamName}
+						imagePath={lowerImagePath}
+						startingScore={match.matchRecord.lowerSeedWins}
+						colorClass=""
+					></MatchTeamInputArea>
 				</>
 			);
 	}

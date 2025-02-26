@@ -15,6 +15,7 @@ export default function MatchTeamInputArea({
 	startingScore: number | undefined;
 	colorClass: string;
 }) {
+	const classes = `score-input bourgeois ${colorClass}`
 	return (
 		<div className="match-team-area">
 			<div className="match-team-area-image-container">
@@ -27,7 +28,7 @@ export default function MatchTeamInputArea({
 					onChange={updateFun}
 					type="text"
 					onFocus={(e) => e.target.select()}
-					className="score-input bourgeois"
+					className={classes}
 					value={startingScore}
 					style={{ visibility: showScore ? "visible" : "hidden"}}
 				/>
