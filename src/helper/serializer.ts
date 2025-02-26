@@ -5,7 +5,7 @@ type swissBracketStorage = {
 	roundNodes: [string, RoundNode][];
 };
 
-export function serializeBracket(rootRound: RoundNode, bracketId: string) {
+export function serializeSwissBracket(rootRound: RoundNode, bracketId: string) {
 	const rootRoundCopy = structuredClone(rootRound);
 	const roundNodes: Map<string, RoundNode> = new Map();
 	levelOrderTraversal(rootRoundCopy, (node) => {
@@ -22,7 +22,7 @@ export function serializeBracket(rootRound: RoundNode, bracketId: string) {
 	localStorage.setItem(bracketId, JSON.stringify(serializedBracket));
 }
 
-export function deserializeStoredBracket(bracketId: string) {
+export function deserializeStoredSwissBracket(bracketId: string) {
 	const serializedBracketString = localStorage.getItem(bracketId);
 	let rootRoundResult: RoundNode | undefined;
 	if (serializedBracketString) {

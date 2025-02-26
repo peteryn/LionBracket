@@ -3,7 +3,7 @@ import { Match } from "../../LionBracketEngine/src/models/match";
 import { getScore } from "../helper/score";
 import TeamInputArea from "./TeamInputArea";
 import { addColor } from "../helper/color";
-import { serializeBracket } from "../helper/serializer";
+import { serializeSwissBracket } from "../helper/serializer";
 import { paths } from "../helper/TeamsTranslator";
 import { BracketNode } from "../../LionBracketEngine/src/models/bracket_node";
 import { Major1Brackets } from "../../LionBracketEngine/src/models/bracket";
@@ -45,7 +45,7 @@ export default function VersusRoundComponent({
 						const cloned = structuredClone(bracket.rootRound);
 						bracket.rootRound = cloned;
 						updateSwissFun(cloned);
-						serializeBracket(bracket.rootRound, "sb");
+						serializeSwissBracket(bracket.rootRound, "sb");
 					} else {
 						console.log("updateSwissFun doesn't exist when it should");
 					}

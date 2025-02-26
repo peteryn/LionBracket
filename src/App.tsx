@@ -14,16 +14,16 @@ import { SwissBracketFlow } from "../LionBracketEngine/src/swiss_bracket/swiss_b
 
 import { createAFLNodes, createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
-import { deserializeStoredBracket, serializeBracket } from "./helper/serializer";
+import { deserializeStoredSwissBracket, serializeSwissBracket } from "./helper/serializer";
 import { AFLBracketFlow } from "../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
 
 export default function App() {
 	let globalSwiss: SwissBracketFlow = new SwissBracketFlow(16, 3);
-	const rootRound = deserializeStoredBracket("sb");
+	const rootRound = deserializeStoredSwissBracket("sb");
 	if (rootRound) {
 		globalSwiss.rootRound = rootRound;
 	}
-	serializeBracket(globalSwiss.rootRound, "sb");
+	serializeSwissBracket(globalSwiss.rootRound, "sb");
 	const [swissB, setSwissB] = useState(globalSwiss.rootRound);
 
 	const globalAFL: AFLBracketFlow = new AFLBracketFlow();
@@ -61,7 +61,7 @@ export default function App() {
 	const resetBracket = () => {
 		globalSwiss = new SwissBracketFlow(16, 3);
 		setSwissB(globalSwiss.rootRound);
-		serializeBracket(globalSwiss.rootRound, "sb");
+		serializeSwissBracket(globalSwiss.rootRound, "sb");
 	};
 
 	return (
