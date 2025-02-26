@@ -49,6 +49,7 @@ export function createMatches(data: MatchNodeType) {
 				<>
 					<MatchTeamInputArea
 						updateFun={onChange}
+						showScore={true}
 						inputId={upperInputId}
 						teamName={upperTeamName}
 						imagePath={upperImagePath}
@@ -58,6 +59,7 @@ export function createMatches(data: MatchNodeType) {
 
 					<MatchTeamInputArea
 						updateFun={onChange}
+						showScore={true}
 						inputId={lowerInputId}
 						teamName={lowerTeamName}
 						imagePath={lowerImagePath}
@@ -73,7 +75,8 @@ export function createMatches(data: MatchNodeType) {
 			const upperTeamName = paths[match.matchRecord.upperSeed - 1];
 			teamAreas = (
 				<MatchTeamInputArea
-					updateFun={undefined}
+					updateFun={() => {}}
+					showScore={false}
 					inputId={upperInputId}
 					teamName={upperTeamName}
 					imagePath={upperImagePath}
@@ -87,14 +90,18 @@ export function createMatches(data: MatchNodeType) {
 			const lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
 			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1];
 			teamAreas = (
+				<>
+				<div></div>
 				<MatchTeamInputArea
-					updateFun={undefined}
+					updateFun={() => {}}
+					showScore={false}
 					inputId={lowerInputId}
 					teamName={lowerTeamName}
 					imagePath={lowerImagePath}
 					startingScore={match.matchRecord.lowerSeedWins}
 					colorClass=""
 				></MatchTeamInputArea>
+				</>
 			);
 	}
 	return teamAreas;

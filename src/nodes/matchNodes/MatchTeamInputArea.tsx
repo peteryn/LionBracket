@@ -1,12 +1,14 @@
 export default function MatchTeamInputArea({
 	updateFun,
+	showScore,
 	inputId,
 	teamName,
 	imagePath,
 	startingScore,
 	colorClass,
 }: {
-	updateFun: ((e: React.FocusEvent<HTMLInputElement>) => void) | undefined;
+	updateFun: ((e: React.FocusEvent<HTMLInputElement>) => void);
+	showScore: boolean;
 	inputId: string;
 	teamName: string;
 	imagePath: string;
@@ -27,7 +29,7 @@ export default function MatchTeamInputArea({
 					onFocus={(e) => e.target.select()}
 					className="score-input bourgeois"
 					value={startingScore}
-					style={{ visibility: updateFun ? "visible" : "hidden"}}
+					style={{ visibility: showScore ? "visible" : "hidden"}}
 				/>
 			</div>
 		</div>
