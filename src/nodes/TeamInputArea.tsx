@@ -1,12 +1,14 @@
 export default function TeamInputArea({
 	updateFun,
 	inputId,
+	teamName,
 	imagePath,
 	startingScore,
 	colorClass,
 }: {
 	updateFun: (e: React.FocusEvent<HTMLInputElement>) => void;
 	inputId: string;
+	teamName: string;
 	imagePath: string;
 	startingScore: number | undefined;
 	colorClass: string;
@@ -21,7 +23,7 @@ export default function TeamInputArea({
 	return (
 		<div className="team-container">
 			<div className="image-container">
-				<img src={imagePath} alt="" className="" />
+				<img src={imagePath} alt={teamName} className="" />
 			</div>
 			<input
 				id={inputId}

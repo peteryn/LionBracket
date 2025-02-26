@@ -63,9 +63,13 @@ export default function VersusRoundComponent({
 
 	let upperImagePath = "";
 	let lowerImagePath = "";
+	let upperTeamName = "";
+	let lowerTeamName = "";
 	if (match.matchRecord?.type === "FullRecord") {
 		upperImagePath = `/logos/${paths[match.matchRecord.upperSeed - 1]}.png`;
 		lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
+		upperTeamName = paths[match.matchRecord.upperSeed - 1];
+		lowerTeamName = paths[match.matchRecord.lowerSeed - 1];
 	}
 	let classes = "versus ";
 
@@ -94,6 +98,7 @@ export default function VersusRoundComponent({
 		<div className="versus-container" key={match.id}>
 			<TeamInputArea
 				updateFun={onChange}
+				teamName={upperTeamName}
 				inputId={upperInputId}
 				imagePath={upperImagePath}
 				startingScore={upperScore}
@@ -105,6 +110,7 @@ export default function VersusRoundComponent({
 			<TeamInputArea
 				updateFun={onChange}
 				inputId={lowerInputId}
+				teamName={lowerTeamName}
 				imagePath={lowerImagePath}
 				startingScore={lowerScore}
 				colorClass={lowerClass}

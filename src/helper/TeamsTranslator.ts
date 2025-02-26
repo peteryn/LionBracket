@@ -1,4 +1,23 @@
-export const paths: string[] = [
+const na3: string[] = [
+	"nrg",
+	"complexity",
+	"evo",
+	"shopify",
+	"ssg",
+	"omlette",
+	"lamp",
+	"str",
+	"mex",
+	"zoo",
+	"glam",
+	"stepbros",
+	"wtp",
+	"rev",
+	"kcp",
+	"pirates",
+];
+
+const naTest: string[] = [
 	"g2",
 	"geng",
 	"og",
@@ -16,3 +35,5 @@ export const paths: string[] = [
 	"gbuffo",
 	"incorrect",
 ];
+
+export const paths = na3;
