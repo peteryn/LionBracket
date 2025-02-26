@@ -14,8 +14,15 @@ import { SwissBracketFlow } from "../LionBracketEngine/src/swiss_bracket/swiss_b
 
 import { createAFLNodes, createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
-import { deserializeStoredSwissBracket, serializeSwissBracket } from "./helper/serializer";
+import {
+	deserializeStoredAflBracket,
+	deserializeStoredSwissBracket,
+	serializeAflBracket,
+	serializeSwissBracket,
+} from "./helper/serializer";
 import { AFLBracketFlow } from "../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
+
+export const useAFLSerialization = true;
 
 export default function App() {
 	let globalSwiss: SwissBracketFlow = new SwissBracketFlow(16, 3);
@@ -27,6 +34,13 @@ export default function App() {
 	const [swissB, setSwissB] = useState(globalSwiss.rootRound);
 
 	const globalAFL: AFLBracketFlow = new AFLBracketFlow();
+	if (useAFLSerialization) {
+		const aflMatchNodes = deserializeStoredAflBracket("aflb");
+		if (aflMatchNodes) {
+			globalAFL.buildBracket(aflMatchNodes);
+		}
+		serializeAflBracket(globalAFL, "aflb");
+	}
 	const [aflB, setAflB] = useState(globalAFL.getAllMatchNodes());
 
 	const swissNodes = createSwissNodes(globalSwiss);
@@ -48,14 +62,14 @@ export default function App() {
 	});
 
 	useEffect(() => {
-		console.log("in useEffect");
 		globalAFL.buildBracket(aflB);
+		if (useAFLSerialization) {
+			serializeAflBracket(globalAFL, "aflb");
+		}
 		const swissNodes = createSwissNodes(globalSwiss);
 		const aflNodes = createAFLNodes(globalAFL);
 		const updatedNodes = swissNodes.concat(aflNodes);
 		setNodes(updatedNodes);
-		console.log("use effect version");
-		console.log(globalAFL.lowerBracketRound1.upperRound);
 	}, [swissB, aflB, setNodes]);
 
 	const resetBracket = () => {

@@ -1,5 +1,7 @@
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
+import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
+import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
 
 type swissBracketStorage = {
 	roundNodes: [string, RoundNode][];
@@ -85,4 +87,24 @@ export function deserializeStoredSwissBracket(bracketId: string) {
 	}
 
 	return rootRoundResult;
+}
+
+export function serializeAflBracket(aflBracket: AFLBracketFlow, bracketId: string) {
+	const bracketNodes = aflBracket.getAllMatchNodes();
+	const cloned = structuredClone(bracketNodes);
+	cloned.forEach((node) => {
+		node.upperRound = undefined;
+		node.lowerRound = undefined;
+	});
+
+	localStorage.setItem(bracketId, JSON.stringify(cloned));
+}
+
+export function deserializeStoredAflBracket(bracketId: string) {
+	const storedNodes = localStorage.getItem(bracketId);
+	let resultNodes: MatchNode[] | undefined;
+	if (storedNodes) {
+		resultNodes = JSON.parse(storedNodes);
+	}
+	return resultNodes;
 }

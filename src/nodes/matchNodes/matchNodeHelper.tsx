@@ -22,15 +22,13 @@ export function createMatches(data: MatchNodeType) {
 			matchRecord.lowerSeedWins = lowerTeamWins;
 			bracket.setMatchRecord(match.id, matchRecord);
 			if (data.updateFun) {
-				console.log("in updateFun");
 				bracket.updateFlow(data.matchNode);
 				const nodeList = bracket.getAllMatchNodes();
 				const cloned = structuredClone(nodeList);
 				bracket.buildBracket(cloned);
+
 				data.updateFun(cloned);
 				// data.updateFun([]);
-				console.log(bracket.upperQuarterFinal1.upperRound)
-				console.log("exit updateFun");
 			} else {
 				console.log("afl update function doesn't exist when it should");
 			}
