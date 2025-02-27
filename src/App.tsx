@@ -74,7 +74,7 @@ export default function App() {
 	}, [swissB, aflB, setNodes]);
 
 	const resetBracket = () => {
-		globalSwiss = new SwissBracketFlow(16, 3);
+		globalSwiss = new SwissBracketFlow8Apart(16, 3);
 		setSwissB(globalSwiss.rootRound);
 		serializeSwissBracket(globalSwiss.rootRound, "sb");
 	};
