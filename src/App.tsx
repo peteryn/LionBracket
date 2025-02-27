@@ -11,6 +11,7 @@ import {
 import "@xyflow/react/dist/base.css";
 
 import { SwissBracketFlow } from "../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
+import { SwissBracketFlow8Apart } from "../LionBracketEngine/src/swiss_bracket/swiss_bracket_flow_8apart";
 
 import { createAFLNodes, createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
@@ -25,7 +26,7 @@ import { AFLBracketFlow } from "../LionBracketEngine/src/afl_bracket/afl_bracket
 export const useAFLSerialization = true;
 
 export default function App() {
-	let globalSwiss: SwissBracketFlow = new SwissBracketFlow(16, 3);
+	let globalSwiss: SwissBracketFlow = new SwissBracketFlow8Apart(16, 3);
 	const rootRound = deserializeStoredSwissBracket("sb");
 	if (rootRound) {
 		globalSwiss.rootRound = rootRound;

@@ -7,14 +7,14 @@ const na3: string[] = [
 	"omlette",
 	"lamp",
 	"str",
-	"mex",
-	"zoo",
-	"glam",
-	"stepbros",
-	"wtp",
-	"rev",
-	"kcp",
 	"pirates",
+	"kcp",
+	"rev",
+	"wtp",
+	"stepbros",
+	"glam",
+	"zoo",
+	"mex",
 ];
 
 const naTest: string[] = [
