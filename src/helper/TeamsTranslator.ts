@@ -17,6 +17,25 @@ const na3: string[] = [
 	"mex",
 ];
 
+const na3b: string[] = [
+	"tu",
+	"9l",
+	"dg",
+	"net",
+	"geng",
+	"wsup",
+	"tall",
+	"tech",
+	"gas",
+	"wrst",
+	"lot8",
+	"100x",
+	"arsy",
+	"an",
+	"pine",
+	"nor",
+];
+
 const naTest: string[] = [
 	"g2",
 	"geng",
