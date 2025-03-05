@@ -1,10 +1,10 @@
-import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
+import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
 export class ExitNodeType {
   [key: string]: unknown;
   title: string;
   colorClass: string;
-  swissBracket: SwissBracket;
+  swissBracket: SwissBracketFlow;
   parent: string;
   inputHandleId: string;
   isPromoted: boolean;
@@ -12,7 +12,7 @@ export class ExitNodeType {
   constructor(
     title: string,
     colorClass: string,
-    swissBracket: SwissBracket,
+    swissBracket: SwissBracketFlow,
     parent: string,
     inputHandleId: string,
     isPromoted: boolean

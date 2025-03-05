@@ -2,6 +2,7 @@ import { Handle, NodeProps, Position } from "@xyflow/react";
 import { TeamBox } from "../helper/TeamBox";
 import { type ExitNodeComponent } from "./types.ts";
 import { paths } from "../helper/TeamsTranslator.ts";
+import { getLosers, getWinners } from "../../LionBracketEngine/src/util/util.ts";
 
 export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 	const round = data.swissBracket.getRoundNode(data.parent);
@@ -11,10 +12,11 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 
 	let exitTeams;
 	if (data.isPromoted) {
-		exitTeams = round.promotionSeeds;
+		exitTeams = getWinners(round.matches);
 	} else {
-		exitTeams = round.eliminationSeeds;
+		exitTeams = getLosers(round.matches);
 	}
+	exitTeams = data.swissBracket.swissSort(exitTeams);
 
 	const exitTeamsComponents: JSX.Element[] = [];
 	for (let i = 0; i < round.numSeeds / 2; i++) {
@@ -22,9 +24,11 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 			const team = exitTeams[i];
 
 			const path = `/logos/${paths[team - 1]}.png`;
-			exitTeamsComponents.push(<TeamBox key={i} imagePath={path}></TeamBox>);
+			exitTeamsComponents.push(
+				<TeamBox key={i} imagePath={path} altText={paths[team - 1]}></TeamBox>
+			);
 		} else {
-			exitTeamsComponents.push(<TeamBox key={i} imagePath=""></TeamBox>);
+			exitTeamsComponents.push(<TeamBox key={i} imagePath="" altText=""></TeamBox>);
 		}
 	}
 
