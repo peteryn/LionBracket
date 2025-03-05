@@ -49,7 +49,7 @@ export function createMatches(data: MatchNodeType) {
 				// colorClassLower = "round-losing-text";
 			}
 			if (match.matchRecord.lowerSeedWins > match.matchRecord.upperSeedWins) {
-				colorClassUpper = "round-losing-text";
+				colorClassLower = "round-winning-text";
 				// colorClassLower = "round-winning-text";
 			}
 
