@@ -22,6 +22,8 @@ import {
 	serializeSwissBracket,
 } from "./helper/serializer";
 import { AFLBracketFlow } from "../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
+import { populateMatchRecord } from "../LionBracketEngine/src/major1/RLCS2025Major";
+import { Seed } from "../LionBracketEngine/src/models/match_record";
 
 export const useAFLSerialization = true;
 
@@ -34,7 +36,7 @@ export default function App() {
 	serializeSwissBracket(globalSwiss.rootRound, "sb");
 	const [swissB, setSwissB] = useState(globalSwiss.rootRound);
 
-	const globalAFL: AFLBracketFlow = new AFLBracketFlow();
+	let globalAFL: AFLBracketFlow = new AFLBracketFlow(false);
 	if (useAFLSerialization) {
 		const aflMatchNodes = deserializeStoredAflBracket("aflb");
 		if (aflMatchNodes) {
@@ -51,11 +53,23 @@ export default function App() {
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
+	const updateAFL = (seeds: Seed[]) => {
+		globalAFL.clearAllMatchRecords();
+		populateMatchRecord(seeds, globalAFL, 0, 3, "upperQuarterFinal1");
+		populateMatchRecord(seeds, globalAFL, 1, 2, "upperQuarterFinal2");
+		populateMatchRecord(seeds, globalAFL, 4, 7, "lowerBracketRound1");
+		populateMatchRecord(seeds, globalAFL, 5, 6, "lowerBracketRound2");
+		const nodeList = globalAFL.getAllMatchNodes();	
+		const cloned = structuredClone(nodeList);
+		setAflB(cloned);
+	};
+
 	// for some reason this code must run after useNodesState
 	nodes.forEach((node) => {
 		// TODO: make it so that only nodes that require this are set
 		if ("updateSwissFun" in node.data) {
 			node.data.updateSwissFun = setSwissB;
+			node.data.updatePromotedBracket = updateAFL;
 		}
 		if ("updateFun" in node.data) {
 			node.data.updateFun = setAflB;
@@ -75,8 +89,11 @@ export default function App() {
 
 	const resetBracket = () => {
 		globalSwiss = new SwissBracketFlow8Apart(16, 3);
+		globalAFL = new AFLBracketFlow(false);
 		setSwissB(globalSwiss.rootRound);
+		setAflB(globalAFL.getAllMatchNodes())
 		serializeSwissBracket(globalSwiss.rootRound, "sb");
+		serializeAflBracket(globalAFL, "aflb");
 	};
 
 	return (

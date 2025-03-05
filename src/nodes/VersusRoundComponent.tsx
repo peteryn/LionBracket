@@ -7,15 +7,18 @@ import { serializeSwissBracket } from "../helper/serializer";
 import { paths } from "../helper/TeamsTranslator";
 import { BracketNode } from "../../LionBracketEngine/src/models/bracket_node";
 import { Major1Brackets } from "../../LionBracketEngine/src/models/bracket";
+import { Seed } from "../../LionBracketEngine/src/models/match_record";
 
 export default function VersusRoundComponent({
 	match,
 	bracketWrapper,
 	updateSwissFun,
+	updatePromotedBracket,
 }: {
 	match: Match;
 	bracketWrapper: Major1Brackets;
 	updateSwissFun: React.Dispatch<React.SetStateAction<BracketNode>> | undefined;
+	updatePromotedBracket: ((seed: Seed[]) => void) | undefined;
 }) {
 	const roundNodeName = match.id.split(".")[0];
 
@@ -46,6 +49,9 @@ export default function VersusRoundComponent({
 						bracket.rootRound = cloned;
 						updateSwissFun(cloned);
 						serializeSwissBracket(bracket.rootRound, "sb");
+						if (updatePromotedBracket) {
+							updatePromotedBracket(bracket.getPromotedSeeds());
+						}
 					} else {
 						console.log("updateSwissFun doesn't exist when it should");
 					}

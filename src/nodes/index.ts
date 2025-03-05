@@ -45,6 +45,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				node.matches,
 				swissBracketWrapper,
 				undefined,
+				undefined,
 				inputHandleId,
 				outputHandleId,
 				qualifiedHandleId,
