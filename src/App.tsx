@@ -113,7 +113,7 @@ export default function App() {
 			<MiniMap />
 			<Controls />
 			<Panel position="bottom-center" className="reset-panel">
-				<button onClick={resetBracket}>Reset</button>
+				<button onClick={resetBracket} className="buorgeois">Reset</button>
 			</Panel>
 		</ReactFlow>
 	);

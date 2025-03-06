@@ -55,4 +55,23 @@ const naTest: string[] = [
 	"incorrect",
 ];
 
+const major1: string[] = [
+	"kc",
+	"nrg",
+	"falcons",
+	"vitality",
+	"fuira",
+	"dignitas",
+	"the_ultimates",
+	"geekay_esports",
+	"wildcard",
+	"geng",
+	"team_secret",
+	"twisted_minds",
+	"helfie_chiefs",
+	"complexity",
+	"luminosity",
+	"fut_esports",
+];
+
 export const paths = na3;
