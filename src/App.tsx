@@ -110,10 +110,9 @@ export default function App() {
 			maxZoom={4}
 		>
 			<Background color="#141414" />
-			<MiniMap />
-			<Controls />
+			<Controls showInteractive={false} />
 			<Panel position="bottom-center" className="reset-panel">
-				<button onClick={resetBracket} className="buorgeois">Reset</button>
+				<button onClick={resetBracket} className="bourgeois ">RESET</button>
 			</Panel>
 		</ReactFlow>
 	);

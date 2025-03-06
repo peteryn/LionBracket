@@ -23,6 +23,8 @@ import { MatchNodeEndingComponent } from "./matchNodes/MatchNodeEndingComponent"
 import { MatchNodeMiddleComponent } from "./matchNodes/MatchNodeMiddleComponent";
 import { MatchNodeMiddleComponent2 } from "./matchNodes/MatchNodeMiddleComponent2";
 import { GhostNode } from "./GhostNode";
+import { ChampionNodeComponent } from "./ChampionNodeComponent";
+import { ChampionNodeType } from "./ChampionNodeType";
 
 export let initialNodes: AppNode[] = [];
 
@@ -136,7 +138,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 						true
 					),
 					type: "exit-node-component",
-					draggable: false
+					draggable: false,
 				};
 
 				initialNodes.push(qualObj);
@@ -163,7 +165,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 						false
 					),
 					type: "exit-node-component",
-					draggable: false
+					draggable: false,
 				};
 
 				initialNodes.push(qualObj);
@@ -283,7 +285,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 				position: { x: xCalc, y: yCalc },
 				data: new MatchNodeType(node, afl),
 				type: s,
-				draggable: false
+				draggable: false,
 			};
 			return appNode;
 		};
@@ -309,7 +311,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 			position: { x: xCalc, y: yCalc },
 			data: { name: ghostShortened, outputHandleId: `${ghostShortened}:Output` },
 			type: "ghost-node",
-			draggable: false
+			draggable: false,
 		};
 		initialAFLNodes.push(ghostNode);
 	}
@@ -317,6 +319,22 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 	createGhostNode("lowerQuarterFinal2GhostNode", "lqf2gn");
 	createGhostNode("semiFinal1GhostNode", "sf1gn");
 	createGhostNode("semiFinal2GhostNode", "sf2gn");
+
+	let xCalc = 0;
+	let yCalc = 0;
+	const res = coordinates.get("champion");
+	if (res) {
+		xCalc = res[0];
+		yCalc = res[1];
+	}
+	const championNode: AppNode = {
+		id: "champion",
+		position: { x: xCalc, y: yCalc },
+		data: new ChampionNodeType("", ""),
+		type: "champion-node-component",
+		draggable: true,
+	};
+	initialAFLNodes.push(championNode);
 
 	return initialAFLNodes;
 }
@@ -389,6 +407,21 @@ function createAFLCoordinates(boundingXValue: number, boundingYValue: number, af
 			(AFL_NODE_HEIGHT + VERTICAL_GAP) / 2,
 	]);
 
+	nodeCoordinates.set("champion", [
+		boundingXValue + 4 * HORIZONTAL_OFFSET,
+		boundingYValue +
+			UPPER_BRACKET_OFFSET +
+			2 * NODE_RAISE_VALUE +
+			(AFL_NODE_HEIGHT + VERTICAL_GAP) / 2 +
+			AFL_NODE_HEIGHT / 2 - 100
+	]);
+
+	/*
+		afl total length is 1620
+	*/
+	console.log(4 * HORIZONTAL_OFFSET + 220)
+	
+
 	return nodeCoordinates;
 }
 
@@ -406,4 +439,5 @@ export const nodeTypes = {
 	"match-node-middle-component": MatchNodeMiddleComponent,
 	"match-node-middle-component2": MatchNodeMiddleComponent2,
 	"ghost-node": GhostNode,
+	"champion-node-component": ChampionNodeComponent,
 } satisfies NodeTypes;
