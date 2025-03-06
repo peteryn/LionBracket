@@ -40,8 +40,8 @@ export function createMatches(data: MatchNodeType) {
 		case "FullRecord": {
 			const upperImagePath = `/logos/${paths[match.matchRecord.upperSeed - 1]}.png`;
 			const lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
-			const upperTeamName = paths[match.matchRecord.upperSeed - 1];
-			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1];
+			const upperTeamName = paths[match.matchRecord.upperSeed - 1].replace("_", " ");
+			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1].replace("_", " ");
 			let colorClassUpper = "";
 			let colorClassLower = "";
 			if (match.matchRecord.upperSeedWins > match.matchRecord.lowerSeedWins) {
@@ -80,7 +80,7 @@ export function createMatches(data: MatchNodeType) {
 		}
 		case "UpperRecord": {
 			const upperImagePath = `/logos/${paths[match.matchRecord.upperSeed - 1]}.png`;
-			const upperTeamName = paths[match.matchRecord.upperSeed - 1];
+			const upperTeamName = paths[match.matchRecord.upperSeed - 1].replace("_", " ");
 			teamAreas = (
 				<MatchTeamInputArea
 					updateFun={() => {}}
@@ -96,7 +96,7 @@ export function createMatches(data: MatchNodeType) {
 		}
 		case "LowerRecord":
 			const lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
-			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1];
+			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1].replace("_", " ");
 			teamAreas = (
 				<>
 					<div></div>
