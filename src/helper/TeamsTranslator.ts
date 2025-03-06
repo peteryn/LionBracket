@@ -56,11 +56,11 @@ const naTest: string[] = [
 ];
 
 const major1: string[] = [
-	"kc",
+	"karmine_corp",
 	"nrg",
 	"falcons",
 	"vitality",
-	"fuira",
+	"furia",
 	"dignitas",
 	"the_ultimates",
 	"geekay_esports",
@@ -74,4 +74,4 @@ const major1: string[] = [
 	"fut_esports",
 ];
 
-export const paths = na3;
+export const paths = major1;
