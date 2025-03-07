@@ -1,6 +1,6 @@
 import { getScore } from "../../helper/score";
 import { paths } from "../../helper/TeamsTranslator";
-import { MatchNodeType } from "../MatchNodeType";
+import { MatchNodeType } from "./MatchNodeType";
 import MatchTeamInputArea from "./MatchTeamInputArea";
 
 export function createMatches(data: MatchNodeType) {

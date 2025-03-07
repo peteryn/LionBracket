@@ -17,7 +17,7 @@ import { Major1SwissBracket } from "../../LionBracketEngine/src/models/bracket";
 import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
 import { MatchNodeIsolatedComponent } from "./matchNodes/MatchNodeIsolatedComponent";
 import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
-import { MatchNodeType } from "./MatchNodeType";
+import { MatchNodeType } from "./matchNodes/MatchNodeType";
 import { MatchNodeStartingComponent } from "./matchNodes/MatchNodeStartingComponent";
 import { MatchNodeEndingComponent } from "./matchNodes/MatchNodeEndingComponent";
 import { MatchNodeMiddleComponent } from "./matchNodes/MatchNodeMiddleComponent";

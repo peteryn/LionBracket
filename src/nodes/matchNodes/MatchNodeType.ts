@@ -1,5 +1,5 @@
-import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
-import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
+import { AFLBracketFlow } from "../../../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
+import { MatchNode } from "../../../../LionBracketEngine/src/models/match_node";
 
 export class MatchNodeType {
 	[key: string]: unknown;

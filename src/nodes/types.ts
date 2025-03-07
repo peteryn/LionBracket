@@ -1,7 +1,7 @@
 import type { Node } from "@xyflow/react";
 import { RoundNodeType } from "./RoundNodeType";
 import { ExitNodeType } from "./ExitNodeType";
-import { MatchNodeType } from "./MatchNodeType";
+import { MatchNodeType } from "./matchNodes/MatchNodeType";
 import { GhostNodeType } from "./GhostNodeType";
 import { MatchNodeStartingComponent } from "./matchNodes/MatchNodeStartingComponent";
 import { ChampionNodeType } from "./ChampionNodeType";
