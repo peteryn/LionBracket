@@ -25,6 +25,7 @@ import { MatchNodeMiddleComponent2 } from "./matchNodes/MatchNodeMiddleComponent
 import { GhostNode } from "./GhostNode";
 import { ChampionNodeComponent } from "./ChampionNodeComponent";
 import { ChampionNodeType } from "./ChampionNodeType";
+import { paths } from "../helper/TeamsTranslator";
 
 export let initialNodes: AppNode[] = [];
 
@@ -252,6 +253,10 @@ function createCoordinates(boundingXValue: number, boundingYValue: number, swiss
 		boundingYValue + heightOffset + EXIT_NODE_HEIGHT + VERTICAL_GAP,
 	]);
 
+	console.log("swiss");
+	console.log(5 * SWISS_HORIZONTAL_OFFSET + SWISS_NODE_WIDTH);
+	// swiss width is 2008
+
 	return nodeCoordinates;
 }
 
@@ -264,7 +269,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 	const sf = [sf1, sf2];
 	const gfr = [gf];
 
-	const coordinates = createAFLCoordinates(350, 1100, afl);
+	const coordinates = createAFLCoordinates(194, 1100, afl);
 
 	type MatchNodeComponentTypes =
 		| "match-node-starting-component"
@@ -327,12 +332,23 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 		xCalc = res[0];
 		yCalc = res[1];
 	}
+	let championPathName = "";
+	let championName = "";
+	if (gf.match.matchRecord?.type === "FullRecord") {
+		if (gf.match.matchRecord.upperSeedWins > gf.match.matchRecord.lowerSeedWins) {
+			championPathName = `/logos/${paths[gf.match.matchRecord.upperSeed - 1]}.png`;
+			championName = `${paths[gf.match.matchRecord.upperSeed - 1]}`.replace("_", " ");
+		} else if (gf.match.matchRecord.upperSeedWins < gf.match.matchRecord.lowerSeedWins) {
+			championPathName = `/logos/${paths[gf.match.matchRecord.lowerSeed - 1]}.png`;
+			championName = `${paths[gf.match.matchRecord.lowerSeed - 1]}`.replace("_", " ");
+		}
+	}
 	const championNode: AppNode = {
 		id: "champion",
 		position: { x: xCalc, y: yCalc },
-		data: new ChampionNodeType("", ""),
+		data: new ChampionNodeType(championName, championPathName),
 		type: "champion-node-component",
-		draggable: true,
+		draggable: false,
 	};
 	initialAFLNodes.push(championNode);
 
@@ -413,14 +429,14 @@ function createAFLCoordinates(boundingXValue: number, boundingYValue: number, af
 			UPPER_BRACKET_OFFSET +
 			2 * NODE_RAISE_VALUE +
 			(AFL_NODE_HEIGHT + VERTICAL_GAP) / 2 +
-			AFL_NODE_HEIGHT / 2 - 100
+			AFL_NODE_HEIGHT / 2 -
+			100,
 	]);
 
 	/*
 		afl total length is 1620
 	*/
-	console.log(4 * HORIZONTAL_OFFSET + 220)
-	
+	console.log(4 * HORIZONTAL_OFFSET + 220);
 
 	return nodeCoordinates;
 }

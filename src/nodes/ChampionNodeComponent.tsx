@@ -7,9 +7,9 @@ export function ChampionNodeComponent({ data }: NodeProps<ChampionNodeComponent>
             <p className="bourgeois champion-title">CHAMPION</p>
             <div className="champion-area">
                 <div className="champion-image-container">
-                    <img src="/logos/dignitas.png" alt="" />
+                    <img src={data.imagePath} alt="" />
                 </div>
-                <p className="bebas-neue-regular champion-name">The Ultimates</p>
+                <p className="bebas-neue-regular champion-name">{data.teamName}</p>
             </div>
         </div>
     )
