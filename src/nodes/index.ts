@@ -273,6 +273,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 
 	type MatchNodeComponentTypes =
 		| "match-node-starting-component"
+		| "match-node-middle-component"
 		| "match-node-middle-component2"
 		| "match-node-isolated-component"
 		| "match-node-ending-component";
@@ -301,7 +302,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 		.concat(uqf.map(createMap("match-node-isolated-component")))
 		.concat(lqf.map(createMap("match-node-middle-component2")))
 		.concat(sf.map(createMap("match-node-middle-component2")))
-		.concat(gfr.map(createMap("match-node-ending-component")));
+		.concat(gfr.map(createMap("match-node-middle-component")));
 
 	function createGhostNode(ghostId: string, ghostShortened: string) {
 		let xCalc = 0;

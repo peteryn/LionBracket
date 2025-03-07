@@ -153,6 +153,14 @@ initialEdges.push({
 	style: { strokeWidth: 2 },
 })
 
+// initialEdges.push({
+// 	id: "gf->champion",
+// 	source: "grandFinal",
+// 	target: "champion",
+// 	sourceHandle: "grandFinal:Output",
+// 	targetHandle: "champion:Input"
+// })
+
 export const edgeTypes = {
 	// Add your custom edge types here!
 } satisfies EdgeTypes;

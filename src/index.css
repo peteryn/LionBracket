@@ -428,3 +428,11 @@ input:focus {
 	font-size: 24px;
 	margin-top: 12px;
 }
+
+.report-link {
+	text-decoration: none;
+	color: white;
+	background-color: var(--rl-orange);
+	padding: 4px 8px;
+	border-radius: 4px;
+}

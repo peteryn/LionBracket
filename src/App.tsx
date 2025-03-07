@@ -112,6 +112,9 @@ export default function App() {
 			<Panel position="bottom-center" className="reset-panel">
 				<button onClick={resetBracket} className="bourgeois ">RESET</button>
 			</Panel>
+			<Panel position="bottom-right" className="bourgeois">
+				<a href="https://github.com/peteryn/LionBracket/issues" className="report-link">Report an Issue</a>
+			</Panel>
 		</ReactFlow>
 	);
 }
