@@ -3,7 +3,6 @@ import {
 	ReactFlow,
 	Background,
 	Controls,
-	MiniMap,
 	useNodesState,
 	useEdgesState,
 	Panel,
@@ -66,7 +65,6 @@ export default function App() {
 
 	// for some reason this code must run after useNodesState
 	nodes.forEach((node) => {
-		// TODO: make it so that only nodes that require this are set
 		if ("updateSwissFun" in node.data) {
 			node.data.updateSwissFun = setSwissB;
 			node.data.updatePromotedBracket = updateAFL;

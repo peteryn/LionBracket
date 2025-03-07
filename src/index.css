@@ -29,7 +29,7 @@ body,
 }
 
 .react-flow__handle {
-	/* min-width: 0px; */
+	min-width: 0px;
 }
 
 .no-handle {
