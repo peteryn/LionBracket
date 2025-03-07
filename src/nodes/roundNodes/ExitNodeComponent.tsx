@@ -1,8 +1,8 @@
 import { Handle, NodeProps, Position } from "@xyflow/react";
-import { TeamBox } from "../helper/TeamBox";
-import { type ExitNodeComponent } from "./types.ts";
-import { paths } from "../helper/TeamsTranslator.ts";
-import { getLosers, getWinners } from "../../LionBracketEngine/src/util/util.ts";
+import { TeamBox } from "../../helper/TeamBox";
+import { type ExitNodeComponent } from "../types.ts";
+import { paths } from "../../helper/TeamsTranslator.ts";
+import { getLosers, getWinners } from "../../../../LionBracketEngine/src/util/util.ts";
 
 export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 	const round = data.swissBracket.getRoundNode(data.parent);

@@ -1,17 +1,17 @@
 import { type NodeTypes } from "@xyflow/react";
 
 import { AppNode } from "./types";
-import { RoundNodeComponent } from "./RoundNodeComponent";
+import { RoundNodeComponent } from "./roundNodes/RoundNodeComponent";
 
 import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
-import { RoundNodeType } from "./RoundNodeType";
-import { StartingNodeComponent } from "./StartingNodeComponent";
-import { EndingNodeUpperComponent } from "./EndingNodeUpperComponent";
-import { ExitNodeComponent } from "./ExitNodeComponent";
+import { RoundNodeType } from "./roundNodes/RoundNodeType";
+import { StartingNodeComponent } from "./roundNodes/StartingNodeComponent";
+import { EndingNodeUpperComponent } from "./roundNodes/EndingNodeUpperComponent";
+import { ExitNodeComponent } from "./roundNodes/ExitNodeComponent";
 import { ExitNodeType } from "./ExitNodeType";
-import { EndingNodeMiddleComponent } from "./EndingNodeMiddleComponent";
-import { EndingNodeLowerComponent } from "./EndingNodeLowerComponent";
+import { EndingNodeMiddleComponent } from "./roundNodes/EndingNodeMiddleComponent";
+import { EndingNodeLowerComponent } from "./roundNodes/EndingNodeLowerComponent";
 import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
 import { Major1SwissBracket } from "../../LionBracketEngine/src/models/bracket";
 import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
