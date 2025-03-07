@@ -436,3 +436,13 @@ input:focus {
 	padding: 4px 8px;
 	border-radius: 4px;
 }
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

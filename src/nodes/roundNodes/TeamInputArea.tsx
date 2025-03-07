@@ -27,7 +27,7 @@ export default function TeamInputArea({
 			</div>
 			<input
 				id={inputId}
-				type="text"
+				type="number"
 				className={classes}
 				onFocus={(e) => e.target.select()}
 				onChange={updateFun}
