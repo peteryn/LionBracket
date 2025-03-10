@@ -312,7 +312,7 @@ input:focus {
 
 .exit-test {
 	width: 258px;
-	height: calc(36px+80px);
+	height: calc(36px + 80px);
 	background-color: white;
 }
 
@@ -438,11 +438,11 @@ input:focus {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
+	-moz-appearance: textfield; /* Firefox */
 }
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }

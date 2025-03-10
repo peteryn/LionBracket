@@ -1,7 +1,7 @@
-import { Match, SwissMatch } from "../../../../LionBracketEngine/src/models/match";
-import { Major1Brackets } from "../../../../LionBracketEngine/src/models/bracket";
-import { BracketNode } from "../../../../LionBracketEngine/src/models/bracket_node";
-import { Seed } from "../../../../LionBracketEngine/src/models/match_record";
+import { Match, SwissMatch } from "../../../LionBracketEngine/src/models/match";
+import { Major1Brackets } from "../../../LionBracketEngine/src/models/bracket";
+import { BracketNode } from "../../../LionBracketEngine/src/models/bracket_node";
+import { Seed } from "../../../LionBracketEngine/src/models/match_record";
 
 export class RoundNodeType {
 	[key: string]: unknown;

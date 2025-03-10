@@ -1,13 +1,13 @@
-import { Match } from "../../../../LionBracketEngine/src/models/match";
+import { Match } from "../../../LionBracketEngine/src/models/match";
 
 import { getScore } from "../../helper/score";
 import TeamInputArea from "./TeamInputArea";
 import { addColor } from "../../helper/color";
 import { serializeSwissBracket } from "../../helper/serializer";
 import { paths } from "../../helper/TeamsTranslator";
-import { BracketNode } from "../../../../LionBracketEngine/src/models/bracket_node";
-import { Major1Brackets } from "../../../../LionBracketEngine/src/models/bracket";
-import { Seed } from "../../../../LionBracketEngine/src/models/match_record";
+import { BracketNode } from "../../../LionBracketEngine/src/models/bracket_node";
+import { Major1Brackets } from "../../../LionBracketEngine/src/models/bracket";
+import { Seed } from "../../../LionBracketEngine/src/models/match_record";
 
 export default function VersusRoundComponent({
 	match,
