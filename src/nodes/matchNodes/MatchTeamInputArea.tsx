@@ -7,7 +7,7 @@ export default function MatchTeamInputArea({
 	startingScore,
 	colorClass,
 }: {
-	updateFun: ((e: React.FocusEvent<HTMLInputElement>) => void);
+	updateFun: (e: React.FocusEvent<HTMLInputElement>) => void;
 	showScore: boolean;
 	inputId: string;
 	teamName: string;
@@ -15,7 +15,7 @@ export default function MatchTeamInputArea({
 	startingScore: number | undefined;
 	colorClass: string;
 }) {
-	const classes = `score-input bourgeois ${colorClass}`
+	const classes = `score-input bourgeois ${colorClass}`;
 	return (
 		<div className="match-team-area">
 			<div className="match-team-area-image-container">
@@ -27,10 +27,15 @@ export default function MatchTeamInputArea({
 					id={inputId}
 					onChange={updateFun}
 					type="number"
+					onKeyDown={(e) => {
+						if (e.key.includes(".")) {
+							e.preventDefault();
+						}
+					}}
 					onFocus={(e) => e.target.select()}
 					className={classes}
 					value={startingScore}
-					style={{ visibility: showScore ? "visible" : "hidden"}}
+					style={{ visibility: showScore ? "visible" : "hidden" }}
 				/>
 			</div>
 		</div>

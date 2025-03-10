@@ -29,6 +29,11 @@ export default function TeamInputArea({
 				id={inputId}
 				type="number"
 				className={classes}
+				onKeyDown={(e) => {
+					if (e.key.includes(".")) {
+						e.preventDefault();
+					}
+				}}
 				onFocus={(e) => e.target.select()}
 				onChange={updateFun}
 				value={score}
