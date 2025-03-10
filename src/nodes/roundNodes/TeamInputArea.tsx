@@ -21,7 +21,7 @@ export default function TeamInputArea({
 	const classes = `score-input ${colorClass} bourgeois `;
 
 	return (
-		<div className="team-container">
+		<label className="team-container" htmlFor={inputId}>
 			<div className="image-container">
 				<img src={imagePath} alt={teamName} className="" />
 			</div>
@@ -37,8 +37,8 @@ export default function TeamInputArea({
 				onFocus={(e) => e.target.select()}
 				onChange={updateFun}
 				value={score}
-				style={{ visibility: imagePath === "" ? "hidden" : "visible" }}
+				style={{ visibility: imagePath === "" ? "hidden" : "visible", paddingTop: "5px" }}
 			/>
-		</div>
+		</label>
 	);
 }

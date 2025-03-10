@@ -17,7 +17,7 @@ export default function MatchTeamInputArea({
 }) {
 	const classes = `score-input bourgeois ${colorClass}`;
 	return (
-		<div className="match-team-area">
+		<label className="match-team-area" htmlFor={inputId}>
 			<div className="match-team-area-image-container">
 				<img src={imagePath} alt="" />
 			</div>
@@ -38,6 +38,6 @@ export default function MatchTeamInputArea({
 					style={{ visibility: showScore ? "visible" : "hidden" }}
 				/>
 			</div>
-		</div>
+		</label>
 	);
 }
