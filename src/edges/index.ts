@@ -16,6 +16,7 @@ levelOrderTraversal(swiss.rootRound, (node) => {
 			sourceHandle: `${node.name}:Output`,
 			targetHandle: `${node.upperRound.name}:Input`,
 			type: "step",
+			selectable: false,
 		});
 	}
 	if (node.lowerRound) {
@@ -27,6 +28,7 @@ levelOrderTraversal(swiss.rootRound, (node) => {
 			sourceHandle: `${node.name}:Output`,
 			targetHandle: `${node.lowerRound.name}:Input`,
 			type: "step",
+			selectable: false,
 		});
 	}
 
@@ -38,6 +40,7 @@ levelOrderTraversal(swiss.rootRound, (node) => {
 			sourceHandle: `${node.name}:QualifiedOutput`,
 			targetHandle: `${node.name}:QualifiedInput`,
 			type: "step",
+			selectable: false,
 		});
 	}
 
@@ -49,6 +52,7 @@ levelOrderTraversal(swiss.rootRound, (node) => {
 			sourceHandle: `${node.name}:EliminatedOutput`,
 			targetHandle: `${node.name}:EliminatedInput`,
 			type: "step",
+			selectable: false,
 		});
 	}
 });
@@ -61,6 +65,7 @@ initialEdges.push({
 	targetHandle: "lowerQuarterFinal1:Input",
 	type: "step",
 	style: { strokeWidth: 2 },
+	selectable: false,
 });
 
 initialEdges.push({
@@ -71,6 +76,7 @@ initialEdges.push({
 	targetHandle: "lowerQuarterFinal2:Input",
 	type: "step",
 	style: { strokeWidth: 2 },
+	selectable: false,
 });
 
 initialEdges.push({
@@ -81,6 +87,7 @@ initialEdges.push({
 	targetHandle: "semiFinal1:Input",
 	type: "step",
 	style: { strokeWidth: 2 },
+	selectable: false,
 });
 
 initialEdges.push({
@@ -91,6 +98,7 @@ initialEdges.push({
 	targetHandle: "semiFinal2:Input",
 	type: "step",
 	style: { strokeWidth: 2 },
+	selectable: false,
 });
 
 initialEdges.push({
@@ -101,6 +109,7 @@ initialEdges.push({
 	targetHandle: "grandFinal:Input",
 	type: "step",
 	style: { strokeWidth: 2 },
+	selectable: false,
 });
 
 initialEdges.push({
@@ -111,6 +120,7 @@ initialEdges.push({
 	targetHandle: "grandFinal:Input",
 	type: "step",
 	style: { strokeWidth: 2 },
+	selectable: false,
 });
 
 initialEdges.push({
@@ -121,7 +131,8 @@ initialEdges.push({
 	targetHandle: "lowerQuarterFinal1:InputGhost",
 	type: "step",
 	style: { strokeWidth: 2 },
-})
+	selectable: false,
+});
 
 initialEdges.push({
 	id: "lqf2gn->lqf2",
@@ -131,7 +142,8 @@ initialEdges.push({
 	targetHandle: "lowerQuarterFinal2:InputGhost",
 	type: "step",
 	style: { strokeWidth: 2 },
-})
+	selectable: false,
+});
 
 initialEdges.push({
 	id: "sf1gn->sf1",
@@ -141,7 +153,8 @@ initialEdges.push({
 	targetHandle: "semiFinal1:InputGhost",
 	type: "step",
 	style: { strokeWidth: 2 },
-})
+	selectable: false,
+});
 
 initialEdges.push({
 	id: "sf2gn->sf2",
@@ -151,7 +164,8 @@ initialEdges.push({
 	targetHandle: "semiFinal2:InputGhost",
 	type: "step",
 	style: { strokeWidth: 2 },
-})
+	selectable: false,
+});
 
 // initialEdges.push({
 // 	id: "gf->champion",

@@ -104,7 +104,7 @@ export default function App() {
 			onEdgesChange={onEdgesChange}
 			edgeTypes={edgeTypes}
 			fitView
-			minZoom={0.5}
+			minZoom={0.3}
 			maxZoom={4}
 		>
 			<Background color="#141414" />

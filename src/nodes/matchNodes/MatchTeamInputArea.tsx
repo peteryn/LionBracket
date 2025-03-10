@@ -26,7 +26,7 @@ export default function MatchTeamInputArea({
 				<input
 					id={inputId}
 					onChange={updateFun}
-					type="text"
+					type="number"
 					onFocus={(e) => e.target.select()}
 					className={classes}
 					value={startingScore}

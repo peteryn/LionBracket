@@ -253,8 +253,6 @@ function createCoordinates(boundingXValue: number, boundingYValue: number, swiss
 		boundingYValue + heightOffset + EXIT_NODE_HEIGHT + VERTICAL_GAP,
 	]);
 
-	console.log("swiss");
-	console.log(5 * SWISS_HORIZONTAL_OFFSET + SWISS_NODE_WIDTH);
 	// swiss width is 2008
 
 	return nodeCoordinates;
@@ -437,7 +435,6 @@ function createAFLCoordinates(boundingXValue: number, boundingYValue: number, af
 	/*
 		afl total length is 1620
 	*/
-	console.log(4 * HORIZONTAL_OFFSET + 220);
 
 	return nodeCoordinates;
 }
