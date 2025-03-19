@@ -1,6 +1,6 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import { type RoundNodeComponent } from "../types.ts";
-import { createMatches, createRoundCSS } from "../../helper/roundNodeHelper.tsx";
+import { createMatches, createRoundCSS } from "./roundNodeHelper.tsx";
 
 export function EndingNodeLowerComponent({ data }: NodeProps<RoundNodeComponent>) {
 	const matchesComponents = createMatches(data);
