@@ -2,6 +2,7 @@ import type { Edge, EdgeTypes } from "@xyflow/react";
 
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
+import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
 
 export const initialEdges: Edge[] = [];
 
@@ -57,70 +58,33 @@ levelOrderTraversal(swiss.rootRound, (node) => {
 	}
 });
 
-initialEdges.push({
-	id: "lbr1->lbqf1",
-	source: "lowerBracketRound1",
-	target: "lowerQuarterFinal1",
-	sourceHandle: "lowerBracketRound1:Output",
-	targetHandle: "lowerQuarterFinal1:Input",
-	type: "step",
-	style: { strokeWidth: 2 },
-	selectable: false,
-});
-
-initialEdges.push({
-	id: "lbr2->lbqf2",
-	source: "lowerBracketRound2",
-	target: "lowerQuarterFinal2",
-	sourceHandle: "lowerBracketRound2:Output",
-	targetHandle: "lowerQuarterFinal2:Input",
-	type: "step",
-	style: { strokeWidth: 2 },
-	selectable: false,
-});
-
-initialEdges.push({
-	id: "lbqf1->sf1",
-	source: "lowerQuarterFinal1",
-	target: "semiFinal1",
-	sourceHandle: "lowerQuarterFinal1:Output",
-	targetHandle: "semiFinal1:Input",
-	type: "step",
-	style: { strokeWidth: 2 },
-	selectable: false,
-});
-
-initialEdges.push({
-	id: "lbqf2->sf2",
-	source: "lowerQuarterFinal2",
-	target: "semiFinal2",
-	sourceHandle: "lowerQuarterFinal2:Output",
-	targetHandle: "semiFinal2:Input",
-	type: "step",
-	style: { strokeWidth: 2 },
-	selectable: false,
-});
-
-initialEdges.push({
-	id: "sf1->gf",
-	source: "semiFinal1",
-	target: "grandFinal",
-	sourceHandle: "semiFinal1:Output",
-	targetHandle: "grandFinal:Input",
-	type: "step",
-	style: { strokeWidth: 2 },
-	selectable: false,
-});
-
-initialEdges.push({
-	id: "sf2->gf",
-	source: "semiFinal2",
-	target: "grandFinal",
-	sourceHandle: "semiFinal2:Output",
-	targetHandle: "grandFinal:Input",
-	type: "step",
-	style: { strokeWidth: 2 },
-	selectable: false,
+const afl = new AFLBracketFlow();
+const aflNodes = afl.getAllMatchNodes();
+aflNodes.forEach((node) => {
+	if (node.upperRound) {
+		initialEdges.push({
+			id: `${node.name}->${node.upperRound.name}`,
+			source: node.name,
+			target: node.upperRound.name,
+			sourceHandle: `${node.name}:Output`,
+			targetHandle: `${node.upperRound.name}:Input`,
+			type: "step",
+			style: { strokeWidth: 2 },
+			selectable: false,
+		});
+	}
+	if (node.lowerRound) {
+		initialEdges.push({
+			id: `${node.name}->${node.lowerRound.name}`,
+			source: node.name,
+			target: node.lowerRound.name,
+			sourceHandle: `${node.name}:Output`,
+			targetHandle: `${node.lowerRound.name}:Input`,
+			type: "step",
+			style: { strokeWidth: 2 },
+			selectable: false,
+		});
+	}
 });
 
 initialEdges.push({
@@ -166,14 +130,6 @@ initialEdges.push({
 	style: { strokeWidth: 2 },
 	selectable: false,
 });
-
-// initialEdges.push({
-// 	id: "gf->champion",
-// 	source: "grandFinal",
-// 	target: "champion",
-// 	sourceHandle: "grandFinal:Output",
-// 	targetHandle: "champion:Input"
-// })
 
 export const edgeTypes = {
 	// Add your custom edge types here!
