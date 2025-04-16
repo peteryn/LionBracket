@@ -242,7 +242,6 @@ input:focus {
 }
 
 .react-flow__handle {
-	background-color: #595e67;
 }
 
 .round-start {
@@ -449,4 +448,8 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input::selection {
 	background-color: var(--rl-blue);
+}
+
+nav a {
+	padding: 1rem;
 }
