@@ -3,13 +3,14 @@ import { RegionalTournament } from "../../LionBracketEngine/src/gsl_afl_bracket/
 import { AppNode } from "../nodes/types";
 import { nodeTypes } from "../nodes";
 import { edgeTypes } from "../edges";
+import {createAFLNodes} from "../brackets/afl_layout.ts";
 
-export default function regional() {
+export default function Regional() {
 	const tournament = new RegionalTournament();
 
 	const GSL_A_nodes: AppNode[] = [];
 	const GSL_B_nodes: AppNode[] = [];
-	const AFL_nodes: AppNode[] = [];
+	const AFL_nodes: AppNode[] = createAFLNodes(tournament.AFL);
 	const initialNodes = GSL_A_nodes.concat(GSL_B_nodes).concat(AFL_nodes);
 
 	const initialEdges: Edge[] = [];
