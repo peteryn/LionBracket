@@ -10,7 +10,7 @@ import {
 import "@xyflow/react/dist/base.css";
 
 import { SwissBracketFlow } from "../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
-import { SwissBracketFlow8Apart } from "../LionBracketEngine/src/swiss_bracket/swiss_bracket_flow_8apart";
+import { SwissBracketFlow8Apart } from "../LionBracketEngine/src/swiss_bracket/swiss_bracket_flow_buchholz";
 
 import { createAFLNodes, createSwissNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
@@ -21,7 +21,7 @@ import {
 	serializeSwissBracket,
 } from "./helper/serializer";
 import { AFLBracketFlow } from "../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
-import { populateMatchRecord } from "../LionBracketEngine/src/major1/RLCS2025Major";
+import { populateMatchRecord } from "../LionBracketEngine/src/util/util";
 import { Seed } from "../LionBracketEngine/src/models/match_record";
 
 export const useAFLSerialization = true;
@@ -58,7 +58,7 @@ export default function App() {
 		populateMatchRecord(seeds, globalAFL, 1, 2, "upperQuarterFinal2");
 		populateMatchRecord(seeds, globalAFL, 4, 7, "lowerBracketRound1");
 		populateMatchRecord(seeds, globalAFL, 5, 6, "lowerBracketRound2");
-		const nodeList = globalAFL.getAllMatchNodes();	
+		const nodeList = globalAFL.getAllMatchNodes();
 		const cloned = structuredClone(nodeList);
 		setAflB(cloned);
 	};
@@ -89,7 +89,7 @@ export default function App() {
 		globalSwiss = new SwissBracketFlow8Apart(16, 3);
 		globalAFL = new AFLBracketFlow(false);
 		setSwissB(globalSwiss.rootRound);
-		setAflB(globalAFL.getAllMatchNodes())
+		setAflB(globalAFL.getAllMatchNodes());
 		serializeSwissBracket(globalSwiss.rootRound, "sb");
 		serializeAflBracket(globalAFL, "aflb");
 	};
@@ -110,10 +110,14 @@ export default function App() {
 			<Background color="#141414" />
 			<Controls showInteractive={false} />
 			<Panel position="bottom-center" className="reset-panel">
-				<button onClick={resetBracket} className="bourgeois ">RESET</button>
+				<button onClick={resetBracket} className="bourgeois ">
+					RESET
+				</button>
 			</Panel>
 			<Panel position="bottom-right" className="bourgeois">
-				<a href="https://github.com/peteryn/LionBracket/issues" className="report-link">Report an Issue</a>
+				<a href="https://github.com/peteryn/LionBracket/issues" className="report-link">
+					Report an Issue
+				</a>
 			</Panel>
 		</ReactFlow>
 	);

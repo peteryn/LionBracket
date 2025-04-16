@@ -5,7 +5,7 @@ import { paths } from "../../helper/TeamsTranslator.ts";
 import { getLosers, getWinners } from "../../../LionBracketEngine/src/util/util.ts";
 
 export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
-	const round = data.swissBracket.getRoundNode(data.parent);
+	const round = data.swissBracket.getBracketNode(data.parent);
 	if (!round) {
 		return;
 	}

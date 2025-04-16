@@ -6,17 +6,17 @@ import { addColor } from "../../helper/color";
 import { serializeSwissBracket } from "../../helper/serializer";
 import { paths } from "../../helper/TeamsTranslator";
 import { BracketNode } from "../../../LionBracketEngine/src/models/bracket_node";
-import { Major1Brackets } from "../../../LionBracketEngine/src/models/bracket";
 import { Seed } from "../../../LionBracketEngine/src/models/match_record";
+import { SwissBracketFlow } from "../../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
 export default function VersusRoundComponent({
 	match,
-	bracketWrapper,
+	bracket,
 	updateSwissFun,
 	updatePromotedBracket,
 }: {
 	match: Match;
-	bracketWrapper: Major1Brackets;
+	bracket: SwissBracketFlow;
 	updateSwissFun: React.Dispatch<React.SetStateAction<BracketNode>> | undefined;
 	updatePromotedBracket: ((seed: Seed[]) => void) | undefined;
 }) {
@@ -35,35 +35,25 @@ export default function VersusRoundComponent({
 	function onChange() {
 		const upperTeamWins = getScore(upperInputId);
 		const lowerTeamWins = getScore(lowerInputId);
-		switch (bracketWrapper.bracketType) {
-			case "M1SwissBracket":
-				const bracket = bracketWrapper.bracketObject;
-				const matchRecord = bracket.getMatchRecord(match.id);
-				if (matchRecord) {
-					matchRecord.upperSeedWins = upperTeamWins;
-					matchRecord.lowerSeedWins = lowerTeamWins;
-					bracket.setMatchRecord(match.id, matchRecord);
-					if (updateSwissFun) {
-						bracket.updateFlow(bracket.getRoundNode(roundNodeName));
-						const cloned = structuredClone(bracket.rootRound);
-						bracket.rootRound = cloned;
-						updateSwissFun(cloned);
-						serializeSwissBracket(bracket.rootRound, "sb");
-						if (updatePromotedBracket) {
-							updatePromotedBracket(bracket.getPromotedSeeds());
-						}
-					} else {
-						console.log("updateSwissFun doesn't exist when it should");
-					}
-				} else {
-					console.log("match record doesnt exist bad error");
+		const matchRecord = bracket.getMatchRecord(match.id);
+		if (matchRecord) {
+			matchRecord.upperSeedWins = upperTeamWins;
+			matchRecord.lowerSeedWins = lowerTeamWins;
+			bracket.setMatchRecord(match.id, matchRecord);
+			if (updateSwissFun) {
+				bracket.updateFlow(bracket.getBracketNode(roundNodeName));
+				const cloned = structuredClone(bracket.rootRound);
+				bracket.rootRound = cloned;
+				updateSwissFun(cloned);
+				serializeSwissBracket(bracket.rootRound, "sb");
+				if (updatePromotedBracket) {
+					updatePromotedBracket(bracket.getPromotedSeeds());
 				}
-				break;
-			case "M1AFLBracket":
-				break;
-
-			default:
-			// should never happen
+			} else {
+				console.log("updateSwissFun doesn't exist when it should");
+			}
+		} else {
+			console.log("match record doesnt exist bad error");
 		}
 	}
 

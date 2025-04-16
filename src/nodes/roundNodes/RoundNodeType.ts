@@ -1,13 +1,13 @@
 import { Match, SwissMatch } from "../../../LionBracketEngine/src/models/match";
-import { Major1Brackets } from "../../../LionBracketEngine/src/models/bracket";
 import { BracketNode } from "../../../LionBracketEngine/src/models/bracket_node";
 import { Seed } from "../../../LionBracketEngine/src/models/match_record";
+import { SwissBracketFlow } from "../../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
 export class RoundNodeType {
 	[key: string]: unknown;
 	name: string;
 	matches: Match[];
-	swissBracket: Major1Brackets;
+	swissBracket: SwissBracketFlow;
 	updateSwissFun: React.Dispatch<React.SetStateAction<BracketNode>> | undefined;
 	updatePromotedBracket: ((seeds: Seed[]) => void) | undefined;
 	inputHandleId: string;
@@ -18,7 +18,7 @@ export class RoundNodeType {
 	constructor(
 		name: string,
 		matches: Match[] | SwissMatch[],
-		swissBracket: Major1Brackets,
+		swissBracket: SwissBracketFlow,
 		updateSwissFun: React.Dispatch<React.SetStateAction<BracketNode>> | undefined,
 		updatePromotedBracket: ((seeds: Seed[]) => void) | undefined,
 		inputHandleId: string,

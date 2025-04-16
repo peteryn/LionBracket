@@ -61,6 +61,10 @@ levelOrderTraversal(swiss.rootRound, (node) => {
 const afl = new AFLBracketFlow();
 const aflNodes = afl.getAllMatchNodes();
 aflNodes.forEach((node) => {
+	if (node.name === "upperQuarterFinal1" || node.name === "upperQuarterFinal2") {
+		return;
+	}
+
 	if (node.upperRound) {
 		initialEdges.push({
 			id: `${node.name}->${node.upperRound.name}`,

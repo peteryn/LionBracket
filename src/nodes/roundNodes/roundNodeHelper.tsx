@@ -9,7 +9,7 @@ export function createMatches(data: RoundNodeType) {
 		<VersusRoundComponent
 			key={match.id}
 			match={match}
-			bracketWrapper={data.swissBracket}
+			bracket={data.swissBracket}
 			updateSwissFun={data.updateSwissFun}
 			updatePromotedBracket={data.updatePromotedBracket}
 		></VersusRoundComponent>
