@@ -3,7 +3,7 @@ import { RegionalTournament } from "../../LionBracketEngine/src/gsl_afl_bracket/
 import { AppNode } from "../nodes/types";
 import { nodeTypes } from "../nodes";
 import { edgeTypes } from "../edges";
-import {createAFLNodes} from "../brackets/afl_layout.ts";
+import { createAFLEdges, createAFLNodes } from "../brackets/afl_layout.ts";
 
 export default function Regional() {
 	const tournament = new RegionalTournament();
@@ -13,7 +13,8 @@ export default function Regional() {
 	const AFL_nodes: AppNode[] = createAFLNodes(tournament.AFL);
 	const initialNodes = GSL_A_nodes.concat(GSL_B_nodes).concat(AFL_nodes);
 
-	const initialEdges: Edge[] = [];
+	const AFL_edges = createAFLEdges(tournament.AFL);
+	const initialEdges: Edge[] = AFL_edges;
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
@@ -31,8 +32,8 @@ export default function Regional() {
 			minZoom={0.3}
 			maxZoom={4}
 		>
-			<Background color="#141414" />
-			<Controls showInteractive={false} />
+			<Background color="#141414"/>
+			<Controls showInteractive={false}/>
 		</ReactFlow>
 	);
 }
