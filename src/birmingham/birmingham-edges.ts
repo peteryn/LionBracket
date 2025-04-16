@@ -1,4 +1,4 @@
-import type { Edge, EdgeTypes } from "@xyflow/react";
+import type { Edge } from "@xyflow/react";
 
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
