@@ -9,20 +9,20 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/base.css";
 
-import { SwissBracketFlow } from "../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
-import { SwissBracketFlow8Apart } from "../LionBracketEngine/src/swiss_bracket/swiss_bracket_flow_buchholz";
+import { SwissBracketFlow } from "../../../LionBracket/LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
+import { SwissBracketFlow8Apart } from "../../../LionBracket/LionBracketEngine/src/swiss_bracket/swiss_bracket_flow_buchholz";
 
-import { createAFLNodes, createSwissNodes, nodeTypes } from "./nodes";
-import { initialEdges, edgeTypes } from "./edges";
+import { createAFLNodes, createSwissNodes, nodeTypes } from "./birmingham-nodes";
+import { initialEdges, edgeTypes } from "./birmingham-edges";
 import {
 	deserializeStoredAflBracket,
 	deserializeStoredSwissBracket,
 	serializeAflBracket,
 	serializeSwissBracket,
-} from "./helper/serializer";
-import { AFLBracketFlow } from "../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
-import { populateMatchRecord } from "../LionBracketEngine/src/util/util";
-import { Seed } from "../LionBracketEngine/src/models/match_record";
+} from "../helper/serializer";
+import { AFLBracketFlow } from "../../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
+import { populateMatchRecord } from "../../../LionBracketEngine/src/util/util";
+import { Seed } from "../../../LionBracketEngine/src/models/match_record";
 
 export const useAFLSerialization = true;
 

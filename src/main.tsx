@@ -5,7 +5,7 @@ import App from "./App";
 
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router";
-import Birmingham from "./Birmingham";
+import Birmingham from "./birmingham/Birmingham";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>

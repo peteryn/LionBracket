@@ -1,29 +1,29 @@
 import { type NodeTypes } from "@xyflow/react";
 
-import { AppNode } from "./types";
-import { RoundNodeComponent } from "./roundNodes/RoundNodeComponent";
+import { AppNode } from "../nodes/types";
+import { RoundNodeComponent } from "../nodes/roundNodes/RoundNodeComponent";
 
 import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
-import { RoundNodeType } from "./roundNodes/RoundNodeType";
-import { StartingNodeComponent } from "./roundNodes/StartingNodeComponent";
-import { EndingNodeUpperComponent } from "./roundNodes/EndingNodeUpperComponent";
-import { ExitNodeComponent } from "./roundNodes/ExitNodeComponent";
-import { ExitNodeType } from "./ExitNodeType";
-import { EndingNodeMiddleComponent } from "./roundNodes/EndingNodeMiddleComponent";
-import { EndingNodeLowerComponent } from "./roundNodes/EndingNodeLowerComponent";
+import { RoundNodeType } from "../nodes/roundNodes/RoundNodeType";
+import { StartingNodeComponent } from "../nodes/roundNodes/StartingNodeComponent";
+import { EndingNodeUpperComponent } from "../nodes/roundNodes/EndingNodeUpperComponent";
+import { ExitNodeComponent } from "../nodes/roundNodes/ExitNodeComponent";
+import { ExitNodeType } from "../nodes/ExitNodeType";
+import { EndingNodeMiddleComponent } from "../nodes/roundNodes/EndingNodeMiddleComponent";
+import { EndingNodeLowerComponent } from "../nodes/roundNodes/EndingNodeLowerComponent";
 import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
 import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
-import { MatchNodeIsolatedComponent } from "./matchNodes/MatchNodeIsolatedComponent";
+import { MatchNodeIsolatedComponent } from "../nodes/matchNodes/MatchNodeIsolatedComponent";
 import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
-import { MatchNodeType } from "./matchNodes/MatchNodeType";
-import { MatchNodeStartingComponent } from "./matchNodes/MatchNodeStartingComponent";
-import { MatchNodeEndingComponent } from "./matchNodes/MatchNodeEndingComponent";
-import { MatchNodeMiddleComponent } from "./matchNodes/MatchNodeMiddleComponent";
-import { MatchNodeMiddleComponent2 } from "./matchNodes/MatchNodeMiddleComponent2";
-import { GhostNode } from "./GhostNode";
-import { ChampionNodeComponent } from "./ChampionNodeComponent";
-import { ChampionNodeType } from "./ChampionNodeType";
+import { MatchNodeType } from "../nodes/matchNodes/MatchNodeType";
+import { MatchNodeStartingComponent } from "../nodes/matchNodes/MatchNodeStartingComponent";
+import { MatchNodeEndingComponent } from "../nodes/matchNodes/MatchNodeEndingComponent";
+import { MatchNodeMiddleComponent } from "../nodes/matchNodes/MatchNodeMiddleComponent";
+import { MatchNodeMiddleComponent2 } from "../nodes/matchNodes/MatchNodeMiddleComponent2";
+import { GhostNode } from "../nodes/GhostNode";
+import { ChampionNodeComponent } from "../nodes/ChampionNodeComponent";
+import { ChampionNodeType } from "../nodes/ChampionNodeType";
 import { paths } from "../helper/TeamsTranslator";
 
 export let initialNodes: AppNode[] = [];
