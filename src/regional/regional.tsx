@@ -1,5 +1,37 @@
+import { Background, Controls, Edge, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
+import { RegionalTournament } from "../../LionBracketEngine/src/gsl_afl_bracket/regional_tournament";
+import { AppNode } from "../nodes/types";
+import { nodeTypes } from "../nodes";
+import { edgeTypes } from "../edges";
+
 export default function regional() {
-    return (
-        <div></div>
-    )
+	const tournament = new RegionalTournament();
+
+	const GSL_A_nodes: AppNode[] = [];
+	const GSL_B_nodes: AppNode[] = [];
+	const AFL_nodes: AppNode[] = [];
+	const initialNodes = GSL_A_nodes.concat(GSL_B_nodes).concat(AFL_nodes);
+
+	const initialEdges: Edge[] = [];
+
+	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
+
+	return (
+		<ReactFlow
+			colorMode="dark"
+			nodes={nodes}
+			nodeTypes={nodeTypes}
+			onNodesChange={onNodesChange}
+			edges={edges}
+			onEdgesChange={onEdgesChange}
+			edgeTypes={edgeTypes}
+			fitView
+			minZoom={0.3}
+			maxZoom={4}
+		>
+			<Background color="#141414" />
+			<Controls showInteractive={false} />
+		</ReactFlow>
+	);
 }

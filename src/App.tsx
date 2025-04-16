@@ -5,7 +5,7 @@ export default function App() {
 	return (
 		<nav>
 			<NavLink to="/birmingham">Birmingham</NavLink>
-			<NavLink to="/birmingham">Birmingham</NavLink>
+			<NavLink to="/regional">Regional</NavLink>
 		</nav>
 	)
 }

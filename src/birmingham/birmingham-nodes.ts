@@ -1,28 +1,14 @@
-import { type NodeTypes } from "@xyflow/react";
 
 import { AppNode } from "../nodes/types";
-import { RoundNodeComponent } from "../nodes/roundNodes/RoundNodeComponent";
 
 import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { RoundNodeType } from "../nodes/roundNodes/RoundNodeType";
-import { StartingNodeComponent } from "../nodes/roundNodes/StartingNodeComponent";
-import { EndingNodeUpperComponent } from "../nodes/roundNodes/EndingNodeUpperComponent";
-import { ExitNodeComponent } from "../nodes/roundNodes/ExitNodeComponent";
 import { ExitNodeType } from "../nodes/ExitNodeType";
-import { EndingNodeMiddleComponent } from "../nodes/roundNodes/EndingNodeMiddleComponent";
-import { EndingNodeLowerComponent } from "../nodes/roundNodes/EndingNodeLowerComponent";
 import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
 import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
-import { MatchNodeIsolatedComponent } from "../nodes/matchNodes/MatchNodeIsolatedComponent";
 import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
 import { MatchNodeType } from "../nodes/matchNodes/MatchNodeType";
-import { MatchNodeStartingComponent } from "../nodes/matchNodes/MatchNodeStartingComponent";
-import { MatchNodeEndingComponent } from "../nodes/matchNodes/MatchNodeEndingComponent";
-import { MatchNodeMiddleComponent } from "../nodes/matchNodes/MatchNodeMiddleComponent";
-import { MatchNodeMiddleComponent2 } from "../nodes/matchNodes/MatchNodeMiddleComponent2";
-import { GhostNode } from "../nodes/GhostNode";
-import { ChampionNodeComponent } from "../nodes/ChampionNodeComponent";
 import { ChampionNodeType } from "../nodes/ChampionNodeType";
 import { paths } from "../helper/TeamsTranslator";
 
@@ -433,20 +419,3 @@ function createAFLCoordinates(boundingXValue: number, boundingYValue: number, af
 
 	return nodeCoordinates;
 }
-
-export const nodeTypes = {
-	// Add any of your custom nodes here!
-	"round-node-component": RoundNodeComponent,
-	"starting-node-component": StartingNodeComponent,
-	"ending-node-upper-component": EndingNodeUpperComponent,
-	"ending-node-middle-component": EndingNodeMiddleComponent,
-	"ending-node-lower-component": EndingNodeLowerComponent,
-	"exit-node-component": ExitNodeComponent,
-	"match-node-isolated-component": MatchNodeIsolatedComponent,
-	"match-node-starting-component": MatchNodeStartingComponent,
-	"match-node-ending-component": MatchNodeEndingComponent,
-	"match-node-middle-component": MatchNodeMiddleComponent,
-	"match-node-middle-component2": MatchNodeMiddleComponent2,
-	"ghost-node": GhostNode,
-	"champion-node-component": ChampionNodeComponent,
-} satisfies NodeTypes;

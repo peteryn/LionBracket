@@ -12,8 +12,10 @@ import "@xyflow/react/dist/base.css";
 import { SwissBracketFlow } from "../../../LionBracket/LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 import { SwissBracketFlow8Apart } from "../../../LionBracket/LionBracketEngine/src/swiss_bracket/swiss_bracket_flow_buchholz";
 
-import { createAFLNodes, createSwissNodes, nodeTypes } from "./birmingham-nodes";
-import { initialEdges, edgeTypes } from "./birmingham-edges";
+import { createAFLNodes, createSwissNodes } from "./birmingham-nodes";
+import { nodeTypes } from "../nodes";
+import { initialEdges } from "./birmingham-edges";
+import { edgeTypes } from "../edges";
 import {
 	deserializeStoredAflBracket,
 	deserializeStoredSwissBracket,

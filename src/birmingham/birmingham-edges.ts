@@ -135,6 +135,4 @@ initialEdges.push({
 	selectable: false,
 });
 
-export const edgeTypes = {
-	// Add your custom edge types here!
-} satisfies EdgeTypes;
+
