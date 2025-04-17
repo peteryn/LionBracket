@@ -4,6 +4,7 @@ import { MatchNode } from "../../../LionBracketEngine/src/models/match_node";
 
 export class MatchNodeType {
 	[key: string]: unknown;
+
 	name: string;
 	matchNode: MatchNode;
 	bracket: AFLBracketFlow;
@@ -21,6 +22,6 @@ export class MatchNodeType {
 		this.inputHandleId = `${matchNode.name}:Input`;
 		this.outputHandleId = `${matchNode.name}:Output`;
 		this.ghostInputHandleId = `${matchNode.name}:GhostInput`;
-		this.championOutputHandleId = `${matchNode.name}:ChamptionOutput`;
+		this.championOutputHandleId = `${matchNode.name}:ChampionOutput`;
 	}
 }
