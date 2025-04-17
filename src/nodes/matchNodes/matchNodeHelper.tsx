@@ -83,7 +83,8 @@ export function createMatches(data: MatchNodeType) {
 			const upperTeamName = paths[match.matchRecord.upperSeed - 1].replace("_", " ");
 			teamAreas = (
 				<MatchTeamInputArea
-					updateFun={() => {}}
+					updateFun={() => {
+					}}
 					showScore={false}
 					inputId={upperInputId}
 					teamName={upperTeamName}
@@ -94,14 +95,15 @@ export function createMatches(data: MatchNodeType) {
 			);
 			break;
 		}
-		case "LowerRecord":
+		case "LowerRecord": {
 			const lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
 			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1].replace("_", " ");
 			teamAreas = (
 				<>
 					<div></div>
 					<MatchTeamInputArea
-						updateFun={() => {}}
+						updateFun={() => {
+						}}
 						showScore={false}
 						inputId={lowerInputId}
 						teamName={lowerTeamName}
@@ -111,6 +113,7 @@ export function createMatches(data: MatchNodeType) {
 					></MatchTeamInputArea>
 				</>
 			);
+		}
 	}
 	return teamAreas;
 }
