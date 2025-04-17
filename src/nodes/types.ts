@@ -19,6 +19,7 @@ export type MatchNodeStartingComponent = Node<MatchNodeType, "match-node-startin
 export type MatchNodeEndingComponent = Node<MatchNodeType, "match-node-ending-component">;
 export type MatchNodeMiddleComponent = Node<MatchNodeType, "match-node-middle-component">;
 export type MatchNodeMiddleComponent2 = Node<MatchNodeType, "match-node-middle-component2">;
+export type MatchNodeMiddleComponentTwoParents = Node<MatchNodeType, "match-node-component-two-parents">;
 
 export type GhostNode = Node<GhostNodeType, "ghost-node">;
 export type ChampionNodeComponent = Node<ChampionNodeType, "champion-node-component">;

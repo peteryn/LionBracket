@@ -109,7 +109,7 @@ export function createAFLNodes(afl: AFLBracketFlow, xCoordinate: number, yCoordi
 		| "match-node-isolated-component"
 		| "match-node-ending-component";
 
-	function createMap(s: MatchNodeComponentTypes) {
+	function createMap(s: MatchNodeComponentTypes, coordinates: Map<string, number[]>) {
 		return (node: MatchNode) => {
 			let xCalc = 0;
 			let yCalc = 0;
@@ -130,11 +130,11 @@ export function createAFLNodes(afl: AFLBracketFlow, xCoordinate: number, yCoordi
 	}
 
 	const initialAFLNodes: AppNode[] = lb
-		.map(createMap("match-node-starting-component"))
-		.concat(uqf.map(createMap("match-node-isolated-component")))
-		.concat(lqf.map(createMap("match-node-middle-component2")))
-		.concat(sf.map(createMap("match-node-middle-component2")))
-		.concat(gfr.map(createMap("match-node-middle-component")));
+		.map(createMap("match-node-starting-component", coordinates))
+		.concat(uqf.map(createMap("match-node-isolated-component", coordinates)))
+		.concat(lqf.map(createMap("match-node-middle-component2", coordinates)))
+		.concat(sf.map(createMap("match-node-middle-component2", coordinates)))
+		.concat(gfr.map(createMap("match-node-middle-component", coordinates)));
 
 	function createGhostNode(ghostId: string, ghostShortened: string) {
 		let xCalc = 0;

@@ -12,6 +12,7 @@ import { EndingNodeUpperComponent } from "./roundNodes/EndingNodeUpperComponent"
 import { ExitNodeComponent } from "./roundNodes/ExitNodeComponent";
 import { RoundNodeComponent } from "./roundNodes/RoundNodeComponent";
 import { StartingNodeComponent } from "./roundNodes/StartingNodeComponent";
+import { MatchNodeMiddleComponentTwoParents } from "./matchNodes/MatchNodeMiddleComponentTwoParents.tsx";
 
 export const nodeTypes = {
 	// Add any of your custom nodes here!
@@ -26,6 +27,7 @@ export const nodeTypes = {
 	"match-node-ending-component": MatchNodeEndingComponent,
 	"match-node-middle-component": MatchNodeMiddleComponent,
 	"match-node-middle-component2": MatchNodeMiddleComponent2,
+	"match-node-middle-component-two-parents": MatchNodeMiddleComponentTwoParents,
 	"ghost-node": GhostNode,
 	"champion-node-component": ChampionNodeComponent,
 } satisfies NodeTypes;
