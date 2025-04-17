@@ -1,10 +1,10 @@
-import {AppNode} from "../nodes/types";
+import { AppNode } from "../nodes/types";
 
-import {SwissBracketFlow} from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
-import {levelOrderTraversal} from "../../LionBracketEngine/src/util/util";
-import {RoundNodeType} from "../nodes/roundNodes/RoundNodeType";
-import {ExitNodeType} from "../nodes/ExitNodeType";
-import {SwissBracket} from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
+import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
+import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
+import { RoundNodeType } from "../nodes/roundNodes/RoundNodeType";
+import { ExitNodeType } from "../nodes/ExitNodeType";
+import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
 
 export let initialNodes: AppNode[] = [];
 
@@ -44,7 +44,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				case "0-0":
 					obj = {
 						id: node.name,
-						position: { x: xCalc, y: yCalc },
+						position: {x: xCalc, y: yCalc},
 						data: roundNodeType,
 						type: "starting-node-component",
 						draggable: false,
@@ -54,7 +54,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				case "2-1":
 					obj = {
 						id: node.name,
-						position: { x: xCalc, y: yCalc },
+						position: {x: xCalc, y: yCalc},
 						data: roundNodeType,
 						type: "ending-node-upper-component",
 						draggable: false,
@@ -63,7 +63,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				case "2-2":
 					obj = {
 						id: node.name,
-						position: { x: xCalc, y: yCalc },
+						position: {x: xCalc, y: yCalc},
 						data: roundNodeType,
 						type: "ending-node-middle-component",
 						draggable: false,
@@ -73,7 +73,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				case "1-2":
 					obj = {
 						id: node.name,
-						position: { x: xCalc, y: yCalc },
+						position: {x: xCalc, y: yCalc},
 						data: roundNodeType,
 						type: "ending-node-lower-component",
 						draggable: false,
@@ -82,7 +82,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				default:
 					obj = {
 						id: node.name,
-						position: { x: xCalc, y: yCalc },
+						position: {x: xCalc, y: yCalc},
 						data: roundNodeType,
 						type: "round-node-component",
 						draggable: false,
@@ -104,7 +104,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 
 				let qualObj: AppNode = {
 					id: `${node.name}:Qualified`,
-					position: { x: xCalc, y: yCalc },
+					position: {x: xCalc, y: yCalc},
 					data: new ExitNodeType(
 						"QUALIFIED",
 						"round-winning",
@@ -131,7 +131,7 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 
 				let qualObj: AppNode = {
 					id: `${node.name}:Eliminated`,
-					position: { x: xCalc, y: yCalc },
+					position: {x: xCalc, y: yCalc},
 					data: new ExitNodeType(
 						"ELIMINATED",
 						"round-losing",

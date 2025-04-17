@@ -26,7 +26,7 @@ import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_brac
 import { populateMatchRecord } from "../../LionBracketEngine/src/util/util";
 import { Seed } from "../../LionBracketEngine/src/models/match_record";
 
-import {createAFLNodes} from "../brackets/afl_layout.ts";
+import { createAFLNodes } from "../brackets/afl_layout.ts";
 
 export const useAFLSerialization = true;
 
@@ -50,7 +50,7 @@ export default function Birmingham() {
 	const [aflB, setAflB] = useState(globalAFL.getAllMatchNodes());
 
 	const swissNodes = createSwissNodes(globalSwiss);
-	const aflNodes = createAFLNodes(globalAFL);
+	const aflNodes = createAFLNodes(globalAFL, 194, 1100);
 	const initialNodes = swissNodes.concat(aflNodes);
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -84,7 +84,7 @@ export default function Birmingham() {
 			serializeAflBracket(globalAFL, "aflb");
 		}
 		const swissNodes = createSwissNodes(globalSwiss);
-		const aflNodes = createAFLNodes(globalAFL);
+		const aflNodes = createAFLNodes(globalAFL, 194, 1100);
 		const updatedNodes = swissNodes.concat(aflNodes);
 		setNodes(updatedNodes);
 	}, [swissB, aflB, setNodes]);
@@ -111,8 +111,8 @@ export default function Birmingham() {
 			minZoom={0.3}
 			maxZoom={4}
 		>
-			<Background color="#141414" />
-			<Controls showInteractive={false} />
+			<Background color="#141414"/>
+			<Controls showInteractive={false}/>
 			<Panel position="bottom-center" className="reset-panel">
 				<button onClick={resetBracket} className="bourgeois ">
 					RESET

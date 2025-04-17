@@ -91,7 +91,7 @@ export function createAFLCoordinates(boundingXValue: number, boundingYValue: num
 	return nodeCoordinates;
 }
 
-export function createAFLNodes(afl: AFLBracketFlow) {
+export function createAFLNodes(afl: AFLBracketFlow, xCoordinate: number, yCoordinate: number) {
 	const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
 
 	const lb = [lbr1, lbr2];
@@ -100,7 +100,7 @@ export function createAFLNodes(afl: AFLBracketFlow) {
 	const sf = [sf1, sf2];
 	const gfr = [gf];
 
-	const coordinates = createAFLCoordinates(194, 1100, afl);
+	const coordinates = createAFLCoordinates(xCoordinate, yCoordinate, afl);
 
 	type MatchNodeComponentTypes =
 		| "match-node-starting-component"
