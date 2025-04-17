@@ -9,7 +9,8 @@ export class MatchNodeType {
 	matchNode: MatchNode;
 	bracket: AFLBracketFlow;
 	updateFun: React.Dispatch<React.SetStateAction<MatchNode[]>> | undefined;
-	inputHandleId: string;
+	upperInputHandleId: string;
+	lowerInputHandleId: string;
 	outputHandleId: string;
 	ghostInputHandleId: string;
 	championOutputHandleId: string;
@@ -19,7 +20,8 @@ export class MatchNodeType {
 		this.matchNode = matchNode;
 		this.bracket = bracket;
 		this.updateFun = undefined;
-		this.inputHandleId = `${matchNode.name}:Input`;
+		this.upperInputHandleId = `${matchNode.name}:UpperInput`;
+		this.lowerInputHandleId = `${matchNode.name}:LowerInput`;
 		this.outputHandleId = `${matchNode.name}:Output`;
 		this.ghostInputHandleId = `${matchNode.name}:GhostInput`;
 		this.championOutputHandleId = `${matchNode.name}:ChampionOutput`;

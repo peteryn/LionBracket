@@ -8,7 +8,7 @@ export function MatchNodeEndingComponent({ data }: NodeProps<MatchNodeIsolatedCo
 		<div className="match-node">
 			<div className="match-node-area">
 				{teamAreas}
-				<Handle type="target" position={Position.Left} id={data.inputHandleId}></Handle>
+				<Handle type="target" position={Position.Left} id={data.upperInputHandleId}></Handle>
 			</div>
 		</div>
 	);

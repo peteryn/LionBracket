@@ -12,13 +12,13 @@ export function MatchNodeMiddleComponent2({ data }: NodeProps<MatchNodeIsolatedC
 				<Handle
 					type="target"
 					position={Position.Left}
-					id={`${data.inputHandleId}Ghost`}
+					id={`${data.upperInputHandleId}Ghost`}
 					style={{ top: "30px" }}
 				></Handle>
 				<Handle
 					type="target"
 					position={Position.Left}
-					id={data.inputHandleId}
+					id={data.upperInputHandleId}
 					style={{ top: "70px" }}
 				></Handle>
 				<Handle type="source" position={Position.Right} id={data.outputHandleId}></Handle>

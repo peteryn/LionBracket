@@ -120,7 +120,7 @@ export function createAFLNodes(afl: AFLBracketFlow, xCoordinate: number, yCoordi
 			}
 			const appNode: AppNode = {
 				id: node.name,
-				position: {x: xCalc, y: yCalc},
+				position: { x: xCalc, y: yCalc },
 				data: new MatchNodeType(node, afl),
 				type: s,
 				draggable: false,
@@ -146,8 +146,8 @@ export function createAFLNodes(afl: AFLBracketFlow, xCoordinate: number, yCoordi
 		}
 		const ghostNode: AppNode = {
 			id: ghostId,
-			position: {x: xCalc, y: yCalc},
-			data: {name: ghostShortened, outputHandleId: `${ghostShortened}:Output`},
+			position: { x: xCalc, y: yCalc },
+			data: { name: ghostShortened, outputHandleId: `${ghostShortened}:Output` },
 			type: "ghost-node",
 			draggable: false,
 		};
@@ -179,7 +179,7 @@ export function createAFLNodes(afl: AFLBracketFlow, xCoordinate: number, yCoordi
 	}
 	const championNode: AppNode = {
 		id: "champion",
-		position: {x: xCalc, y: yCalc},
+		position: { x: xCalc, y: yCalc },
 		data: new ChampionNodeType(championName, championPathName),
 		type: "champion-node-component",
 		draggable: false,
@@ -203,9 +203,9 @@ export function createAFLEdges(afl: AFLBracketFlow) {
 				source: node.name,
 				target: node.upperRound.name,
 				sourceHandle: `${node.name}:Output`,
-				targetHandle: `${node.upperRound.name}:Input`,
+				targetHandle: `${node.upperRound.name}:UpperInput`,
 				type: "step",
-				style: {strokeWidth: 2},
+				style: { strokeWidth: 2 },
 				selectable: false,
 			});
 		}
@@ -215,9 +215,9 @@ export function createAFLEdges(afl: AFLBracketFlow) {
 				source: node.name,
 				target: node.lowerRound.name,
 				sourceHandle: `${node.name}:Output`,
-				targetHandle: `${node.lowerRound.name}:Input`,
+				targetHandle: `${node.lowerRound.name}:UpperInput`,
 				type: "step",
-				style: {strokeWidth: 2},
+				style: { strokeWidth: 2 },
 				selectable: false,
 			});
 		}
@@ -228,9 +228,9 @@ export function createAFLEdges(afl: AFLBracketFlow) {
 		source: "lowerQuarterFinal1GhostNode",
 		target: "lowerQuarterFinal1",
 		sourceHandle: "lqf1gn:Output",
-		targetHandle: "lowerQuarterFinal1:InputGhost",
+		targetHandle: "lowerQuarterFinal1:UpperInputGhost",
 		type: "step",
-		style: {strokeWidth: 2},
+		style: { strokeWidth: 2 },
 		selectable: false,
 	});
 
@@ -239,9 +239,9 @@ export function createAFLEdges(afl: AFLBracketFlow) {
 		source: "lowerQuarterFinal2GhostNode",
 		target: "lowerQuarterFinal2",
 		sourceHandle: "lqf2gn:Output",
-		targetHandle: "lowerQuarterFinal2:InputGhost",
+		targetHandle: "lowerQuarterFinal2:UpperInputGhost",
 		type: "step",
-		style: {strokeWidth: 2},
+		style: { strokeWidth: 2 },
 		selectable: false,
 	});
 
@@ -250,9 +250,9 @@ export function createAFLEdges(afl: AFLBracketFlow) {
 		source: "semiFinal1GhostNode",
 		target: "semiFinal1",
 		sourceHandle: "sf1gn:Output",
-		targetHandle: "semiFinal1:InputGhost",
+		targetHandle: "semiFinal1:UpperInputGhost",
 		type: "step",
-		style: {strokeWidth: 2},
+		style: { strokeWidth: 2 },
 		selectable: false,
 	});
 
@@ -261,9 +261,9 @@ export function createAFLEdges(afl: AFLBracketFlow) {
 		source: "semiFinal2GhostNode",
 		target: "semiFinal2",
 		sourceHandle: "sf2gn:Output",
-		targetHandle: "semiFinal2:InputGhost",
+		targetHandle: "semiFinal2:UpperInputGhost",
 		type: "step",
-		style: {strokeWidth: 2},
+		style: { strokeWidth: 2 },
 		selectable: false,
 	});
 
