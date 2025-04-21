@@ -1,3 +1,4 @@
+/*
 import type { Edge } from "@xyflow/react";
 
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
@@ -60,3 +61,4 @@ levelOrderTraversal(swiss.rootRound, (node) => {
 });
 
 initialEdges.push(...createAFLEdges(new AFLBracketFlow()))
+ */

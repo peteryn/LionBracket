@@ -1,6 +1,6 @@
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
-import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
+import { AFLBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket";
 import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
 
 type swissBracketStorage = {
@@ -89,7 +89,7 @@ export function deserializeStoredSwissBracket(bracketId: string) {
 	return rootRoundResult;
 }
 
-export function serializeAflBracket(aflBracket: AFLBracketFlow, bracketId: string) {
+export function serializeAflBracket(aflBracket: AFLBracket, bracketId: string) {
 	const bracketNodes = aflBracket.getAllMatchNodes();
 	const cloned = structuredClone(bracketNodes);
 	cloned.forEach((node) => {

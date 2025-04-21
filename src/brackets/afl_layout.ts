@@ -1,4 +1,5 @@
-import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow.ts";
+/*
+import { AFLBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
 import { MatchNode } from "../../LionBracketEngine/src/models/match_node.ts";
 import { AppNode } from "../nodes/types.ts";
 import { MatchNodeType } from "../nodes/matchNodes/MatchNodeType.ts";
@@ -6,7 +7,7 @@ import { paths } from "../helper/TeamsTranslator.ts";
 import { ChampionNodeType } from "../nodes/ChampionNodeType.ts";
 import { Edge } from "@xyflow/react";
 
-export function createAFLCoordinates(boundingXValue: number, boundingYValue: number, afl: AFLBracketFlow) {
+export function createAFLCoordinates(boundingXValue: number, boundingYValue: number, afl: AFLBracket) {
 	const VERTICAL_GAP = 40;
 	const HORIZONTAL_GAP = 92;
 	const AFL_NODE_HEIGHT = 100;
@@ -84,14 +85,12 @@ export function createAFLCoordinates(boundingXValue: number, boundingYValue: num
 		100,
 	]);
 
-	/*
-		afl total length is 1620
-	*/
+		//afl total length is 1620
 
 	return nodeCoordinates;
 }
 
-export function createAFLNodes(afl: AFLBracketFlow, xCoordinate: number, yCoordinate: number) {
+export function createAFLNodes(afl: AFLBracket, xCoordinate: number, yCoordinate: number) {
 	const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
 
 	const lb = [lbr1, lbr2];
@@ -189,7 +188,7 @@ export function createAFLNodes(afl: AFLBracketFlow, xCoordinate: number, yCoordi
 	return initialAFLNodes;
 }
 
-export function createAFLEdges(afl: AFLBracketFlow) {
+export function createAFLEdges(afl: AFLBracket) {
 	const aflNodes = afl.getAllMatchNodes();
 	const edges: Edge[] = [];
 	aflNodes.forEach((node) => {
@@ -269,3 +268,4 @@ export function createAFLEdges(afl: AFLBracketFlow) {
 
 	return edges;
 }
+*/
