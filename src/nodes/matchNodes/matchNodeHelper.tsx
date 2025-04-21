@@ -1,26 +1,23 @@
 import { getScore } from "../../helper/score";
 import { paths } from "../../helper/TeamsTranslator";
-import { MatchNodeType } from "./MatchNodeType";
 import MatchTeamInputArea from "./MatchTeamInputArea";
+import { EliminationMatchNode } from "../types.ts";
 
-export function createMatches(data: MatchNodeType) {
-	const match = data.matchNode.match;
-	const upperInputId = `${match.id}upper`;
-	const lowerInputId = `${match.id}lower`;
+export function createMatches(data: EliminationMatchNode) {
+	// const match = data.matchNode.match;
+	const upperInputId = `${data.bracketName}.${data.matchNode.name}upper`;
+	const lowerInputId = `${data.bracketName}.${data.matchNode.name}lower`;
 
 	function onChange() {
 		const upperTeamWins = getScore(upperInputId);
 		const lowerTeamWins = getScore(lowerInputId);
 		const bracket = data.bracket;
-		const matchRecord = bracket.getMatchRecord(match.id);
-		// console.log(`upper team wins: ${upperTeamWins}`)
-		// console.log(`lower team wins: ${lowerTeamWins}`)
-		// console.log(`bracket: ${bracket}`)
-		// console.log(`matchRecord: ${matchRecord}`)
+		const matchRecord = bracket.getMatchRecord(data.matchNode.name);
+
 		if (matchRecord?.type === "FullRecord") {
 			matchRecord.upperSeedWins = upperTeamWins;
 			matchRecord.lowerSeedWins = lowerTeamWins;
-			bracket.setMatchRecord(match.id, matchRecord);
+			bracket.setMatchRecord(data.matchNode.name, matchRecord);
 			if (data.updateFun) {
 				bracket.updateFlow(data.matchNode);
 				const nodeList = bracket.getAllMatchNodes();
@@ -28,7 +25,6 @@ export function createMatches(data: MatchNodeType) {
 				bracket.buildBracket(cloned);
 
 				data.updateFun(cloned);
-				// data.updateFun([]);
 			} else {
 				console.log("afl update function doesn't exist when it should");
 			}
@@ -36,19 +32,20 @@ export function createMatches(data: MatchNodeType) {
 	}
 
 	let teamAreas;
-	switch (match.matchRecord?.type) {
+	const matchRecord = data.matchNode.matchRecord;
+	switch (matchRecord?.type) {
 		case "FullRecord": {
-			const upperImagePath = `/logos/${paths[match.matchRecord.upperSeed - 1]}.png`;
-			const lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
-			const upperTeamName = paths[match.matchRecord.upperSeed - 1].replace("_", " ");
-			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1].replace("_", " ");
+			const upperImagePath = `/logos/${paths[matchRecord.upperSeed - 1]}.png`;
+			const lowerImagePath = `/logos/${paths[matchRecord.lowerSeed - 1]}.png`;
+			const upperTeamName = paths[matchRecord.upperSeed - 1].replace("_", " ");
+			const lowerTeamName = paths[matchRecord.lowerSeed - 1].replace("_", " ");
 			let colorClassUpper = "";
 			let colorClassLower = "";
-			if (match.matchRecord.upperSeedWins > match.matchRecord.lowerSeedWins) {
+			if (matchRecord.upperSeedWins > matchRecord.lowerSeedWins) {
 				colorClassUpper = "round-winning-text";
 				// colorClassLower = "round-losing-text";
 			}
-			if (match.matchRecord.lowerSeedWins > match.matchRecord.upperSeedWins) {
+			if (matchRecord.lowerSeedWins > matchRecord.upperSeedWins) {
 				colorClassLower = "round-winning-text";
 				// colorClassLower = "round-winning-text";
 			}
@@ -61,7 +58,7 @@ export function createMatches(data: MatchNodeType) {
 						inputId={upperInputId}
 						teamName={upperTeamName}
 						imagePath={upperImagePath}
-						startingScore={match.matchRecord.upperSeedWins}
+						startingScore={matchRecord.upperSeedWins}
 						colorClass={colorClassUpper}
 					></MatchTeamInputArea>
 
@@ -71,7 +68,7 @@ export function createMatches(data: MatchNodeType) {
 						inputId={lowerInputId}
 						teamName={lowerTeamName}
 						imagePath={lowerImagePath}
-						startingScore={match.matchRecord.lowerSeedWins}
+						startingScore={matchRecord.lowerSeedWins}
 						colorClass={colorClassLower}
 					></MatchTeamInputArea>
 				</>
@@ -79,8 +76,8 @@ export function createMatches(data: MatchNodeType) {
 			break;
 		}
 		case "UpperRecord": {
-			const upperImagePath = `/logos/${paths[match.matchRecord.upperSeed - 1]}.png`;
-			const upperTeamName = paths[match.matchRecord.upperSeed - 1].replace("_", " ");
+			const upperImagePath = `/logos/${paths[matchRecord.upperSeed - 1]}.png`;
+			const upperTeamName = paths[matchRecord.upperSeed - 1].replace("_", " ");
 			teamAreas = (
 				<MatchTeamInputArea
 					updateFun={() => {
@@ -89,15 +86,15 @@ export function createMatches(data: MatchNodeType) {
 					inputId={upperInputId}
 					teamName={upperTeamName}
 					imagePath={upperImagePath}
-					startingScore={match.matchRecord.upperSeedWins}
+					startingScore={matchRecord.upperSeedWins}
 					colorClass=""
 				></MatchTeamInputArea>
 			);
 			break;
 		}
 		case "LowerRecord": {
-			const lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
-			const lowerTeamName = paths[match.matchRecord.lowerSeed - 1].replace("_", " ");
+			const lowerImagePath = `/logos/${paths[matchRecord.lowerSeed - 1]}.png`;
+			const lowerTeamName = paths[matchRecord.lowerSeed - 1].replace("_", " ");
 			teamAreas = (
 				<>
 					<div></div>
@@ -108,7 +105,7 @@ export function createMatches(data: MatchNodeType) {
 						inputId={lowerInputId}
 						teamName={lowerTeamName}
 						imagePath={lowerImagePath}
-						startingScore={match.matchRecord.lowerSeedWins}
+						startingScore={matchRecord.lowerSeedWins}
 						colorClass=""
 					></MatchTeamInputArea>
 				</>
