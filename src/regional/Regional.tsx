@@ -7,6 +7,7 @@ import { ExitNodeType } from "../nodes/ExitNodeType.ts";
 import { AFLBracket, AFLNodeTypes } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
 import { MatchNodeType } from "../nodes/matchNodes/MatchNodeType.ts";
 import { GenericMatchNode } from "../../LionBracketEngine/src/models/generic_match_node.ts";
+import { createAFLEdges, createAFLNodes } from "../brackets/afl_layout.ts";
 // import { createAFLEdges, createAFLNodes } from "../brackets/afl_layout.ts";
 
 export default function Regional() {
@@ -14,29 +15,29 @@ export default function Regional() {
 
 	const GSL_A_nodes: AppNode[] = [];
 	const GSL_B_nodes: AppNode[] = [];
-	const AFL_nodes: AppNode[] = [];
-	const data: MatchNodeType<AFLNodeTypes, AFLBracket> = {
-		bracketName: "test",
-		matchNode: new GenericMatchNode<AFLNodeTypes>("GrandFinal",false),
-		bracket: new AFLBracket(),
-		updateFun: undefined,
-		upperInputHandleId: "test",
-		lowerInputHandleId: "test",
-		outputHandleId: "test",
-		ghostInputHandleId: "test",
-		championOutputHandleId: "test",
-	}
-	let qualObj: AppNode = {
-		id: `test:Qualified`,
-		position: {x: 0, y: 0},
-		type: "match-node-component",
-		draggable: false,
-		data: data
-	};
-	const initialNodes = [qualObj];
+	const AFL_nodes: AppNode[] = createAFLNodes(new AFLBracket(true), 0, 0);
+	// const data: MatchNodeType<AFLNodeTypes, AFLBracket> = {
+	// 	bracketName: "test",
+	// 	matchNode: new GenericMatchNode<AFLNodeTypes>("GrandFinal",false),
+	// 	bracket: new AFLBracket(),
+	// 	updateFun: undefined,
+	// 	upperInputHandleId: "test",
+	// 	lowerInputHandleId: "test",
+	// 	outputHandleId: "test",
+	// 	// ghostInputHandleId: "test",
+	// 	// championOutputHandleId: "test",
+	// }
+	// let qualObj: AppNode = {
+	// 	id: `test:Qualified`,
+	// 	position: {x: 0, y: 0},
+	// 	type: "match-node-component",
+	// 	draggable: false,
+	// 	data: data
+	// };
+	const initialNodes = AFL_nodes;
 
-	const AFL_edges = [];
-	const initialEdges: Edge[] = [];
+	const AFL_edges = createAFLEdges(new AFLBracket());
+	const initialEdges: Edge[] = AFL_edges;
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);

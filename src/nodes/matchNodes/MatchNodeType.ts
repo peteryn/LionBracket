@@ -35,8 +35,23 @@ export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>
 	bracket: B;
 	updateFun: React.Dispatch<React.SetStateAction<GenericMatchNode<NodeNames>[]>> | undefined;
 	upperInputHandleId: string;
+	middleInputHandleId: string;
 	lowerInputHandleId: string;
 	outputHandleId: string;
-	ghostInputHandleId: string;
-	championOutputHandleId: string;
+	// ghostInputHandleId: string;
+	// championOutputHandleId: string;
+}
+
+export function MatchNodeTypeConstructor<NodeNames extends string, B extends Bracket<NodeNames>>(
+	node: GenericMatchNode<NodeNames>, bracket: B): MatchNodeType<NodeNames, B> {
+	return {
+		bracketName: "test",
+		matchNode: node,
+		bracket: bracket,
+		updateFun: undefined,
+		upperInputHandleId: `${node.name}:UpperInput`,
+		middleInputHandleId: `${node.name}:MiddleInput`,
+		lowerInputHandleId: `${node.name}:LowerInput`,
+		outputHandleId: `${node.name}:Output`
+	}
 }

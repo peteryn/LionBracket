@@ -8,19 +8,19 @@ export function MatchNodeComponent<NodeNames extends string, B extends Bracket<N
 
 	return (
 		<div className="match-node">
-			<h1>HEY</h1>
 			<div className="match-node-area">
 				{teamAreas}
 				<Handle
 					type="target"
 					position={Position.Left}
-					id={`${data.upperInputHandleId}Ghost`}
+					id={`${data.upperInputHandleId}`}
 					style={{ top: "30px" }}
 				></Handle>
+				<Handle type="target" position={Position.Left} id={data.middleInputHandleId}></Handle>
 				<Handle
 					type="target"
 					position={Position.Left}
-					id={data.upperInputHandleId}
+					id={data.lowerInputHandleId}
 					style={{ top: "70px" }}
 				></Handle>
 				<Handle type="source" position={Position.Right} id={data.outputHandleId}></Handle>
