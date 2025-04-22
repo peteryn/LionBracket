@@ -3,6 +3,10 @@ import { RegionalTournament } from "../../LionBracketEngine/src/gsl_afl_bracket/
 import { AppNode } from "../nodes/types";
 import { nodeTypes } from "../nodes";
 import { edgeTypes } from "../edges";
+import { ExitNodeType } from "../nodes/ExitNodeType.ts";
+import { AFLBracket, AFLNodeTypes } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
+import { MatchNodeType } from "../nodes/matchNodes/MatchNodeType.ts";
+import { GenericMatchNode } from "../../LionBracketEngine/src/models/generic_match_node.ts";
 // import { createAFLEdges, createAFLNodes } from "../brackets/afl_layout.ts";
 
 export default function Regional() {
@@ -11,7 +15,25 @@ export default function Regional() {
 	const GSL_A_nodes: AppNode[] = [];
 	const GSL_B_nodes: AppNode[] = [];
 	const AFL_nodes: AppNode[] = [];
-	const initialNodes = GSL_A_nodes.concat(GSL_B_nodes);
+	const data: MatchNodeType<AFLNodeTypes, AFLBracket> = {
+		bracketName: "test",
+		matchNode: new GenericMatchNode<AFLNodeTypes>("GrandFinal",false),
+		bracket: new AFLBracket(),
+		updateFun: undefined,
+		upperInputHandleId: "test",
+		lowerInputHandleId: "test",
+		outputHandleId: "test",
+		ghostInputHandleId: "test",
+		championOutputHandleId: "test",
+	}
+	let qualObj: AppNode = {
+		id: `test:Qualified`,
+		position: {x: 0, y: 0},
+		type: "match-node-component",
+		draggable: false,
+		data: data
+	};
+	const initialNodes = [qualObj];
 
 	const AFL_edges = [];
 	const initialEdges: Edge[] = [];

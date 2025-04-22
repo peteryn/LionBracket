@@ -1,9 +1,10 @@
 import { getScore } from "../../helper/score";
 import { paths } from "../../helper/TeamsTranslator";
 import MatchTeamInputArea from "./MatchTeamInputArea";
-import { EliminationMatchNode } from "../types.ts";
+import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
+import { MatchNodeType } from "./MatchNodeType.ts";
 
-export function createMatches(data: EliminationMatchNode) {
+export function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(data: MatchNodeType<NodeNames, B>) {
 	// const match = data.matchNode.match;
 	const upperInputId = `${data.bracketName}.${data.matchNode.name}upper`;
 	const lowerInputId = `${data.bracketName}.${data.matchNode.name}lower`;

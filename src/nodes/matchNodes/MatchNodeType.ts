@@ -29,7 +29,7 @@ import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
 // 	}
 // }
 
-export type MatchNodeType<NodeNames extends string, B extends Bracket<GenericMatchNode<NodeNames>, NodeNames>> = {
+export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>> = {
 	bracketName: string;
 	matchNode: GenericMatchNode<NodeNames>;
 	bracket: B;
