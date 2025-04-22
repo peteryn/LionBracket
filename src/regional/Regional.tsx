@@ -16,24 +16,6 @@ export default function Regional() {
 	const GSL_A_nodes: AppNode[] = [];
 	const GSL_B_nodes: AppNode[] = [];
 	const AFL_nodes: AppNode[] = createAFLNodes(new AFLBracket(true), 0, 0);
-	// const data: MatchNodeType<AFLNodeTypes, AFLBracket> = {
-	// 	bracketName: "test",
-	// 	matchNode: new GenericMatchNode<AFLNodeTypes>("GrandFinal",false),
-	// 	bracket: new AFLBracket(),
-	// 	updateFun: undefined,
-	// 	upperInputHandleId: "test",
-	// 	lowerInputHandleId: "test",
-	// 	outputHandleId: "test",
-	// 	// ghostInputHandleId: "test",
-	// 	// championOutputHandleId: "test",
-	// }
-	// let qualObj: AppNode = {
-	// 	id: `test:Qualified`,
-	// 	position: {x: 0, y: 0},
-	// 	type: "match-node-component",
-	// 	draggable: false,
-	// 	data: data
-	// };
 	const initialNodes = AFL_nodes;
 
 	const AFL_edges = createAFLEdges(new AFLBracket());

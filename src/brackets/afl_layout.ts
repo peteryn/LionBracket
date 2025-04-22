@@ -1,7 +1,6 @@
 import { AFLBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
-import { MatchNode } from "../../LionBracketEngine/src/models/match_node.ts";
 import { AppNode } from "../nodes/types.ts";
-import { MatchNodeType, MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
+import { MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
 import { paths } from "../helper/TeamsTranslator.ts";
 import { ChampionNodeType } from "../nodes/ChampionNodeType.ts";
 import { Edge } from "@xyflow/react";
@@ -91,42 +90,9 @@ export function createAFLCoordinates(boundingXValue: number, boundingYValue: num
 
 export function createAFLNodes(afl: AFLBracket, xCoordinate: number, yCoordinate: number) {
 	const allMatchNodes = afl.getAllMatchNodes();
-	const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = allMatchNodes;
-
-	const lb = [lbr1, lbr2];
-	const uqf = [uqf1, uqf2];
-	const lqf = [lbqf1, lbqf2];
-	const sf = [sf1, sf2];
-	const gfr = [gf];
 
 	const coordinates = createAFLCoordinates(xCoordinate, yCoordinate, afl);
 
-	// type MatchNodeComponentTypes =
-	// 	| "match-node-starting-component"
-	// 	| "match-node-middle-component"
-	// 	| "match-node-middle-component2"
-	// 	| "match-node-isolated-component"
-	// 	| "match-node-ending-component";
-	//
-	// function createMap(s: MatchNodeComponentTypes, coordinates: Map<string, number[]>) {
-	// 	return (node: MatchNode) => {
-	// 		let xCalc = 0;
-	// 		let yCalc = 0;
-	// 		const res = coordinates.get(node.name);
-	// 		if (res) {
-	// 			xCalc = res[0];
-	// 			yCalc = res[1];
-	// 		}
-	// 		const appNode: AppNode = {
-	// 			id: node.name,
-	// 			position: { x: xCalc, y: yCalc },
-	// 			data: new MatchNodeType(node, afl),
-	// 			type: s,
-	// 			draggable: false,
-	// 		};
-	// 		return appNode;
-	// 	};
-	// }
 	const initialAFLNodes: AppNode[] = allMatchNodes.map((node) => {
 		let xCalc = 0;
 		let yCalc = 0;
@@ -144,13 +110,6 @@ export function createAFLNodes(afl: AFLBracket, xCoordinate: number, yCoordinate
 		};
 		return appNode;
 	})
-
-	// const initialAFLNodes: AppNode[] = lb
-	// 	.map(createMap("match-node-starting-component", coordinates))
-	// 	.concat(uqf.map(createMap("match-node-isolated-component", coordinates)))
-	// 	.concat(lqf.map(createMap("match-node-middle-component2", coordinates)))
-	// 	.concat(sf.map(createMap("match-node-middle-component2", coordinates)))
-	// 	.concat(gfr.map(createMap("match-node-middle-component", coordinates)));
 
 	function createGhostNode(ghostId: string, ghostShortened: string) {
 		let xCalc = 0;
@@ -184,6 +143,9 @@ export function createAFLNodes(afl: AFLBracket, xCoordinate: number, yCoordinate
 	}
 	let championPathName = "";
 	let championName = "";
+
+	const gf = afl.getBracketNode("GrandFinal");
+
 	if (gf.matchRecord?.type === "FullRecord") {
 		if (gf.matchRecord.upperSeedWins > gf.matchRecord.lowerSeedWins) {
 			championPathName = `/logos/${paths[gf.matchRecord.upperSeed - 1]}.png`;
