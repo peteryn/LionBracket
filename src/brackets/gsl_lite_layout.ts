@@ -20,6 +20,13 @@ export function createGSLCoordinates(boundingXValue: number, boundingYValue: num
 	const VERTICAL_OFFSET = VERTICAL_GAP + NODE_HEIGHT;
 	const UPPER_BRACKET_GAP = NODE_HEIGHT + 20;
 
+	// based off of promoted node css class
+	// (100 - 58) / 2 = 21
+	const PROMOTED_NODE_MIDDLE = 21;
+
+	const GHOST_VERTICAL_OFFSET = 27.5;
+	const GHOST_HORIZONTAL_OFFSET = 50;
+
 	const [uqf1, uqf2, uqf3, uqf4, usf1, usf2, lqf1, lqf2, lsf1, lsf2] = gsl.getAllMatchNodes();
 	const nodeCoordinates: Map<string, [x: number, y: number]> = new Map();
 
@@ -39,14 +46,14 @@ export function createGSLCoordinates(boundingXValue: number, boundingYValue: num
 	nodeCoordinates.set(lsf1.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE]);
 	nodeCoordinates.set(lsf2.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE]);
 
-	nodeCoordinates.set(`${usf1.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + (((2 * NODE_HEIGHT) + VERTICAL_GAP) / 2) - NODE_HEIGHT / 2 + 21]);
-	nodeCoordinates.set(`${usf2.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 2 * VERTICAL_OFFSET + (((2 * NODE_HEIGHT) + VERTICAL_GAP) / 2) - NODE_HEIGHT / 2 + 21]);
+	nodeCoordinates.set(`${usf1.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + (((2 * NODE_HEIGHT) + VERTICAL_GAP) / 2) - NODE_HEIGHT / 2 + PROMOTED_NODE_MIDDLE]);
+	nodeCoordinates.set(`${usf2.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 2 * VERTICAL_OFFSET + (((2 * NODE_HEIGHT) + VERTICAL_GAP) / 2) - NODE_HEIGHT / 2 + PROMOTED_NODE_MIDDLE]);
 
-	nodeCoordinates.set(`${lsf1.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + 21]);
-	nodeCoordinates.set(`${lsf2.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + 21]);
+	nodeCoordinates.set(`${lsf1.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + PROMOTED_NODE_MIDDLE]);
+	nodeCoordinates.set(`${lsf2.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + PROMOTED_NODE_MIDDLE]);
 
-	nodeCoordinates.set(`${lsf1.name}:Ghost`, [boundingXValue + HORIZONTAL_OFFSET - 50, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + 27.5]);
-	nodeCoordinates.set(`${lsf2.name}:Ghost`, [boundingXValue + HORIZONTAL_OFFSET - 50, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + 27.5]);
+	nodeCoordinates.set(`${lsf1.name}:Ghost`, [boundingXValue + HORIZONTAL_OFFSET - GHOST_HORIZONTAL_OFFSET, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + GHOST_VERTICAL_OFFSET]);
+	nodeCoordinates.set(`${lsf2.name}:Ghost`, [boundingXValue + HORIZONTAL_OFFSET - GHOST_HORIZONTAL_OFFSET, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + GHOST_VERTICAL_OFFSET]);
 
 	return nodeCoordinates;
 }
