@@ -45,6 +45,9 @@ export function createGSLCoordinates(boundingXValue: number, boundingYValue: num
 	nodeCoordinates.set(`${lsf1.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + 21]);
 	nodeCoordinates.set(`${lsf2.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + 21]);
 
+	nodeCoordinates.set(`${lsf1.name}:Ghost`, [boundingXValue + HORIZONTAL_OFFSET - 50, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + 27.5]);
+	nodeCoordinates.set(`${lsf2.name}:Ghost`, [boundingXValue + HORIZONTAL_OFFSET - 50, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + 27.5]);
+
 	return nodeCoordinates;
 }
 
@@ -70,15 +73,36 @@ export function createGSLNodes(gsl: GslLiteBracket, xCoordinate: number, yCoordi
 		return appNode;
 	});
 
-	initialNodes.push(createPromotedNodes(gsl.getBracketNode("UpperSemiFinal1"), coordinates));
-	initialNodes.push(createPromotedNodes(gsl.getBracketNode("UpperSemiFinal2"), coordinates));
-	initialNodes.push(createPromotedNodes(gsl.getBracketNode("LowerSemiFinal1"), coordinates));
-	initialNodes.push(createPromotedNodes(gsl.getBracketNode("LowerSemiFinal2"), coordinates));
+	initialNodes.push(createPromotedNode(gsl.getBracketNode("UpperSemiFinal1"), coordinates));
+	initialNodes.push(createPromotedNode(gsl.getBracketNode("UpperSemiFinal2"), coordinates));
+	initialNodes.push(createPromotedNode(gsl.getBracketNode("LowerSemiFinal1"), coordinates));
+	initialNodes.push(createPromotedNode(gsl.getBracketNode("LowerSemiFinal2"), coordinates));
+
+	initialNodes.push(createGhostNode(gsl.getBracketNode("LowerSemiFinal1"), coordinates));
+	initialNodes.push(createGhostNode(gsl.getBracketNode("LowerSemiFinal2"), coordinates));
 
 	return initialNodes;
 }
 
-function createPromotedNodes(node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>): AppNode {
+function createGhostNode(node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>): AppNode {
+	const ghostId = `${node.name}:Ghost`;
+	let xCalc = 0;
+	let yCalc = 0;
+	const res = coordinates.get(ghostId);
+	if (res) {
+		xCalc = res[0];
+		yCalc = res[1];
+	}
+	return {
+		id: ghostId,
+		position: { x: xCalc, y: yCalc },
+		data: { name: ghostId, outputHandleId: `${ghostId}:Output` },
+		type: "ghost-node",
+		draggable: false,
+	};
+}
+
+function createPromotedNode(node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>): AppNode {
 	const res = coordinates.get(`${node.name}:Promoted`);
 	let xCalc = 0;
 	let yCalc = -200;
@@ -145,6 +169,18 @@ export function createGslLiteEdges(gsl: GslLiteBracket) {
 				target: `${node.name}:Promoted`,
 				sourceHandle: `${node.name}:Output`,
 				targetHandle: `${node.name}:Promoted`,
+				type: "step",
+				style: { strokeWidth: 2 },
+				selectable: false,
+			});
+		}
+		if (node.name === "LowerSemiFinal1" || node.name === "LowerSemiFinal2") {
+			edges.push({
+				id: `${node.name}:Ghost->${node.name}`,
+				source: `${node.name}:Ghost`,
+				target: `${node.name}`,
+				sourceHandle: `${node.name}:Ghost:Output`,
+				targetHandle: `${node.name}:UpperInput`,
 				type: "step",
 				style: { strokeWidth: 2 },
 				selectable: false,
