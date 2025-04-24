@@ -1,5 +1,3 @@
-import { AFLBracket } from "../../../../LionBracketEngine/src/afl_bracket/afl_bracket";
-import { MatchNode } from "../../../LionBracketEngine/src/models/match_node";
 import { GenericMatchNode } from "../../../LionBracketEngine/src/models/generic_match_node.ts";
 import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
 
@@ -53,5 +51,5 @@ export function MatchNodeTypeConstructor<NodeNames extends string, B extends Bra
 		middleInputHandleId: `${node.name}:MiddleInput`,
 		lowerInputHandleId: `${node.name}:LowerInput`,
 		outputHandleId: `${node.name}:Output`
-	}
+	};
 }

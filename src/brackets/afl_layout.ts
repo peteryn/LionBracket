@@ -1,11 +1,11 @@
-import { AFLBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
+import { AflBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
 import { AppNode } from "../nodes/types.ts";
 import { MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
 import { paths } from "../helper/TeamsTranslator.ts";
 import { ChampionNodeType } from "../nodes/ChampionNodeType.ts";
 import { Edge } from "@xyflow/react";
 
-export function createAFLCoordinates(boundingXValue: number, boundingYValue: number, afl: AFLBracket) {
+export function createAFLCoordinates(boundingXValue: number, boundingYValue: number, afl: AflBracket) {
 	const VERTICAL_GAP = 40;
 	const HORIZONTAL_GAP = 92;
 	const AFL_NODE_HEIGHT = 100;
@@ -83,12 +83,12 @@ export function createAFLCoordinates(boundingXValue: number, boundingYValue: num
 		100,
 	]);
 
-		//afl total length is 1620
+	//afl total length is 1620
 
 	return nodeCoordinates;
 }
 
-export function createAFLNodes(afl: AFLBracket, xCoordinate: number, yCoordinate: number) {
+export function createAFLNodes(afl: AflBracket, xCoordinate: number, yCoordinate: number) {
 	const allMatchNodes = afl.getAllMatchNodes();
 
 	const coordinates = createAFLCoordinates(xCoordinate, yCoordinate, afl);
@@ -109,7 +109,7 @@ export function createAFLNodes(afl: AFLBracket, xCoordinate: number, yCoordinate
 			draggable: false,
 		};
 		return appNode;
-	})
+	});
 
 	function createGhostNode(ghostId: string, ghostShortened: string) {
 		let xCalc = 0;
@@ -167,7 +167,7 @@ export function createAFLNodes(afl: AFLBracket, xCoordinate: number, yCoordinate
 	return initialAFLNodes;
 }
 
-export function createAFLEdges(afl: AFLBracket) {
+export function createAFLEdges(afl: AflBracket) {
 	const aflNodes = afl.getAllMatchNodes();
 	const edges: Edge[] = [];
 	aflNodes.forEach((node) => {
@@ -213,7 +213,7 @@ export function createAFLEdges(afl: AFLBracket) {
 				selectable: false,
 			});
 		}
-	})
+	});
 
 	edges.push({
 		id: "lqf1gn->lqf1",
