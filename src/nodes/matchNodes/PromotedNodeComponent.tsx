@@ -1,5 +1,5 @@
 import { type PromotedNodeComponent } from "../types.ts";
-import { NodeProps } from "@xyflow/react";
+import { Handle, NodeProps, Position } from "@xyflow/react";
 
 export function PromotedNodeComponent({ data }: NodeProps<PromotedNodeComponent>) {
 	return (
@@ -10,6 +10,7 @@ export function PromotedNodeComponent({ data }: NodeProps<PromotedNodeComponent>
 			<div className="promoted-team-name-text bebas-neue-regular">
 				<p>{data.teamName}</p>
 			</div>
+			<Handle id={data.inputId} type={"target"} position={Position.Left}></Handle>
 		</div>
 	);
 }

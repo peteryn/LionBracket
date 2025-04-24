@@ -8,7 +8,7 @@ import { AflBracket, AflNodeNames } from "../../LionBracketEngine/src/afl_bracke
 import { MatchNodeType } from "../nodes/matchNodes/MatchNodeType.ts";
 import { GenericMatchNode } from "../../LionBracketEngine/src/models/generic_match_node.ts";
 import { createAFLEdges, createAFLNodes } from "../brackets/afl_layout.ts";
-import { createGSLNodes } from "../brackets/gsl_lite_layout.ts";
+import { createGslLiteEdges, createGSLNodes } from "../brackets/gsl_lite_layout.ts";
 // import { createAFLEdges, createAFLNodes } from "../brackets/afl_layout.ts";
 
 export default function Regional() {
@@ -20,7 +20,8 @@ export default function Regional() {
 	const initialNodes = GSL_A_nodes;
 
 	const AFL_edges = createAFLEdges(new AflBracket());
-	const initialEdges: Edge[] = AFL_edges;
+	const gslEdges = createGslLiteEdges(tournament.gslA);
+	const initialEdges: Edge[] = gslEdges;
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);

@@ -7,6 +7,7 @@ import {
 } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
 import { getSeedOrUndefined } from "../../LionBracketEngine/src/util/util.ts";
 import { paths } from "../helper/TeamsTranslator.ts";
+import { Edge } from "@xyflow/react";
 
 export function createGSLCoordinates(boundingXValue: number, boundingYValue: number, gsl: GslLiteBracket) {
 	const VERTICAL_GAP = 40;
@@ -99,9 +100,56 @@ function createPromotedNodes(node: GslLiteMatchNode, coordinates: Map<string, [x
 		position: { x: xCalc, y: yCalc },
 		type: "promoted-node-component",
 		data: {
+			inputId: `${node.name}:Promoted`,
 			teamName: promotedTeamName,
 			imagePath: promotedTeamPath,
 		},
 		draggable: false,
 	};
+}
+
+export function createGslLiteEdges(gsl: GslLiteBracket) {
+	const allMatchNodes = gsl.getAllMatchNodes();
+	const edges: Edge[] = [];
+	allMatchNodes.forEach((node) => {
+		if (node.upperRound) {
+			if (node.name === "LowerQuarterFinal1" || node.name === "LowerQuarterFinal2") {
+				edges.push({
+					id: `${node.name}->${node.upperRound.name}`,
+					source: node.name,
+					target: node.upperRound.name,
+					sourceHandle: `${node.name}:Output`,
+					targetHandle: `${node.upperRound.name}:LowerInput`,
+					type: "step",
+					style: { strokeWidth: 2 },
+					selectable: false,
+				});
+				return;
+			}
+
+			edges.push({
+				id: `${node.name}->${node.upperRound.name}`,
+				source: node.name,
+				target: node.upperRound.name,
+				sourceHandle: `${node.name}:Output`,
+				targetHandle: `${node.upperRound.name}:MiddleInput`,
+				type: "step",
+				style: { strokeWidth: 2 },
+				selectable: false,
+			});
+		}
+		if (!node.upperRound) {
+			edges.push({
+				id: `${node.name}->${node.name}:Promoted`,
+				source: node.name,
+				target: `${node.name}:Promoted`,
+				sourceHandle: `${node.name}:Output`,
+				targetHandle: `${node.name}:Promoted`,
+				type: "step",
+				style: { strokeWidth: 2 },
+				selectable: false,
+			});
+		}
+	});
+	return edges;
 }
