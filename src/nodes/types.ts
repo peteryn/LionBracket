@@ -5,10 +5,12 @@ import { MatchNodeType } from "./matchNodes/MatchNodeType";
 import { GhostNodeType } from "./GhostNodeType";
 import { MatchNodeStartingComponent } from "./matchNodes/MatchNodeStartingComponent";
 import { ChampionNodeType } from "./ChampionNodeType";
-import { AFLBracket, AFLNodeTypes } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
-import { GSLBracket, GSLNodeTypes } from "../../LionBracketEngine/src/gsl_bracket/gsl_bracket.ts";
+import { AflBracket, AflNodeNames } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
+import { GslBracket, GslNodeNames } from "../../LionBracketEngine/src/gsl_bracket/gsl_bracket.ts";
 import { GenericMatchNode } from "../../LionBracketEngine/src/models/generic_match_node.ts";
 import { Bracket } from "../../LionBracketEngine/src/models/bracket.ts";
+import { PromotedNodeType } from "./PromotedNodeType.ts";
+import { GslLiteBracket, GslLiteNodeNames } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
 
 export type RoundNodeComponent = Node<RoundNodeType, "round-node-component">;
 export type StartingNodeComponent = Node<RoundNodeType, "starting-node-component">;
@@ -29,6 +31,7 @@ export type MatchNodeMiddleComponentTwoParents<NodeNames extends string, B exten
 
 export type GhostNode = Node<GhostNodeType, "ghost-node">;
 export type ChampionNodeComponent = Node<ChampionNodeType, "champion-node-component">;
+export type PromotedNodeComponent = Node<PromotedNodeType, "promoted-node-component">;
 
 export type AppNode =
 	| RoundNodeComponent
@@ -37,12 +40,13 @@ export type AppNode =
 	| ExitNodeComponent
 	| EndingNodeMiddleComponent
 	| EndingNodeLowerComponent
-	| MatchNodeComponent<AFLNodeTypes, AFLBracket>
-	| MatchNodeComponent<GSLNodeTypes, GSLBracket>
-	| MatchNodeIsolatedComponent<AFLNodeTypes, AFLBracket>
+	| MatchNodeComponent<AflNodeNames, AflBracket>
+	| MatchNodeComponent<GslLiteNodeNames, GslLiteBracket>
+	| MatchNodeIsolatedComponent<AflNodeNames, AflBracket>
 	// | MatchNodeStartingComponent
 	// | MatchNodeEndingComponent
 	// | MatchNodeMiddleComponent
 	// | MatchNodeMiddleComponent2
 	| GhostNode
-	| ChampionNodeComponent;
+	| ChampionNodeComponent
+	| PromotedNodeComponent;

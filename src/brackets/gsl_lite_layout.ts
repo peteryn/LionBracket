@@ -1,6 +1,12 @@
 import { AppNode } from "../nodes/types.ts";
 import { MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
-import { GslLiteBracket, GslLiteNodeNames } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
+import {
+	GslLiteBracket,
+	GslLiteMatchNode,
+	GslLiteNodeNames
+} from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
+import { getSeedOrUndefined } from "../../LionBracketEngine/src/util/util.ts";
+import { paths } from "../helper/TeamsTranslator.ts";
 
 export function createGSLCoordinates(boundingXValue: number, boundingYValue: number, gsl: GslLiteBracket) {
 	const VERTICAL_GAP = 40;
@@ -14,7 +20,7 @@ export function createGSLCoordinates(boundingXValue: number, boundingYValue: num
 	const UPPER_BRACKET_GAP = NODE_HEIGHT + 20;
 
 	const [uqf1, uqf2, uqf3, uqf4, usf1, usf2, lqf1, lqf2, lsf1, lsf2] = gsl.getAllMatchNodes();
-	const nodeCoordinates: Map<GslLiteNodeNames, [x: number, y: number]> = new Map();
+	const nodeCoordinates: Map<string, [x: number, y: number]> = new Map();
 
 	let curY = boundingYValue;
 	for (let i = 0; i < gsl.upperMatches.length; i++) {
@@ -31,6 +37,12 @@ export function createGSLCoordinates(boundingXValue: number, boundingYValue: num
 
 	nodeCoordinates.set(lsf1.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE]);
 	nodeCoordinates.set(lsf2.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE]);
+
+	nodeCoordinates.set(`${usf1.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + (((2 * NODE_HEIGHT) + VERTICAL_GAP) / 2) - NODE_HEIGHT / 2 + 21]);
+	nodeCoordinates.set(`${usf2.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 2 * VERTICAL_OFFSET + (((2 * NODE_HEIGHT) + VERTICAL_GAP) / 2) - NODE_HEIGHT / 2 + 21]);
+
+	nodeCoordinates.set(`${lsf1.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + 21]);
+	nodeCoordinates.set(`${lsf2.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + 21]);
 
 	return nodeCoordinates;
 }
@@ -57,5 +69,39 @@ export function createGSLNodes(gsl: GslLiteBracket, xCoordinate: number, yCoordi
 		return appNode;
 	});
 
+	initialNodes.push(createPromotedNodes(gsl.getBracketNode("UpperSemiFinal1"), coordinates));
+	initialNodes.push(createPromotedNodes(gsl.getBracketNode("UpperSemiFinal2"), coordinates));
+	initialNodes.push(createPromotedNodes(gsl.getBracketNode("LowerSemiFinal1"), coordinates));
+	initialNodes.push(createPromotedNodes(gsl.getBracketNode("LowerSemiFinal2"), coordinates));
+
 	return initialNodes;
+}
+
+function createPromotedNodes(node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>): AppNode {
+	const res = coordinates.get(`${node.name}:Promoted`);
+	let xCalc = 0;
+	let yCalc = -200;
+	if (res) {
+		xCalc = res[0];
+		yCalc = res[1];
+	}
+
+	const promotedSeedOrUndefined = getSeedOrUndefined(node.matchRecord);
+	let promotedTeamName = "";
+	let promotedTeamPath = "";
+	if (promotedSeedOrUndefined) {
+		promotedTeamPath = `/logos/${paths[promotedSeedOrUndefined - 1]}.png`;
+		promotedTeamName = paths[promotedSeedOrUndefined - 1].replace("_", " ");
+	}
+
+	return {
+		id: `${node.name}:Promoted`,
+		position: { x: xCalc, y: yCalc },
+		type: "promoted-node-component",
+		data: {
+			teamName: promotedTeamName,
+			imagePath: promotedTeamPath,
+		},
+		draggable: false,
+	};
 }
