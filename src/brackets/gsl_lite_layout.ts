@@ -7,6 +7,7 @@ import {
 import { getSeedOrUndefined } from "../../LionBracketEngine/src/util/util.ts";
 import { paths } from "../helper/TeamsTranslator.ts";
 import { Edge } from "@xyflow/react";
+import { GhostNodeType } from "../nodes/GhostNodeType.ts";
 
 // total dimensions (1050, 960)
 export function createGslCoordinates(boundingXValue: number, boundingYValue: number, gsl: GslLiteBracket) {
@@ -104,7 +105,7 @@ function createGhostNode(bracketId: string, node: GslLiteMatchNode, coordinates:
 	return {
 		id: ghostId,
 		position: { x: xCalc, y: yCalc },
-		data: { name: ghostId, outputHandleId: `${ghostId}:Output` },
+		data: new GhostNodeType(ghostId),
 		type: "ghost-node",
 		draggable: false,
 	};

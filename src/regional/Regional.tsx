@@ -11,12 +11,12 @@ export default function Regional() {
 
 	const gslNodesA: AppNode[] = createGslLiteNodes("GSL_A", tournament.gslA, 0, 0);
 	const gslNodesB: AppNode[] = createGslLiteNodes("GSL_B", tournament.gslB, 1050 + 100, 0);
-	const aflNodes: AppNode[] = createAflNodes(tournament.afl, 290, 960 + 200);
+	const aflNodes: AppNode[] = createAflNodes("AFL", tournament.afl, 290, 960 + 200);
 	const initialNodes = gslNodesA.concat(gslNodesB).concat(aflNodes);
 
 	const gslEdgesA = createGslLiteEdges("GSL_A", tournament.gslA);
 	const gslEdgesB = createGslLiteEdges("GSL_B", tournament.gslB);
-	const aflEdges = createAflEdges(tournament.afl);
+	const aflEdges = createAflEdges("AFL", tournament.afl);
 	const initialEdges: Edge[] = gslEdgesA.concat(gslEdgesB).concat(aflEdges);
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);

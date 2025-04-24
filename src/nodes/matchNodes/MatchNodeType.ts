@@ -41,11 +41,8 @@ export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>
 }
 
 export function MatchNodeTypeConstructor<NodeNames extends string, B extends Bracket<NodeNames>>(
-	node: GenericMatchNode<NodeNames>, bracket: B, bracketId?: string): MatchNodeType<NodeNames, B> {
+	node: GenericMatchNode<NodeNames>, bracket: B, bracketId: string): MatchNodeType<NodeNames, B> {
 	let nodeId = `${bracketId}:${node.name}`;
-	if (!bracketId) {
-		nodeId = node.name;
-	}
 	return {
 		bracketName: nodeId,
 		matchNode: node,

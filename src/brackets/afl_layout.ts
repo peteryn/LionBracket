@@ -1,9 +1,10 @@
-import { AflBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
+import { AflBracket, AflMatchNode } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
 import { AppNode } from "../nodes/types.ts";
 import { MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
 import { paths } from "../helper/TeamsTranslator.ts";
 import { ChampionNodeType } from "../nodes/ChampionNodeType.ts";
 import { Edge } from "@xyflow/react";
+import { GhostNodeType } from "../nodes/GhostNodeType.ts";
 
 // total dimensions (1620, 680)
 export function createAflCoordinates(boundingXValue: number, boundingYValue: number, afl: AflBracket) {
@@ -17,9 +18,9 @@ export function createAflCoordinates(boundingXValue: number, boundingYValue: num
 	const UPPER_BRACKET_OFFSET = 2 * AFL_NODE_HEIGHT + VERTICAL_GAP + UPPER_BRACKET_GAP;
 	const NODE_RAISE_VALUE = -20;
 
-	const [uqf1, uqf2, lbr1, lbr2, lbqf1, lbqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
+	const [uqf1, uqf2, lbr1, lbr2, lqf1, lqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
 
-	const nodeCoordinates: Map<string, number[]> = new Map();
+	const nodeCoordinates: Map<string, [x: number, y: number]> = new Map();
 	nodeCoordinates.set(uqf1.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue]);
 	nodeCoordinates.set(uqf2.name, [
 		boundingXValue + HORIZONTAL_OFFSET,
@@ -32,19 +33,19 @@ export function createAflCoordinates(boundingXValue: number, boundingYValue: num
 		boundingYValue + UPPER_BRACKET_OFFSET + VERTICAL_OFFSET,
 	]);
 
-	nodeCoordinates.set(lbqf1.name, [
+	nodeCoordinates.set(lqf1.name, [
 		boundingXValue + HORIZONTAL_OFFSET,
 		boundingYValue + UPPER_BRACKET_OFFSET + NODE_RAISE_VALUE,
 	]);
-	nodeCoordinates.set("LowerQuarterFinal1GhostNode", [
+	nodeCoordinates.set(`${lqf1.name}:Ghost`, [
 		boundingXValue + HORIZONTAL_OFFSET - 50,
 		boundingYValue + UPPER_BRACKET_OFFSET + 7.5,
 	]);
-	nodeCoordinates.set(lbqf2.name, [
+	nodeCoordinates.set(lqf2.name, [
 		boundingXValue + HORIZONTAL_OFFSET,
 		boundingYValue + UPPER_BRACKET_OFFSET + NODE_RAISE_VALUE + VERTICAL_OFFSET,
 	]);
-	nodeCoordinates.set("LowerQuarterFinal2GhostNode", [
+	nodeCoordinates.set(`${lqf2.name}:Ghost`, [
 		boundingXValue + HORIZONTAL_OFFSET - 50,
 		boundingYValue + UPPER_BRACKET_OFFSET + 7.5 + VERTICAL_OFFSET,
 	]);
@@ -53,7 +54,7 @@ export function createAflCoordinates(boundingXValue: number, boundingYValue: num
 		boundingXValue + 2 * HORIZONTAL_OFFSET,
 		boundingYValue + UPPER_BRACKET_OFFSET + 2 * NODE_RAISE_VALUE,
 	]);
-	nodeCoordinates.set("SemiFinal1GhostNode", [
+	nodeCoordinates.set(`${sf1.name}:Ghost`, [
 		boundingXValue + 2 * HORIZONTAL_OFFSET - 50,
 		boundingYValue + UPPER_BRACKET_OFFSET + 1 * NODE_RAISE_VALUE + 7.5,
 	]);
@@ -61,7 +62,7 @@ export function createAflCoordinates(boundingXValue: number, boundingYValue: num
 		boundingXValue + 2 * HORIZONTAL_OFFSET,
 		boundingYValue + UPPER_BRACKET_OFFSET + 2 * NODE_RAISE_VALUE + VERTICAL_OFFSET,
 	]);
-	nodeCoordinates.set("SemiFinal2GhostNode", [
+	nodeCoordinates.set(`${sf2.name}:Ghost`, [
 		boundingXValue + 2 * HORIZONTAL_OFFSET - 50,
 		boundingYValue + UPPER_BRACKET_OFFSET + 1 * NODE_RAISE_VALUE + VERTICAL_OFFSET + 7.5,
 	]);
@@ -87,7 +88,7 @@ export function createAflCoordinates(boundingXValue: number, boundingYValue: num
 	return nodeCoordinates;
 }
 
-export function createAflNodes(afl: AflBracket, xCoordinate: number, yCoordinate: number) {
+export function createAflNodes(bracketId: string, afl: AflBracket, xCoordinate: number, yCoordinate: number) {
 	const allMatchNodes = afl.getAllMatchNodes();
 
 	const coordinates = createAflCoordinates(xCoordinate, yCoordinate, afl);
@@ -100,20 +101,22 @@ export function createAflNodes(afl: AflBracket, xCoordinate: number, yCoordinate
 			xCalc = res[0];
 			yCalc = res[1];
 		}
+		const nodeId = `${bracketId}:${node.name}`;
 		const appNode: AppNode = {
-			id: node.name,
+			id: nodeId,
 			position: { x: xCalc, y: yCalc },
-			data: MatchNodeTypeConstructor(node, afl),
+			data: MatchNodeTypeConstructor(node, afl, bracketId),
 			type: "match-node-component",
 			draggable: false,
 		};
 		return appNode;
 	});
 
-	function createGhostNode(ghostId: string, ghostShortened: string) {
+	function createGhostNode(bracketId: string, node: AflMatchNode, coordinates: Map<string, [x: number, y: number]>) {
+		const ghostId = `${bracketId}:${node.name}:Ghost`;
 		let xCalc = 0;
 		let yCalc = 0;
-		const res = coordinates.get(ghostId);
+		const res = coordinates.get(`${node.name}:Ghost`);
 		if (res) {
 			xCalc = res[0];
 			yCalc = res[1];
@@ -121,17 +124,17 @@ export function createAflNodes(afl: AflBracket, xCoordinate: number, yCoordinate
 		const ghostNode: AppNode = {
 			id: ghostId,
 			position: { x: xCalc, y: yCalc },
-			data: { name: ghostShortened, outputHandleId: `${ghostShortened}:Output` },
+			data: new GhostNodeType(ghostId),
 			type: "ghost-node",
 			draggable: false,
 		};
 		initialAFLNodes.push(ghostNode);
 	}
 
-	createGhostNode("LowerQuarterFinal1GhostNode", "lqf1gn");
-	createGhostNode("LowerQuarterFinal2GhostNode", "lqf2gn");
-	createGhostNode("SemiFinal1GhostNode", "sf1gn");
-	createGhostNode("SemiFinal2GhostNode", "sf2gn");
+	createGhostNode(bracketId, afl.getBracketNode("LowerQuarterFinal1"), coordinates);
+	createGhostNode(bracketId, afl.getBracketNode("LowerQuarterFinal2"), coordinates);
+	createGhostNode(bracketId, afl.getBracketNode("SemiFinal1"), coordinates);
+	createGhostNode(bracketId, afl.getBracketNode("SemiFinal2"), coordinates);
 
 	let xCalc = 0;
 	let yCalc = 0;
@@ -166,7 +169,7 @@ export function createAflNodes(afl: AflBracket, xCoordinate: number, yCoordinate
 	return initialAFLNodes;
 }
 
-export function createAflEdges(afl: AflBracket) {
+export function createAflEdges(bracketId: string, afl: AflBracket) {
 	const aflNodes = afl.getAllMatchNodes();
 	const edges: Edge[] = [];
 	aflNodes.forEach((node) => {
@@ -174,39 +177,42 @@ export function createAflEdges(afl: AflBracket) {
 			return;
 		}
 
-		if (node.name === "SemiFinal1" || node.name === "SemiFinal2") {
-			edges.push({
-				id: `${node.name}->${node.upperRound!.name}`,
-				source: node.name,
-				target: node.upperRound!.name,
-				sourceHandle: `${node.name}:Output`,
-				targetHandle: `${node.upperRound!.name}:MiddleInput`,
-				type: "step",
-				style: { strokeWidth: 2 },
-				selectable: false,
-			});
-			return;
-		}
-
+		const nodeId = `${bracketId}:${node.name}`;
 		if (node.upperRound) {
+			const upperNodeId = `${bracketId}:${node.upperRound.name}`;
+			if (node.name === "SemiFinal1" || node.name === "SemiFinal2") {
+				edges.push({
+					id: `${nodeId}->${upperNodeId}`,
+					source: nodeId,
+					target: upperNodeId,
+					sourceHandle: `${nodeId}:Output`,
+					targetHandle: `${upperNodeId}:MiddleInput`,
+					type: "step",
+					style: { strokeWidth: 2 },
+					selectable: false,
+				});
+				return;
+			}
+
 			edges.push({
-				id: `${node.name}->${node.upperRound.name}`,
-				source: node.name,
-				target: node.upperRound.name,
-				sourceHandle: `${node.name}:Output`,
-				targetHandle: `${node.upperRound.name}:LowerInput`,
+				id: `${nodeId}->${upperNodeId}`,
+				source: nodeId,
+				target: upperNodeId,
+				sourceHandle: `${nodeId}:Output`,
+				targetHandle: `${upperNodeId}:LowerInput`,
 				type: "step",
 				style: { strokeWidth: 2 },
 				selectable: false,
 			});
 		}
 		if (node.lowerRound) {
+			const lowerNodeId = `${bracketId}:${node.lowerRound.name}`;
 			edges.push({
-				id: `${node.name}->${node.lowerRound.name}`,
-				source: node.name,
-				target: node.lowerRound.name,
-				sourceHandle: `${node.name}:Output`,
-				targetHandle: `${node.lowerRound.name}:UpperInput`,
+				id: `${nodeId}->${lowerNodeId}`,
+				source: nodeId,
+				target: lowerNodeId,
+				sourceHandle: `${nodeId}:Output`,
+				targetHandle: `${lowerNodeId}:UpperInput`,
 				type: "step",
 				style: { strokeWidth: 2 },
 				selectable: false,
@@ -214,48 +220,23 @@ export function createAflEdges(afl: AflBracket) {
 		}
 	});
 
-	edges.push({
-		id: "lqf1gn->lqf1",
-		source: "LowerQuarterFinal1GhostNode",
-		target: "LowerQuarterFinal1",
-		sourceHandle: "lqf1gn:Output",
-		targetHandle: "LowerQuarterFinal1:UpperInput",
-		type: "step",
-		style: { strokeWidth: 2 },
-		selectable: false,
-	});
-
-	edges.push({
-		id: "lqf2gn->lqf2",
-		source: "LowerQuarterFinal2GhostNode",
-		target: "LowerQuarterFinal2",
-		sourceHandle: "lqf2gn:Output",
-		targetHandle: "LowerQuarterFinal2:UpperInput",
-		type: "step",
-		style: { strokeWidth: 2 },
-		selectable: false,
-	});
-
-	edges.push({
-		id: "sf1gn->sf1",
-		source: "SemiFinal1GhostNode",
-		target: "SemiFinal1",
-		sourceHandle: "sf1gn:Output",
-		targetHandle: "SemiFinal1:UpperInput",
-		type: "step",
-		style: { strokeWidth: 2 },
-		selectable: false,
-	});
-
-	edges.push({
-		id: "sf2gn->sf2",
-		source: "SemiFinal2GhostNode",
-		target: "SemiFinal2",
-		sourceHandle: "sf2gn:Output",
-		targetHandle: "SemiFinal2:UpperInput",
-		type: "step",
-		style: { strokeWidth: 2 },
-		selectable: false,
+	const lqf1 = afl.getBracketNode("LowerQuarterFinal1");
+	const lqf2 = afl.getBracketNode("LowerQuarterFinal2");
+	const sf1 = afl.getBracketNode("SemiFinal1");
+	const sf2 = afl.getBracketNode("SemiFinal2");
+	const withGhostNodes = [lqf1, lqf2, sf1, sf2];
+	withGhostNodes.forEach((node) => {
+		const nodeId = `${bracketId}:${node.name}`;
+		edges.push({
+			id: `${nodeId}:Ghost->${nodeId}`,
+			source: `${nodeId}:Ghost`,
+			target: `${nodeId}`,
+			sourceHandle: `${nodeId}:Ghost:Output`,
+			targetHandle: `${nodeId}:UpperInput`,
+			type: "step",
+			style: { strokeWidth: 2 },
+			selectable: false,
+		});
 	});
 
 	return edges;
