@@ -3,13 +3,13 @@ import { MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
 import {
 	GslLiteBracket,
 	GslLiteMatchNode,
-	GslLiteNodeNames
 } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
 import { getSeedOrUndefined } from "../../LionBracketEngine/src/util/util.ts";
 import { paths } from "../helper/TeamsTranslator.ts";
 import { Edge } from "@xyflow/react";
 
-export function createGSLCoordinates(boundingXValue: number, boundingYValue: number, gsl: GslLiteBracket) {
+// total dimensions (1050, 960)
+export function createGslCoordinates(boundingXValue: number, boundingYValue: number, gsl: GslLiteBracket) {
 	const VERTICAL_GAP = 40;
 	const HORIZONTAL_GAP = 92;
 	const NODE_HEIGHT = 100;
@@ -58,9 +58,9 @@ export function createGSLCoordinates(boundingXValue: number, boundingYValue: num
 	return nodeCoordinates;
 }
 
-export function createGSLNodes(gsl: GslLiteBracket, xCoordinate: number, yCoordinate: number) {
+export function createGslLiteNodes(bracketId: string, gsl: GslLiteBracket, xCoordinate: number, yCoordinate: number) {
 	const allMatchNodes = gsl.getAllMatchNodes();
-	const coordinates = createGSLCoordinates(0, 0, gsl);
+	const coordinates = createGslCoordinates(xCoordinate, yCoordinate, gsl);
 
 	const initialNodes: AppNode[] = allMatchNodes.map((node) => {
 		const res = coordinates.get(node.name);
@@ -70,32 +70,33 @@ export function createGSLNodes(gsl: GslLiteBracket, xCoordinate: number, yCoordi
 			xCalc = res[0];
 			yCalc = res[1];
 		}
+		const nodeId = `${bracketId}:${node.name}`;
 		const appNode: AppNode = {
-			id: node.name,
+			id: nodeId,
 			position: { x: xCalc, y: yCalc },
-			data: MatchNodeTypeConstructor(node, gsl),
+			data: MatchNodeTypeConstructor(node, gsl, bracketId),
 			type: "match-node-component",
 			draggable: false,
 		};
 		return appNode;
 	});
 
-	initialNodes.push(createPromotedNode(gsl.getBracketNode("UpperSemiFinal1"), coordinates));
-	initialNodes.push(createPromotedNode(gsl.getBracketNode("UpperSemiFinal2"), coordinates));
-	initialNodes.push(createPromotedNode(gsl.getBracketNode("LowerSemiFinal1"), coordinates));
-	initialNodes.push(createPromotedNode(gsl.getBracketNode("LowerSemiFinal2"), coordinates));
+	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("UpperSemiFinal1"), coordinates));
+	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("UpperSemiFinal2"), coordinates));
+	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("LowerSemiFinal1"), coordinates));
+	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("LowerSemiFinal2"), coordinates));
 
-	initialNodes.push(createGhostNode(gsl.getBracketNode("LowerSemiFinal1"), coordinates));
-	initialNodes.push(createGhostNode(gsl.getBracketNode("LowerSemiFinal2"), coordinates));
+	initialNodes.push(createGhostNode(bracketId, gsl.getBracketNode("LowerSemiFinal1"), coordinates));
+	initialNodes.push(createGhostNode(bracketId, gsl.getBracketNode("LowerSemiFinal2"), coordinates));
 
 	return initialNodes;
 }
 
-function createGhostNode(node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>): AppNode {
-	const ghostId = `${node.name}:Ghost`;
+function createGhostNode(bracketId: string, node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>): AppNode {
+	const ghostId = `${bracketId}:${node.name}:Ghost`;
 	let xCalc = 0;
 	let yCalc = 0;
-	const res = coordinates.get(ghostId);
+	const res = coordinates.get(`${node.name}:Ghost`);
 	if (res) {
 		xCalc = res[0];
 		yCalc = res[1];
@@ -109,7 +110,7 @@ function createGhostNode(node: GslLiteMatchNode, coordinates: Map<string, [x: nu
 	};
 }
 
-function createPromotedNode(node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>): AppNode {
+function createPromotedNode(bracketId: string, node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>): AppNode {
 	const res = coordinates.get(`${node.name}:Promoted`);
 	let xCalc = 0;
 	let yCalc = -200;
@@ -127,11 +128,11 @@ function createPromotedNode(node: GslLiteMatchNode, coordinates: Map<string, [x:
 	}
 
 	return {
-		id: `${node.name}:Promoted`,
+		id: `${bracketId}:${node.name}:Promoted`,
 		position: { x: xCalc, y: yCalc },
 		type: "promoted-node-component",
 		data: {
-			inputId: `${node.name}:Promoted`,
+			inputId: `${bracketId}:${node.name}:Promoted`,
 			teamName: promotedTeamName,
 			imagePath: promotedTeamPath,
 		},
@@ -139,18 +140,20 @@ function createPromotedNode(node: GslLiteMatchNode, coordinates: Map<string, [x:
 	};
 }
 
-export function createGslLiteEdges(gsl: GslLiteBracket) {
+export function createGslLiteEdges(bracketId: string, gsl: GslLiteBracket) {
 	const allMatchNodes = gsl.getAllMatchNodes();
 	const edges: Edge[] = [];
 	allMatchNodes.forEach((node) => {
+		const nodeId = `${bracketId}:${node.name}`;
 		if (node.upperRound) {
+			const upperNodeId = `${bracketId}:${node.upperRound.name}`;
 			if (node.name === "LowerQuarterFinal1" || node.name === "LowerQuarterFinal2") {
 				edges.push({
-					id: `${node.name}->${node.upperRound.name}`,
-					source: node.name,
-					target: node.upperRound.name,
-					sourceHandle: `${node.name}:Output`,
-					targetHandle: `${node.upperRound.name}:LowerInput`,
+					id: `${nodeId}->${upperNodeId}`,
+					source: nodeId,
+					target: upperNodeId,
+					sourceHandle: `${nodeId}:Output`,
+					targetHandle: `${upperNodeId}:LowerInput`,
 					type: "step",
 					style: { strokeWidth: 2 },
 					selectable: false,
@@ -159,35 +162,37 @@ export function createGslLiteEdges(gsl: GslLiteBracket) {
 			}
 
 			edges.push({
-				id: `${node.name}->${node.upperRound.name}`,
-				source: node.name,
-				target: node.upperRound.name,
-				sourceHandle: `${node.name}:Output`,
-				targetHandle: `${node.upperRound.name}:MiddleInput`,
+				id: `${nodeId}->${upperNodeId}`,
+				source: nodeId,
+				target: upperNodeId,
+				sourceHandle: `${nodeId}:Output`,
+				targetHandle: `${upperNodeId}:MiddleInput`,
 				type: "step",
 				style: { strokeWidth: 2 },
 				selectable: false,
 			});
 		}
+		// for promoted nodes
 		if (!node.upperRound) {
 			edges.push({
-				id: `${node.name}->${node.name}:Promoted`,
-				source: node.name,
-				target: `${node.name}:Promoted`,
-				sourceHandle: `${node.name}:Output`,
-				targetHandle: `${node.name}:Promoted`,
+				id: `${nodeId}->${nodeId}:Promoted`,
+				source: nodeId,
+				target: `${nodeId}:Promoted`,
+				sourceHandle: `${nodeId}:Output`,
+				targetHandle: `${nodeId}:Promoted`,
 				type: "step",
 				style: { strokeWidth: 2 },
 				selectable: false,
 			});
 		}
+		// for ghost nodes
 		if (node.name === "LowerSemiFinal1" || node.name === "LowerSemiFinal2") {
 			edges.push({
-				id: `${node.name}:Ghost->${node.name}`,
-				source: `${node.name}:Ghost`,
-				target: `${node.name}`,
-				sourceHandle: `${node.name}:Ghost:Output`,
-				targetHandle: `${node.name}:UpperInput`,
+				id: `${nodeId}:Ghost->${nodeId}`,
+				source: `${nodeId}:Ghost`,
+				target: `${nodeId}`,
+				sourceHandle: `${nodeId}:Ghost:Output`,
+				targetHandle: `${nodeId}:UpperInput`,
 				type: "step",
 				style: { strokeWidth: 2 },
 				selectable: false,

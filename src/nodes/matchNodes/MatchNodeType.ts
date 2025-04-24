@@ -41,15 +41,19 @@ export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>
 }
 
 export function MatchNodeTypeConstructor<NodeNames extends string, B extends Bracket<NodeNames>>(
-	node: GenericMatchNode<NodeNames>, bracket: B): MatchNodeType<NodeNames, B> {
+	node: GenericMatchNode<NodeNames>, bracket: B, bracketId?: string): MatchNodeType<NodeNames, B> {
+	let nodeId = `${bracketId}:${node.name}`;
+	if (!bracketId) {
+		nodeId = node.name;
+	}
 	return {
-		bracketName: "test",
+		bracketName: nodeId,
 		matchNode: node,
 		bracket: bracket,
 		updateFun: undefined,
-		upperInputHandleId: `${node.name}:UpperInput`,
-		middleInputHandleId: `${node.name}:MiddleInput`,
-		lowerInputHandleId: `${node.name}:LowerInput`,
-		outputHandleId: `${node.name}:Output`
+		upperInputHandleId: `${nodeId}:UpperInput`,
+		middleInputHandleId: `${nodeId}:MiddleInput`,
+		lowerInputHandleId: `${nodeId}:LowerInput`,
+		outputHandleId: `${nodeId}:Output`
 	};
 }

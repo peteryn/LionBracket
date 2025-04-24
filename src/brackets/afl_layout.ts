@@ -5,7 +5,8 @@ import { paths } from "../helper/TeamsTranslator.ts";
 import { ChampionNodeType } from "../nodes/ChampionNodeType.ts";
 import { Edge } from "@xyflow/react";
 
-export function createAFLCoordinates(boundingXValue: number, boundingYValue: number, afl: AflBracket) {
+// total dimensions (1620, 680)
+export function createAflCoordinates(boundingXValue: number, boundingYValue: number, afl: AflBracket) {
 	const VERTICAL_GAP = 40;
 	const HORIZONTAL_GAP = 92;
 	const AFL_NODE_HEIGHT = 100;
@@ -83,15 +84,13 @@ export function createAFLCoordinates(boundingXValue: number, boundingYValue: num
 		100,
 	]);
 
-	//afl total length is 1620
-
 	return nodeCoordinates;
 }
 
-export function createAFLNodes(afl: AflBracket, xCoordinate: number, yCoordinate: number) {
+export function createAflNodes(afl: AflBracket, xCoordinate: number, yCoordinate: number) {
 	const allMatchNodes = afl.getAllMatchNodes();
 
-	const coordinates = createAFLCoordinates(xCoordinate, yCoordinate, afl);
+	const coordinates = createAflCoordinates(xCoordinate, yCoordinate, afl);
 
 	const initialAFLNodes: AppNode[] = allMatchNodes.map((node) => {
 		let xCalc = 0;
@@ -167,7 +166,7 @@ export function createAFLNodes(afl: AflBracket, xCoordinate: number, yCoordinate
 	return initialAFLNodes;
 }
 
-export function createAFLEdges(afl: AflBracket) {
+export function createAflEdges(afl: AflBracket) {
 	const aflNodes = afl.getAllMatchNodes();
 	const edges: Edge[] = [];
 	aflNodes.forEach((node) => {

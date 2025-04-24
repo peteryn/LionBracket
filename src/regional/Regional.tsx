@@ -1,27 +1,23 @@
 import { Background, Controls, Edge, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
-import { RegionalTournament } from "../../LionBracketEngine/src/gsl_afl_bracket/regional_tournament";
+import { RegionalTournament, GslBracketA } from "../../LionBracketEngine/src/gsl_afl_bracket/regional_tournament";
 import { AppNode } from "../nodes/types";
 import { nodeTypes } from "../nodes";
 import { edgeTypes } from "../edges";
-import { ExitNodeType } from "../nodes/ExitNodeType.ts";
-import { AflBracket, AflNodeNames } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
-import { MatchNodeType } from "../nodes/matchNodes/MatchNodeType.ts";
-import { GenericMatchNode } from "../../LionBracketEngine/src/models/generic_match_node.ts";
-import { createAFLEdges, createAFLNodes } from "../brackets/afl_layout.ts";
-import { createGslLiteEdges, createGSLNodes } from "../brackets/gsl_lite_layout.ts";
-// import { createAFLEdges, createAFLNodes } from "../brackets/afl_layout.ts";
+import { createAflEdges, createAflNodes } from "../brackets/afl_layout.ts";
+import { createGslLiteEdges, createGslLiteNodes } from "../brackets/gsl_lite_layout.ts";
 
 export default function Regional() {
 	const tournament = new RegionalTournament();
 
-	const GSL_A_nodes: AppNode[] = createGSLNodes(tournament.gslA, 0, 0);
-	const GSL_B_nodes: AppNode[] = [];
-	const AFL_nodes: AppNode[] = createAFLNodes(new AflBracket(true), 0, 0);
-	const initialNodes = GSL_A_nodes;
+	const gslNodesA: AppNode[] = createGslLiteNodes("GSL_A", tournament.gslA, 0, 0);
+	const gslNodesB: AppNode[] = createGslLiteNodes("GSL_B", tournament.gslB, 1050 + 100, 0);
+	const aflNodes: AppNode[] = createAflNodes(tournament.afl, 290, 960 + 200);
+	const initialNodes = gslNodesA.concat(gslNodesB).concat(aflNodes);
 
-	const AFL_edges = createAFLEdges(new AflBracket());
-	const gslEdges = createGslLiteEdges(tournament.gslA);
-	const initialEdges: Edge[] = gslEdges;
+	const gslEdgesA = createGslLiteEdges("GSL_A", tournament.gslA);
+	const gslEdgesB = createGslLiteEdges("GSL_B", tournament.gslB);
+	const aflEdges = createAflEdges(tournament.afl);
+	const initialEdges: Edge[] = gslEdgesA.concat(gslEdgesB).concat(aflEdges);
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
