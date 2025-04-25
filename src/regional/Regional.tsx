@@ -5,6 +5,7 @@ import { nodeTypes } from "../nodes";
 import { edgeTypes } from "../edges";
 import { createAflEdges, createAflNodes } from "../brackets/afl_layout.ts";
 import { createGslLiteEdges, createGslLiteNodes } from "../brackets/gsl_lite_layout.ts";
+import { useState } from "react";
 
 export default function Regional() {
 	const tournament = new RegionalTournament();
@@ -19,8 +20,19 @@ export default function Regional() {
 	const aflEdges = createAflEdges("AFL", tournament.afl);
 	const initialEdges: Edge[] = gslEdgesA.concat(gslEdgesB).concat(aflEdges);
 
+	// const [gslA, setGslA] = useState(tournament.gslA.getAllMatchNodes());
+	// const [gslB, setGslB] = useState(tournament.gslB.getAllMatchNodes());
+	// const [afl, setAfl] = useState(tournament.afl.getAllMatchNodes());
+	// TODO: create function in tournament that doesn't update records but updates promoted
+	// TODO: then setup for that function to be passed into MatchNodePromote
+	const [tournamentState, setTournamentState] = useState(tournament.getAllMatchNodes());
+
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
+
+	nodes.forEach((node) => {
+		node.data.updateFun = setTournamentState;
+	});
 
 	return (
 		<ReactFlow

@@ -31,7 +31,7 @@ export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>
 	bracketName: string;
 	matchNode: GenericMatchNode<NodeNames>;
 	bracket: B;
-	updateFun: React.Dispatch<React.SetStateAction<GenericMatchNode<NodeNames>[]>> | undefined;
+	updateFun: any | undefined;
 	upperInputHandleId: string;
 	middleInputHandleId: string;
 	lowerInputHandleId: string;

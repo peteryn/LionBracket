@@ -1,4 +1,3 @@
-/*
 import { useEffect, useState } from "react";
 import {
 	ReactFlow,
@@ -127,4 +126,3 @@ export default function Birmingham() {
 		</ReactFlow>
 	);
 }
- */
