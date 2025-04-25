@@ -28,10 +28,11 @@ import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
 // }
 
 export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>> = {
-	bracketName: string;
+	bracketId: string;
 	matchNode: GenericMatchNode<NodeNames>;
 	bracket: B;
 	updateFun: any | undefined;
+	promoteFun: any | undefined;
 	upperInputHandleId: string;
 	middleInputHandleId: string;
 	lowerInputHandleId: string;
@@ -44,10 +45,11 @@ export function MatchNodeTypeConstructor<NodeNames extends string, B extends Bra
 	node: GenericMatchNode<NodeNames>, bracket: B, bracketId: string): MatchNodeType<NodeNames, B> {
 	let nodeId = `${bracketId}:${node.name}`;
 	return {
-		bracketName: nodeId,
+		bracketId: bracketId,
 		matchNode: node,
 		bracket: bracket,
 		updateFun: undefined,
+		promoteFun: undefined,
 		upperInputHandleId: `${nodeId}:UpperInput`,
 		middleInputHandleId: `${nodeId}:MiddleInput`,
 		lowerInputHandleId: `${nodeId}:LowerInput`,

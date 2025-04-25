@@ -5,9 +5,11 @@ import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
 import { MatchNodeType } from "./MatchNodeType.ts";
 
 export function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(data: MatchNodeType<NodeNames, B>) {
+	// console.log("use");
 	// const match = data.matchNode.match;
-	const upperInputId = `${data.bracketName}.${data.matchNode.name}upper`;
-	const lowerInputId = `${data.bracketName}.${data.matchNode.name}lower`;
+	const upperInputId = `${data.bracketId}.${data.matchNode.name}upper`;
+	const lowerInputId = `${data.bracketId}.${data.matchNode.name}lower`;
+
 
 	function onChange() {
 		const upperTeamWins = getScore(upperInputId);
@@ -26,6 +28,9 @@ export function createMatches<NodeNames extends string, B extends Bracket<NodeNa
 				bracket.buildBracket(cloned);
 
 				data.updateFun(cloned);
+				if (data.promoteFun) {
+					data.promoteFun({ bracket: data.bracketId, nodeName: data.matchNode.name });
+				}
 			} else {
 				console.log("afl update function doesn't exist when it should");
 			}
