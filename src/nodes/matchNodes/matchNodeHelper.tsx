@@ -24,12 +24,10 @@ export function createMatches<NodeNames extends string, B extends Bracket<NodeNa
 			if (data.updateFun) {
 				bracket.updateFlow(data.matchNode);
 				const nodeList = bracket.getAllMatchNodes();
-				const cloned = structuredClone(nodeList);
-				bracket.buildBracket(cloned);
 
-				data.updateFun(cloned);
+				data.updateFun(nodeList);
 				if (data.promoteFun) {
-					data.promoteFun({ bracket: data.bracketId, nodeName: data.matchNode.name });
+					data.promoteFun	({ bracket: data.bracketId, nodeName: data.matchNode.name });
 				}
 			} else {
 				console.log("afl update function doesn't exist when it should");

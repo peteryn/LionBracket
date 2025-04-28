@@ -6,6 +6,7 @@ export default function App() {
 		<nav>
 			{/*<NavLink to="/birmingham">Birmingham</NavLink>*/}
 			<NavLink to="/regional">Regional</NavLink>
+			<NavLink to="/afl">Afl</NavLink>
 		</nav>
 	)
 }

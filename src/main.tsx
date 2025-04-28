@@ -6,6 +6,7 @@ import App from "./App";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Regional from "./regional/Regional.tsx";
+import Afl from "./regional/Afl..tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route path="/" element={<App />}></Route>
 				{/*<Route path="/birmingham" element={<Birmingham />}></Route>*/}
 				<Route path="/regional" element={<Regional />}></Route>
+				<Route path="/afl" element={<Afl />}></Route>
 			</Routes>
 		</BrowserRouter>
 	</React.StrictMode>
