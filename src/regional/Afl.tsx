@@ -4,9 +4,19 @@ import { useEffect, useState } from "react";
 import { Background, Controls, Panel, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
 import { nodeTypes } from "../nodes";
 import { edgeTypes } from "../edges";
+import { deserializeStoredAflBracket, serializeAflBracket } from "../helper/serializer.ts";
+
+const localStorageName = "test";
 
 export default function Afl() {
 	const aflBracket = new AflBracket(true);
+
+	const aflMatchNodes = deserializeStoredAflBracket(localStorageName);
+	if (aflMatchNodes) {
+		aflBracket.buildBracket(aflMatchNodes)
+	}
+	serializeAflBracket(aflBracket, localStorageName);
+
 	const initialNodes = createAflNodes("afl", aflBracket, 0, 0);
 	const initialEdges = createAflEdges("afl", aflBracket);
 
@@ -23,6 +33,7 @@ export default function Afl() {
 		aflBracket.buildBracket(afl);
 		const aflNodes = createAflNodes("afl", aflBracket, 0, 0);
 		setNodes(aflNodes)
+		serializeAflBracket(aflBracket, localStorageName);
 	}, [afl]);
 
 	return (

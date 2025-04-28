@@ -1,7 +1,11 @@
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
-import { AFLBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket";
+import { AflBracket, AflMatchNode } from "../../LionBracketEngine/src/afl_bracket/afl_bracket";
 import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
+import { Bracket } from "../../LionBracketEngine/src/models/bracket.ts";
+import { RegionalTournament } from "../../LionBracketEngine/src/gsl_afl_bracket/regional_tournament.ts";
+import { GslLiteMatchNode } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
+import { BracketNode } from "../../LionBracketEngine/src/models/bracket_node.ts";
 
 type swissBracketStorage = {
 	roundNodes: [string, RoundNode][];
@@ -89,7 +93,7 @@ export function deserializeStoredSwissBracket(bracketId: string) {
 	return rootRoundResult;
 }
 
-export function serializeAflBracket(aflBracket: AFLBracket, bracketId: string) {
+export function serializeAflBracket(aflBracket: AflBracket, bracketId: string) {
 	const bracketNodes = aflBracket.getAllMatchNodes();
 	const cloned = structuredClone(bracketNodes);
 	cloned.forEach((node) => {
@@ -102,9 +106,50 @@ export function serializeAflBracket(aflBracket: AFLBracket, bracketId: string) {
 
 export function deserializeStoredAflBracket(bracketId: string) {
 	const storedNodes = localStorage.getItem(bracketId);
-	let resultNodes: MatchNode[] | undefined;
+	let resultNodes: AflMatchNode[] | undefined;
 	if (storedNodes) {
 		resultNodes = JSON.parse(storedNodes);
 	}
 	return resultNodes;
 }
+
+export function serializeBracket<NodeNames extends string>(bracket: Bracket<NodeNames>) {
+	const bracketNodes = bracket.getAllMatchNodes();
+	const cloned = structuredClone(bracketNodes);
+	cloned.forEach((node) => {
+		node.upperRound = undefined;
+		node.lowerRound = undefined;
+	})
+}
+
+function clearRefs(node: BracketNode) {
+	node.upperRound = undefined;
+	node.lowerRound = undefined;
+}
+
+export function serializeRegionalTournament(tournament: RegionalTournament, localStorageName: string) {
+	const gslA = structuredClone(tournament.gslA.getAllMatchNodes());
+	gslA.forEach(clearRefs);
+	const gslB = structuredClone(tournament.gslB.getAllMatchNodes());
+	gslB.forEach(clearRefs);
+	const afl = structuredClone(tournament.afl.getAllMatchNodes());
+	afl.forEach(clearRefs);
+
+	const nodes: [gslA: GslLiteMatchNode[], gslB: GslLiteMatchNode[], afl: AflMatchNode[]] = [
+		gslA, gslB, afl
+	]
+
+	localStorage.setItem(localStorageName, JSON.stringify(nodes))
+}
+
+export function deserializeRegionalTournament(tournament: RegionalTournament, localStorageName: string) {
+	const storedNodes = localStorage.getItem(localStorageName);
+	let result: [gslA: GslLiteMatchNode[], gslB: GslLiteMatchNode[], afl: AflMatchNode[]] | undefined;
+	if (storedNodes) {
+		result = JSON.parse(storedNodes);
+		tournament.gslA.buildBracket(result![0])
+		tournament.gslB.buildBracket(result![1])
+		tournament.afl.buildBracket(result![2])
+	}
+}
+

@@ -6,7 +6,7 @@ import App from "./App";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Regional from "./regional/Regional.tsx";
-import Afl from "./regional/Afl..tsx";
+import Afl from "./regional/Afl.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>

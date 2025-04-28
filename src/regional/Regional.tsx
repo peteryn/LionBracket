@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 import { initializeAFLBracket } from "../../LionBracketEngine/src/util/util.ts";
 import { Seed } from "../../LionBracketEngine/src/models/match_record.ts";
 
+const localStorageName = "test";
+
 export default function Regional() {
 	const tournament = new RegionalTournament();
 
@@ -29,7 +31,6 @@ export default function Regional() {
 	const [gslA, setGslA] = useState(tournament.gslA.getAllMatchNodes());
 	const [gslB, setGslB] = useState(tournament.gslB.getAllMatchNodes());
 	const [afl, setAfl] = useState(tournament.afl.getAllMatchNodes());
-	// const [tournamentState, setTournamentState] = useState(tournament.getAllMatchNodes());
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
