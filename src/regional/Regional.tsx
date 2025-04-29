@@ -15,7 +15,6 @@ const localStorageName = "regionalTest";
 export default function Regional() {
 	const tournament = new RegionalTournament();
 
-	console.log("in main")
 	deserializeRegionalTournament(tournament, localStorageName);
 	serializeRegionalTournament(tournament, localStorageName);
 
@@ -37,7 +36,6 @@ export default function Regional() {
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
 	const promoteFun = () => {
-		console.log("promote fun")
 		tournament.afl.clearAllMatchRecords();
 		tournament.gslA.buildBracket(gslA);
 		tournament.gslB.buildBracket(gslB);
@@ -72,13 +70,11 @@ export default function Regional() {
 	});
 
 	useEffect(() => {
-		console.log("1111")
 		tournament.gslA.buildBracket(gslA);
 		tournament.gslB.buildBracket(gslB);
 	}, [gslA, gslB]);
 
 	useEffect(() => {
-		console.log("2222")
 		tournament.gslA.buildBracket(gslA);
 		tournament.gslB.buildBracket(gslB);
 		tournament.afl.buildBracket(afl)
