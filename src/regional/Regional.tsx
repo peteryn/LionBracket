@@ -12,11 +12,16 @@ import { createGslLiteEdges, createGslLiteNodes } from "../brackets/gsl_lite_lay
 import { useEffect, useState } from "react";
 import { initializeAFLBracket } from "../../LionBracketEngine/src/util/util.ts";
 import { Seed } from "../../LionBracketEngine/src/models/match_record.ts";
+import { deserializeRegionalTournament, serializeRegionalTournament } from "../helper/serializer.ts";
 
-const localStorageName = "test";
+const localStorageName = "regionalTest";
 
 export default function Regional() {
 	const tournament = new RegionalTournament();
+
+	console.log("in main")
+	deserializeRegionalTournament(tournament, localStorageName);
+	serializeRegionalTournament(tournament, localStorageName);
 
 	const gslNodesA: AppNode[] = createGslLiteNodes("GSL_A", tournament.gslA, 0, 0);
 	const gslNodesB: AppNode[] = createGslLiteNodes("GSL_B", tournament.gslB, 1050 + 100, 0);
@@ -35,22 +40,11 @@ export default function Regional() {
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
-	nodes.forEach((node) => {
-		if (node.data.bracketId === "GSL_A") {
-			node.data.updateFun = setGslA;
-		}
-		if (node.data.bracketId === "GSL_B") {
-			node.data.updateFun = setGslB;
-		}
-		if (node.data.bracketId === "AFL") {
-			node.data.updateFun = setAfl;
-		}
-	});
-
-	useEffect(() => {
+	const promoteFun = () => {
+		console.log("promote fun")
+		tournament.afl.clearAllMatchRecords();
 		tournament.gslA.buildBracket(gslA);
 		tournament.gslB.buildBracket(gslB);
-		tournament.afl.clearAllMatchRecords();
 
 		// [1, 3, 5, 7]
 		const GSL_A_results = tournament.gslA.getPromoted();
@@ -58,18 +52,54 @@ export default function Regional() {
 		const GSL_B_results = tournament.gslB.getPromoted();
 
 		const promotedSeeds: (Seed | undefined)[] = GSL_A_results.flatMap((seed, index) => [seed, GSL_B_results[index]]);
+		console.log(promotedSeeds)
 		initializeAFLBracket(promotedSeeds, tournament.afl, 0, 3, "UpperQuarterFinal1");
 		initializeAFLBracket(promotedSeeds, tournament.afl, 1, 2, "UpperQuarterFinal2");
 		initializeAFLBracket(promotedSeeds, tournament.afl, 4, 7, "LowerBracketRound1");
 		initializeAFLBracket(promotedSeeds, tournament.afl, 5, 6, "LowerBracketRound2");
 
 		setAfl(tournament.afl.getAllMatchNodes())
+	}
+
+	nodes.forEach((node) => {
+		if (node.data.bracketId === "GSL_A") {
+			node.data.updateFun = setGslA;
+			node.data.promoteFun = promoteFun
+		}
+		if (node.data.bracketId === "GSL_B") {
+			node.data.updateFun = setGslB;
+			node.data.promoteFun = promoteFun
+		}
+		if (node.data.bracketId === "AFL") {
+			node.data.updateFun = setAfl;
+		}
+	});
+
+	useEffect(() => {
+		console.log("1111")
+		tournament.gslA.buildBracket(gslA);
+		tournament.gslB.buildBracket(gslB);
+		// tournament.afl.clearAllMatchRecords();
+
+		// [1, 3, 5, 7]
+		// const GSL_A_results = tournament.gslA.getPromoted();
+		// [2, 4, 6, 8]
+		// const GSL_B_results = tournament.gslB.getPromoted();
+
+		// const promotedSeeds: (Seed | undefined)[] = GSL_A_results.flatMap((seed, index) => [seed, GSL_B_results[index]]);
+		// initializeAFLBracket(promotedSeeds, tournament.afl, 0, 3, "UpperQuarterFinal1");
+		// initializeAFLBracket(promotedSeeds, tournament.afl, 1, 2, "UpperQuarterFinal2");
+		// initializeAFLBracket(promotedSeeds, tournament.afl, 4, 7, "LowerBracketRound1");
+		// initializeAFLBracket(promotedSeeds, tournament.afl, 5, 6, "LowerBracketRound2");
+		// setAfl(tournament.afl.getAllMatchNodes())
 	}, [gslA, gslB]);
 
 	useEffect(() => {
+		console.log("2222")
 		tournament.gslA.buildBracket(gslA);
 		tournament.gslB.buildBracket(gslB);
 		tournament.afl.buildBracket(afl)
+		serializeRegionalTournament(tournament, localStorageName);
 
 		const gslNodesA: AppNode[] = createGslLiteNodes("GSL_A", tournament.gslA, 0, 0);
 		const gslNodesB: AppNode[] = createGslLiteNodes("GSL_B", tournament.gslB, 1050 + 100, 0);
