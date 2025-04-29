@@ -1,9 +1,5 @@
 import { Background, Controls, Edge, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
-import {
-	RegionalTournament,
-	GslBracketA,
-	BracketType
-} from "../../LionBracketEngine/src/gsl_afl_bracket/regional_tournament";
+import { RegionalTournament } from "../../LionBracketEngine/src/gsl_afl_bracket/regional_tournament";
 import { AppNode } from "../nodes/types";
 import { nodeTypes } from "../nodes";
 import { edgeTypes } from "../edges";
@@ -79,19 +75,6 @@ export default function Regional() {
 		console.log("1111")
 		tournament.gslA.buildBracket(gslA);
 		tournament.gslB.buildBracket(gslB);
-		// tournament.afl.clearAllMatchRecords();
-
-		// [1, 3, 5, 7]
-		// const GSL_A_results = tournament.gslA.getPromoted();
-		// [2, 4, 6, 8]
-		// const GSL_B_results = tournament.gslB.getPromoted();
-
-		// const promotedSeeds: (Seed | undefined)[] = GSL_A_results.flatMap((seed, index) => [seed, GSL_B_results[index]]);
-		// initializeAFLBracket(promotedSeeds, tournament.afl, 0, 3, "UpperQuarterFinal1");
-		// initializeAFLBracket(promotedSeeds, tournament.afl, 1, 2, "UpperQuarterFinal2");
-		// initializeAFLBracket(promotedSeeds, tournament.afl, 4, 7, "LowerBracketRound1");
-		// initializeAFLBracket(promotedSeeds, tournament.afl, 5, 6, "LowerBracketRound2");
-		// setAfl(tournament.afl.getAllMatchNodes())
 	}, [gslA, gslB]);
 
 	useEffect(() => {

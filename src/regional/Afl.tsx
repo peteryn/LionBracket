@@ -30,10 +30,8 @@ export default function Afl() {
 	})
 
 	useEffect(() => {
-		// aflBracket.buildBracket(afl);
+		aflBracket.buildBracket(afl);
 		const aflNodes = createAflNodes("afl", aflBracket, 0, 0);
-		const a = aflBracket.getBracketNode("LowerQuarterFinal1");
-		console.log(a.matchRecord)
 		setNodes(aflNodes)
 		serializeAflBracket(aflBracket, localStorageName);
 	}, [afl]);
