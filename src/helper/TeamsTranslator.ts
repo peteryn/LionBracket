@@ -55,7 +55,9 @@
 // 	"incorrect",
 // ];
 
-const major1: string[] = [
+import { Team } from "../nodes/matchNodes/MatchNodeType.ts";
+
+export const major1: string[] = [
 	"karmine_corp",
 	"nrg",
 	"falcons",
@@ -74,4 +76,85 @@ const major1: string[] = [
 	"fut_esports",
 ];
 
-export const paths = major1;
+export const major1Teams: Team[] = [
+	{ name: "karmine_corp", path: "karmine_corp" },
+	{ name: "nrg", path: "nrg" },
+	{ name: "falcons", path: "falcons" },
+	{ name: "vitality", path: "vitality" },
+	{ name: "furia", path: "furia" },
+	{ name: "dignitas", path: "dignitas" },
+	{ name: "the_ultimates", path: "the_ultimates" },
+	{ name: "geekay_esports", path: "geekay_esports" },
+	{ name: "wildcard", path: "wildcard" },
+	{ name: "geng", path: "geng" },
+	{ name: "team_secret", path: "team_secret" },
+	{ name: "twisted_minds", path: "twisted_minds" },
+	{ name: "helfie_chiefs", path: "helfie_chiefs" },
+	{ name: "complexity", path: "complexity" },
+	{ name: "luminosity", path: "luminosity" },
+	{ name: "fut_esports", path: "fut_esports" },
+];
+
+const eu4 = [
+	["Ninjas", "nip"],
+	["Dignitas", "dignitas"],
+	["Vitality", "vitality"],
+	["Synergy", "synergy"],
+	["F4WD", "f4wd"],
+	["JJROX", "jjrox"],
+	["Smokey Bacon", "smokey_bacon"],
+	["Geekay", "geekay_esports"],
+	["Karmine Corp", "karmine_corp"],
+	["Team BSK", "team_bsk"],
+	["Atom Unity", "atom_unity"],
+	["Gentlemates", "mates"],
+	["Dopamine", "dopamine"],
+	["Team BDS", "bds"],
+	["100%", "100"],
+	["Tokyo Tigers", "tokyo_tigers"]
+];
+
+const eu4gslA: Team[] = [
+	{ name: "Ninjas", path: "nip" },
+	{ name: "Vitality", path: "vitality" },
+	{ name: "F4WD", path: "f4wd" },
+	{ name: "Smokey Bacon", path: "smokey_bacon" },
+	{ name: "Karmine Corp", path: "karmine_corp" },
+	{ name: "Atom Unity", path: "atom_unity" },
+	{ name: "Dopamine", path: "default_dark" },
+	{ name: "100%", path: "100" },
+];
+
+const eu4gslB: Team[] = [
+	{ name: "Dignitas", path: "dignitas" },
+	{ name: "Synergy", path: "synergy" },
+	{ name: "JJROX", path: "jjrox" },
+	{ name: "Geekay", path: "geekay_esports" },
+	{ name: "Team BSK", path: "bsk" },
+	{ name: "Gentlemates", path: "mates" },
+	{ name: "Team BDS", path: "bds" },
+	{ name: "Tokyo Tigers", path: "tokyo_tigers" },
+];
+
+export const eu4combined = [...eu4gslA, ...eu4gslB];
+
+const na4 = [
+	"geng",
+	"complexity",
+	"nrg",
+	"the_ultimates",
+	"ssg",
+	"the_boys",
+	"poab",
+	"shopify",
+	"strictly",
+	"9lives",
+	"team evo",
+	"nah",
+	"wassup",
+	"power rangers",
+	"simtawk",
+	"deleted",
+];
+
+export const paths = na4;

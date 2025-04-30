@@ -1,6 +1,6 @@
 import { AflBracket, AflMatchNode } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
 import { AppNode } from "../nodes/types.ts";
-import { MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
+import { MatchNodeTypeConstructor, Team } from "../nodes/matchNodes/MatchNodeType.ts";
 import { paths } from "../helper/TeamsTranslator.ts";
 import { ChampionNodeType } from "../nodes/ChampionNodeType.ts";
 import { Edge } from "@xyflow/react";
@@ -88,7 +88,7 @@ export function createAflCoordinates(boundingXValue: number, boundingYValue: num
 	return nodeCoordinates;
 }
 
-export function createAflNodes(bracketId: string, afl: AflBracket, xCoordinate: number, yCoordinate: number) {
+export function createAflNodes(bracketId: string, afl: AflBracket, xCoordinate: number, yCoordinate: number, teams: Team[]) {
 	const allMatchNodes = afl.getAllMatchNodes();
 
 	const coordinates = createAflCoordinates(xCoordinate, yCoordinate, afl);
@@ -105,7 +105,7 @@ export function createAflNodes(bracketId: string, afl: AflBracket, xCoordinate: 
 		const appNode: AppNode = {
 			id: nodeId,
 			position: { x: xCalc, y: yCalc },
-			data: MatchNodeTypeConstructor(node, afl, bracketId),
+			data: MatchNodeTypeConstructor(node, afl, bracketId, teams),
 			type: "match-node-component",
 			draggable: false,
 		};

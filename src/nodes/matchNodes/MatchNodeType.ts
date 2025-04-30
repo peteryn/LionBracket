@@ -27,6 +27,11 @@ import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
 // 	}
 // }
 
+export type Team = {
+	name: string,
+	path: string,
+}
+
 export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>> = {
 	bracketId: string;
 	matchNode: GenericMatchNode<NodeNames>;
@@ -37,12 +42,13 @@ export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>
 	middleInputHandleId: string;
 	lowerInputHandleId: string;
 	outputHandleId: string;
+	teams: Team[]
 	// ghostInputHandleId: string;
 	// championOutputHandleId: string;
 }
 
 export function MatchNodeTypeConstructor<NodeNames extends string, B extends Bracket<NodeNames>>(
-	node: GenericMatchNode<NodeNames>, bracket: B, bracketId: string): MatchNodeType<NodeNames, B> {
+	node: GenericMatchNode<NodeNames>, bracket: B, bracketId: string, team: Team[]): MatchNodeType<NodeNames, B> {
 	let nodeId = `${bracketId}:${node.name}`;
 	return {
 		bracketId: bracketId,
@@ -53,6 +59,7 @@ export function MatchNodeTypeConstructor<NodeNames extends string, B extends Bra
 		upperInputHandleId: `${nodeId}:UpperInput`,
 		middleInputHandleId: `${nodeId}:MiddleInput`,
 		lowerInputHandleId: `${nodeId}:LowerInput`,
-		outputHandleId: `${nodeId}:Output`
+		outputHandleId: `${nodeId}:Output`,
+		teams: team
 	};
 }

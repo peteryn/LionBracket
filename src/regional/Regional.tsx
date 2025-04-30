@@ -9,24 +9,22 @@ import { useEffect, useState } from "react";
 import { initializeAFLBracket } from "../../LionBracketEngine/src/util/util.ts";
 import { Seed } from "../../LionBracketEngine/src/models/match_record.ts";
 import { deserializeRegionalTournament, serializeRegionalTournament } from "../helper/serializer.ts";
+import { Team } from "../nodes/matchNodes/MatchNodeType.ts";
 
 const localStorageName = "regionalTest";
 
-export default function Regional() {
+export default function Regional({ teams }: { teams: Team[] }) {
 	const tournament = new RegionalTournament();
 
 	deserializeRegionalTournament(tournament, localStorageName);
 	serializeRegionalTournament(tournament, localStorageName);
 
-	const gslNodesA: AppNode[] = createGslLiteNodes("GSL_A", tournament.gslA, 0, 0);
-	const gslNodesB: AppNode[] = createGslLiteNodes("GSL_B", tournament.gslB, 1050 + 100, 0);
-	const aflNodes: AppNode[] = createAflNodes("AFL", tournament.afl, 290, 960 + 200);
-	const initialNodes = gslNodesA.concat(gslNodesB).concat(aflNodes);
+	const initialNodes = getAllNodes(tournament, teams);
 
 	const gslEdgesA = createGslLiteEdges("GSL_A", tournament.gslA);
 	const gslEdgesB = createGslLiteEdges("GSL_B", tournament.gslB);
 	const aflEdges = createAflEdges("AFL", tournament.afl);
-	const initialEdges: Edge[] = gslEdgesA.concat(gslEdgesB).concat(aflEdges);
+	const initialEdges: Edge[] = [...gslEdgesA, ...gslEdgesB, ...aflEdges];
 
 	const [gslA, setGslA] = useState(tournament.gslA.getAllMatchNodes());
 	const [gslB, setGslB] = useState(tournament.gslB.getAllMatchNodes());
@@ -46,23 +44,22 @@ export default function Regional() {
 		const GSL_B_results = tournament.gslB.getPromoted();
 
 		const promotedSeeds: (Seed | undefined)[] = GSL_A_results.flatMap((seed, index) => [seed, GSL_B_results[index]]);
-		console.log(promotedSeeds)
 		initializeAFLBracket(promotedSeeds, tournament.afl, 0, 3, "UpperQuarterFinal1");
 		initializeAFLBracket(promotedSeeds, tournament.afl, 1, 2, "UpperQuarterFinal2");
 		initializeAFLBracket(promotedSeeds, tournament.afl, 4, 7, "LowerBracketRound1");
 		initializeAFLBracket(promotedSeeds, tournament.afl, 5, 6, "LowerBracketRound2");
 
-		setAfl(tournament.afl.getAllMatchNodes())
-	}
+		setAfl(tournament.afl.getAllMatchNodes());
+	};
 
 	nodes.forEach((node) => {
 		if (node.data.bracketId === "GSL_A") {
 			node.data.updateFun = setGslA;
-			node.data.promoteFun = promoteFun
+			node.data.promoteFun = promoteFun;
 		}
 		if (node.data.bracketId === "GSL_B") {
 			node.data.updateFun = setGslB;
-			node.data.promoteFun = promoteFun
+			node.data.promoteFun = promoteFun;
 		}
 		if (node.data.bracketId === "AFL") {
 			node.data.updateFun = setAfl;
@@ -71,19 +68,19 @@ export default function Regional() {
 
 	useEffect(() => {
 		tournament.gslA.buildBracket(gslA);
+	}, [gslA]);
+
+	useEffect(() => {
 		tournament.gslB.buildBracket(gslB);
-	}, [gslA, gslB]);
+	}, [gslB]);
 
 	useEffect(() => {
 		tournament.gslA.buildBracket(gslA);
 		tournament.gslB.buildBracket(gslB);
-		tournament.afl.buildBracket(afl)
+		tournament.afl.buildBracket(afl);
 		serializeRegionalTournament(tournament, localStorageName);
 
-		const gslNodesA: AppNode[] = createGslLiteNodes("GSL_A", tournament.gslA, 0, 0);
-		const gslNodesB: AppNode[] = createGslLiteNodes("GSL_B", tournament.gslB, 1050 + 100, 0);
-		const aflNodes: AppNode[] = createAflNodes("AFL", tournament.afl, 290, 960 + 200);
-		const initialNodes = gslNodesA.concat(gslNodesB).concat(aflNodes);
+		const initialNodes = getAllNodes(tournament, teams);
 
 		setNodes(initialNodes);
 	}, [afl]);
@@ -105,4 +102,11 @@ export default function Regional() {
 			<Controls showInteractive={false}/>
 		</ReactFlow>
 	);
+}
+
+function getAllNodes(tournament: RegionalTournament, teams: Team[]) {
+	const gslNodesA: AppNode[] = createGslLiteNodes("GSL_A", tournament.gslA, 0, 0, teams);
+	const gslNodesB: AppNode[] = createGslLiteNodes("GSL_B", tournament.gslB, 1050 + 100, 0, teams);
+	const aflNodes: AppNode[] = createAflNodes("AFL", tournament.afl, 290, 960, teams);
+	return [...gslNodesA, ...gslNodesB, ...aflNodes];
 }

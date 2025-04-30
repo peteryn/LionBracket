@@ -1,5 +1,5 @@
 import { AppNode } from "../nodes/types.ts";
-import { MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
+import { MatchNodeTypeConstructor, Team } from "../nodes/matchNodes/MatchNodeType.ts";
 import {
 	GslLiteBracket,
 	GslLiteMatchNode,
@@ -19,7 +19,7 @@ export function createGslCoordinates(boundingXValue: number, boundingYValue: num
 
 	const HORIZONTAL_OFFSET = HORIZONTAL_GAP + NODE_WIDTH;
 	const VERTICAL_OFFSET = VERTICAL_GAP + NODE_HEIGHT;
-	const UPPER_BRACKET_GAP = NODE_HEIGHT + 20;
+	const UPPER_BRACKET_GAP = 60;
 
 	// based off of promoted node css class
 	// (100 - 58) / 2 = 21
@@ -59,7 +59,7 @@ export function createGslCoordinates(boundingXValue: number, boundingYValue: num
 	return nodeCoordinates;
 }
 
-export function createGslLiteNodes(bracketId: string, gsl: GslLiteBracket, xCoordinate: number, yCoordinate: number) {
+export function createGslLiteNodes(bracketId: string, gsl: GslLiteBracket, xCoordinate: number, yCoordinate: number, teams: Team[]) {
 	const allMatchNodes = gsl.getAllMatchNodes();
 	const coordinates = createGslCoordinates(xCoordinate, yCoordinate, gsl);
 
@@ -75,17 +75,17 @@ export function createGslLiteNodes(bracketId: string, gsl: GslLiteBracket, xCoor
 		const appNode: AppNode = {
 			id: nodeId,
 			position: { x: xCalc, y: yCalc },
-			data: MatchNodeTypeConstructor(node, gsl, bracketId),
+			data: MatchNodeTypeConstructor(node, gsl, bracketId, teams),
 			type: "match-node-component",
 			draggable: false,
 		};
 		return appNode;
 	});
 
-	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("UpperSemiFinal1"), coordinates));
-	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("UpperSemiFinal2"), coordinates));
-	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("LowerSemiFinal1"), coordinates));
-	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("LowerSemiFinal2"), coordinates));
+	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("UpperSemiFinal1"), coordinates, teams));
+	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("UpperSemiFinal2"), coordinates, teams));
+	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("LowerSemiFinal1"), coordinates, teams));
+	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("LowerSemiFinal2"), coordinates, teams));
 
 	initialNodes.push(createGhostNode(bracketId, gsl.getBracketNode("LowerSemiFinal1"), coordinates));
 	initialNodes.push(createGhostNode(bracketId, gsl.getBracketNode("LowerSemiFinal2"), coordinates));
@@ -111,7 +111,7 @@ function createGhostNode(bracketId: string, node: GslLiteMatchNode, coordinates:
 	};
 }
 
-function createPromotedNode(bracketId: string, node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>): AppNode {
+function createPromotedNode(bracketId: string, node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>, teams: Team[]): AppNode {
 	const res = coordinates.get(`${node.name}:Promoted`);
 	let xCalc = 0;
 	let yCalc = -200;
@@ -124,8 +124,8 @@ function createPromotedNode(bracketId: string, node: GslLiteMatchNode, coordinat
 	let promotedTeamName = "";
 	let promotedTeamPath = "";
 	if (promotedSeedOrUndefined) {
-		promotedTeamPath = `/logos/${paths[promotedSeedOrUndefined - 1]}.png`;
-		promotedTeamName = paths[promotedSeedOrUndefined - 1].replace("_", " ");
+		promotedTeamPath = `/logos/${teams[promotedSeedOrUndefined - 1].path}.png`;
+		promotedTeamName = teams[promotedSeedOrUndefined - 1].name.replace("_", " ");
 	}
 
 	return {
