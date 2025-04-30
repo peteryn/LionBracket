@@ -5,8 +5,6 @@ import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
 import { MatchNodeType } from "./MatchNodeType.ts";
 
 export function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(data: MatchNodeType<NodeNames, B>) {
-	// console.log("use");
-	// const match = data.matchNode.match;
 	const upperInputId = `${data.bracketId}.${data.matchNode.name}upper`;
 	const lowerInputId = `${data.bracketId}.${data.matchNode.name}lower`;
 

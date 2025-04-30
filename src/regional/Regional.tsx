@@ -10,11 +10,13 @@ import { initializeAFLBracket } from "../../LionBracketEngine/src/util/util.ts";
 import { Seed } from "../../LionBracketEngine/src/models/match_record.ts";
 import { deserializeRegionalTournament, serializeRegionalTournament } from "../helper/serializer.ts";
 import { Team } from "../nodes/matchNodes/MatchNodeType.ts";
+import ReportButton from "../helper/ReportButton.tsx";
+import ResetButton from "../helper/ResetButton.tsx";
 
 const localStorageName = "regionalTest";
 
 export default function Regional({ teams }: { teams: Team[] }) {
-	const tournament = new RegionalTournament();
+	let tournament = new RegionalTournament();
 
 	deserializeRegionalTournament(tournament, localStorageName);
 	serializeRegionalTournament(tournament, localStorageName);
@@ -85,6 +87,14 @@ export default function Regional({ teams }: { teams: Team[] }) {
 		setNodes(initialNodes);
 	}, [afl]);
 
+	const resetBracket = () => {
+		tournament = new RegionalTournament();
+		setGslA(tournament.gslA.getAllMatchNodes());
+		setGslB(tournament.gslB.getAllMatchNodes());
+		setAfl(tournament.afl.getAllMatchNodes());
+		serializeRegionalTournament(tournament, localStorageName);
+	};
+
 	return (
 		<ReactFlow
 			colorMode="dark"
@@ -100,6 +110,9 @@ export default function Regional({ teams }: { teams: Team[] }) {
 		>
 			<Background color="#141414"/>
 			<Controls showInteractive={false}/>
+
+			<ResetButton resetBracket={resetBracket}></ResetButton>
+			<ReportButton/>
 		</ReactFlow>
 	);
 }

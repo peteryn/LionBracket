@@ -27,6 +27,8 @@ import { initializeAFLBracket } from "../../LionBracketEngine/src/util/util";
 import { Seed } from "../../LionBracketEngine/src/models/match_record";
 
 import { createAFLNodes } from "../brackets/afl_layout.ts";
+import ReportButton from "../helper/ReportButton.tsx";
+import ResetButton from "../helper/ResetButton.tsx";
 
 export const useAFLSerialization = true;
 
@@ -113,16 +115,13 @@ export default function Birmingham() {
 		>
 			<Background color="#141414"/>
 			<Controls showInteractive={false}/>
-			<Panel position="bottom-center" className="reset-panel">
-				<button onClick={resetBracket} className="bourgeois ">
-					RESET
-				</button>
-			</Panel>
-			<Panel position="bottom-right" className="bourgeois">
-				<a href="https://github.com/peteryn/LionBracket/issues" className="report-link">
-					Report an Issue
-				</a>
-			</Panel>
+			{/*<Panel position="bottom-center" className="reset-panel">*/}
+			{/*	<button onClick={resetBracket} className="bourgeois ">*/}
+			{/*		RESET*/}
+			{/*	</button>*/}
+			{/*</Panel>*/}
+			<ResetButton resetBracket={resetBracket}></ResetButton>
+			<ReportButton></ReportButton>
 		</ReactFlow>
 	);
 }
