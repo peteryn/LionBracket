@@ -1,4 +1,4 @@
-import { Background, Controls, Edge, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
+import { Background, Controls, Edge, Panel, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
 import { RegionalTournament } from "../../LionBracketEngine/src/gsl_afl_bracket/regional_tournament";
 import { AppNode } from "../nodes/types";
 import { nodeTypes } from "../nodes";
@@ -12,8 +12,11 @@ import { deserializeRegionalTournament, serializeRegionalTournament } from "../h
 import { Team } from "../nodes/matchNodes/MatchNodeType.ts";
 import ReportButton from "../helper/ReportButton.tsx";
 import ResetButton from "../helper/ResetButton.tsx";
+import { NavLink } from "react-router";
 
-const localStorageName = "regionalTest";
+const path = window.location.pathname;
+const parts = path.split("/");
+const localStorageName = parts[parts.length - 1];
 
 export default function Regional({ teams }: { teams: Team[] }) {
 	let tournament = new RegionalTournament();
@@ -110,6 +113,12 @@ export default function Regional({ teams }: { teams: Team[] }) {
 		>
 			<Background color="#141414"/>
 			<Controls showInteractive={false}/>
+
+			<Panel position="top-left">
+				<NavLink className="back-button bourgeois" to="/">
+					Back
+				</NavLink>
+			</Panel>
 
 			<ResetButton resetBracket={resetBracket}></ResetButton>
 			<ReportButton/>

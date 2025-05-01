@@ -516,7 +516,7 @@ nav a {
 .home-grid > div {
     background-color: var(--node-color);
     border-radius: 4px;
-    border: 4px solid #595e67;
+    border: 2px solid #595e67;
     min-width: 12rem;
     min-height: 8rem;
     text-align: center;
@@ -529,4 +529,14 @@ nav a {
 .regional-list {
     list-style-type: none;
     color: white;
+}
+
+.back-button {
+    color: white;
+    background-color: var(--node-color);
+    padding: 4px 8px;
+    text-decoration: none;
+    border: 2px solid #595e67;
+    border-radius: 4px;
+    font-size: 0.83rem;
 }
