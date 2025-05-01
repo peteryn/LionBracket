@@ -15,8 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 			<Routes>
 				<Route path="/" element={<App/>}></Route>
 				{/*<Route path="/birmingham" element={<Birmingham />}></Route>*/}
-				<Route path="/regional" element={<Regional teams={eu4combined}/>}></Route>
-				<Route path="/afl" element={<Afl teams={major1Teams}/>}></Route>
+				<Route path="/europe_open_4" element={<Regional teams={eu4combined}/>}></Route>
 			</Routes>
 		</BrowserRouter>
 	</React.StrictMode>
