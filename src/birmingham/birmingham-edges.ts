@@ -1,10 +1,9 @@
-/*
 import type { Edge } from "@xyflow/react";
 
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
-import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
-import {createAFLEdges} from "../brackets/aflLayout.ts";
+import { AflBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
+import { createAflEdges } from "../layouts/aflLayout.ts";
 
 export const initialEdges: Edge[] = [];
 
@@ -60,5 +59,4 @@ levelOrderTraversal(swiss.rootRound, (node) => {
 	}
 });
 
-initialEdges.push(...createAFLEdges(new AFLBracketFlow()))
- */
+initialEdges.push(...createAflEdges("aflb", new AflBracket()));

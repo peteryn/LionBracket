@@ -183,4 +183,4 @@ const na4 = [
 	"deleted",
 ];
 
-export const paths = na4;
+export const paths = major1;

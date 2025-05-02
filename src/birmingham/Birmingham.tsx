@@ -1,4 +1,3 @@
-/*
 import { useEffect, useState } from "react";
 import {
 	ReactFlow,
@@ -23,13 +22,14 @@ import {
 	serializeAflBracket,
 	serializeSwissBracket,
 } from "../helper/serializer";
-import { AFLBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket";
+import { AflBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket";
 import { initializeAFLBracket } from "../../LionBracketEngine/src/util/util";
 import { Seed } from "../../LionBracketEngine/src/models/match_record";
 
-import { createAFLNodes } from "../brackets/aflLayout.ts";
-import ReportButton from "../helper/ReportButton.tsx";
-import ResetButton from "../helper/ResetButton.tsx";
+import { createAflNodes } from "../layouts/aflLayout.ts";
+import ReportButton from "../components/ReportButton.tsx";
+import ResetButton from "../components/ResetButton.tsx";
+import { major1Teams } from "../helper/teamTranslator.ts";
 
 export const useAFLSerialization = true;
 
@@ -42,7 +42,7 @@ export default function Birmingham() {
 	serializeSwissBracket(globalSwiss.rootRound, "sb");
 	const [swissB, setSwissB] = useState(globalSwiss.rootRound);
 
-	let globalAFL: AFLBracket = new AFLBracket(false);
+	let globalAFL: AflBracket = new AflBracket(false);
 	if (useAFLSerialization) {
 		const aflMatchNodes = deserializeStoredAflBracket("aflb");
 		if (aflMatchNodes) {
@@ -53,7 +53,7 @@ export default function Birmingham() {
 	const [aflB, setAflB] = useState(globalAFL.getAllMatchNodes());
 
 	const swissNodes = createSwissNodes(globalSwiss);
-	const aflNodes = createAFLNodes(globalAFL, 194, 1100);
+	const aflNodes = createAflNodes("aflb", globalAFL, 194, 1100, major1Teams);
 	const initialNodes = swissNodes.concat(aflNodes);
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -61,10 +61,10 @@ export default function Birmingham() {
 
 	const updateAFL = (seeds: Seed[]) => {
 		globalAFL.clearAllMatchRecords();
-		initializeAFLBracket(seeds, globalAFL, 0, 3, "upperQuarterFinal1");
-		initializeAFLBracket(seeds, globalAFL, 1, 2, "upperQuarterFinal2");
-		initializeAFLBracket(seeds, globalAFL, 4, 7, "lowerBracketRound1");
-		initializeAFLBracket(seeds, globalAFL, 5, 6, "lowerBracketRound2");
+		initializeAFLBracket(seeds, globalAFL, 0, 3, "UpperQuarterFinal1");
+		initializeAFLBracket(seeds, globalAFL, 1, 2, "UpperQuarterFinal2");
+		initializeAFLBracket(seeds, globalAFL, 4, 7, "LowerBracketRound1");
+		initializeAFLBracket(seeds, globalAFL, 5, 6, "LowerBracketRound2");
 		const nodeList = globalAFL.getAllMatchNodes();
 		const cloned = structuredClone(nodeList);
 		setAflB(cloned);
@@ -87,14 +87,14 @@ export default function Birmingham() {
 			serializeAflBracket(globalAFL, "aflb");
 		}
 		const swissNodes = createSwissNodes(globalSwiss);
-		const aflNodes = createAFLNodes(globalAFL, 194, 1100);
+		const aflNodes = createAflNodes("aflb", globalAFL, 194, 1100, major1Teams);
 		const updatedNodes = swissNodes.concat(aflNodes);
 		setNodes(updatedNodes);
 	}, [swissB, aflB, setNodes]);
 
 	const resetBracket = () => {
 		globalSwiss = new SwissBracketFlow8Apart(16, 3);
-		globalAFL = new AFLBracket(false);
+		globalAFL = new AflBracket(false);
 		setSwissB(globalSwiss.rootRound);
 		setAflB(globalAFL.getAllMatchNodes());
 		serializeSwissBracket(globalSwiss.rootRound, "sb");
@@ -121,4 +121,3 @@ export default function Birmingham() {
 		</ReactFlow>
 	);
 }
-*/
