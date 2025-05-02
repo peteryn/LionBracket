@@ -5,7 +5,7 @@ import { getScore } from "../../helper/score.ts";
 import { MatchNodeType } from "./MatchNodeType.ts";
 import MatchTeamInputArea from "./MatchTeamInputArea.tsx";
 
-export function MatchNodeComponent<NodeNames extends string, B extends Bracket<NodeNames>>({data}: NodeProps<MatchNodeComponent<NodeNames, B>>) {
+export function MatchNodeComponent<NodeNames extends string, B extends Bracket<NodeNames>>({ data }: NodeProps<MatchNodeComponent<NodeNames, B>>) {
 	const teamAreas = createMatches(data);
 
 	return (
@@ -35,7 +35,6 @@ function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(d
 	const upperInputId = `${data.bracketId}.${data.matchNode.name}upper`;
 	const lowerInputId = `${data.bracketId}.${data.matchNode.name}lower`;
 
-
 	function onChange() {
 		const upperTeamWins = getScore(upperInputId);
 		const lowerTeamWins = getScore(lowerInputId);
@@ -56,7 +55,7 @@ function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(d
 					data.promoteFun();
 				}
 			} else {
-				console.log("afl update function doesn't exist when it should");
+				console.log("update function doesn't exist when it should");
 			}
 		}
 	}
@@ -73,11 +72,9 @@ function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(d
 			let colorClassLower = "";
 			if (matchRecord.upperSeedWins > matchRecord.lowerSeedWins) {
 				colorClassUpper = "round-winning-text";
-				// colorClassLower = "round-losing-text";
 			}
 			if (matchRecord.lowerSeedWins > matchRecord.upperSeedWins) {
 				colorClassLower = "round-winning-text";
-				// colorClassLower = "round-winning-text";
 			}
 
 			teamAreas = (

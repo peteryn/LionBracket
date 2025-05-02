@@ -12,7 +12,8 @@ import {
 import { nodeTypes } from "../nodes/index.ts";
 import { edgeTypes } from "../edges/index.ts";
 import { deserializeStoredAflBracket, serializeAflBracket } from "../helper/serializer.ts";
-import { Team } from "../nodes/matchNodes/MatchNodeType.ts";
+
+import { Team } from "../helper/TeamsTranslator.ts";
 
 const localStorageName = "test";
 
@@ -57,8 +58,8 @@ export default function Afl({ teams }: { teams: Team[] }) {
 			minZoom={0.3}
 			maxZoom={4}
 		>
-			<Background color="#141414" />
-			<Controls showInteractive={false} />
+			<Background color="#141414"/>
+			<Controls showInteractive={false}/>
 		</ReactFlow>
 	);
 }

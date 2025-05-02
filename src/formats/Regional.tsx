@@ -19,16 +19,16 @@ import {
 	deserializeRegionalTournament,
 	serializeRegionalTournament,
 } from "../helper/serializer.ts";
-import { Team } from "../nodes/matchNodes/MatchNodeType.ts";
 import ReportButton from "../components/ReportButton.tsx";
 import ResetButton from "../components/ResetButton.tsx";
 import { NavLink } from "react-router";
 import { RegionalTournament } from "../../LionBracketEngine/src/tournaments/regional_tournament.ts";
+import { Team } from "../helper/TeamsTranslator.ts";
 
 export default function Regional({
-	teams,
-	localStorageName,
-}: {
+									 teams,
+									 localStorageName,
+								 }: {
 	teams: Team[];
 	localStorageName: string;
 }) {
@@ -127,8 +127,8 @@ export default function Regional({
 			minZoom={0.3}
 			maxZoom={4}
 		>
-			<Background color="#141414" />
-			<Controls showInteractive={false} />
+			<Background color="#141414"/>
+			<Controls showInteractive={false}/>
 
 			<Panel position="top-left">
 				<NavLink className="back-button bourgeois" to="/">
@@ -137,7 +137,7 @@ export default function Regional({
 			</Panel>
 
 			<ResetButton resetBracket={resetBracket}></ResetButton>
-			<ReportButton />
+			<ReportButton/>
 		</ReactFlow>
 	);
 }

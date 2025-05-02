@@ -1,5 +1,5 @@
 import { NodeTypes } from "@xyflow/react";
-import { ChampionNodeComponent } from "./ChampionNodeComponent";
+import { ChampionNodeComponent } from "./champion_node/ChampionNodeComponent.tsx";
 import { GhostNode } from "./ghost_node/GhostNode.tsx";
 import { EndingNodeLowerComponent } from "./roundNodes/EndingNodeLowerComponent";
 import { EndingNodeMiddleComponent } from "./roundNodes/EndingNodeMiddleComponent";

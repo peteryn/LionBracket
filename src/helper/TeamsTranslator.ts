@@ -55,8 +55,6 @@
 // 	"incorrect",
 // ];
 
-import { Team } from "../nodes/matchNodes/MatchNodeType.ts";
-
 export const major1: string[] = [
 	"karmine_corp",
 	"nrg",
@@ -76,6 +74,10 @@ export const major1: string[] = [
 	"fut_esports",
 ];
 
+export type Team = {
+	name: string,
+	path: string,
+}
 export const major1Teams: Team[] = [
 	{ name: "karmine_corp", path: "karmine_corp" },
 	{ name: "nrg", path: "nrg" },

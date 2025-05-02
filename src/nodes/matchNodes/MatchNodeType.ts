@@ -1,10 +1,6 @@
 import { GenericMatchNode } from "../../../LionBracketEngine/src/models/generic_match_node.ts";
 import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
-
-export type Team = {
-	name: string,
-	path: string,
-}
+import { Team } from "../../helper/TeamsTranslator.ts";
 
 export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>> = {
 	bracketId: string;

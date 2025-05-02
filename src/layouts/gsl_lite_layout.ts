@@ -1,11 +1,11 @@
 import { AppNode } from "../nodes/types.ts";
-import { MatchNodeTypeConstructor, Team } from "../nodes/matchNodes/MatchNodeType.ts";
+import { MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
 import {
 	GslLiteBracket,
 	GslLiteMatchNode,
 } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
 import { getSeedOrUndefined } from "../../LionBracketEngine/src/util/util.ts";
-import { paths } from "../helper/TeamsTranslator.ts";
+import { paths, Team } from "../helper/TeamsTranslator.ts";
 import { Edge } from "@xyflow/react";
 import { GhostNodeType } from "../nodes/ghost_node/GhostNodeType.ts";
 
