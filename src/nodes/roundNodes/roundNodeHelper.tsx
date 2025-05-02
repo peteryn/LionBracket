@@ -1,5 +1,5 @@
 import VersusRoundComponent from "./VersusRoundComponent.tsx";
-import { addColor } from "../../helper/color.ts";
+import { addColor } from "./color.ts";
 import { RoundNodeType } from "./RoundNodeType.ts";
 
 export function createMatches(data: RoundNodeType) {

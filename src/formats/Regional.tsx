@@ -1,20 +1,37 @@
-import { Background, Controls, Edge, Panel, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
-import { AppNode } from "../nodes/types";
-import { nodeTypes } from "../nodes";
-import { edgeTypes } from "../edges";
-import { createAflEdges, createAflNodes } from "../brackets/afl_layout.ts";
-import { createGslLiteEdges, createGslLiteNodes } from "../brackets/gsl_lite_layout.ts";
+import {
+	Background,
+	Controls,
+	Edge,
+	Panel,
+	ReactFlow,
+	useEdgesState,
+	useNodesState,
+} from "@xyflow/react";
+import { AppNode } from "../nodes/types.ts";
+import { nodeTypes } from "../nodes/index.ts";
+import { edgeTypes } from "../edges/index.ts";
+import { createAflEdges, createAflNodes } from "../layouts/afl_layout.ts";
+import { createGslLiteEdges, createGslLiteNodes } from "../layouts/gsl_lite_layout.ts";
 import { useEffect, useState } from "react";
 import { initializeAFLBracket } from "../../LionBracketEngine/src/util/util.ts";
 import { Seed } from "../../LionBracketEngine/src/models/match_record.ts";
-import { deserializeRegionalTournament, serializeRegionalTournament } from "../helper/serializer.ts";
+import {
+	deserializeRegionalTournament,
+	serializeRegionalTournament,
+} from "../helper/serializer.ts";
 import { Team } from "../nodes/matchNodes/MatchNodeType.ts";
-import ReportButton from "../helper/ReportButton.tsx";
-import ResetButton from "../helper/ResetButton.tsx";
+import ReportButton from "../components/ReportButton.tsx";
+import ResetButton from "../components/ResetButton.tsx";
 import { NavLink } from "react-router";
 import { RegionalTournament } from "../../LionBracketEngine/src/tournaments/regional_tournament.ts";
 
-export default function Regional({ teams, localStorageName }: { teams: Team[], localStorageName: string }) {
+export default function Regional({
+	teams,
+	localStorageName,
+}: {
+	teams: Team[];
+	localStorageName: string;
+}) {
 	let tournament = new RegionalTournament();
 
 	deserializeRegionalTournament(tournament, localStorageName);
@@ -44,7 +61,10 @@ export default function Regional({ teams, localStorageName }: { teams: Team[], l
 		// [2, 4, 6, 8]
 		const GSL_B_results = tournament.gslB.getPromoted();
 
-		const promotedSeeds: (Seed | undefined)[] = GSL_A_results.flatMap((seed, index) => [seed, GSL_B_results[index]]);
+		const promotedSeeds: (Seed | undefined)[] = GSL_A_results.flatMap((seed, index) => [
+			seed,
+			GSL_B_results[index],
+		]);
 		initializeAFLBracket(promotedSeeds, tournament.afl, 0, 3, "UpperQuarterFinal1");
 		initializeAFLBracket(promotedSeeds, tournament.afl, 1, 2, "UpperQuarterFinal2");
 		initializeAFLBracket(promotedSeeds, tournament.afl, 4, 7, "LowerBracketRound1");
@@ -107,8 +127,8 @@ export default function Regional({ teams, localStorageName }: { teams: Team[], l
 			minZoom={0.3}
 			maxZoom={4}
 		>
-			<Background color="#141414"/>
-			<Controls showInteractive={false}/>
+			<Background color="#141414" />
+			<Controls showInteractive={false} />
 
 			<Panel position="top-left">
 				<NavLink className="back-button bourgeois" to="/">
@@ -117,7 +137,7 @@ export default function Regional({ teams, localStorageName }: { teams: Team[], l
 			</Panel>
 
 			<ResetButton resetBracket={resetBracket}></ResetButton>
-			<ReportButton/>
+			<ReportButton />
 		</ReactFlow>
 	);
 }

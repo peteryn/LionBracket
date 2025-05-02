@@ -1,5 +1,5 @@
 import { Handle, NodeProps, Position } from "@xyflow/react";
-import { TeamBox } from "../../helper/TeamBox";
+import { TeamBox } from "./TeamBox.tsx";
 import { type ExitNodeComponent } from "../types.ts";
 import { paths } from "../../helper/TeamsTranslator.ts";
 import { getLosers, getWinners } from "../../../LionBracketEngine/src/util/util.ts";

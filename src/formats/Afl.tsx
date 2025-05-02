@@ -1,9 +1,16 @@
 import { AflBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
-import { createAflEdges, createAflNodes } from "../brackets/afl_layout.ts";
+import { createAflEdges, createAflNodes } from "../layouts/afl_layout.ts";
 import { useEffect, useState } from "react";
-import { Background, Controls, Panel, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
-import { nodeTypes } from "../nodes";
-import { edgeTypes } from "../edges";
+import {
+	Background,
+	Controls,
+	Panel,
+	ReactFlow,
+	useEdgesState,
+	useNodesState,
+} from "@xyflow/react";
+import { nodeTypes } from "../nodes/index.ts";
+import { edgeTypes } from "../edges/index.ts";
 import { deserializeStoredAflBracket, serializeAflBracket } from "../helper/serializer.ts";
 import { Team } from "../nodes/matchNodes/MatchNodeType.ts";
 
@@ -26,7 +33,7 @@ export default function Afl({ teams }: { teams: Team[] }) {
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
-	nodes.forEach(node => {
+	nodes.forEach((node) => {
 		node.data.updateFun = setAfl;
 	});
 
@@ -50,8 +57,8 @@ export default function Afl({ teams }: { teams: Team[] }) {
 			minZoom={0.3}
 			maxZoom={4}
 		>
-			<Background color="#141414"/>
-			<Controls showInteractive={false}/>
+			<Background color="#141414" />
+			<Controls showInteractive={false} />
 		</ReactFlow>
 	);
 }

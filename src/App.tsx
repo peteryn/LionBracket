@@ -1,7 +1,6 @@
 
 import "@xyflow/react/dist/base.css";
-import { NavLink } from "react-router";
-import RegionCard from "./helper/RegionCard.tsx";
+import RegionCard from "./components/RegionCard.tsx";
 export default function App() {
 	return (
 		<div className="home-area">

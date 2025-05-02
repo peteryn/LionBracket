@@ -1,7 +1,9 @@
-import { createMatches } from "./matchNodeHelper.tsx";
 import { Handle, NodeProps, Position } from "@xyflow/react";
 import { type MatchNodeComponent } from "../types.ts";
 import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
+import { getScore } from "../../helper/score.ts";
+import { MatchNodeType } from "./MatchNodeType.ts";
+import MatchTeamInputArea from "./MatchTeamInputArea.tsx";
 
 export function MatchNodeComponent<NodeNames extends string, B extends Bracket<NodeNames>>({data}: NodeProps<MatchNodeComponent<NodeNames, B>>) {
 	const teamAreas = createMatches(data);
@@ -27,4 +29,117 @@ export function MatchNodeComponent<NodeNames extends string, B extends Bracket<N
 			</div>
 		</div>
 	);
+}
+
+function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(data: MatchNodeType<NodeNames, B>) {
+	const upperInputId = `${data.bracketId}.${data.matchNode.name}upper`;
+	const lowerInputId = `${data.bracketId}.${data.matchNode.name}lower`;
+
+
+	function onChange() {
+		const upperTeamWins = getScore(upperInputId);
+		const lowerTeamWins = getScore(lowerInputId);
+		const bracket = data.bracket;
+		const matchRecord = bracket.getMatchRecord(data.matchNode.name);
+
+		if (matchRecord?.type === "FullRecord") {
+			matchRecord.upperSeedWins = upperTeamWins;
+			matchRecord.lowerSeedWins = lowerTeamWins;
+			bracket.setMatchRecord(data.matchNode.name, matchRecord);
+			if (data.updateFun) {
+				bracket.updateFlow(data.matchNode);
+				console.log(bracket);
+				const nodeList = bracket.getAllMatchNodes();
+
+				data.updateFun(nodeList);
+				if (data.promoteFun) {
+					data.promoteFun();
+				}
+			} else {
+				console.log("afl update function doesn't exist when it should");
+			}
+		}
+	}
+
+	let teamAreas;
+	const matchRecord = data.matchNode.matchRecord;
+	switch (matchRecord?.type) {
+		case "FullRecord": {
+			const upperImagePath = `/logos/${data.teams[matchRecord.upperSeed - 1].path}.png`;
+			const lowerImagePath = `/logos/${data.teams[matchRecord.lowerSeed - 1].path}.png`;
+			const upperTeamName = data.teams[matchRecord.upperSeed - 1].name.replace("_", " ");
+			const lowerTeamName = data.teams[matchRecord.lowerSeed - 1].name.replace("_", " ");
+			let colorClassUpper = "";
+			let colorClassLower = "";
+			if (matchRecord.upperSeedWins > matchRecord.lowerSeedWins) {
+				colorClassUpper = "round-winning-text";
+				// colorClassLower = "round-losing-text";
+			}
+			if (matchRecord.lowerSeedWins > matchRecord.upperSeedWins) {
+				colorClassLower = "round-winning-text";
+				// colorClassLower = "round-winning-text";
+			}
+
+			teamAreas = (
+				<>
+					<MatchTeamInputArea
+						updateFun={onChange}
+						showScore={true}
+						inputId={upperInputId}
+						teamName={upperTeamName}
+						imagePath={upperImagePath}
+						startingScore={matchRecord.upperSeedWins}
+						colorClass={colorClassUpper}
+					></MatchTeamInputArea>
+
+					<MatchTeamInputArea
+						updateFun={onChange}
+						showScore={true}
+						inputId={lowerInputId}
+						teamName={lowerTeamName}
+						imagePath={lowerImagePath}
+						startingScore={matchRecord.lowerSeedWins}
+						colorClass={colorClassLower}
+					></MatchTeamInputArea>
+				</>
+			);
+			break;
+		}
+		case "UpperRecord": {
+			const upperImagePath = `/logos/${data.teams[matchRecord.upperSeed - 1].path}.png`;
+			const upperTeamName = data.teams[matchRecord.upperSeed - 1].name.replace("_", " ");
+			teamAreas = (
+				<MatchTeamInputArea
+					updateFun={() => {
+					}}
+					showScore={false}
+					inputId={upperInputId}
+					teamName={upperTeamName}
+					imagePath={upperImagePath}
+					startingScore={matchRecord.upperSeedWins}
+					colorClass=""
+				></MatchTeamInputArea>
+			);
+			break;
+		}
+		case "LowerRecord": {
+			const lowerImagePath = `/logos/${data.teams[matchRecord.lowerSeed - 1].path}.png`;
+			const lowerTeamName = data.teams[matchRecord.lowerSeed - 1].name.replace("_", " ");
+			teamAreas = (
+				<>
+					<MatchTeamInputArea
+						updateFun={() => {
+						}}
+						showScore={false}
+						inputId={lowerInputId}
+						teamName={lowerTeamName}
+						imagePath={lowerImagePath}
+						startingScore={matchRecord.lowerSeedWins}
+						colorClass=""
+					></MatchTeamInputArea>
+				</>
+			);
+		}
+	}
+	return teamAreas;
 }
