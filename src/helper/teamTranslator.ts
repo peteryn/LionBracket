@@ -116,6 +116,30 @@ const eu4 = [
 	["Tokyo Tigers", "tokyo_tigers"]
 ];
 
+const na4gslA: Team[] = [
+	{ name: "geng", path: "geng" },
+	{ name: "The Ultimates", path: "the_ultimates" },
+	{ name: "Spacestation Gaming", path: "ssg" },
+	{ name: "Shopify Rebellion", path: "shopify" },
+	{ name: "Strictly Business", path: "default_dark" },
+	{ name: "Team Evo", path: "evo" },
+	{ name: "simtawk+1", path: "default_dark" },
+	{ name: "Power Rangers", path: "default_dark" },
+];
+
+const na4gslB: Team[] = [
+	{ name: "NRG", path: "nrg" },
+	{ name: "Complexity", path: "complexity" },
+	{ name: "Pirates", path: "poab" },
+	{ name: "The Boys", path: "default_dark" },
+	{ name: "nah", path: "nah" },
+	{ name: "9Lives", path: "9lives" },
+	{ name: "Deleted Gaming", path: "deleted_xd" },
+	{ name: "Wassup", path: "default_dark" },
+];
+
+export const na4combined = [...na4gslA, ...na4gslB];
+
 const eu4gslA: Team[] = [
 	{ name: "Ninjas", path: "nip" },
 	{ name: "Vitality", path: "vitality" },
