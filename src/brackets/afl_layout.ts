@@ -1,7 +1,6 @@
 import { AflBracket, AflMatchNode } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
 import { AppNode } from "../nodes/types.ts";
 import { MatchNodeTypeConstructor, Team } from "../nodes/matchNodes/MatchNodeType.ts";
-import { paths } from "../helper/TeamsTranslator.ts";
 import { ChampionNodeType } from "../nodes/ChampionNodeType.ts";
 import { Edge } from "@xyflow/react";
 import { GhostNodeType } from "../nodes/GhostNodeType.ts";
@@ -150,11 +149,11 @@ export function createAflNodes(bracketId: string, afl: AflBracket, xCoordinate: 
 
 	if (gf.matchRecord?.type === "FullRecord") {
 		if (gf.matchRecord.upperSeedWins > gf.matchRecord.lowerSeedWins) {
-			championPathName = `/logos/${paths[gf.matchRecord.upperSeed - 1]}.png`;
-			championName = `${paths[gf.matchRecord.upperSeed - 1]}`.replace("_", " ");
+			championPathName = `/logos/${teams[gf.matchRecord.upperSeed - 1].path}.png`;
+			championName = teams[gf.matchRecord.upperSeed - 1].name;
 		} else if (gf.matchRecord.upperSeedWins < gf.matchRecord.lowerSeedWins) {
-			championPathName = `/logos/${paths[gf.matchRecord.lowerSeed - 1]}.png`;
-			championName = `${paths[gf.matchRecord.lowerSeed - 1]}`.replace("_", " ");
+			championPathName = `/logos/${teams[gf.matchRecord.lowerSeed - 1].path}.png`;
+			championName = teams[gf.matchRecord.lowerSeed - 1].name;
 		}
 	}
 	const championNode: AppNode = {

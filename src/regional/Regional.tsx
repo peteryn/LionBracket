@@ -14,11 +14,7 @@ import ReportButton from "../helper/ReportButton.tsx";
 import ResetButton from "../helper/ResetButton.tsx";
 import { NavLink } from "react-router";
 
-const path = window.location.pathname;
-const parts = path.split("/");
-const localStorageName = parts[parts.length - 1];
-
-export default function Regional({ teams }: { teams: Team[] }) {
+export default function Regional({ teams, localStorageName }: { teams: Team[], localStorageName: string }) {
 	let tournament = new RegionalTournament();
 
 	deserializeRegionalTournament(tournament, localStorageName);

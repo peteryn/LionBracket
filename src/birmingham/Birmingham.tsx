@@ -1,3 +1,4 @@
+/*
 import { useEffect, useState } from "react";
 import {
 	ReactFlow,
@@ -115,13 +116,9 @@ export default function Birmingham() {
 		>
 			<Background color="#141414"/>
 			<Controls showInteractive={false}/>
-			{/*<Panel position="bottom-center" className="reset-panel">*/}
-			{/*	<button onClick={resetBracket} className="bourgeois ">*/}
-			{/*		RESET*/}
-			{/*	</button>*/}
-			{/*</Panel>*/}
 			<ResetButton resetBracket={resetBracket}></ResetButton>
 			<ReportButton></ReportButton>
 		</ReactFlow>
 	);
 }
+*/
