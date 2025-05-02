@@ -7,6 +7,7 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Regional from "./formats/Regional.tsx";
 import { eu4combined, na4combined } from "./helper/teamTranslator.ts";
+import DynamicRegional from "./formats/DynamicRegional.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -20,6 +21,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route
 					path="/north_america_open_4"
 					element={<Regional teams={na4combined} localStorageName={"na_open_4"}/>}
+				></Route>
+				<Route
+					path="/b/:tournamentval"
+					element={<DynamicRegional teams={na4combined} localStorageName={"na_open_4"}/>}
 				></Route>
 			</Routes>
 		</BrowserRouter>

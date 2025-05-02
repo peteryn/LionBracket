@@ -24,11 +24,22 @@ import ResetButton from "../components/ResetButton.tsx";
 import { NavLink, useParams } from "react-router";
 import { RegionalTournament } from "../../LionBracketEngine/src/tournaments/regional_tournament.ts";
 import { Team } from "../helper/teamTranslator.ts";
+import { createLogger } from "vite";
 
-export default function Regional({ teams, localStorageName, }: {
+export default function DynamicRegional({ teams, localStorageName, }: {
 	teams: Team[];
 	localStorageName: string;
 }) {
+	// teams = [];
+	let { tournamentval } = useParams();
+	console.log(`value is ${tournamentval}`);
+	const [teamsData, setData] = useState(teams);
+	useEffect(() => {
+		fetch(`http://localhost:8080/greeting?name=${tournamentval}`)
+			.then(res => res.json())
+			.then(json => console.log(json));
+	}, []);
+
 	let tournament = new RegionalTournament();
 
 	deserializeRegionalTournament(tournament, localStorageName);
