@@ -1,13 +1,12 @@
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
 import { AflBracket, AflMatchNode } from "../../LionBracketEngine/src/afl_bracket/afl_bracket";
-import { MatchNode } from "../../LionBracketEngine/src/models/match_node";
 import { Bracket } from "../../LionBracketEngine/src/models/bracket.ts";
-import { RegionalTournament } from "../../LionBracketEngine/src/gsl_afl_bracket/regional_tournament.ts";
 import { GslLiteMatchNode } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
 import { BracketNode } from "../../LionBracketEngine/src/models/bracket_node.ts";
+import { RegionalTournament } from "../../LionBracketEngine/src/tournaments/regional_tournament.ts";
 
-type swissBracketStorage = {
+type SwissBracketStorage = {
 	roundNodes: [string, RoundNode][];
 };
 
@@ -22,7 +21,7 @@ export function serializeSwissBracket(rootRound: RoundNode, bracketId: string) {
 		roundNode.upperRound = undefined;
 		roundNode.lowerRound = undefined;
 	});
-	const serializedBracket: swissBracketStorage = {
+	const serializedBracket: SwissBracketStorage = {
 		roundNodes: roundNodeEntries,
 	};
 	localStorage.setItem(bracketId, JSON.stringify(serializedBracket));
@@ -32,7 +31,7 @@ export function deserializeStoredSwissBracket(bracketId: string) {
 	const serializedBracketString = localStorage.getItem(bracketId);
 	let rootRoundResult: RoundNode | undefined;
 	if (serializedBracketString) {
-		const swissBracket: swissBracketStorage = JSON.parse(serializedBracketString);
+		const swissBracket: SwissBracketStorage = JSON.parse(serializedBracketString);
 		const roundNodes = new Map(swissBracket.roundNodes);
 
 		const storedRootRound = roundNodes.get("0-0");
@@ -119,7 +118,7 @@ export function serializeBracket<NodeNames extends string>(bracket: Bracket<Node
 	cloned.forEach((node) => {
 		node.upperRound = undefined;
 		node.lowerRound = undefined;
-	})
+	});
 }
 
 function clearRefs(node: BracketNode) {
@@ -137,9 +136,9 @@ export function serializeRegionalTournament(tournament: RegionalTournament, loca
 
 	const nodes: [gslA: GslLiteMatchNode[], gslB: GslLiteMatchNode[], afl: AflMatchNode[]] = [
 		gslA, gslB, afl
-	]
+	];
 
-	localStorage.setItem(localStorageName, JSON.stringify(nodes))
+	localStorage.setItem(localStorageName, JSON.stringify(nodes));
 }
 
 export function deserializeRegionalTournament(tournament: RegionalTournament, localStorageName: string) {
@@ -147,9 +146,9 @@ export function deserializeRegionalTournament(tournament: RegionalTournament, lo
 	let result: [gslA: GslLiteMatchNode[], gslB: GslLiteMatchNode[], afl: AflMatchNode[]] | undefined;
 	if (storedNodes) {
 		result = JSON.parse(storedNodes);
-		tournament.gslA.buildBracket(result![0])
-		tournament.gslB.buildBracket(result![1])
-		tournament.afl.buildBracket(result![2])
+		tournament.gslA.buildBracket(result![0]);
+		tournament.gslB.buildBracket(result![1]);
+		tournament.afl.buildBracket(result![2]);
 	}
 }
 
