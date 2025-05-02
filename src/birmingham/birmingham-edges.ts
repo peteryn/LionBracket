@@ -4,7 +4,7 @@ import type { Edge } from "@xyflow/react";
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 import { AFLBracketFlow } from "../../LionBracketEngine/src/afl_bracket/afl_bracket_flow";
-import {createAFLEdges} from "../brackets/afl_layout.ts";
+import {createAFLEdges} from "../brackets/aflLayout.ts";
 
 export const initialEdges: Edge[] = [];
 

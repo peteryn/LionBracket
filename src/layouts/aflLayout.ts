@@ -1,10 +1,10 @@
 import { AflBracket, AflMatchNode } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
 import { AppNode } from "../nodes/types.ts";
-import { MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
-import { ChampionNodeType } from "../nodes/champion_node/ChampionNodeType.ts";
+import { MatchNodeTypeConstructor } from "../nodes/MatchNodes/MatchNodeType.ts";
+import { ChampionNodeType } from "../nodes/ChampionNode/ChampionNodeType.ts";
 import { Edge } from "@xyflow/react";
-import { GhostNodeType } from "../nodes/ghost_node/GhostNodeType.ts";
-import { Team } from "../helper/TeamsTranslator.ts";
+import { GhostNodeType } from "../nodes/GhostNode/GhostNodeType.ts";
+import { Team } from "../helper/teamTranslator.ts";
 
 // total dimensions (1620, 680)
 export function createAflCoordinates(boundingXValue: number, boundingYValue: number, afl: AflBracket) {

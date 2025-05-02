@@ -1,14 +1,14 @@
 import { NodeTypes } from "@xyflow/react";
-import { ChampionNodeComponent } from "./champion_node/ChampionNodeComponent.tsx";
-import { GhostNode } from "./ghost_node/GhostNode.tsx";
+import { ChampionNodeComponent } from "./ChampionNode/ChampionNodeComponent.tsx";
+import { GhostNode } from "./GhostNode/GhostNode.tsx";
 import { EndingNodeLowerComponent } from "./roundNodes/EndingNodeLowerComponent";
 import { EndingNodeMiddleComponent } from "./roundNodes/EndingNodeMiddleComponent";
 import { EndingNodeUpperComponent } from "./roundNodes/EndingNodeUpperComponent";
 import { ExitNodeComponent } from "./roundNodes/ExitNodeComponent";
 import { RoundNodeComponent } from "./roundNodes/RoundNodeComponent";
 import { StartingNodeComponent } from "./roundNodes/StartingNodeComponent";
-import { MatchNodeComponent } from "./matchNodes/MatchNodeComponent.tsx";
-import { PromotedNodeComponent } from "./promoted_node/PromotedNodeComponent.tsx";
+import { MatchNodeComponent } from "./MatchNodes/MatchNodeComponent.tsx";
+import { PromotedNodeComponent } from "./PromotedNode/PromotedNodeComponent.tsx";
 
 export const nodeTypes = {
 	// Add any of your custom nodes here!

@@ -4,17 +4,17 @@ import { getScore } from "../../helper/score";
 import TeamInputArea from "./TeamInputArea";
 import { addColor } from "./color";
 import { serializeSwissBracket } from "../../helper/serializer";
-import { paths } from "../../helper/TeamsTranslator";
+import { paths } from "../../helper/teamTranslator.ts";
 import { BracketNode } from "../../../LionBracketEngine/src/models/bracket_node";
 import { Seed } from "../../../LionBracketEngine/src/models/match_record";
 import { SwissBracketFlow } from "../../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
 export default function VersusRoundComponent({
-	match,
-	bracket,
-	updateSwissFun,
-	updatePromotedBracket,
-}: {
+												 match,
+												 bracket,
+												 updateSwissFun,
+												 updatePromotedBracket,
+											 }: {
 	match: Match;
 	bracket: SwissBracketFlow;
 	updateSwissFun: React.Dispatch<React.SetStateAction<BracketNode>> | undefined;

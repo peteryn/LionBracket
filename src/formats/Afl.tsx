@@ -1,5 +1,5 @@
 import { AflBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
-import { createAflEdges, createAflNodes } from "../layouts/afl_layout.ts";
+import { createAflEdges, createAflNodes } from "../layouts/aflLayout.ts";
 import { useEffect, useState } from "react";
 import {
 	Background,
@@ -13,7 +13,7 @@ import { nodeTypes } from "../nodes/index.ts";
 import { edgeTypes } from "../edges/index.ts";
 import { deserializeStoredAflBracket, serializeAflBracket } from "../helper/serializer.ts";
 
-import { Team } from "../helper/TeamsTranslator.ts";
+import { Team } from "../helper/teamTranslator.ts";
 
 const localStorageName = "test";
 

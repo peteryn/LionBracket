@@ -1,7 +1,7 @@
 import { Handle, NodeProps, Position } from "@xyflow/react";
 import { TeamBox } from "./TeamBox.tsx";
 import { type ExitNodeComponent } from "../types.ts";
-import { paths } from "../../helper/TeamsTranslator.ts";
+import { paths } from "../../helper/teamTranslator.ts";
 import { getLosers, getWinners } from "../../../LionBracketEngine/src/util/util.ts";
 
 export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
@@ -37,7 +37,7 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 	return (
 		<div className={colorClass}>
 			<p className="versus-section-round-title bourgeois">{data.title}</p>
-			<Handle type="target" position={Position.Left} id={data.inputHandleId} className="" />
+			<Handle type="target" position={Position.Left} id={data.inputHandleId} className=""/>
 			<div className="qualified-area">{exitTeamsComponents}</div>
 		</div>
 	);

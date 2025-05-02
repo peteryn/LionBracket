@@ -10,8 +10,8 @@ import {
 import { AppNode } from "../nodes/types.ts";
 import { nodeTypes } from "../nodes/index.ts";
 import { edgeTypes } from "../edges/index.ts";
-import { createAflEdges, createAflNodes } from "../layouts/afl_layout.ts";
-import { createGslLiteEdges, createGslLiteNodes } from "../layouts/gsl_lite_layout.ts";
+import { createAflEdges, createAflNodes } from "../layouts/aflLayout.ts";
+import { createGslLiteEdges, createGslLiteNodes } from "../layouts/gslLiteLayout.ts";
 import { useEffect, useState } from "react";
 import { initializeAFLBracket } from "../../LionBracketEngine/src/util/util.ts";
 import { Seed } from "../../LionBracketEngine/src/models/match_record.ts";
@@ -23,7 +23,7 @@ import ReportButton from "../components/ReportButton.tsx";
 import ResetButton from "../components/ResetButton.tsx";
 import { NavLink } from "react-router";
 import { RegionalTournament } from "../../LionBracketEngine/src/tournaments/regional_tournament.ts";
-import { Team } from "../helper/TeamsTranslator.ts";
+import { Team } from "../helper/teamTranslator.ts";
 
 export default function Regional({
 									 teams,

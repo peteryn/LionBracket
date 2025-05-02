@@ -1,11 +1,11 @@
 import type { Node } from "@xyflow/react";
 import { RoundNodeType } from "./roundNodes/RoundNodeType";
-import { MatchNodeType } from "./matchNodes/MatchNodeType";
-import { GhostNodeType } from "./ghost_node/GhostNodeType.ts";
-import { ChampionNodeType } from "./champion_node/ChampionNodeType.ts";
+import { MatchNodeType } from "./MatchNodes/MatchNodeType";
+import { GhostNodeType } from "./GhostNode/GhostNodeType.ts";
+import { ChampionNodeType } from "./ChampionNode/ChampionNodeType.ts";
 import { AflBracket, AflNodeNames } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
 import { Bracket } from "../../LionBracketEngine/src/models/bracket.ts";
-import { PromotedNodeType } from "./promoted_node/PromotedNodeType.ts";
+import { PromotedNodeType } from "./PromotedNode/PromotedNodeType.ts";
 import { GslLiteBracket, GslLiteNodeNames } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
 import { ExitNodeType } from "./roundNodes/ExitNodeType.ts";
 

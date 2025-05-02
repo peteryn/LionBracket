@@ -1,13 +1,13 @@
 import { AppNode } from "../nodes/types.ts";
-import { MatchNodeTypeConstructor } from "../nodes/matchNodes/MatchNodeType.ts";
+import { MatchNodeTypeConstructor } from "../nodes/MatchNodes/MatchNodeType.ts";
 import {
 	GslLiteBracket,
 	GslLiteMatchNode,
 } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
 import { getSeedOrUndefined } from "../../LionBracketEngine/src/util/util.ts";
-import { paths, Team } from "../helper/TeamsTranslator.ts";
+import { paths, Team } from "../helper/teamTranslator.ts";
 import { Edge } from "@xyflow/react";
-import { GhostNodeType } from "../nodes/ghost_node/GhostNodeType.ts";
+import { GhostNodeType } from "../nodes/GhostNode/GhostNodeType.ts";
 
 // total dimensions (1050, 960)
 export function createGslCoordinates(boundingXValue: number, boundingYValue: number, gsl: GslLiteBracket) {

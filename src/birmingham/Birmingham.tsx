@@ -27,7 +27,7 @@ import { AFLBracket } from "../../LionBracketEngine/src/afl_bracket/afl_bracket"
 import { initializeAFLBracket } from "../../LionBracketEngine/src/util/util";
 import { Seed } from "../../LionBracketEngine/src/models/match_record";
 
-import { createAFLNodes } from "../brackets/afl_layout.ts";
+import { createAFLNodes } from "../brackets/aflLayout.ts";
 import ReportButton from "../helper/ReportButton.tsx";
 import ResetButton from "../helper/ResetButton.tsx";
 
