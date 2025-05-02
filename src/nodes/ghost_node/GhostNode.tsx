@@ -1,5 +1,5 @@
 import { Handle, NodeProps, Position } from "@xyflow/react";
-import { type GhostNode } from "./types.ts";
+import { type GhostNode } from "../types.ts";
 
 export function GhostNode({ data }: NodeProps<GhostNode>) {
 	return (
