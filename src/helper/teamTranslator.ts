@@ -164,6 +164,30 @@ const eu4gslB: Team[] = [
 
 export const eu4combined = [...eu4gslA, ...eu4gslB];
 
+const sam4gslA: Team[] = [
+	{ name: "Godfidence", path: "godfidence" },
+	{ name: "Team Secret", path: "team_secret" },
+	{ name: "Latino Heat", path: "latino_heat" },
+	{ name: "The Jungle", path: "default_dark" },
+	{ name: "Moonrise", path: "default_dark" },
+	{ name: "Genesis", path: "genesis" },
+	{ name: "Brave Soldiers", path: "brave_soldiers" },
+	{ name: "Cappuccino's", path: "default_dark" },
+]
+
+const sam4gslB: Team[] = [
+	{ name: "Corinthians", path: "corinthians"},
+	{ name: "Furia", path: "furia"},
+	{ name: "Amethyst", path: "default_dark"},
+	{ name: "Overlooked", path: "overlooked"},
+	{ name: "FOFOS", path: "default_dark"},
+	{ name: "Team Reds", path: "reds"},
+	{ name: "Gratia", path: "default_dark"},
+	{ name: "Papo De Visao", path: "papo"},
+]
+
+export const sam4Combined  = [...sam4gslA, ...sam4gslB];
+
 const na4 = [
 	"geng",
 	"complexity",
