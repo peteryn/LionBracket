@@ -30,8 +30,8 @@ function TeamConstructor(name: string, path: string): Team {
 const liquipediaTeamLookup: Map<string, Team> = new Map();
 liquipediaTeamLookup.set("Team Falcons", TeamConstructor("Team Falcons", "falcons"));
 liquipediaTeamLookup.set("Al Qadsiah", TeamConstructor("Al Qadsiah", "al_qadsiah"));
-liquipediaTeamLookup.set("RBN", TeamConstructor("RBN", "rbn"));
-liquipediaTeamLookup.set("000", TeamConstructor("000", "000"));
+liquipediaTeamLookup.set("RBN", TeamConstructor("RBN", "default_dark"));
+liquipediaTeamLookup.set("000", TeamConstructor("000", "default_dark"));
 liquipediaTeamLookup.set("VVV", TeamConstructor("VVV", "vvv"));
 liquipediaTeamLookup.set("Infamous", TeamConstructor("Infamous", "infamous"));
 liquipediaTeamLookup.set("INVADERS BLUES", TeamConstructor("INVADERS BLUES", "invaders_blues"));
@@ -40,11 +40,22 @@ liquipediaTeamLookup.set("Twisted Minds", TeamConstructor("Twisted Minds", "twis
 liquipediaTeamLookup.set("sleeping", TeamConstructor("sleeping", "sleeping"));
 liquipediaTeamLookup.set("Team Vision", TeamConstructor("Team Vision", "team_vision"));
 liquipediaTeamLookup.set("F16 Esports", TeamConstructor("F16 Esports", "f16_esports"));
-liquipediaTeamLookup.set("zmr", TeamConstructor("zmr", "zmr"));
-liquipediaTeamLookup.set("House Targaryen", TeamConstructor("House Targaryen", "house_targaryen"));
-liquipediaTeamLookup.set("Hkm", TeamConstructor("Hkm", "hkm"));
+liquipediaTeamLookup.set("zmr", TeamConstructor("zmr", "default_dark"));
+liquipediaTeamLookup.set("House Targaryen", TeamConstructor("House Targaryen", "default_dark"));
+liquipediaTeamLookup.set("Hkm", TeamConstructor("Hkm", "default_dark"));
 liquipediaTeamLookup.set("ROC Esports", TeamConstructor("ROC Esports", "roc_esports"));
+liquipediaTeamLookup.set("777", TeamConstructor("777", "777"));
+liquipediaTeamLookup.set("Off", TeamConstructor("OFF", "default_dark"));
+liquipediaTeamLookup.set("Be Right Back", TeamConstructor("Be Right Back", "default_dark"));
+liquipediaTeamLookup.set("MDW", TeamConstructor("MDW", "default_dark"));
+liquipediaTeamLookup.set("qwperotiyfkgmkzldgbsdm", TeamConstructor("qwperotiyfkgmkzld...", "default_dark"));
+liquipediaTeamLookup.set("EKW", TeamConstructor("EKW", "default_dark"));
 
+function getCombined(teams1: string[], teams2: string[]) {
+	const res1 = teams1.map((team) => liquipediaTeamLookup.get(team) as Team);
+	const res2 = teams2.map((team) => liquipediaTeamLookup.get(team) as Team);
+	return [...res1, ...res2];
+}
 
 export const major1Teams: Team[] = [
 	{ name: "karmine_corp", path: "karmine_corp" },
@@ -239,5 +250,28 @@ const mena4gslBTeams = [
 const mena4gslA = mena4gslATeams.map((team) => liquipediaTeamLookup.get(team) as Team);
 const mena4gslB = mena4gslBTeams.map((team) => liquipediaTeamLookup.get(team) as Team);
 export const mena4Combined = [...mena4gslA, ...mena4gslB];
+
+const mena5gslATeams = [
+	"Team Falcons",
+	"Twisted Minds",
+	"Off",
+	"sleeping",
+	"000",
+	"MDW",
+	"777",
+	"F16 Esports"
+];
+const mena5gslBTeams = [
+	"ROC Esports",
+	"Team Vision",
+	"Be Right Back",
+	"Infamous",
+	"The Vicious",
+	"Al Qadsiah",
+	"qwperotiyfkgmkzldgbsdm",
+	"EKW"
+];
+
+export const mena5Combined = getCombined(mena5gslATeams, mena5gslBTeams);
 
 export const paths = major1;

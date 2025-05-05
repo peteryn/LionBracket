@@ -6,7 +6,14 @@ import App from "./App";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Regional from "./formats/Regional.tsx";
-import { eu4combined, mena4Combined, na4combined, na5Combined, sam4Combined } from "./helper/teamTranslator.ts";
+import {
+	eu4combined,
+	mena4Combined,
+	mena5Combined,
+	na4combined,
+	na5Combined,
+	sam4Combined
+} from "./helper/teamTranslator.ts";
 import Birmingham from "./birmingham/Birmingham.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -33,6 +40,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route
 					path="/middle_east_north_africa_open_4"
 					element={<Regional teams={mena4Combined} localStorageName={"mena_open_4"}/>}
+				></Route>
+				<Route
+					path="/middle_east_north_africa_open_5"
+					element={<Regional teams={mena5Combined} localStorageName={"mena_open_5"}/>}
 				></Route>
 				<Route
 					path="/birmingham"
