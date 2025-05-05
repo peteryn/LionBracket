@@ -1,60 +1,3 @@
-// const na3: string[] = [
-// 	"nrg",
-// 	"complexity",
-// 	"evo",
-// 	"shopify",
-// 	"ssg",
-// 	"omlette",
-// 	"lamp",
-// 	"str",
-// 	"pirates",
-// 	"kcp",
-// 	"rev",
-// 	"wtp",
-// 	"stepbros",
-// 	"glam",
-// 	"zoo",
-// 	"mex",
-// ];
-
-// const na3b: string[] = [
-// 	"tu",
-// 	"9l",
-// 	"dg",
-// 	"net",
-// 	"geng",
-// 	"wsup",
-// 	"tall",
-// 	"tech",
-// 	"gas",
-// 	"wrst",
-// 	"lot8",
-// 	"100x",
-// 	"arsy",
-// 	"an",
-// 	"pine",
-// 	"nor",
-// ];
-
-// const naTest: string[] = [
-// 	"g2",
-// 	"geng",
-// 	"og",
-// 	"ssg",
-// 	"luminosity",
-// 	"m80",
-// 	"cloud9",
-// 	"shopify",
-// 	"snowmen",
-// 	"dignitas",
-// 	"moist",
-// 	"nrg",
-// 	"spate",
-// 	"zero2one",
-// 	"gbuffo",
-// 	"incorrect",
-// ];
-
 export const major1: string[] = [
 	"karmine_corp",
 	"nrg",
@@ -74,10 +17,35 @@ export const major1: string[] = [
 	"fut_esports",
 ];
 
+
 export type Team = {
 	name: string,
 	path: string,
 }
+
+function TeamConstructor(name: string, path: string): Team {
+	return {name: name, path: path};
+}
+
+const liquipediaTeamLookup: Map<string, Team> = new Map();
+liquipediaTeamLookup.set("Team Falcons", TeamConstructor("Team Falcons", "falcons"));
+liquipediaTeamLookup.set("Al Qadsiah", TeamConstructor("Al Qadsiah", "al_qadsiah"));
+liquipediaTeamLookup.set("RBN", TeamConstructor("RBN", "rbn"));
+liquipediaTeamLookup.set("000", TeamConstructor("000", "000"));
+liquipediaTeamLookup.set("VVV", TeamConstructor("VVV", "vvv"));
+liquipediaTeamLookup.set("Infamous", TeamConstructor("Infamous", "infamous"));
+liquipediaTeamLookup.set("INVADERS BLUES", TeamConstructor("INVADERS BLUES", "invaders_blues"));
+liquipediaTeamLookup.set("The Vicious", TeamConstructor("The Vicious", "the_vicious"));
+liquipediaTeamLookup.set("Twisted Minds", TeamConstructor("Twisted Minds", "twisted_minds"));
+liquipediaTeamLookup.set("sleeping", TeamConstructor("sleeping", "sleeping"));
+liquipediaTeamLookup.set("Team Vision", TeamConstructor("Team Vision", "team_vision"));
+liquipediaTeamLookup.set("F16 Esports", TeamConstructor("F16 Esports", "f16_esports"));
+liquipediaTeamLookup.set("zmr", TeamConstructor("zmr", "zmr"));
+liquipediaTeamLookup.set("House Targaryen", TeamConstructor("House Targaryen", "house_targaryen"));
+liquipediaTeamLookup.set("Hkm", TeamConstructor("Hkm", "hkm"));
+liquipediaTeamLookup.set("ROC Esports", TeamConstructor("ROC Esports", "roc_esports"));
+
+
 export const major1Teams: Team[] = [
 	{ name: "karmine_corp", path: "karmine_corp" },
 	{ name: "nrg", path: "nrg" },
@@ -195,11 +163,6 @@ const res1 = eu4test1.map((team, index) => {
 		return eu4test2[index]
 	}
 })
-console.log("res1")
-console.log(res1)
-console.log("res2")
-console.log(res2)
-
 
 export const eu4combined = [...eu4gslA, ...eu4gslB];
 
@@ -251,23 +214,30 @@ const na5gslB: Team[] = [
 
 export const na5Combined = [...na5gslA, ...na5gslB];
 
-const na4 = [
-	"geng",
-	"complexity",
-	"nrg",
-	"the_ultimates",
-	"ssg",
-	"the_boys",
-	"poab",
-	"shopify",
-	"strictly",
-	"9lives",
-	"team evo",
-	"nah",
-	"wassup",
-	"power rangers",
-	"simtawk",
-	"deleted",
+const mena4gslATeams = [
+	"Team Falcons",
+	"Al Qadsiah",
+	"RBN",
+	"000",
+	"VVV",
+	"Infamous",
+	"INVADERS BLUES",
+	"The Vicious"
 ];
+
+const mena4gslBTeams = [
+	"Twisted Minds",
+	"sleeping",
+	"Team Vision",
+	"F16 Esports",
+	"zmr",
+	"House Targaryen",
+	"Hkm",
+	"ROC Esports"
+];
+
+const mena4gslA = mena4gslATeams.map((team) => liquipediaTeamLookup.get(team) as Team);
+const mena4gslB = mena4gslBTeams.map((team) => liquipediaTeamLookup.get(team) as Team);
+export const mena4Combined = [...mena4gslA, ...mena4gslB];
 
 export const paths = major1;
