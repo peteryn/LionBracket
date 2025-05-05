@@ -162,6 +162,45 @@ const eu4gslB: Team[] = [
 	{ name: "Tokyo Tigers", path: "tokyo_tigers" },
 ];
 
+const eu4test1: Team[] = [
+	{ name: "Ninjas", path: "nip" },
+	{ name: "Synergy", path: "synergy" },
+	{ name: "F4WD", path: "f4wd" },
+	{ name: "Geekay", path: "geekay_esports" },
+	{ name: "Karmine Corp", path: "karmine_corp" },
+	{ name: "Gentlemates", path: "mates" },
+	{ name: "Dopamine", path: "default_dark" },
+	{ name: "Tokyo Tigers", path: "tokyo_tigers" },
+
+]
+
+const eu4test2: Team[] = [
+	{ name: "Dignitas", path: "dignitas" },
+	{ name: "Vitality", path: "vitality" },
+	{ name: "JJROX", path: "jjrox" },
+	{ name: "Smokey Bacon", path: "smokey_bacon" },
+	{ name: "Team BSK", path: "bsk" },
+	{ name: "Atom Unity", path: "atom_unity" },
+	{ name: "Team BDS", path: "bds" },
+	{ name: "100%", path: "100" },
+]
+
+const res2: Team[] = []
+const res1 = eu4test1.map((team, index) => {
+	if (index % 2 === 0) {
+		res2.push(eu4test2[index])
+		return team
+	} else {
+		res2.push(team)
+		return eu4test2[index]
+	}
+})
+console.log("res1")
+console.log(res1)
+console.log("res2")
+console.log(res2)
+
+
 export const eu4combined = [...eu4gslA, ...eu4gslB];
 
 const sam4gslA: Team[] = [
