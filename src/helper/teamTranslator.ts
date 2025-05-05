@@ -227,6 +227,30 @@ const sam4gslB: Team[] = [
 
 export const sam4Combined  = [...sam4gslA, ...sam4gslB];
 
+const na5gslA: Team[] = [
+	{ name: "Schnitzelhaus", path: "default_dark" },
+	{ name: "Gen.G", path: "geng" },
+	{ name: "NRG", path: "nrg" },
+	{ name: "Shopify Rebellion", path: "shopify" },
+	{ name: "The Boys", path: "default_dark" },
+	{ name: "simtawk+1", path: "default_dark" },
+	{ name: "Deleted Gaming", path: "deleted_xd" },
+	{ name: "Pirates on a Boat", path: "poab" },
+]
+
+const na5gslB: Team[] = [
+	{ name: "Spacestation Gaming", path: "ssg" },
+	{ name: "The Ultimates", path: "the_ultimates" },
+	{ name: "S.O.S", path: "default_dark" },
+	{ name: "Complexity", path: "complexity" },
+	{ name: "Strictly Business", path: "default_dark" },
+	{ name: "Team Evo", path: "evo" },
+	{ name: "Lil Step Bros", path: "step_bros" },
+	{ name: "Bubble Sort", path: "default_dark" },
+]
+
+export const na5Combined = [...na5gslA, ...na5gslB];
+
 const na4 = [
 	"geng",
 	"complexity",
