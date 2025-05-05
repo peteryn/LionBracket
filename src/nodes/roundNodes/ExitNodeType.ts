@@ -1,4 +1,4 @@
-import { SwissBracketFlow } from "../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
+import { SwissBracketFlow } from "../../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 
 export class ExitNodeType {
   [key: string]: unknown;
