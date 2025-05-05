@@ -5,7 +5,7 @@ export default function({ regionName, data, color }: {regionName: string, data: 
 	if (data.length === 0) {
 		items = <li>Coming Soon</li>
 	} else {
-		items = data.map((item, index) => <li key={index}><NavLink to={item}>Regional {index + 1}</NavLink></li>)
+		items = data.map((item, index) => <li key={index}><NavLink to={item}>Open #{index + 4}</NavLink></li>)
 	}
 	return (
 		<div className="bebas-neue-regular">
