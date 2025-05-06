@@ -338,14 +338,22 @@ export const apac4Combined = getTranslated([
 ]);
 
 export const ssa4Combined = getTranslated([
-	"FUT Esports", "Old Dog New Tricks",
-	"Akimbo Esports", "le bosh",
-	"Cristobal Colon", "Limitless",
-	"77Blocks", "Hey (with rizz)",
-	"We love farming", "Omen Esports",
-	"CosmiCo Esports", "Relentless",
-	"Rapaziada 1906", "Crazy Time",
-	"Goober Gang", "123"
+	"FUT Esports",
+	"Old Dog New Tricks",
+	"Akimbo Esports",
+	"le bosh",
+	"Hey (with rizz)",
+	"Limitless",
+	"77Blocks",
+	"Cristobal Colon",
+	"We love farming",
+	"Omen Esports",
+	"CosmiCo Esports",
+	"Relentless",
+	"Rapaziada 1906",
+	"Crazy Time",
+	"Goober Gang",
+	"123"
 ]);
 
 export const ssa5Combined = getTranslated([
