@@ -24,10 +24,11 @@ export type Team = {
 }
 
 function TeamConstructor(name: string, path: string): Team {
-	return {name: name, path: path};
+	return { name: name, path: path };
 }
 
 const liquipediaTeamLookup: Map<string, Team> = new Map();
+// MENA
 liquipediaTeamLookup.set("Team Falcons", TeamConstructor("Team Falcons", "falcons"));
 liquipediaTeamLookup.set("Al Qadsiah", TeamConstructor("Al Qadsiah", "al_qadsiah"));
 liquipediaTeamLookup.set("RBN", TeamConstructor("RBN", "default_dark"));
@@ -50,6 +51,31 @@ liquipediaTeamLookup.set("Be Right Back", TeamConstructor("Be Right Back", "defa
 liquipediaTeamLookup.set("MDW", TeamConstructor("MDW", "default_dark"));
 liquipediaTeamLookup.set("qwperotiyfkgmkzldgbsdm", TeamConstructor("qwperotiyfkgmkzld...", "default_dark"));
 liquipediaTeamLookup.set("EKW", TeamConstructor("EKW", "default_dark"));
+
+// OCE
+liquipediaTeamLookup.set("PWR", TeamConstructor("PWR", "pwr"));
+liquipediaTeamLookup.set("TSM", TeamConstructor("TSM", "tsm"));
+liquipediaTeamLookup.set("Wildcard", TeamConstructor("Wildcard", "wildcard"));
+liquipediaTeamLookup.set("HSP", TeamConstructor("HSP", "default_dark"));
+liquipediaTeamLookup.set("Huh?", TeamConstructor("Huh?", "default_dark"));
+liquipediaTeamLookup.set("jim", TeamConstructor("jim", "default_dark"));
+liquipediaTeamLookup.set("big boost", TeamConstructor("big boost", "default_dark"));
+liquipediaTeamLookup.set("Nookles Pookles", TeamConstructor("Nookles Pookles", "default_dark"));
+liquipediaTeamLookup.set("Helfie Chiefs", TeamConstructor("Chiefs", "helfie_chiefs"));
+liquipediaTeamLookup.set("I'm fine in the west", TeamConstructor("I'm fine in the west", "default_dark"));
+liquipediaTeamLookup.set("Prime Pettys Pups", TeamConstructor("Prime Pettys Pups", "default_dark"));
+liquipediaTeamLookup.set("Tsurani", TeamConstructor("Tsurani", "default_dark"));
+liquipediaTeamLookup.set("R.T.T.", TeamConstructor("R.T.T.", "default_dark"));
+liquipediaTeamLookup.set("SKRIMZWORLD", TeamConstructor("SKRIMZWORLD", "skrimzworld"));
+liquipediaTeamLookup.set("Fishing For Wins", TeamConstructor("Fishing For Wins", "default_dark"));
+liquipediaTeamLookup.set("Wolves Gaming", TeamConstructor("Wolves Gaming", "wolves_gaming"));
+liquipediaTeamLookup.set("Three Chiches", TeamConstructor("Three Chiches", "default_dark"));
+liquipediaTeamLookup.set("fiburgerbeast", TeamConstructor("fiburgerbeast", "default_dark"));
+liquipediaTeamLookup.set("run it back", TeamConstructor("run it back", "default_dark"));
+liquipediaTeamLookup.set("retired", TeamConstructor("retired", "default_dark"));
+liquipediaTeamLookup.set("Chins up", TeamConstructor("Chins up", "default_dark"));
+liquipediaTeamLookup.set("Freshies from down under", TeamConstructor("Freshies from down...", "default_dark"));
+
 
 function getCombined(teams1: string[], teams2: string[]) {
 	const res1 = teams1.map((team) => liquipediaTeamLookup.get(team) as Team);
@@ -151,7 +177,7 @@ const eu4test1: Team[] = [
 	{ name: "Dopamine", path: "default_dark" },
 	{ name: "Tokyo Tigers", path: "tokyo_tigers" },
 
-]
+];
 
 const eu4test2: Team[] = [
 	{ name: "Dignitas", path: "dignitas" },
@@ -162,18 +188,18 @@ const eu4test2: Team[] = [
 	{ name: "Atom Unity", path: "atom_unity" },
 	{ name: "Team BDS", path: "bds" },
 	{ name: "100%", path: "100" },
-]
+];
 
-const res2: Team[] = []
+const res2: Team[] = [];
 const res1 = eu4test1.map((team, index) => {
 	if (index % 2 === 0) {
-		res2.push(eu4test2[index])
-		return team
+		res2.push(eu4test2[index]);
+		return team;
 	} else {
-		res2.push(team)
-		return eu4test2[index]
+		res2.push(team);
+		return eu4test2[index];
 	}
-})
+});
 
 export const eu4combined = [...eu4gslA, ...eu4gslB];
 
@@ -186,20 +212,20 @@ const sam4gslA: Team[] = [
 	{ name: "Genesis", path: "genesis" },
 	{ name: "Brave Soldiers", path: "brave_soldiers" },
 	{ name: "Cappuccino's", path: "default_dark" },
-]
+];
 
 const sam4gslB: Team[] = [
-	{ name: "Corinthians", path: "corinthians"},
-	{ name: "Furia", path: "furia"},
-	{ name: "Amethyst", path: "default_dark"},
-	{ name: "Overlooked", path: "overlooked"},
-	{ name: "FOFOS", path: "default_dark"},
-	{ name: "Team Reds", path: "reds"},
-	{ name: "Gratia", path: "default_dark"},
-	{ name: "Papo De Visao", path: "papo"},
-]
+	{ name: "Corinthians", path: "corinthians" },
+	{ name: "Furia", path: "furia" },
+	{ name: "Amethyst", path: "default_dark" },
+	{ name: "Overlooked", path: "overlooked" },
+	{ name: "FOFOS", path: "default_dark" },
+	{ name: "Team Reds", path: "reds" },
+	{ name: "Gratia", path: "default_dark" },
+	{ name: "Papo De Visao", path: "papo" },
+];
 
-export const sam4Combined  = [...sam4gslA, ...sam4gslB];
+export const sam4Combined = [...sam4gslA, ...sam4gslB];
 
 const na5gslA: Team[] = [
 	{ name: "Schnitzelhaus", path: "default_dark" },
@@ -210,7 +236,7 @@ const na5gslA: Team[] = [
 	{ name: "simtawk+1", path: "default_dark" },
 	{ name: "Deleted Gaming", path: "deleted_xd" },
 	{ name: "Pirates on a Boat", path: "poab" },
-]
+];
 
 const na5gslB: Team[] = [
 	{ name: "Spacestation Gaming", path: "ssg" },
@@ -221,7 +247,7 @@ const na5gslB: Team[] = [
 	{ name: "Team Evo", path: "evo" },
 	{ name: "Lil Step Bros", path: "step_bros" },
 	{ name: "Bubble Sort", path: "default_dark" },
-]
+];
 
 export const na5Combined = [...na5gslA, ...na5gslB];
 
@@ -273,5 +299,47 @@ const mena5gslBTeams = [
 ];
 
 export const mena5Combined = getCombined(mena5gslATeams, mena5gslBTeams);
+
+export const oce4Combined = getCombined([
+		"PWR",
+		"TSM",
+		"Wildcard",
+		"HSP",
+		"Huh?",
+		"jim",
+		"big boost",
+		"Nookles Pookles"
+	],
+	[
+		"Helfie Chiefs",
+		"I'm fine in the west",
+		"Prime Pettys Pups",
+		"Tsurani",
+		"R.T.T.",
+		"SKRIMZWORLD",
+		"Fishing For Wins",
+		"Wolves Gaming"
+	]);
+
+export const oce5Combined = getCombined([
+		"Wildcard",
+		"TSM",
+		"SKRIMZWORLD",
+		"Three Chiches",
+		"Tsurani",
+		"fiburgerbeast",
+		"R.T.T.",
+		"run it back"
+	],
+	[
+		"Helfie Chiefs",
+		"PWR",
+		"Prime Pettys Pups",
+		"I'm fine in the west",
+		"retired",
+		"Chins up",
+		"Nookles Pookles",
+		"Freshies from down under"
+	]);
 
 export const paths = major1;

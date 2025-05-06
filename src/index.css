@@ -12,6 +12,9 @@
     --green: #19bb70;
     --yellow: #eab34f;
     --red: #dd3542;
+    --purple: #7e57c2;
+    --pink: #ec5f9b;
+    --orange: #f68b3d;
     --rl-orange: #e57018;
     --rl-blue: #3e56c4;
 
@@ -19,6 +22,35 @@
     --node-color: #1b1d22;
     --node-border: #595e67;
 }
+
+.blue-text {
+    color: var(--blue);
+}
+
+.green-text {
+    color: var(--green);
+}
+
+.yellow-text {
+    color: var(--yellow);
+}
+
+.red-text {
+    color: var(--red);
+}
+
+.purple-text {
+    color: var(--purple);
+}
+
+.pink-text {
+    color: var(--pink);
+}
+
+.orange-text {
+    color: var(--orange);
+}
+
 
 p {
     padding: 0;
