@@ -17,7 +17,6 @@ export const major1: string[] = [
 	"fut_esports",
 ];
 
-
 export type Team = {
 	name: string,
 	path: string,
@@ -28,6 +27,64 @@ function TeamConstructor(name: string, path: string): Team {
 }
 
 const liquipediaTeamLookup: Map<string, Team> = new Map();
+// EU
+liquipediaTeamLookup.set("Ninjas in Pyjamas", TeamConstructor("Ninjas in Pyjamas", "nip"));
+liquipediaTeamLookup.set("Dignitas", TeamConstructor("Dignitas", "dignitas"));
+liquipediaTeamLookup.set("Team Vitality", TeamConstructor("Team Vitality", "vitality"));
+liquipediaTeamLookup.set("Synergy", TeamConstructor("Synergy", "synergy"));
+liquipediaTeamLookup.set("F4WD", TeamConstructor("F4WD", "f4wd"));
+liquipediaTeamLookup.set("JJROX", TeamConstructor("JJROX", "jjrox"));
+liquipediaTeamLookup.set("Smokey Bacon Association", TeamConstructor("Smokey Bacon", "smokey_bacon"));
+liquipediaTeamLookup.set("Geekay Esports", TeamConstructor("Geekay Esports", "geekay_esports"));
+liquipediaTeamLookup.set("Karmine Corp", TeamConstructor("Karmine Corp", "karmine_corp"));
+liquipediaTeamLookup.set("Team BSK", TeamConstructor("Team BSK", "bsk"));
+liquipediaTeamLookup.set("Atom Unity", TeamConstructor("Atom Unity", "atom_unity"));
+liquipediaTeamLookup.set("Gentle Mates Alpine", TeamConstructor("Gentle Mates Alpine", "mates"));
+liquipediaTeamLookup.set("Dopamine", TeamConstructor("Dopamine", "default_dark"));
+liquipediaTeamLookup.set("Team BDS", TeamConstructor("Team BDS", "bds"));
+liquipediaTeamLookup.set("100%", TeamConstructor("100%", "100"));
+liquipediaTeamLookup.set("Tokyo Tigers", TeamConstructor("Tokyo Tigers", "tokyo_tigers"));
+
+// NA
+liquipediaTeamLookup.set("Gen.G Mobil1 Racing", TeamConstructor("Gen.G Mobil1 Racing", "geng"));
+liquipediaTeamLookup.set("Complexity Gaming", TeamConstructor("Complexity Gaming", "complexity"));
+liquipediaTeamLookup.set("The Ultimates", TeamConstructor("The Ultimates", "the_ultimates"));
+liquipediaTeamLookup.set("NRG", TeamConstructor("NRG", "nrg"));
+liquipediaTeamLookup.set("Spacestation Gaming", TeamConstructor("Spacestation Gaming", "ssg"));
+liquipediaTeamLookup.set("The Boys", TeamConstructor("The Boys", "default_dark"));
+liquipediaTeamLookup.set("Shopify Rebellion", TeamConstructor("Shopify Rebellion", "shopify"));
+liquipediaTeamLookup.set("Pirates on a Boat", TeamConstructor("Pirates on a Boat", "poab"));
+liquipediaTeamLookup.set("Strictly Business", TeamConstructor("Strictly Business", "default_dark"));
+liquipediaTeamLookup.set("9Lives", TeamConstructor("9Lives", "9lives"));
+liquipediaTeamLookup.set("Team Evo", TeamConstructor("Team Evo", "evo"));
+liquipediaTeamLookup.set("nah", TeamConstructor("nah", "nah"));
+liquipediaTeamLookup.set("simtawk+1", TeamConstructor("simtawk+1", "default_dark"));
+liquipediaTeamLookup.set("WASSUP", TeamConstructor("WASSUP", "default_dark"));
+liquipediaTeamLookup.set("Power Rangers", TeamConstructor("Power Rangers", "default_dark"));
+liquipediaTeamLookup.set("Deleted Gaming", TeamConstructor("Deleted Gaming", "deleted_xd"));
+liquipediaTeamLookup.set("Schnitzelhaus", TeamConstructor("Schnitzelhaus", "default_dark"));
+liquipediaTeamLookup.set("S.O.S.", TeamConstructor("S.O.S.", "sos"));
+liquipediaTeamLookup.set("Lil Step Bros", TeamConstructor("Lil Step Bros", "step_bros"));
+liquipediaTeamLookup.set("Bubble Sort", TeamConstructor("Bubble Sort", "default_dark"));
+
+// SAM
+liquipediaTeamLookup.set("Godfidence", TeamConstructor("Godfidence", "godfidence"));
+liquipediaTeamLookup.set("Corinthians Esports", TeamConstructor("Corinthians Esports", "corinthians"));
+liquipediaTeamLookup.set("Team Secret", TeamConstructor("Team Secret", "team_secret"));
+liquipediaTeamLookup.set("FURIA", TeamConstructor("FURIA", "furia"));
+liquipediaTeamLookup.set("Latino Heat", TeamConstructor("Latino Heat", "latino_heat"));
+liquipediaTeamLookup.set("Amethyst", TeamConstructor("Amethyst", "default_dark"));
+liquipediaTeamLookup.set("The Jungle", TeamConstructor("The Jungle", "default_dark"));
+liquipediaTeamLookup.set("Overlooked", TeamConstructor("Overlooked", "overlooked"));
+liquipediaTeamLookup.set("Moonrise", TeamConstructor("Moonrise", "default_dark"));
+liquipediaTeamLookup.set("FOFOS", TeamConstructor("FOFOS", "default_dark"));
+liquipediaTeamLookup.set("Genesis", TeamConstructor("Genesis", "genesis"));
+liquipediaTeamLookup.set("Team Reds", TeamConstructor("Team Reds", "reds"));
+liquipediaTeamLookup.set("Team Brave Soldiers Esports", TeamConstructor("Brave Soldiers", "brave_soldiers"));
+liquipediaTeamLookup.set("Gratia", TeamConstructor("Gratia", "default_dark"));
+liquipediaTeamLookup.set("Manchester City", TeamConstructor("Cappuccino's", "default_dark"));
+liquipediaTeamLookup.set("Papo de Visão", TeamConstructor("Papo de Visão", "papo"));
+
 // MENA
 liquipediaTeamLookup.set("Team Falcons", TeamConstructor("Team Falcons", "falcons"));
 liquipediaTeamLookup.set("Al Qadsiah", TeamConstructor("Al Qadsiah", "al_qadsiah"));
@@ -83,6 +140,10 @@ function getCombined(teams1: string[], teams2: string[]) {
 	return [...res1, ...res2];
 }
 
+function getTranslated(teams: string[]) {
+	return teams.map((team) => liquipediaTeamLookup.get(team) as Team);
+}
+
 export const major1Teams: Team[] = [
 	{ name: "karmine_corp", path: "karmine_corp" },
 	{ name: "nrg", path: "nrg" },
@@ -102,244 +163,124 @@ export const major1Teams: Team[] = [
 	{ name: "fut_esports", path: "fut_esports" },
 ];
 
-const eu4 = [
-	["Ninjas", "nip"],
-	["Dignitas", "dignitas"],
-	["Vitality", "vitality"],
-	["Synergy", "synergy"],
-	["F4WD", "f4wd"],
-	["JJROX", "jjrox"],
-	["Smokey Bacon", "smokey_bacon"],
-	["Geekay", "geekay_esports"],
-	["Karmine Corp", "karmine_corp"],
-	["Team BSK", "team_bsk"],
-	["Atom Unity", "atom_unity"],
-	["Gentlemates", "mates"],
-	["Dopamine", "dopamine"],
-	["Team BDS", "bds"],
-	["100%", "100"],
-	["Tokyo Tigers", "tokyo_tigers"]
-];
+export const na4Combined = getTranslated([
+	"Gen.G Mobil1 Racing", "Complexity Gaming",
+	"The Ultimates", "NRG",
+	"Spacestation Gaming", "The Boys",
+	"Shopify Rebellion", "Pirates on a Boat",
+	"Strictly Business", "9Lives",
+	"Team Evo", "nah",
+	"simtawk+1", "WASSUP",
+	"Power Rangers", "Deleted Gaming"
+]);
 
-const na4gslA: Team[] = [
-	{ name: "geng", path: "geng" },
-	{ name: "The Ultimates", path: "the_ultimates" },
-	{ name: "Spacestation Gaming", path: "ssg" },
-	{ name: "Shopify Rebellion", path: "shopify" },
-	{ name: "Strictly Business", path: "default_dark" },
-	{ name: "Team Evo", path: "evo" },
-	{ name: "simtawk+1", path: "default_dark" },
-	{ name: "Power Rangers", path: "default_dark" },
-];
+export const na5Combined = getTranslated([
+	"Schnitzelhaus", "Spacestation Gaming",
+	"Gen.G Mobil1 Racing", "The Ultimates",
+	"NRG", "S.O.S.",
+	"Shopify Rebellion", "Complexity Gaming",
+	"The Boys", "Strictly Business",
+	"simtawk+1", "Team Evo",
+	"Deleted Gaming", "Lil Step Bros",
+	"Pirates on a Boat", "Bubble Sort"
+]);
 
-const na4gslB: Team[] = [
-	{ name: "NRG", path: "nrg" },
-	{ name: "Complexity", path: "complexity" },
-	{ name: "Pirates", path: "poab" },
-	{ name: "The Boys", path: "default_dark" },
-	{ name: "nah", path: "nah" },
-	{ name: "9Lives", path: "9lives" },
-	{ name: "Deleted Gaming", path: "deleted_xd" },
-	{ name: "Wassup", path: "default_dark" },
-];
+export const eu4Combined = getTranslated([
+	"Ninjas in Pyjamas",
+	"Dignitas",
+	"Team Vitality",
+	"Synergy",
+	"F4WD",
+	"JJROX",
+	"Smokey Bacon Association",
+	"Geekay Esports",
+	"Karmine Corp",
+	"Team BSK",
+	"Atom Unity",
+	"Gentle Mates Alpine",
+	"Dopamine",
+	"Team BDS",
+	"100%",
+	"Tokyo Tigers"
+]);
 
-export const na4combined = [...na4gslA, ...na4gslB];
+export const sam4Combined = getTranslated([
+	"Godfidence",
+	"Corinthians Esports",
+	"Team Secret",
+	"FURIA",
+	"Latino Heat",
+	"Amethyst",
+	"The Jungle",
+	"Overlooked",
+	"Moonrise",
+	"FOFOS",
+	"Genesis",
+	"Team Reds",
+	"Team Brave Soldiers Esports",
+	"Gratia",
+	"Manchester City",
+	"Papo de Visão"
+]);
 
-const eu4gslA: Team[] = [
-	{ name: "Ninjas", path: "nip" },
-	{ name: "Vitality", path: "vitality" },
-	{ name: "F4WD", path: "f4wd" },
-	{ name: "Smokey Bacon", path: "smokey_bacon" },
-	{ name: "Karmine Corp", path: "karmine_corp" },
-	{ name: "Atom Unity", path: "atom_unity" },
-	{ name: "Dopamine", path: "default_dark" },
-	{ name: "100%", path: "100" },
-];
+export const mena4Combined = getTranslated([
+	"Team Falcons", "Twisted Minds",
+	"Al Qadsiah", "sleeping",
+	"RBN", "Team Vision",
+	"000", "F16 Esports",
+	"VVV", "zmr",
+	"Infamous", "House Targaryen",
+	"INVADERS BLUES", "Hkm",
+	"The Vicious", "ROC Esports"
+]);
 
-const eu4gslB: Team[] = [
-	{ name: "Dignitas", path: "dignitas" },
-	{ name: "Synergy", path: "synergy" },
-	{ name: "JJROX", path: "jjrox" },
-	{ name: "Geekay", path: "geekay_esports" },
-	{ name: "Team BSK", path: "bsk" },
-	{ name: "Gentlemates", path: "mates" },
-	{ name: "Team BDS", path: "bds" },
-	{ name: "Tokyo Tigers", path: "tokyo_tigers" },
-];
-
-const eu4test1: Team[] = [
-	{ name: "Ninjas", path: "nip" },
-	{ name: "Synergy", path: "synergy" },
-	{ name: "F4WD", path: "f4wd" },
-	{ name: "Geekay", path: "geekay_esports" },
-	{ name: "Karmine Corp", path: "karmine_corp" },
-	{ name: "Gentlemates", path: "mates" },
-	{ name: "Dopamine", path: "default_dark" },
-	{ name: "Tokyo Tigers", path: "tokyo_tigers" },
-
-];
-
-const eu4test2: Team[] = [
-	{ name: "Dignitas", path: "dignitas" },
-	{ name: "Vitality", path: "vitality" },
-	{ name: "JJROX", path: "jjrox" },
-	{ name: "Smokey Bacon", path: "smokey_bacon" },
-	{ name: "Team BSK", path: "bsk" },
-	{ name: "Atom Unity", path: "atom_unity" },
-	{ name: "Team BDS", path: "bds" },
-	{ name: "100%", path: "100" },
-];
-
-const res2: Team[] = [];
-const res1 = eu4test1.map((team, index) => {
-	if (index % 2 === 0) {
-		res2.push(eu4test2[index]);
-		return team;
-	} else {
-		res2.push(team);
-		return eu4test2[index];
-	}
-});
-
-export const eu4combined = [...eu4gslA, ...eu4gslB];
-
-const sam4gslA: Team[] = [
-	{ name: "Godfidence", path: "godfidence" },
-	{ name: "Team Secret", path: "team_secret" },
-	{ name: "Latino Heat", path: "latino_heat" },
-	{ name: "The Jungle", path: "default_dark" },
-	{ name: "Moonrise", path: "default_dark" },
-	{ name: "Genesis", path: "genesis" },
-	{ name: "Brave Soldiers", path: "brave_soldiers" },
-	{ name: "Cappuccino's", path: "default_dark" },
-];
-
-const sam4gslB: Team[] = [
-	{ name: "Corinthians", path: "corinthians" },
-	{ name: "Furia", path: "furia" },
-	{ name: "Amethyst", path: "default_dark" },
-	{ name: "Overlooked", path: "overlooked" },
-	{ name: "FOFOS", path: "default_dark" },
-	{ name: "Team Reds", path: "reds" },
-	{ name: "Gratia", path: "default_dark" },
-	{ name: "Papo De Visao", path: "papo" },
-];
-
-export const sam4Combined = [...sam4gslA, ...sam4gslB];
-
-const na5gslA: Team[] = [
-	{ name: "Schnitzelhaus", path: "default_dark" },
-	{ name: "Gen.G", path: "geng" },
-	{ name: "NRG", path: "nrg" },
-	{ name: "Shopify Rebellion", path: "shopify" },
-	{ name: "The Boys", path: "default_dark" },
-	{ name: "simtawk+1", path: "default_dark" },
-	{ name: "Deleted Gaming", path: "deleted_xd" },
-	{ name: "Pirates on a Boat", path: "poab" },
-];
-
-const na5gslB: Team[] = [
-	{ name: "Spacestation Gaming", path: "ssg" },
-	{ name: "The Ultimates", path: "the_ultimates" },
-	{ name: "S.O.S", path: "default_dark" },
-	{ name: "Complexity", path: "complexity" },
-	{ name: "Strictly Business", path: "default_dark" },
-	{ name: "Team Evo", path: "evo" },
-	{ name: "Lil Step Bros", path: "step_bros" },
-	{ name: "Bubble Sort", path: "default_dark" },
-];
-
-export const na5Combined = [...na5gslA, ...na5gslB];
-
-const mena4gslATeams = [
+export const mena5Combined = getTranslated([
 	"Team Falcons",
-	"Al Qadsiah",
-	"RBN",
-	"000",
-	"VVV",
-	"Infamous",
-	"INVADERS BLUES",
-	"The Vicious"
-];
-
-const mena4gslBTeams = [
-	"Twisted Minds",
-	"sleeping",
-	"Team Vision",
-	"F16 Esports",
-	"zmr",
-	"House Targaryen",
-	"Hkm",
-	"ROC Esports"
-];
-
-const mena4gslA = mena4gslATeams.map((team) => liquipediaTeamLookup.get(team) as Team);
-const mena4gslB = mena4gslBTeams.map((team) => liquipediaTeamLookup.get(team) as Team);
-export const mena4Combined = [...mena4gslA, ...mena4gslB];
-
-const mena5gslATeams = [
-	"Team Falcons",
-	"Twisted Minds",
-	"Off",
-	"sleeping",
-	"000",
-	"MDW",
-	"777",
-	"F16 Esports"
-];
-const mena5gslBTeams = [
 	"ROC Esports",
+	"Twisted Minds",
 	"Team Vision",
+	"Off",
 	"Be Right Back",
+	"sleeping",
 	"Infamous",
+	"000",
 	"The Vicious",
+	"MDW",
 	"Al Qadsiah",
+	"777",
 	"qwperotiyfkgmkzldgbsdm",
+	"F16 Esports",
 	"EKW"
-];
+]);
 
-export const mena5Combined = getCombined(mena5gslATeams, mena5gslBTeams);
+export const oce4Combined = getTranslated([
+	"PWR", "Helfie Chiefs",
+	"TSM", "I'm fine in the west",
+	"Wildcard", "Prime Pettys Pups",
+	"HSP", "Tsurani",
+	"Huh?", "R.T.T.",
+	"jim", "SKRIMZWORLD",
+	"big boost", "Fishing For Wins",
+	"Nookles Pookles", "Wolves Gaming"
+]);
 
-export const oce4Combined = getCombined([
-		"PWR",
-		"TSM",
-		"Wildcard",
-		"HSP",
-		"Huh?",
-		"jim",
-		"big boost",
-		"Nookles Pookles"
-	],
-	[
-		"Helfie Chiefs",
-		"I'm fine in the west",
-		"Prime Pettys Pups",
-		"Tsurani",
-		"R.T.T.",
-		"SKRIMZWORLD",
-		"Fishing For Wins",
-		"Wolves Gaming"
-	]);
-
-export const oce5Combined = getCombined([
-		"Wildcard",
-		"TSM",
-		"SKRIMZWORLD",
-		"Three Chiches",
-		"Tsurani",
-		"fiburgerbeast",
-		"R.T.T.",
-		"run it back"
-	],
-	[
-		"Helfie Chiefs",
-		"PWR",
-		"Prime Pettys Pups",
-		"I'm fine in the west",
-		"retired",
-		"Chins up",
-		"Nookles Pookles",
-		"Freshies from down under"
-	]);
+export const oce5Combined = getTranslated([
+	"Wildcard",
+	"Helfie Chiefs",
+	"TSM",
+	"PWR",
+	"SKRIMZWORLD",
+	"Prime Pettys Pups",
+	"Three Chiches",
+	"I'm fine in the west",
+	"Tsurani",
+	"retired",
+	"fiburgerbeast",
+	"Chins up",
+	"R.T.T.",
+	"Nookles Pookles",
+	"run it back",
+	"Freshies from down under"
+]);
 
 export const paths = major1;
