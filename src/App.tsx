@@ -1,11 +1,19 @@
 import "@xyflow/react/dist/base.css";
 import RegionCard from "./components/RegionCard.tsx";
+import { NavLink } from "react-router";
 
 export default function App() {
 	return (
 		<div className="home-area">
 			<div className="home-header">
 				<h1 className="bebas-neue-regular">Lion Bracket</h1>
+			</div>
+			<div className="major-area">
+				<div>
+					<h2 className="bebas-neue-regular">
+						<NavLink to="/birmingham">Birmingham Major</NavLink>
+					</h2>
+				</div>
 			</div>
 			<div className="home-grid">
 				<RegionCard regionName="Europe" color="round-start-text" data={["/europe_open_4"]}/>
