@@ -16,6 +16,10 @@ export default function App() {
 							data={["/middle_east_north_africa_open_4", "/middle_east_north_africa_open_5"]}/>
 				<RegionCard regionName="Oceania" color="purple-text"
 							data={["/oceania_open_4", "/oceania_open_5"]}/>
+				<RegionCard regionName="Asia-Pacific" color="pink-text"
+							data={["/asia_pacific_open_4"]}/>
+				<RegionCard regionName="Sub-Saharan Africa" color="orange-text"
+							data={["/sub_saharan_africa_open_4", "/sub_saharan_africa_open_5"]}/>
 			</div>
 		</div>
 	);

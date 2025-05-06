@@ -133,6 +133,49 @@ liquipediaTeamLookup.set("retired", TeamConstructor("retired", "default_dark"));
 liquipediaTeamLookup.set("Chins up", TeamConstructor("Chins up", "default_dark"));
 liquipediaTeamLookup.set("Freshies from down under", TeamConstructor("Freshies from down...", "default_dark"));
 
+// APAC
+liquipediaTeamLookup.set("Luminosity Gaming", TeamConstructor("Luminosity Gaming", "luminosity"));
+liquipediaTeamLookup.set("God Speed", TeamConstructor("God Speed", "god_speed"));
+liquipediaTeamLookup.set("KOI", TeamConstructor("KOI", "koi"));
+liquipediaTeamLookup.set("KINOTROPE gaming", TeamConstructor("KINOTROPE gaming", "kinotrope"));
+liquipediaTeamLookup.set("Dreamstation", TeamConstructor("Dreamstation", "dreamstation"));
+liquipediaTeamLookup.set("Jungle Juicers", TeamConstructor("Jungle Juicers", "jungle_juicers"));
+liquipediaTeamLookup.set("TTG", TeamConstructor("TTG", "default_dark"));
+liquipediaTeamLookup.set("NJZ", TeamConstructor("NJZ", "default_dark"));
+liquipediaTeamLookup.set("ReaL Adrenaline", TeamConstructor("ReaL Adrenaline", "default_dark"));
+liquipediaTeamLookup.set("SENZA Esports", TeamConstructor("SENZA Esports", "senza_esports"));
+liquipediaTeamLookup.set("Pxress’s Habibtis", TeamConstructor("Pxress’s Habibtis", "pxresss_habibtis"));
+liquipediaTeamLookup.set("Zen Esports", TeamConstructor("Zen Esports", "zen_esports"));
+liquipediaTeamLookup.set("Praise", TeamConstructor("Praise", "praise"));
+liquipediaTeamLookup.set("sial", TeamConstructor("sial", "default_dark"));
+liquipediaTeamLookup.set("ROUNDS", TeamConstructor("ROUNDS", "rounds"));
+liquipediaTeamLookup.set("Team Phoenix", TeamConstructor("Team Phoenix", "team_phoenix"));
+
+// SSA
+liquipediaTeamLookup.set("FUT Esports", TeamConstructor("FUT Esports", "fut_esports"));
+liquipediaTeamLookup.set("Old Dog New Tricks", TeamConstructor("Old Dog New Tricks", "default_dark"));
+liquipediaTeamLookup.set("Akimbo Esports", TeamConstructor("Akimbo Esports", "akimbo_esports"));
+liquipediaTeamLookup.set("le bosh", TeamConstructor("le bosh", "le_bosh"));
+liquipediaTeamLookup.set("Cristobal Colon", TeamConstructor("Cristobal Colon", "cristobal_colon"));
+liquipediaTeamLookup.set("Limitless", TeamConstructor("Limitless", "limitless"));
+liquipediaTeamLookup.set("77Blocks", TeamConstructor("77Blocks", "77blocks"));
+liquipediaTeamLookup.set("Hey (with rizz)", TeamConstructor("Hey (with rizz)", "hey_with_rizz"));
+liquipediaTeamLookup.set("We love farming", TeamConstructor("We love farming", "default_dark"));
+liquipediaTeamLookup.set("Omen Esports", TeamConstructor("Omen Esports", "omen_esports"));
+liquipediaTeamLookup.set("CosmiCo Esports", TeamConstructor("CosmiCo Esports", "cosmico_esports"));
+liquipediaTeamLookup.set("Relentless", TeamConstructor("Relentless", "relentless"));
+liquipediaTeamLookup.set("Rapaziada 1906", TeamConstructor("Rapaziada 1906", "rapaziada_1906"));
+liquipediaTeamLookup.set("Crazy Time", TeamConstructor("Crazy Time", "crazy_time"));
+liquipediaTeamLookup.set("Goober Gang", TeamConstructor("Goober Gang", "default_dark"));
+liquipediaTeamLookup.set("123", TeamConstructor("123", "default_dark"));
+liquipediaTeamLookup.set("Str1ve eSports", TeamConstructor("Str1ve eSports", "str1ve_esports"));
+liquipediaTeamLookup.set("We'll Have a Look", TeamConstructor("We'll Have a Look", "default_dark"));
+liquipediaTeamLookup.set("GeneSix", TeamConstructor("GeneSix", "genesix"));
+liquipediaTeamLookup.set("Pomino's Dizza", TeamConstructor("Pomino's Dizza", "default_dark"));
+liquipediaTeamLookup.set("Poney No Jutsu", TeamConstructor("Poney No Jutsu", "poney_no_jutsu"));
+liquipediaTeamLookup.set("Triple B", TeamConstructor("Triple B", "default_dark"));
+liquipediaTeamLookup.set("Antisociales", TeamConstructor("Antisociales", "default_dark"));
+
 
 function getCombined(teams1: string[], teams2: string[]) {
 	const res1 = teams1.map((team) => liquipediaTeamLookup.get(team) as Team);
@@ -281,6 +324,39 @@ export const oce5Combined = getTranslated([
 	"Nookles Pookles",
 	"run it back",
 	"Freshies from down under"
+]);
+
+export const apac4Combined = getTranslated([
+	"Luminosity Gaming", "God Speed",
+	"KOI", "KINOTROPE gaming",
+	"Dreamstation", "Jungle Juicers",
+	"TTG", "NJZ",
+	"ReaL Adrenaline", "SENZA Esports",
+	"Pxress’s Habibtis", "Zen Esports",
+	"Praise", "sial",
+	"ROUNDS", "Team Phoenix"
+]);
+
+export const ssa4Combined = getTranslated([
+	"FUT Esports", "Old Dog New Tricks",
+	"Akimbo Esports", "le bosh",
+	"Cristobal Colon", "Limitless",
+	"77Blocks", "Hey (with rizz)",
+	"We love farming", "Omen Esports",
+	"CosmiCo Esports", "Relentless",
+	"Rapaziada 1906", "Crazy Time",
+	"Goober Gang", "123"
+]);
+
+export const ssa5Combined = getTranslated([
+	"FUT Esports", "Hey (with rizz)",
+	"Str1ve eSports", "Limitless",
+	"We'll Have a Look", "CosmiCo Esports",
+	"le bosh", "77Blocks",
+	"GeneSix", "Relentless",
+	"Pomino's Dizza", "We love farming",
+	"Cristobal Colon", "Poney No Jutsu",
+	"Triple B", "Antisociales"
 ]);
 
 export const paths = major1;

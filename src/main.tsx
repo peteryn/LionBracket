@@ -7,12 +7,13 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Regional from "./formats/Regional.tsx";
 import {
+	apac4Combined,
 	eu4Combined,
 	mena4Combined,
 	mena5Combined,
 	na4Combined,
 	na5Combined, oce4Combined, oce5Combined,
-	sam4Combined
+	sam4Combined, ssa4Combined, ssa5Combined
 } from "./helper/teamTranslator.ts";
 import Birmingham from "./birmingham/Birmingham.tsx";
 
@@ -52,6 +53,18 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route
 					path="/oceania_open_5"
 					element={<Regional teams={oce5Combined} localStorageName={"oce_open_5"}/>}
+				></Route>
+				<Route
+					path="/asia_pacific_open_4"
+					element={<Regional teams={apac4Combined} localStorageName={"apac_open_5"}/>}
+				></Route>
+				<Route
+					path="/sub_saharan_africa_open_4"
+					element={<Regional teams={ssa4Combined} localStorageName={"ssa_open_4"}/>}
+				></Route>
+				<Route
+					path="/sub_saharan_africa_open_5"
+					element={<Regional teams={ssa5Combined} localStorageName={"ssa_open_5"}/>}
 				></Route>
 				<Route
 					path="/birmingham"
