@@ -8,6 +8,7 @@ import { paths } from "../../helper/teamTranslator.ts";
 import { BracketNode } from "../../../LionBracketEngine/src/models/bracket_node";
 import { Seed } from "../../../LionBracketEngine/src/models/match_record";
 import { SwissBracketFlow } from "../../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
+import { useRef } from "react";
 
 export default function VersusRoundComponent({
 												 match,
@@ -25,6 +26,9 @@ export default function VersusRoundComponent({
 	const upperInputId = `${match.id}upper`;
 	const lowerInputId = `${match.id}lower`;
 
+	const upperInputRef = useRef<HTMLInputElement>(null);
+	const lowerInputRef = useRef<HTMLInputElement>(null);
+
 	let upperScore = 0;
 	let lowerScore = 0;
 	if (match.matchRecord?.type === "FullRecord") {
@@ -33,8 +37,8 @@ export default function VersusRoundComponent({
 	}
 
 	function onChange() {
-		const upperTeamWins = getScore(upperInputId);
-		const lowerTeamWins = getScore(lowerInputId);
+		const upperTeamWins = getScore(upperInputRef);
+		const lowerTeamWins = getScore(lowerInputRef);
 		const matchRecord = bracket.getMatchRecord(match.id);
 		if (matchRecord) {
 			matchRecord.upperSeedWins = upperTeamWins;
@@ -99,6 +103,7 @@ export default function VersusRoundComponent({
 				imagePath={upperImagePath}
 				startingScore={upperScore}
 				colorClass={upperClass}
+				inputRef={upperInputRef}
 			></TeamInputArea>
 			<div className="versus-section">
 				<h3 className={classes}>VS</h3>
@@ -110,6 +115,7 @@ export default function VersusRoundComponent({
 				imagePath={lowerImagePath}
 				startingScore={lowerScore}
 				colorClass={lowerClass}
+				inputRef={lowerInputRef}
 			></TeamInputArea>
 		</div>
 	);

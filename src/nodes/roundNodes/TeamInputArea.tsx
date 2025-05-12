@@ -1,17 +1,19 @@
 export default function TeamInputArea({
-	updateFun,
-	inputId,
-	teamName,
-	imagePath,
-	startingScore,
-	colorClass,
-}: {
+										  updateFun,
+										  inputId,
+										  teamName,
+										  imagePath,
+										  startingScore,
+										  colorClass,
+										  inputRef
+									  }: {
 	updateFun: (e: React.FocusEvent<HTMLInputElement>) => void;
 	inputId: string;
 	teamName: string;
 	imagePath: string;
 	startingScore: number | undefined;
 	colorClass: string;
+	inputRef: React.RefObject<HTMLInputElement>
 }) {
 	let score = "0";
 	if (startingScore) {
@@ -23,10 +25,11 @@ export default function TeamInputArea({
 	return (
 		<label className="team-container" htmlFor={inputId}>
 			<div className="image-container">
-				<img src={imagePath} alt={teamName} className="" />
+				<img src={imagePath} alt={teamName} className=""/>
 			</div>
 			<input
 				id={inputId}
+				ref={inputRef}
 				type="number"
 				className={classes}
 				onKeyDown={(e) => {

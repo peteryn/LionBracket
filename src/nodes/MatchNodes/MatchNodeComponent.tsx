@@ -4,6 +4,7 @@ import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
 import { getScore } from "../../helper/score.ts";
 import { MatchNodeType } from "./MatchNodeType.ts";
 import MatchTeamInputArea from "./MatchTeamInputArea.tsx";
+import { useRef } from "react";
 
 export function MatchNodeComponent<NodeNames extends string, B extends Bracket<NodeNames>>({ data }: NodeProps<MatchNodeComponent<NodeNames, B>>) {
 	const teamAreas = createMatches(data);
@@ -35,9 +36,12 @@ function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(d
 	const upperInputId = `${data.bracketId}.${data.matchNode.name}upper`;
 	const lowerInputId = `${data.bracketId}.${data.matchNode.name}lower`;
 
+	const upperInputRef = useRef<HTMLInputElement>(null);
+	const lowerInputRef = useRef<HTMLInputElement>(null);
+
 	function onChange() {
-		const upperTeamWins = getScore(upperInputId);
-		const lowerTeamWins = getScore(lowerInputId);
+		const upperTeamWins = getScore(upperInputRef);
+		const lowerTeamWins = getScore(lowerInputRef);
 		const bracket = data.bracket;
 		const matchRecord = bracket.getMatchRecord(data.matchNode.name);
 
@@ -87,6 +91,7 @@ function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(d
 						imagePath={upperImagePath}
 						startingScore={matchRecord.upperSeedWins}
 						colorClass={colorClassUpper}
+						inputRef={upperInputRef}
 					></MatchTeamInputArea>
 
 					<MatchTeamInputArea
@@ -97,6 +102,7 @@ function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(d
 						imagePath={lowerImagePath}
 						startingScore={matchRecord.lowerSeedWins}
 						colorClass={colorClassLower}
+						inputRef={lowerInputRef}
 					></MatchTeamInputArea>
 				</>
 			);
@@ -115,6 +121,7 @@ function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(d
 					imagePath={upperImagePath}
 					startingScore={matchRecord.upperSeedWins}
 					colorClass=""
+					inputRef={upperInputRef}
 				></MatchTeamInputArea>
 			);
 			break;
@@ -133,6 +140,7 @@ function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(d
 						imagePath={lowerImagePath}
 						startingScore={matchRecord.lowerSeedWins}
 						colorClass=""
+						inputRef={lowerInputRef}
 					></MatchTeamInputArea>
 				</>
 			);
