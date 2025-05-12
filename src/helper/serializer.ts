@@ -1,6 +1,6 @@
 import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { RoundNode } from "../../LionBracketEngine/src/models/round_node";
-import { AflBracket, AflMatchNode } from "../../LionBracketEngine/src/afl_bracket/afl_bracket";
+import { AflBracket, AflMatchNode, AflNodeNames } from "../../LionBracketEngine/src/afl_bracket/afl_bracket";
 import { Bracket } from "../../LionBracketEngine/src/models/bracket.ts";
 import { GslLiteMatchNode } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
 import { BracketNode } from "../../LionBracketEngine/src/models/bracket_node.ts";
@@ -108,6 +108,12 @@ export function deserializeStoredAflBracket(bracketId: string) {
 	let resultNodes: AflMatchNode[] | undefined;
 	if (storedNodes) {
 		resultNodes = JSON.parse(storedNodes);
+		// fix for old format that used camel-cased node names
+		if (bracketId === "aflb") {
+			resultNodes?.forEach((node) => {
+				node.name = node.name.charAt(0).toUpperCase() + node.name.slice(1) as AflNodeNames;
+			});
+		}
 	}
 	return resultNodes;
 }
