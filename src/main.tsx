@@ -7,7 +7,7 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Regional from "./formats/Regional.tsx";
 import {
-	apac4Combined,
+	apac4Combined, apac5Combined,
 	eu4Combined, eu5Combined,
 	mena4Combined,
 	mena5Combined,
@@ -65,6 +65,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route
 					path="/asia_pacific_open_4"
 					element={<Regional teams={apac4Combined} localStorageName={"apac_open_5"}/>}
+				></Route>
+				<Route
+					path="/asia_pacific_open_5"
+					element={<Regional teams={apac5Combined} localStorageName={"apac_open_4"}/>}
 				></Route>
 				<Route
 					path="/sub_saharan_africa_open_4"

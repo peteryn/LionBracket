@@ -158,6 +158,10 @@ liquipediaTeamLookup.set("Praise", TeamConstructor("Praise", "praise"));
 liquipediaTeamLookup.set("sial", TeamConstructor("sial", "default_dark"));
 liquipediaTeamLookup.set("ROUNDS", TeamConstructor("ROUNDS", "rounds"));
 liquipediaTeamLookup.set("Team Phoenix", TeamConstructor("Team Phoenix", "team_phoenix"));
+liquipediaTeamLookup.set("Animated Dragons", TeamConstructor("Animated Dragons", "default_dark"));
+liquipediaTeamLookup.set("Blue Torch", TeamConstructor("Blue Torch", "blue_torch"));
+liquipediaTeamLookup.set("Can't believe admins changed our name", TeamConstructor("Can't believe admins...", "default_dark"));
+liquipediaTeamLookup.set("Winter Soldiers", TeamConstructor("Winter Soldiers", "default_dark"));
 
 // SSA
 liquipediaTeamLookup.set("FUT Esports", TeamConstructor("FUT Esports", "fut_esports"));
@@ -381,6 +385,25 @@ export const apac4Combined = getTranslated([
 	"Pxress’s Habibtis", "Zen Esports",
 	"Praise", "sial",
 	"ROUNDS", "Team Phoenix"
+]);
+
+export const apac5Combined = getTranslated([
+	"KINOTROPE gaming",
+	"ROUNDS",
+	"KOI",
+	"Luminosity Gaming",
+	"Dreamstation",
+	"Animated Dragons",
+	"God Speed",
+	"Pxress’s Habibtis",
+	"SENZA Esports",
+	"NJZ",
+	"ReaL Adrenaline",
+	"Blue Torch",
+	"Jungle Juicers",
+	"Can't believe admins changed our name",
+	"Winter Soldiers",
+	"Zen Esports"
 ]);
 
 export const ssa4Combined = getTranslated([
