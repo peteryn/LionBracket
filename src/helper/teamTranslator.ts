@@ -29,7 +29,7 @@ function TeamConstructor(name: string, path: string): Team {
 const liquipediaTeamLookup: Map<string, Team> = new Map();
 // EU
 liquipediaTeamLookup.set("Ninjas in Pyjamas", TeamConstructor("Ninjas in Pyjamas", "nip"));
-liquipediaTeamLookup.set("Dignitas", TeamConstructor("Dignitas", "dignitas"));
+liquipediaTeamLookup.set("Dignitas", TeamConstructor("Dignitas", "dignitas_2025"));
 liquipediaTeamLookup.set("Team Vitality", TeamConstructor("Team Vitality", "vitality"));
 liquipediaTeamLookup.set("Synergy", TeamConstructor("Synergy", "synergy"));
 liquipediaTeamLookup.set("F4WD", TeamConstructor("F4WD", "f4wd"));
@@ -44,6 +44,11 @@ liquipediaTeamLookup.set("Dopamine", TeamConstructor("Dopamine", "default_dark")
 liquipediaTeamLookup.set("Team BDS", TeamConstructor("Team BDS", "bds"));
 liquipediaTeamLookup.set("100%", TeamConstructor("100%", "100"));
 liquipediaTeamLookup.set("Tokyo Tigers", TeamConstructor("Tokyo Tigers", "tokyo_tigers"));
+liquipediaTeamLookup.set("CALIENTE", TeamConstructor("CALIENTE", "caliente"));
+liquipediaTeamLookup.set("$ATM", TeamConstructor("$ATM", "default_dark"));
+liquipediaTeamLookup.set("Chippy Chips", TeamConstructor("Chippy Chips", "default_dark"));
+liquipediaTeamLookup.set("Bobrito Bandito", TeamConstructor("Bobrito Bandito", "default_dark"));
+
 
 // NA
 liquipediaTeamLookup.set("Gen.G Mobil1 Racing", TeamConstructor("Gen.G Mobil1 Racing", "geng"));
@@ -245,6 +250,25 @@ export const eu4Combined = getTranslated([
 	"Team BDS",
 	"100%",
 	"Tokyo Tigers"
+]);
+
+export const eu5Combined = getTranslated([
+	"Dignitas",
+	"Team Vitality",
+	"Ninjas in Pyjamas",
+	"Geekay Esports",
+	"Karmine Corp",
+	"Gentle Mates Alpine",
+	"Smokey Bacon Association",
+	"Dopamine",
+	"Team BSK",
+	"CALIENTE",
+	"100%",
+	"$ATM",
+	"Synergy",
+	"Chippy Chips",
+	"F4WD",
+	"Bobrito Bandito"
 ]);
 
 export const sam4Combined = getTranslated([
