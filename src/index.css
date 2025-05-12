@@ -61,6 +61,9 @@ html,
 body,
 #root {
     height: 100%;
+    background-color: var(--bg);
+
+    min-height: 100%;
     margin: 0;
 }
 
@@ -513,10 +516,6 @@ input::selection {
 
 /* Home page */
 
-#root {
-    background-color: var(--bg);
-}
-
 nav a {
     padding: 1rem;
 }
@@ -571,4 +570,29 @@ nav a {
     border: 2px solid #595e67;
     border-radius: 4px;
     font-size: 0.83rem;
+}
+
+.major-area {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-bottom: 4rem;
+}
+
+.major-area > div {
+    background-color: var(--node-color);
+    border-radius: 4px;
+    border: 2px solid #595e67;
+    min-width: 16rem;
+    min-height: 3rem;
+    text-align: center;
+}
+
+.major-area > div > h2 {
+    padding: 1rem;
+}
+
+.major-area > div > h2 > a {
+    color: white;
 }
