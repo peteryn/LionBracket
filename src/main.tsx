@@ -13,7 +13,7 @@ import {
 	mena5Combined,
 	na4Combined,
 	na5Combined, oce4Combined, oce5Combined,
-	sam4Combined, ssa4Combined, ssa5Combined
+	sam4Combined, sam5Combined, ssa4Combined, ssa5Combined
 } from "./helper/teamTranslator.ts";
 import Birmingham from "./birmingham/Birmingham.tsx";
 
@@ -41,6 +41,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route
 					path="/south_america_open_4"
 					element={<Regional teams={sam4Combined} localStorageName={"sam_open_4"}/>}
+				></Route>
+				<Route
+					path="/south_america_open_5"
+					element={<Regional teams={sam5Combined} localStorageName={"sam_open_5"}/>}
 				></Route>
 				<Route
 					path="/middle_east_north_africa_open_4"

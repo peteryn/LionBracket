@@ -89,6 +89,9 @@ liquipediaTeamLookup.set("Team Brave Soldiers Esports", TeamConstructor("Brave S
 liquipediaTeamLookup.set("Gratia", TeamConstructor("Gratia", "default_dark"));
 liquipediaTeamLookup.set("Manchester City", TeamConstructor("Cappuccino's", "default_dark"));
 liquipediaTeamLookup.set("Papo de Visão", TeamConstructor("Papo de Visão", "papo"));
+liquipediaTeamLookup.set("True Neutral Academy Black", TeamConstructor("True Neutral Black", "true_neutral"));
+liquipediaTeamLookup.set("Fear of God", TeamConstructor("Fear of God", "default_dark"));
+liquipediaTeamLookup.set("TDL", TeamConstructor("TDL", "default_dark"));
 
 // MENA
 liquipediaTeamLookup.set("Team Falcons", TeamConstructor("Team Falcons", "falcons"));
@@ -288,6 +291,25 @@ export const sam4Combined = getTranslated([
 	"Gratia",
 	"Manchester City",
 	"Papo de Visão"
+]);
+
+export const sam5Combined = getTranslated([
+	"Team Secret",
+	"Amethyst",
+	"Moonrise",
+	"Corinthians Esports",
+	"Godfidence",
+	"Team Brave Soldiers Esports",
+	"Overlooked",
+	"Genesis",
+	"Team Reds",
+	"FURIA",
+	"True Neutral Academy Black",
+	"Latino Heat",
+	"Fear of God",
+	"Papo de Visão",
+	"TDL",
+	"Gratia"
 ]);
 
 export const mena4Combined = getTranslated([
