@@ -71,6 +71,8 @@ liquipediaTeamLookup.set("Schnitzelhaus", TeamConstructor("Schnitzelhaus", "defa
 liquipediaTeamLookup.set("S.O.S.", TeamConstructor("S.O.S.", "sos"));
 liquipediaTeamLookup.set("Lil Step Bros", TeamConstructor("Lil Step Bros", "step_bros"));
 liquipediaTeamLookup.set("Bubble Sort", TeamConstructor("Bubble Sort", "default_dark"));
+liquipediaTeamLookup.set("Netherlamericanada", TeamConstructor("Netherlamericanada", "netherlamericanada"));
+
 
 // SAM
 liquipediaTeamLookup.set("Godfidence", TeamConstructor("Godfidence", "godfidence"));
@@ -238,6 +240,17 @@ export const na5Combined = getTranslated([
 	"simtawk+1", "Team Evo",
 	"Deleted Gaming", "Lil Step Bros",
 	"Pirates on a Boat", "Bubble Sort"
+]);
+
+export const na6Combined = getTranslated([
+	"NRG", "The Ultimates",
+	"Spacestation Gaming", "Gen.G Mobil1 Racing",
+	"Complexity Gaming", "9Lives",
+	"S.O.S.", "Shopify Rebellion",
+	"Team Evo", "The Boys",
+	"Schnitzelhaus", "Strictly Business",
+	"Bubble Sort", "Netherlamericanada",
+	"WASSUP", "Deleted Gaming"
 ]);
 
 export const eu4Combined = getTranslated([
