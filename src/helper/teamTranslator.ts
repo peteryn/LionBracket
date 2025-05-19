@@ -98,7 +98,7 @@ liquipediaTeamLookup.set("TDL", TeamConstructor("TDL", "default_dark"));
 // MENA
 liquipediaTeamLookup.set("Team Falcons", TeamConstructor("Team Falcons", "falcons"));
 liquipediaTeamLookup.set("Al Qadsiah", TeamConstructor("Al Qadsiah", "al_qadsiah"));
-liquipediaTeamLookup.set("RBN", TeamConstructor("RBN", "default_dark"));
+liquipediaTeamLookup.set("RBN", TeamConstructor("RBN", "rbn"));
 liquipediaTeamLookup.set("000", TeamConstructor("000", "default_dark"));
 liquipediaTeamLookup.set("VVV", TeamConstructor("VVV", "vvv"));
 liquipediaTeamLookup.set("Infamous", TeamConstructor("Infamous", "infamous"));
@@ -113,11 +113,21 @@ liquipediaTeamLookup.set("House Targaryen", TeamConstructor("House Targaryen", "
 liquipediaTeamLookup.set("Hkm", TeamConstructor("Hkm", "default_dark"));
 liquipediaTeamLookup.set("ROC Esports", TeamConstructor("ROC Esports", "roc_esports"));
 liquipediaTeamLookup.set("777", TeamConstructor("777", "777"));
-liquipediaTeamLookup.set("Off", TeamConstructor("OFF", "default_dark"));
+liquipediaTeamLookup.set("OFF", TeamConstructor("OFF", "default_dark"));
 liquipediaTeamLookup.set("Be Right Back", TeamConstructor("Be Right Back", "default_dark"));
 liquipediaTeamLookup.set("MDW", TeamConstructor("MDW", "default_dark"));
 liquipediaTeamLookup.set("qwperotiyfkgmkzldgbsdm", TeamConstructor("qwperotiyfkgmkzld...", "default_dark"));
 liquipediaTeamLookup.set("EKW", TeamConstructor("EKW", "default_dark"));
+
+liquipediaTeamLookup.set("ZNTRX", TeamConstructor("ZNTRX", "zntrx"));
+liquipediaTeamLookup.set("Team Reds", TeamConstructor("Team Reds", "reds"));
+liquipediaTeamLookup.set("We Don't Know", TeamConstructor("We Don't Know", "default_dark"));
+liquipediaTeamLookup.set("Blues", TeamConstructor("Blues", "default_dark"));
+liquipediaTeamLookup.set("Tam", TeamConstructor("Tam", "default_dark"));
+liquipediaTeamLookup.set("Revolution", TeamConstructor("Revolution", "revolution"));
+liquipediaTeamLookup.set("CLS", TeamConstructor("CLS", "default_dark"));
+liquipediaTeamLookup.set("NOM", TeamConstructor("NOM", "default_dark"));
+
 
 // OCE
 liquipediaTeamLookup.set("PWR", TeamConstructor("PWR", "pwr"));
@@ -198,7 +208,13 @@ function getCombined(teams1: string[], teams2: string[]) {
 }
 
 function getTranslated(teams: string[]) {
-	return teams.map((team) => liquipediaTeamLookup.get(team) as Team);
+	return teams.map((team) => {
+			if (!liquipediaTeamLookup.get(team)) {
+				console.log(team);
+			}
+			return liquipediaTeamLookup.get(team) as Team;
+		}
+	);
 }
 
 export const major1Teams: Team[] = [
@@ -345,7 +361,7 @@ export const mena5Combined = getTranslated([
 	"ROC Esports",
 	"Twisted Minds",
 	"Team Vision",
-	"Off",
+	"OFF",
 	"Be Right Back",
 	"sleeping",
 	"Infamous",
@@ -357,6 +373,17 @@ export const mena5Combined = getTranslated([
 	"qwperotiyfkgmkzldgbsdm",
 	"F16 Esports",
 	"EKW"
+]);
+
+export const mena6Combined = getTranslated([
+	"ZNTRX", "Team Reds",
+	"Twisted Minds", "ROC Esports",
+	"Al Qadsiah", "Team Vision",
+	"OFF", "The Vicious",
+	"Team Falcons", "We Don't Know",
+	"Blues", "Tam",
+	"Revolution", "CLS",
+	"NOM", "RBN"
 ]);
 
 export const oce4Combined = getTranslated([

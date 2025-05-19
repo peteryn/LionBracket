@@ -10,7 +10,7 @@ import {
 	apac4Combined, apac5Combined,
 	eu4Combined, eu5Combined,
 	mena4Combined,
-	mena5Combined,
+	mena5Combined, mena6Combined,
 	na4Combined,
 	na5Combined, na6Combined, oce4Combined, oce5Combined,
 	sam4Combined, sam5Combined, ssa4Combined, ssa5Combined
@@ -57,6 +57,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route
 					path="/middle_east_north_africa_open_5"
 					element={<Regional teams={mena5Combined} localStorageName={"mena_open_5"}/>}
+				></Route>
+				<Route
+					path="/middle_east_north_africa_open_6"
+					element={<Regional teams={mena6Combined} localStorageName={"mena_open_6"}/>}
 				></Route>
 				<Route
 					path="/oceania_open_4"
