@@ -207,6 +207,10 @@ liquipediaTeamLookup.set("Pomino's Dizza", TeamConstructor("Pomino's Dizza", "de
 liquipediaTeamLookup.set("Poney No Jutsu", TeamConstructor("Poney No Jutsu", "poney_no_jutsu"));
 liquipediaTeamLookup.set("Triple B", TeamConstructor("Triple B", "default_dark"));
 liquipediaTeamLookup.set("Antisociales", TeamConstructor("Antisociales", "default_dark"));
+liquipediaTeamLookup.set("traduis si tu pues", TeamConstructor("traduis si tu pues", "default_dark"));
+liquipediaTeamLookup.set("Death Cloud Esports", TeamConstructor("Death Cloud Esports", "death_cloud_esports"));
+liquipediaTeamLookup.set("Unity", TeamConstructor("Unity", "unity"));
+liquipediaTeamLookup.set("White Rabbit Gaming", TeamConstructor("White Rabbit Gaming", "white_rabbit_gaming"));
 
 
 function getCombined(teams1: string[], teams2: string[]) {
@@ -501,6 +505,17 @@ export const ssa5Combined = getTranslated([
 	"Pomino's Dizza", "We love farming",
 	"Cristobal Colon", "Poney No Jutsu",
 	"Triple B", "Antisociales"
+]);
+
+export const ssa6Combined = getTranslated([
+	"CosmiCo Esports", "le bosh",
+	"Hey (with rizz)", "77Blocks",
+	"Poney No Jutsu", "Pomino's Dizza",
+	"traduis si tu pues", "FUT Esports",
+	"Death Cloud Esports", "GeneSix",
+	"Omen Esports", "Str1ve eSports",
+	"Rapaziada 1906", "Unity",
+	"Limitless", "White Rabbit Gaming"
 ]);
 
 export const paths = major1;
