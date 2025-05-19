@@ -152,6 +152,14 @@ liquipediaTeamLookup.set("run it back", TeamConstructor("run it back", "default_
 liquipediaTeamLookup.set("retired", TeamConstructor("retired", "default_dark"));
 liquipediaTeamLookup.set("Chins up", TeamConstructor("Chins up", "default_dark"));
 liquipediaTeamLookup.set("Freshies from down under", TeamConstructor("Freshies from down...", "default_dark"));
+liquipediaTeamLookup.set("focotter", TeamConstructor("focotter", "default_dark"));
+liquipediaTeamLookup.set("waffle kickers", TeamConstructor("waffle kickers", "default_dark"));
+liquipediaTeamLookup.set("lenks emote", TeamConstructor("lenks emote", "default_dark"));
+liquipediaTeamLookup.set("Oogway and Friends", TeamConstructor("Oogway and Friends", "default_dark"));
+liquipediaTeamLookup.set("No Hat No Play", TeamConstructor("No Hat No Play", "default_dark"));
+liquipediaTeamLookup.set("angusbeefburgerhall", TeamConstructor("angusbeefburgerhall", "default_dark"));
+liquipediaTeamLookup.set("LOUDer", TeamConstructor("LOUDer", "default_dark"));
+
 
 // APAC
 liquipediaTeamLookup.set("Luminosity Gaming", TeamConstructor("Luminosity Gaming", "luminosity"));
@@ -414,6 +422,25 @@ export const oce5Combined = getTranslated([
 	"Nookles Pookles",
 	"run it back",
 	"Freshies from down under"
+]);
+
+export const oce6Combined = getTranslated([
+	"Wildcard",
+	"TSM",
+	"PWR",
+	"Helfie Chiefs",
+	"I'm fine in the west",
+	"retired",
+	"SKRIMZWORLD",
+	"focotter",
+	"waffle kickers",
+	"lenks emote",
+	"Oogway and Friends",
+	"Tsurani",
+	"No Hat No Play",
+	"Chins up",
+	"angusbeefburgerhall",
+	"LOUDer"
 ]);
 
 export const apac4Combined = getTranslated([
