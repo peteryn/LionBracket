@@ -74,7 +74,6 @@ liquipediaTeamLookup.set("Lil Step Bros", TeamConstructor("Lil Step Bros", "step
 liquipediaTeamLookup.set("Bubble Sort", TeamConstructor("Bubble Sort", "default_dark"));
 liquipediaTeamLookup.set("Netherlamericanada", TeamConstructor("Netherlamericanada", "netherlamericanada"));
 
-
 // SAM
 liquipediaTeamLookup.set("Godfidence", TeamConstructor("Godfidence", "godfidence"));
 liquipediaTeamLookup.set("Corinthians Esports", TeamConstructor("Corinthians Esports", "corinthians"));
@@ -95,6 +94,10 @@ liquipediaTeamLookup.set("Papo de Visão", TeamConstructor("Papo de Visão", "pa
 liquipediaTeamLookup.set("True Neutral Academy Black", TeamConstructor("True Neutral Black", "true_neutral"));
 liquipediaTeamLookup.set("Fear of God", TeamConstructor("Fear of God", "default_dark"));
 liquipediaTeamLookup.set("TDL", TeamConstructor("TDL", "default_dark"));
+liquipediaTeamLookup.set("Kovya Godfidence", TeamConstructor("Kovya Godfidence", "default_dark"));
+liquipediaTeamLookup.set("Sunset", TeamConstructor("Sunset", "sunset"));
+liquipediaTeamLookup.set("Fofuchinhos", TeamConstructor("Fofuchinhos", "default_dark"));
+liquipediaTeamLookup.set("TamO ChoClo FC", TeamConstructor("TamO ChoClo FC", "default_dark"));
 
 // MENA
 liquipediaTeamLookup.set("Team Falcons", TeamConstructor("Team Falcons", "falcons"));
@@ -375,6 +378,25 @@ export const sam5Combined = getTranslated([
 	"Papo de Visão",
 	"TDL",
 	"Gratia"
+]);
+
+export const sam6Combined = getTranslated([
+	"FURIA",
+	"Kovya Godfidence",
+	"Sunset",
+	"Corinthians Esports",
+	"Fofuchinhos",
+	"Team Secret",
+	"Amethyst",
+	"Moonrise",
+	"Team Brave Soldiers Esports",
+	"Overlooked",
+	"Papo de Visão",
+	"Latino Heat",
+	"Genesis",
+	"TamO ChoClo FC",
+	"Gratia",
+	"True Neutral Academy Black"
 ]);
 
 export const mena4Combined = getTranslated([

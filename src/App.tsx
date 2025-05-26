@@ -21,7 +21,7 @@ export default function App() {
 				<RegionCard regionName="North America" color="round-losing-text"
 							data={["/north_america_open_4", "/north_america_open_5", "/north_america_open_6"]}/>
 				<RegionCard regionName="South America" color="round-middle-text"
-							data={["/south_america_open_4", "/south_america_open_5"]}/>
+							data={["/south_america_open_4", "/south_america_open_5", "/south_america_open_6"]}/>
 				<RegionCard regionName="Middle East & North Africa" color="round-winning-text"
 							data={["/middle_east_north_africa_open_4", "/middle_east_north_africa_open_5", "/middle_east_north_africa_open_6"]}/>
 				<RegionCard regionName="Oceania" color="purple-text"
