@@ -192,7 +192,7 @@ liquipediaTeamLookup.set("boba tea", TeamConstructor("boba tea", "default_dark")
 liquipediaTeamLookup.set("Error404.", TeamConstructor("Error404.", "default_dark"));
 liquipediaTeamLookup.set("Crazy boy", TeamConstructor("Crazy boy", "default_dark"));
 liquipediaTeamLookup.set("Big Dawgs", TeamConstructor("Big Dawgs", "default_dark"));
-liquipediaTeamLookup.set("Tu-tu-du-du Verstappen", TeamConstructor("Tu-tu-du-du Verstappen", "default_dark"));
+liquipediaTeamLookup.set("Tu-tu-du-du Verstappen", TeamConstructor("Tu-tu-du-du Verstap...", "default_dark"));
 
 // SSA
 liquipediaTeamLookup.set("FUT Esports", TeamConstructor("FUT Esports", "fut_esports"));
