@@ -16,7 +16,8 @@ export default function App() {
 				</div>
 			</div>
 			<div className="home-grid">
-				<RegionCard regionName="Europe" color="round-start-text" data={["/europe_open_4", "/europe_open_5"]}/>
+				<RegionCard regionName="Europe" color="round-start-text"
+							data={["/europe_open_4", "/europe_open_5", "/europe_open_6"]}/>
 				<RegionCard regionName="North America" color="round-losing-text"
 							data={["/north_america_open_4", "/north_america_open_5", "/north_america_open_6"]}/>
 				<RegionCard regionName="South America" color="round-middle-text"

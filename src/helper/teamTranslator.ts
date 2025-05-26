@@ -48,6 +48,7 @@ liquipediaTeamLookup.set("CALIENTE", TeamConstructor("CALIENTE", "caliente"));
 liquipediaTeamLookup.set("$ATM", TeamConstructor("$ATM", "default_dark"));
 liquipediaTeamLookup.set("Chippy Chips", TeamConstructor("Chippy Chips", "default_dark"));
 liquipediaTeamLookup.set("Bobrito Bandito", TeamConstructor("Bobrito Bandito", "default_dark"));
+liquipediaTeamLookup.set("Los Leones de Montepinar", TeamConstructor("Los Leones de Monte...", "default_dark"));
 
 
 // NA
@@ -317,6 +318,25 @@ export const eu5Combined = getTranslated([
 	"Chippy Chips",
 	"F4WD",
 	"Bobrito Bandito"
+]);
+
+export const eu6Combined = getTranslated([
+	"Team Vitality",
+	"Dignitas",
+	"Geekay Esports",
+	"Karmine Corp",
+	"Ninjas in Pyjamas",
+	"F4WD",
+	"Synergy",
+	"Gentle Mates Alpine",
+	"Team BSK",
+	"100%",
+	"CALIENTE",
+	"Dopamine",
+	"Los Leones de Montepinar",
+	"$ATM",
+	"Team BDS",
+	"Chippy Chips"
 ]);
 
 export const sam4Combined = getTranslated([
