@@ -15,11 +15,13 @@ export default function VersusRoundComponent({
 												 bracket,
 												 updateSwissFun,
 												 updatePromotedBracket,
+												 swissBracketStorageName,
 											 }: {
 	match: Match;
 	bracket: SwissBracketFlow;
 	updateSwissFun: React.Dispatch<React.SetStateAction<BracketNode>> | undefined;
 	updatePromotedBracket: ((seed: Seed[]) => void) | undefined;
+	swissBracketStorageName: string
 }) {
 	const roundNodeName = match.id.split(".")[0];
 

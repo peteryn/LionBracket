@@ -14,7 +14,13 @@ export default function App() {
 						<NavLink to="/birmingham">Birmingham Major</NavLink>
 					</h2>
 				</div>
+				<div>
+					<h2 className="bebas-neue-regular">
+						<NavLink to="/raleigh">Raleigh Major</NavLink>
+					</h2>
+				</div>
 			</div>
+
 			<div className="home-grid">
 				<RegionCard regionName="Europe" color="round-start-text"
 							data={["/europe_open_4", "/europe_open_5", "/europe_open_6"]}/>

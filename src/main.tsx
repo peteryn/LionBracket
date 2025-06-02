@@ -9,13 +9,14 @@ import Regional from "./formats/Regional.tsx";
 import {
 	apac4Combined, apac5Combined, apac6Combined,
 	eu4Combined, eu5Combined, eu6Combined,
+	major1Teams,
 	mena4Combined,
 	mena5Combined, mena6Combined,
 	na4Combined,
 	na5Combined, na6Combined, oce4Combined, oce5Combined, oce6Combined,
 	sam4Combined, sam5Combined, sam6Combined, ssa4Combined, ssa5Combined, ssa6Combined
 } from "./helper/teamTranslator.ts";
-import Birmingham from "./birmingham/Birmingham.tsx";
+import Major from "./formats/Major.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -108,7 +109,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				></Route>
 				<Route
 					path="/birmingham"
-					element={<Birmingham></Birmingham>}
+					element={<Major teams={major1Teams} localSwissName="sb" localAflName="aflb"></Major>}
+				></Route>
+				<Route
+					path="/raleigh"
+					element={<Major teams={major1Teams} localSwissName="raleigh-sb" localAflName="raleigh-afl"></Major>}
 				></Route>
 			</Routes>
 		</BrowserRouter>

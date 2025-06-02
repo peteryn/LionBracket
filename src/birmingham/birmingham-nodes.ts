@@ -8,7 +8,7 @@ import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_br
 
 export let initialNodes: AppNode[] = [];
 
-export function createSwissNodes(swiss: SwissBracketFlow) {
+export function createSwissNodes(swiss: SwissBracketFlow, swissStorageName: string) {
 	const coordinates = createCoordinates(0, 0, swiss);
 	const initialNodes: AppNode[] = [];
 	let idVal = 0;
@@ -27,7 +27,8 @@ export function createSwissNodes(swiss: SwissBracketFlow) {
 				inputHandleId,
 				outputHandleId,
 				qualifiedHandleId,
-				eliminatedHandleId
+				eliminatedHandleId,
+				swissStorageName
 			);
 
 			let obj: AppNode | undefined;

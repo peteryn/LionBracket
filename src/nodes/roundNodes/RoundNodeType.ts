@@ -14,6 +14,7 @@ export class RoundNodeType {
 	outputHandleId: string;
 	qualifiedHandleId: string;
 	eliminatedHandleId: string;
+	swissStorageName: string;
 
 	constructor(
 		name: string,
@@ -24,7 +25,8 @@ export class RoundNodeType {
 		inputHandleId: string,
 		outputHandleId: string,
 		qualifiedHandleId: string,
-		eliminatedHandleId: string
+		eliminatedHandleId: string,
+		swissStorageName: string
 	) {
 		this.name = name;
 		this.matches = matches;
@@ -35,5 +37,6 @@ export class RoundNodeType {
 		this.outputHandleId = outputHandleId;
 		this.qualifiedHandleId = qualifiedHandleId;
 		this.eliminatedHandleId = eliminatedHandleId;
+		this.swissStorageName = swissStorageName;
 	}
 }
