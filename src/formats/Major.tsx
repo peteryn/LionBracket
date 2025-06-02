@@ -54,7 +54,7 @@ export default function Major({
 	}
 	const [aflB, setAflB] = useState(globalAFL.getAllMatchNodes());
 
-	const swissNodes = createSwissNodes(globalSwiss, localSwissName);
+	const swissNodes = createSwissNodes(globalSwiss, localSwissName, teams);
 	const aflNodes = createAflNodes(localAflName, globalAFL, 194, 1100, teams);
 	const initialNodes = swissNodes.concat(aflNodes);
 	const swissEdges = createSwissEdges();
@@ -91,7 +91,7 @@ export default function Major({
 		if (useAFLSerialization) {
 			serializeAflBracket(globalAFL, localAflName);
 		}
-		const swissNodes = createSwissNodes(globalSwiss, localSwissName);
+		const swissNodes = createSwissNodes(globalSwiss, localSwissName, teams);
 		const aflNodes = createAflNodes(
 			localAflName,
 			globalAFL,

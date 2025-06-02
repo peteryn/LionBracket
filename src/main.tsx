@@ -10,6 +10,7 @@ import {
 	apac4Combined, apac5Combined, apac6Combined,
 	eu4Combined, eu5Combined, eu6Combined,
 	major1Teams,
+	major2Teams,
 	mena4Combined,
 	mena5Combined, mena6Combined,
 	na4Combined,
@@ -113,7 +114,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				></Route>
 				<Route
 					path="/raleigh"
-					element={<Major teams={major1Teams} localSwissName="raleigh-sb" localAflName="raleigh-afl"></Major>}
+					element={<Major teams={major2Teams} localSwissName="raleigh-sb" localAflName="raleigh-afl"></Major>}
 				></Route>
 			</Routes>
 		</BrowserRouter>

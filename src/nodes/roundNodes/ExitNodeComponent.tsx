@@ -1,10 +1,10 @@
 import { Handle, NodeProps, Position } from "@xyflow/react";
 import { TeamBox } from "./TeamBox.tsx";
 import { type ExitNodeComponent } from "../types.ts";
-import { paths } from "../../helper/teamTranslator.ts";
 import { getLosers, getWinners } from "../../../LionBracketEngine/src/util/util.ts";
 
 export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
+	const paths = data.teams;
 	const round = data.swissBracket.getBracketNode(data.parent);
 	if (!round) {
 		return;
@@ -23,9 +23,9 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 		if (i < exitTeams.length) {
 			const team = exitTeams[i];
 
-			const path = `/logos/${paths[team - 1]}.png`;
+			const path = `/logos/${paths[team - 1].path}.png`;
 			exitTeamsComponents.push(
-				<TeamBox key={i} imagePath={path} altText={paths[team - 1]}></TeamBox>
+				<TeamBox key={i} imagePath={path} altText={paths[team - 1].name}></TeamBox>
 			);
 		} else {
 			exitTeamsComponents.push(<TeamBox key={i} imagePath="" altText=""></TeamBox>);

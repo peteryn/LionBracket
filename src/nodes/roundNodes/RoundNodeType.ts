@@ -2,6 +2,7 @@ import { Match, SwissMatch } from "../../../LionBracketEngine/src/models/match";
 import { BracketNode } from "../../../LionBracketEngine/src/models/bracket_node";
 import { Seed } from "../../../LionBracketEngine/src/models/match_record";
 import { SwissBracketFlow } from "../../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
+import { Team } from "../../helper/teamTranslator";
 
 export class RoundNodeType {
 	[key: string]: unknown;
@@ -15,6 +16,7 @@ export class RoundNodeType {
 	qualifiedHandleId: string;
 	eliminatedHandleId: string;
 	swissStorageName: string;
+	teams: Team[];
 
 	constructor(
 		name: string,
@@ -26,7 +28,8 @@ export class RoundNodeType {
 		outputHandleId: string,
 		qualifiedHandleId: string,
 		eliminatedHandleId: string,
-		swissStorageName: string
+		swissStorageName: string,
+		teams: Team[]
 	) {
 		this.name = name;
 		this.matches = matches;
@@ -38,5 +41,6 @@ export class RoundNodeType {
 		this.qualifiedHandleId = qualifiedHandleId;
 		this.eliminatedHandleId = eliminatedHandleId;
 		this.swissStorageName = swissStorageName;
+		this.teams = teams;
 	}
 }

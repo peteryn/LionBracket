@@ -259,6 +259,25 @@ export const major1Teams: Team[] = [
 	{ name: "fut_esports", path: "fut_esports" },
 ];
 
+export const major2Teams: Team[] = getTranslated([
+	"Karmine Corp",
+	"NRG",
+	"Team Falcons",
+	"Dignitas",
+	"FURIA",
+	"Team Vitality",
+	"Spacestation Gaming",
+	"Gentle Mates Alpine",
+	"Wildcard",
+	"Gen.G Mobil1 Racing",
+	"Team Secret",
+	"Twisted Minds",
+	"TSM",
+	"The Ultimates",
+	"Virtus.pro",
+	"FUT Esports"
+])
+
 export const na4Combined = getTranslated([
 	"Gen.G Mobil1 Racing", "Complexity Gaming",
 	"The Ultimates", "NRG",
@@ -586,4 +605,3 @@ export const ssa6Combined = getTranslated([
 	"Limitless", "White Rabbit Gaming"
 ]);
 
-export const paths = major1;

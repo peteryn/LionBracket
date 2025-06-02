@@ -4,11 +4,11 @@ import { getScore } from "../../helper/score";
 import TeamInputArea from "./TeamInputArea";
 import { addColor } from "./color";
 import { serializeSwissBracket } from "../../helper/serializer";
-import { paths } from "../../helper/teamTranslator.ts";
 import { BracketNode } from "../../../LionBracketEngine/src/models/bracket_node";
 import { Seed } from "../../../LionBracketEngine/src/models/match_record";
 import { SwissBracketFlow } from "../../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 import { useRef } from "react";
+import { Team } from "../../helper/teamTranslator";
 
 export default function VersusRoundComponent({
 												 match,
@@ -16,12 +16,14 @@ export default function VersusRoundComponent({
 												 updateSwissFun,
 												 updatePromotedBracket,
 												 swissBracketStorageName,
+												 paths,
 											 }: {
 	match: Match;
 	bracket: SwissBracketFlow;
 	updateSwissFun: React.Dispatch<React.SetStateAction<BracketNode>> | undefined;
 	updatePromotedBracket: ((seed: Seed[]) => void) | undefined;
-	swissBracketStorageName: string
+	swissBracketStorageName: string;
+	paths: Team[]
 }) {
 	const roundNodeName = match.id.split(".")[0];
 
@@ -51,7 +53,7 @@ export default function VersusRoundComponent({
 				const cloned = structuredClone(bracket.rootRound);
 				bracket.rootRound = cloned;
 				updateSwissFun(cloned);
-				serializeSwissBracket(bracket.rootRound, "sb");
+				serializeSwissBracket(bracket.rootRound, swissBracketStorageName);
 				if (updatePromotedBracket) {
 					updatePromotedBracket(bracket.getPromotedSeeds());
 				}
@@ -68,10 +70,10 @@ export default function VersusRoundComponent({
 	let upperTeamName = "";
 	let lowerTeamName = "";
 	if (match.matchRecord?.type === "FullRecord") {
-		upperImagePath = `/logos/${paths[match.matchRecord.upperSeed - 1]}.png`;
-		lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1]}.png`;
-		upperTeamName = paths[match.matchRecord.upperSeed - 1];
-		lowerTeamName = paths[match.matchRecord.lowerSeed - 1];
+		upperImagePath = `/logos/${paths[match.matchRecord.upperSeed - 1].path}.png`;
+		lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1].path}.png`;
+		upperTeamName = paths[match.matchRecord.upperSeed - 1].name;
+		lowerTeamName = paths[match.matchRecord.lowerSeed - 1].name;
 	}
 	let classes = "versus ";
 

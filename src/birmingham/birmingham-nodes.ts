@@ -5,10 +5,11 @@ import { levelOrderTraversal } from "../../LionBracketEngine/src/util/util";
 import { RoundNodeType } from "../nodes/roundNodes/RoundNodeType";
 import { ExitNodeType } from "../nodes/roundNodes/ExitNodeType";
 import { SwissBracket } from "../../LionBracketEngine/src/swiss_bracket/swiss_bracket";
+import { Team } from "../helper/teamTranslator";
 
 export let initialNodes: AppNode[] = [];
 
-export function createSwissNodes(swiss: SwissBracketFlow, swissStorageName: string) {
+export function createSwissNodes(swiss: SwissBracketFlow, swissStorageName: string, teams: Team[]) {
 	const coordinates = createCoordinates(0, 0, swiss);
 	const initialNodes: AppNode[] = [];
 	let idVal = 0;
@@ -28,7 +29,8 @@ export function createSwissNodes(swiss: SwissBracketFlow, swissStorageName: stri
 				outputHandleId,
 				qualifiedHandleId,
 				eliminatedHandleId,
-				swissStorageName
+				swissStorageName,
+				teams
 			);
 
 			let obj: AppNode | undefined;
@@ -112,7 +114,8 @@ export function createSwissNodes(swiss: SwissBracketFlow, swissStorageName: stri
 						swiss,
 						node.name,
 						`${node.name}:QualifiedInput`,
-						true
+						true,
+						teams
 					),
 					type: "exit-node-component",
 					draggable: false,
@@ -139,7 +142,8 @@ export function createSwissNodes(swiss: SwissBracketFlow, swissStorageName: stri
 						swiss,
 						node.name,
 						`${node.name}:EliminatedInput`,
-						false
+						false,
+						teams
 					),
 					type: "exit-node-component",
 					draggable: false,

@@ -13,6 +13,7 @@ export function createMatches(data: RoundNodeType) {
 			updateSwissFun={data.updateSwissFun}
 			updatePromotedBracket={data.updatePromotedBracket}
 			swissBracketStorageName={data.swissStorageName}
+			paths={data.teams}
 		></VersusRoundComponent>
 	));
 	return matchesComponents;

@@ -5,7 +5,7 @@ import {
 	GslLiteMatchNode,
 } from "../../LionBracketEngine/src/gsl_bracket/gsl_lite_bracket.ts";
 import { getSeedOrUndefined } from "../../LionBracketEngine/src/util/util.ts";
-import { paths, Team } from "../helper/teamTranslator.ts";
+import { Team } from "../helper/teamTranslator.ts";
 import { Edge } from "@xyflow/react";
 import { GhostNodeType } from "../nodes/GhostNode/GhostNodeType.ts";
 
