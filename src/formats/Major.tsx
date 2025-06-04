@@ -25,6 +25,7 @@ import { edgeTypes } from "../edges";
 import { createAflEdges, createAflNodes } from "../layouts/aflLayout";
 import { nodeTypes } from "../nodes";
 import { createSwissEdges } from "../birmingham/birmingham-edges";
+import { BackButton } from "../components/BackButton";
 
 const useAFLSerialization = true;
 
@@ -127,6 +128,7 @@ export default function Major({
 		>
 			<Background color="#141414" />
 			<Controls showInteractive={false} />
+			<BackButton/>
 			<ResetButton resetBracket={resetBracket}></ResetButton>
 			<ReportButton></ReportButton>
 		</ReactFlow>
