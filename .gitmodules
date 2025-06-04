@@ -1,3 +1,3 @@
 [submodule "LionBracketEngine"]
 	path = LionBracketEngine
-	url = git@github.com:peteryn/LionBracketEngine.git
+	url = https://github.com/peteryn/LionBracketEngine.git
