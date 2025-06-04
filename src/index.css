@@ -418,6 +418,7 @@ input:focus {
     border: 0;
     border-radius: 4px;
     color: white;
+    font-size: 0.83rem;
 }
 
 .champion-node {

@@ -24,6 +24,7 @@ import ResetButton from "../components/ResetButton.tsx";
 import { NavLink } from "react-router";
 import { RegionalTournament } from "../../LionBracketEngine/src/tournaments/regional_tournament.ts";
 import { Team } from "../helper/teamTranslator.ts";
+import { BackButton } from "../components/BackButton.tsx";
 
 export default function Regional({
 									 teams,
@@ -130,12 +131,7 @@ export default function Regional({
 			<Background color="#141414"/>
 			<Controls showInteractive={false}/>
 
-			<Panel position="top-left">
-				<NavLink className="back-button bourgeois" to="/">
-					Back
-				</NavLink>
-			</Panel>
-
+			<BackButton/>
 			<ResetButton resetBracket={resetBracket}></ResetButton>
 			<ReportButton/>
 		</ReactFlow>
