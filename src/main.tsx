@@ -11,6 +11,7 @@ import {
 	eu4Combined, eu5Combined, eu6Combined,
 	major1Teams,
 	major2Teams,
+	mena1v1,
 	mena4Combined,
 	mena5Combined, mena6Combined,
 	na4Combined,
@@ -71,6 +72,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route
 					path="/middle_east_north_africa_open_6"
 					element={<Regional teams={mena6Combined} localStorageName={"mena_open_6"}/>}
+				></Route>
+				<Route
+					path="/middle_east_north_africa_open_1v1"
+					element={<Regional teams={mena1v1} localStorageName={"mena_1v1"}/>}
 				></Route>
 				<Route
 					path="/oceania_open_4"
