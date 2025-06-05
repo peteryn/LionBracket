@@ -70,7 +70,7 @@ export default function App() {
 						"/oceania_open_5",
 						"/oceania_open_6",
 					]}
-					data1v1={undefined}
+					data1v1={"/oceania_1v1"}
 				/>
 				<RegionCard
 					regionName="Asia-Pacific"

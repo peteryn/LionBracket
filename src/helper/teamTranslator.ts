@@ -259,6 +259,23 @@ liquipediaTeamLookup.set("Tricky", TeamConstructor("Tricky", "united_states"));
 liquipediaTeamLookup.set("S5-Cosmic", TeamConstructor("S5-Cosmic", "united_states"));
 liquipediaTeamLookup.set("Kehvn", TeamConstructor("Kehvn", "united_states"));
 
+// 1v1 OCE
+liquipediaTeamLookup.set("Rezears", TeamConstructor("Rezears", "germany"));
+liquipediaTeamLookup.set("Kuipier", TeamConstructor("Kuipier", "australia"));
+liquipediaTeamLookup.set("Tatagane123", TeamConstructor("Tatagane123", "australia"));
+liquipediaTeamLookup.set("gus", TeamConstructor("gus", "australia"));
+liquipediaTeamLookup.set("Interlude19", TeamConstructor("Interlude19", "australia"));
+liquipediaTeamLookup.set("Ben.", TeamConstructor("Ben.", "australia"));
+liquipediaTeamLookup.set("Caleb", TeamConstructor("Caleb", "australia"));
+liquipediaTeamLookup.set("Lucifer", TeamConstructor("Lucifer", "australia"));
+liquipediaTeamLookup.set("Torsos", TeamConstructor("Torsos", "australia"));
+liquipediaTeamLookup.set("Vexon", TeamConstructor("Vexon", "australia"));
+liquipediaTeamLookup.set("Akame", TeamConstructor("Akame", "chile"));
+liquipediaTeamLookup.set("Evample", TeamConstructor("Evample", "australia"));
+liquipediaTeamLookup.set("Shorez", TeamConstructor("Shorez", "australia"));
+liquipediaTeamLookup.set("nachi", TeamConstructor("nachi", "australia"));
+liquipediaTeamLookup.set("memerly", TeamConstructor("memerly", "australia"));
+liquipediaTeamLookup.set("Pengoli", TeamConstructor("Pengoli", "australia"));
 
 function getCombined(teams1: string[], teams2: string[]) {
 	const res1 = teams1.map((team) => liquipediaTeamLookup.get(team) as Team);
@@ -560,6 +577,17 @@ export const oce6Combined = getTranslated([
 	"Chins up",
 	"angusbeefburgerhall",
 	"LOUDer"
+]);
+
+export const oce1v1 = getTranslated([
+  "Rezears",     "Kuipier",
+  "Tatagane123", "gus",
+  "Interlude19", "Ben.",
+  "Caleb",       "Lucifer",
+  "Torsos",      "Vexon",
+  "Akame",       "Evample",
+  "Shorez",      "nachi",
+  "memerly",     "Pengoli"
 ]);
 
 export const apac4Combined = getTranslated([
