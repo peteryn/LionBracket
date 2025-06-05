@@ -223,6 +223,24 @@ liquipediaTeamLookup.set("Death Cloud Esports", TeamConstructor("Death Cloud Esp
 liquipediaTeamLookup.set("Unity", TeamConstructor("Unity", "unity"));
 liquipediaTeamLookup.set("White Rabbit Gaming", TeamConstructor("White Rabbit Gaming", "white_rabbit_gaming"));
 
+// 1v1 MENA
+liquipediaTeamLookup.set("Nwpo", TeamConstructor("Nwpo", "saudi_arabia"));
+liquipediaTeamLookup.set("Nadr", TeamConstructor("Nadr", "saudi_arabia"));
+liquipediaTeamLookup.set("Rw9", TeamConstructor("Rw9", "saudi_arabia"));
+liquipediaTeamLookup.set("DrKnown", TeamConstructor("DrKnown", "saudi_arabia"));
+liquipediaTeamLookup.set("Nush", TeamConstructor("Nush", "saudi_arabia"));
+liquipediaTeamLookup.set("Trook", TeamConstructor("Trook", "saudi_arabia"));
+liquipediaTeamLookup.set("Willie", TeamConstructor("Willie", "saudi_arabia"));
+liquipediaTeamLookup.set("Ghaazi", TeamConstructor("Ghaazi", "saudi_arabia"));
+liquipediaTeamLookup.set("vFbi", TeamConstructor("vFbi", "saudi_arabia"));
+liquipediaTeamLookup.set("nmj", TeamConstructor("nmj", "saudi_arabia"));
+liquipediaTeamLookup.set("Kiileerrz", TeamConstructor("Kiileerrz", "saudi_arabia"));
+liquipediaTeamLookup.set("inav", TeamConstructor("inav", "kuwait"));
+liquipediaTeamLookup.set("Trk511", TeamConstructor("Trk511", "saudi_arabia"));
+liquipediaTeamLookup.set("Abdullah", TeamConstructor("Abdullah", "saudi_arabia"));
+liquipediaTeamLookup.set("M6R", TeamConstructor("M6R", "saudi_arabia"));
+liquipediaTeamLookup.set("ops", TeamConstructor("ops", "saudi_arabia"));
+
 
 function getCombined(teams1: string[], teams2: string[]) {
 	const res1 = teams1.map((team) => liquipediaTeamLookup.get(team) as Team);
@@ -605,3 +623,13 @@ export const ssa6Combined = getTranslated([
 	"Limitless", "White Rabbit Gaming"
 ]);
 
+export const mena1v1 = getTranslated([
+  "Nwpo",      "Nadr",
+  "Rw9",       "DrKnown",
+  "Nush",      "Trook",
+  "Willie",    "Ghaazi",
+  "vFbi",      "nmj",
+  "Kiileerrz", "inav",
+  "Trk511",    "Abdullah",
+  "M6R",       "ops"
+]);
