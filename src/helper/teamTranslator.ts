@@ -277,6 +277,25 @@ liquipediaTeamLookup.set("nachi", TeamConstructor("nachi", "australia"));
 liquipediaTeamLookup.set("memerly", TeamConstructor("memerly", "australia"));
 liquipediaTeamLookup.set("Pengoli", TeamConstructor("Pengoli", "australia"));
 
+// 1v1 SSA
+liquipediaTeamLookup.set("Nuqqet", TeamConstructor("Nuqqet", "england"));
+liquipediaTeamLookup.set("Revezy", TeamConstructor("Revezy", "england"));
+liquipediaTeamLookup.set("Lazybear", TeamConstructor("Lazybear", "portugal"));
+liquipediaTeamLookup.set("motion", TeamConstructor("motion", "england"));
+liquipediaTeamLookup.set("Sweaty_Clarence", TeamConstructor("Sweaty_Clarence", "south_africa"));
+liquipediaTeamLookup.set("ivan", TeamConstructor("ivan", "spain"));
+liquipediaTeamLookup.set("kamz", TeamConstructor("kamz", "south_africa"));
+liquipediaTeamLookup.set("Snowyy", TeamConstructor("Snowyy", "south_africa"));
+liquipediaTeamLookup.set("2Die4", TeamConstructor("2Die4", "south_africa"));
+liquipediaTeamLookup.set("Ravi", TeamConstructor("Ravi", "south_africa"));
+liquipediaTeamLookup.set("AbuLba", TeamConstructor("AbuLba", "egypt"));
+liquipediaTeamLookup.set("Lickse", TeamConstructor("Lickse", "portugal"));
+liquipediaTeamLookup.set("Wiiilooo", TeamConstructor("Wiiilooo", "france"));
+liquipediaTeamLookup.set("gunz", TeamConstructor("gunz", "south_africa"));
+liquipediaTeamLookup.set("Declan", TeamConstructor("Declan", "south_africa"));
+liquipediaTeamLookup.set("Striker", TeamConstructor("Striker", "germany"));
+
+
 function getCombined(teams1: string[], teams2: string[]) {
 	const res1 = teams1.map((team) => liquipediaTeamLookup.get(team) as Team);
 	const res2 = teams2.map((team) => liquipediaTeamLookup.get(team) as Team);
@@ -530,6 +549,17 @@ export const mena6Combined = getTranslated([
 	"NOM", "RBN"
 ]);
 
+export const mena1v1 = getTranslated([
+  "Nwpo",      "Nadr",
+  "Rw9",       "DrKnown",
+  "Nush",      "Trook",
+  "Willie",    "Ghaazi",
+  "vFbi",      "nmj",
+  "Kiileerrz", "inav",
+  "Trk511",    "Abdullah",
+  "M6R",       "ops"
+]);
+
 export const oce4Combined = getTranslated([
 	"PWR", "Helfie Chiefs",
 	"TSM", "I'm fine in the west",
@@ -680,13 +710,13 @@ export const ssa6Combined = getTranslated([
 	"Limitless", "White Rabbit Gaming"
 ]);
 
-export const mena1v1 = getTranslated([
-  "Nwpo",      "Nadr",
-  "Rw9",       "DrKnown",
-  "Nush",      "Trook",
-  "Willie",    "Ghaazi",
-  "vFbi",      "nmj",
-  "Kiileerrz", "inav",
-  "Trk511",    "Abdullah",
-  "M6R",       "ops"
+export const ssa1v1 = getTranslated([
+  "Nuqqet",          "Revezy",
+  "Lazybear",        "motion",
+  "Sweaty_Clarence", "ivan",
+  "kamz",            "Snowyy",
+  "2Die4",           "Ravi",
+  "AbuLba",          "Lickse",
+  "Wiiilooo",        "gunz",
+  "Declan",          "Striker"
 ]);

@@ -90,7 +90,7 @@ export default function App() {
 						"/sub_saharan_africa_open_5",
 						"/sub_saharan_africa_open_6",
 					]}
-					data1v1={undefined}
+					data1v1={"/sub_saharan_africa_1v1"}
 				/>
 			</div>
 		</div>
