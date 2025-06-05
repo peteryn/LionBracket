@@ -543,6 +543,7 @@ nav a {
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+    padding-bottom: 4rem;
 }
 
 .home-grid > div {
@@ -550,7 +551,7 @@ nav a {
     border-radius: 4px;
     border: 2px solid #595e67;
     min-width: 16rem;
-    min-height: 8rem;
+    min-height: 9rem;
     text-align: center;
 }
 
