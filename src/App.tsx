@@ -40,7 +40,7 @@ export default function App() {
 						"/north_america_open_5",
 						"/north_america_open_6",
 					]}
-					data1v1={undefined}
+					data1v1={"/north_america_open_1v1"}
 				/>
 				<RegionCard
 					regionName="South America"

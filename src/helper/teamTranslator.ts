@@ -241,6 +241,24 @@ liquipediaTeamLookup.set("Abdullah", TeamConstructor("Abdullah", "saudi_arabia")
 liquipediaTeamLookup.set("M6R", TeamConstructor("M6R", "saudi_arabia"));
 liquipediaTeamLookup.set("ops", TeamConstructor("ops", "saudi_arabia"));
 
+// 1v1 NA
+liquipediaTeamLookup.set("Wahvey", TeamConstructor("Wahvey", "united_states"));
+liquipediaTeamLookup.set("aZapatos", TeamConstructor("aZapatos", "mexico"));
+liquipediaTeamLookup.set("Scrzbbles", TeamConstructor("Scrzbbles", "united_states"));
+liquipediaTeamLookup.set("diaz", TeamConstructor("diaz", "brazil"));
+liquipediaTeamLookup.set("Firstkiller", TeamConstructor("Firstkiller", "united_states"));
+liquipediaTeamLookup.set("tawk", TeamConstructor("tawk", "canada"));
+liquipediaTeamLookup.set("Chronic", TeamConstructor("Chronic", "united_states"));
+liquipediaTeamLookup.set("AYYJAYY", TeamConstructor("AYYJAYY", "united_states"));
+liquipediaTeamLookup.set("Retals", TeamConstructor("Retals", "united_states"));
+liquipediaTeamLookup.set("Wizz", TeamConstructor("Wizz", "united_states"));
+liquipediaTeamLookup.set("MiistSB", TeamConstructor("MiistSB", "united_states"));
+liquipediaTeamLookup.set("reveal", TeamConstructor("reveal", "united_states"));
+liquipediaTeamLookup.set("Evoh", TeamConstructor("Evoh", "united_states"));
+liquipediaTeamLookup.set("Tricky", TeamConstructor("Tricky", "united_states"));
+liquipediaTeamLookup.set("S5-Cosmic", TeamConstructor("S5-Cosmic", "united_states"));
+liquipediaTeamLookup.set("Kehvn", TeamConstructor("Kehvn", "united_states"));
+
 
 function getCombined(teams1: string[], teams2: string[]) {
 	const res1 = teams1.map((team) => liquipediaTeamLookup.get(team) as Team);
@@ -328,6 +346,17 @@ export const na6Combined = getTranslated([
 	"Bubble Sort", "Netherlamericanada",
 	"WASSUP", "Deleted Gaming"
 ]);
+
+export const na1v1 = getTranslated([
+  "Wahvey",      "aZapatos",
+  "Scrzbbles",   "diaz",
+  "Firstkiller", "tawk",
+  "Chronic",     "AYYJAYY",
+  "Retals",      "Wizz",
+  "MiistSB",     "reveal",
+  "Evoh",        "Tricky",
+  "S5-Cosmic",   "Kehvn"
+])
 
 export const eu4Combined = getTranslated([
 	"Ninjas in Pyjamas",
