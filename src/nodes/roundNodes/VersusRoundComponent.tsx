@@ -30,8 +30,8 @@ export default function VersusRoundComponent({
 	const upperInputId = `${match.id}upper`;
 	const lowerInputId = `${match.id}lower`;
 
-	const upperInputRef = useRef<HTMLInputElement>(null);
-	const lowerInputRef = useRef<HTMLInputElement>(null);
+	const upperInputRef = useRef<string>("0");
+	const lowerInputRef = useRef<string>("0");
 
 	let upperScore = 0;
 	let lowerScore = 0;
@@ -40,7 +40,14 @@ export default function VersusRoundComponent({
 		lowerScore = match.matchRecord.lowerSeedWins;
 	}
 
-	function onChange() {
+	function onChange(e: React.FocusEvent<HTMLInputElement>) {
+		if (e.target.id === upperInputId) {
+			upperInputRef.current = e.target.value
+		}
+		if (e.target.id === lowerInputId) {
+			lowerInputRef.current = e.target.value
+		}
+
 		const upperTeamWins = getScore(upperInputRef);
 		const lowerTeamWins = getScore(lowerInputRef);
 		const matchRecord = bracket.getMatchRecord(match.id);

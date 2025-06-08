@@ -13,7 +13,7 @@ export default function TeamInputArea({
 	imagePath: string;
 	startingScore: number | undefined;
 	colorClass: string;
-	inputRef: React.RefObject<HTMLInputElement>
+	inputRef: React.RefObject<string>
 }) {
 	let score = "0";
 	if (startingScore) {
@@ -29,7 +29,6 @@ export default function TeamInputArea({
 			</div>
 			<input
 				id={inputId}
-				ref={inputRef}
 				type="number"
 				className={classes}
 				onKeyDown={(e) => {
