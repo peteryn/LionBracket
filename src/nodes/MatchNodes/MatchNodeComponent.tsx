@@ -36,12 +36,19 @@ function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(d
 	const upperInputId = `${data.bracketId}.${data.matchNode.name}upper`;
 	const lowerInputId = `${data.bracketId}.${data.matchNode.name}lower`;
 
-	const upperInputRef = useRef<HTMLInputElement>(null);
-	const lowerInputRef = useRef<HTMLInputElement>(null);
+	const upperInputRef = useRef<string>("0");
+	const lowerInputRef = useRef<string>("0");
 
-	function onChange() {
+	function onChange(e: React.FocusEvent<HTMLInputElement>) {
+		if (e.target.id === upperInputId) {
+			upperInputRef.current = e.target.value
+		}
+		if (e.target.id === lowerInputId) {
+			lowerInputRef.current = e.target.value
+		}
 		const upperTeamWins = getScore(upperInputRef);
 		const lowerTeamWins = getScore(lowerInputRef);
+
 		const bracket = data.bracket;
 		const matchRecord = bracket.getMatchRecord(data.matchNode.name);
 
@@ -51,7 +58,6 @@ function createMatches<NodeNames extends string, B extends Bracket<NodeNames>>(d
 			bracket.setMatchRecord(data.matchNode.name, matchRecord);
 			if (data.updateFun) {
 				bracket.updateFlow(data.matchNode);
-				console.log(bracket);
 				const nodeList = bracket.getAllMatchNodes();
 
 				data.updateFun(nodeList);
