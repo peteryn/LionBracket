@@ -21,11 +21,15 @@ export default function TeamInputArea({
 	}
 
 	const classes = `score-input ${colorClass} bourgeois `;
+	
 
 	return (
 		<div className="team-container">
 			<div className="image-container">
 				<img src={imagePath} alt={teamName} className=""/>
+			</div>
+			<div id={inputId + "popover"} popover="manual">
+				<h1>Hello</h1>
 			</div>
 			<label htmlFor={inputId}>
 				<input
