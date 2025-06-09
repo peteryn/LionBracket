@@ -24,6 +24,11 @@ export default function TeamInputArea({
 
 	const classes = `score-input ${colorClass} bourgeois `;
 
+	let image = null;
+	if (imagePath !== "") {
+		image = <img src={imagePath} alt={teamName}/>
+	}
+
 	const imageContainerId = `${inputId}-image-container`;
 	const imageContainer = useRef(null);
 	const popover = useRef(null);
@@ -31,7 +36,6 @@ export default function TeamInputArea({
 	function showPopover() {
 		console.log("clicked");
 	}
-	console.log(imagePath);
 	
 
 	return (
@@ -42,7 +46,7 @@ export default function TeamInputArea({
 				ref={imageContainer}
 				onClick={showPopover}
 			>
-				<img src={imagePath} alt={teamName} />
+				{image}
 			</div>
 			<div id={inputId + "popover"} popover="manual" ref={popover}>
 				<h1>Hello</h1>

@@ -18,7 +18,8 @@ export function ExitNodeComponent({ data }: NodeProps<ExitNodeComponent>) {
 	}
 	exitTeams = data.swissBracket.swissSort(exitTeams);
 
-	const exitTeamsComponents: JSX.Element[] = [];
+
+	const exitTeamsComponents: React.ReactNode[] = [];
 	for (let i = 0; i < round.numSeeds / 2; i++) {
 		if (i < exitTeams.length) {
 			const team = exitTeams[i];
