@@ -30,14 +30,15 @@ export default function TeamInputArea({
 	}
 
 	const imageContainerId = `${inputId}-image-container`;
-	const imageContainer = useRef(null);
-	const popover = useRef(null);
+	const imageContainer = useRef<HTMLDivElement>(null);
+	const popover = useRef<HTMLDivElement>(null);
 
 	function showPopover() {
-		console.log("clicked");
+		if (popover.current) {
+			popover.current.togglePopover();
+		}
 	}
 	
-
 	return (
 		<div className="team-container">
 			<div
@@ -48,9 +49,12 @@ export default function TeamInputArea({
 			>
 				{image}
 			</div>
-			<div id={inputId + "popover"} popover="manual" ref={popover}>
+			{/* <div id={inputId + "popover"} popover="manual" ref={popover} className="team-info">
 				<h1>Hello</h1>
-			</div>
+			</div> */}
+			{/* <div className="team-info">
+				{teamName}
+			</div> */}
 			<label htmlFor={inputId}>
 				<input
 					id={inputId}

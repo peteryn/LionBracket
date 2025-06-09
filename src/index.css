@@ -204,6 +204,7 @@ body,
     height: 99px;
     background-color: #1b1d22;
     padding: 0.75em 0;
+    position: relative;
 }
 
 .team-container > label {
@@ -602,4 +603,12 @@ nav a {
 
 .major-area > div > h2 > a {
     color: white;
+}
+
+.team-info {
+    position: absolute;
+    top: 39%;
+    right: 110%;
+    width: 200px;
+    background-color: #3e56c4;
 }
