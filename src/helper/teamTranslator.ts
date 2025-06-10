@@ -334,19 +334,19 @@ export const major1Teams: Team[] = [
 export const major2Teams: Team[] = getTranslated([
 	"Karmine Corp",
 	"NRG",
+	"FURIA",
 	"Team Falcons",
 	"Dignitas",
-	"FURIA",
-	"Team Vitality",
 	"Spacestation Gaming",
+	"Team Vitality",
 	"Gentle Mates Alpine",
-	"Wildcard",
-	"Gen.G Mobil1 Racing",
-	"Team Secret",
 	"Twisted Minds",
-	"TSM",
-	"The Ultimates",
+	"Gen.G Mobil1 Racing",
+	"Wildcard",
+	"Team Secret",
 	"Virtus.pro",
+	"The Ultimates",
+	"TSM",
 	"FUT Esports"
 ])
 
