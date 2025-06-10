@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { JSX, useState } from "react";
+import { TeamInfoArea } from "./TeamInfoArea";
 
 export default function TeamInputArea({
 	updateFun,
@@ -7,7 +8,7 @@ export default function TeamInputArea({
 	imagePath,
 	startingScore,
 	colorClass,
-	inputRef,
+	teamInfo,
 }: {
 	updateFun: (e: React.FocusEvent<HTMLInputElement>) => void;
 	inputId: string;
@@ -15,7 +16,7 @@ export default function TeamInputArea({
 	imagePath: string;
 	startingScore: number | undefined;
 	colorClass: string;
-	inputRef: React.RefObject<string>;
+	teamInfo: JSX.Element;
 }) {
 	let score = "0";
 	if (startingScore) {
@@ -26,35 +27,19 @@ export default function TeamInputArea({
 
 	let image = null;
 	if (imagePath !== "") {
-		image = <img src={imagePath} alt={teamName}/>
+		image = <img src={imagePath} alt={teamName} />;
 	}
 
-	const imageContainerId = `${inputId}-image-container`;
-	const imageContainer = useRef<HTMLDivElement>(null);
-	const popover = useRef<HTMLDivElement>(null);
-
-	function showPopover() {
-		if (popover.current) {
-			popover.current.togglePopover();
-		}
+	const [show, setShow] = useState(false);
+	function showTeamInfo() {
+		setShow(!show);
 	}
-	
 	return (
 		<div className="team-container">
-			<div
-				id={imageContainerId}
-				className="image-container"
-				ref={imageContainer}
-				onClick={showPopover}
-			>
+			<div className="image-container" onClick={showTeamInfo}>
 				{image}
 			</div>
-			{/* <div id={inputId + "popover"} popover="manual" ref={popover} className="team-info">
-				<h1>Hello</h1>
-			</div> */}
-			{/* <div className="team-info">
-				{teamName}
-			</div> */}
+			<TeamInfoArea teamName={teamName} isLeft={true} show={show}></TeamInfoArea>
 			<label htmlFor={inputId}>
 				<input
 					id={inputId}
@@ -70,9 +55,11 @@ export default function TeamInputArea({
 					value={score}
 					style={{
 						visibility: imagePath === "" ? "hidden" : "visible",
-						paddingTop: "5px"}}
+						paddingTop: "5px",
+					}}
 				/>
 			</label>
 		</div>
 	);
 }
+

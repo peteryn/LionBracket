@@ -607,8 +607,37 @@ nav a {
 
 .team-info {
     position: absolute;
-    top: 39%;
-    right: 110%;
-    width: 200px;
-    background-color: #3e56c4;
+    top: -5%;
+    width: 120px;
+    padding: 0.25rem 0.5rem 0.9rem;
+    background-color: var(--node-color);
+    height: 110px;
+    text-align: center;
+    border: 2px solid var(--node-border);
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.team-info > h3 {
+    font-weight: lighter;
+}
+
+.team-info-left {
+    right: 115%;
+}
+
+.players-list {
+    list-style-type: none;
+    display: grid;
+    /*grid-template-rows: repeat(3, auto);*/
+    /*grid-auto-flow: column;*/
+    /* max-height: 100%; */
+    flex-grow: 1;
+}
+
+.players-list > li {
+    font-size: 1em;
 }

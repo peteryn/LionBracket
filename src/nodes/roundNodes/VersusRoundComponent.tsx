@@ -11,19 +11,21 @@ import { useRef } from "react";
 import { Team } from "../../helper/teamTranslator";
 
 export default function VersusRoundComponent({
-												 match,
-												 bracket,
-												 updateSwissFun,
-												 updatePromotedBracket,
-												 swissBracketStorageName,
-												 paths,
-											 }: {
+	match,
+	bracket,
+	updateSwissFun,
+	updatePromotedBracket,
+	swissBracketStorageName,
+	paths,
+}: {
 	match: Match;
 	bracket: SwissBracketFlow;
-	updateSwissFun: React.Dispatch<React.SetStateAction<BracketNode>> | undefined;
+	updateSwissFun:
+		| React.Dispatch<React.SetStateAction<BracketNode>>
+		| undefined;
 	updatePromotedBracket: ((seed: Seed[]) => void) | undefined;
 	swissBracketStorageName: string;
-	paths: Team[]
+	paths: Team[];
 }) {
 	const roundNodeName = match.id.split(".")[0];
 
@@ -42,10 +44,10 @@ export default function VersusRoundComponent({
 
 	function onChange(e: React.FocusEvent<HTMLInputElement>) {
 		if (e.target.id === upperInputId) {
-			upperInputRef.current = e.target.value
+			upperInputRef.current = e.target.value;
 		}
 		if (e.target.id === lowerInputId) {
-			lowerInputRef.current = e.target.value
+			lowerInputRef.current = e.target.value;
 		}
 
 		const upperTeamWins = getScore(upperInputRef);
@@ -60,7 +62,10 @@ export default function VersusRoundComponent({
 				const cloned = structuredClone(bracket.rootRound);
 				bracket.rootRound = cloned;
 				updateSwissFun(cloned);
-				serializeSwissBracket(bracket.rootRound, swissBracketStorageName);
+				serializeSwissBracket(
+					bracket.rootRound,
+					swissBracketStorageName
+				);
 				if (updatePromotedBracket) {
 					updatePromotedBracket(bracket.getPromotedSeeds());
 				}
@@ -77,8 +82,12 @@ export default function VersusRoundComponent({
 	let upperTeamName = "";
 	let lowerTeamName = "";
 	if (match.matchRecord?.type === "FullRecord") {
-		upperImagePath = `/logos/${paths[match.matchRecord.upperSeed - 1].path}.png`;
-		lowerImagePath = `/logos/${paths[match.matchRecord.lowerSeed - 1].path}.png`;
+		upperImagePath = `/logos/${
+			paths[match.matchRecord.upperSeed - 1].path
+		}.png`;
+		lowerImagePath = `/logos/${
+			paths[match.matchRecord.lowerSeed - 1].path
+		}.png`;
 		upperTeamName = paths[match.matchRecord.upperSeed - 1].name;
 		lowerTeamName = paths[match.matchRecord.lowerSeed - 1].name;
 	}
@@ -104,6 +113,21 @@ export default function VersusRoundComponent({
 	} else if (upperScore < lowerScore) {
 		lowerClass = colorClass;
 	}
+	let team1Info = <div></div>
+	if (upperTeamName == "Karmine Corp") {
+		team1Info = (
+			<>
+				<div className="team-info team-info-left">
+					<h3 className="bebas-neue-regular">{upperTeamName}</h3>
+					<ul className="players-list bebas-neue-regular">
+						<li>Vatira</li>
+						<li>Atow</li>
+						<li>Drali</li>
+					</ul>
+				</div>
+			</>
+		);
+	}
 
 	return (
 		<div className="versus-container" key={match.id}>
@@ -114,7 +138,7 @@ export default function VersusRoundComponent({
 				imagePath={upperImagePath}
 				startingScore={upperScore}
 				colorClass={upperClass}
-				inputRef={upperInputRef}
+				teamInfo={team1Info}
 			></TeamInputArea>
 			<div className="versus-section">
 				<h3 className={classes}>VS</h3>
@@ -126,7 +150,7 @@ export default function VersusRoundComponent({
 				imagePath={lowerImagePath}
 				startingScore={lowerScore}
 				colorClass={lowerClass}
-				inputRef={lowerInputRef}
+				teamInfo={<div></div>}
 			></TeamInputArea>
 		</div>
 	);
