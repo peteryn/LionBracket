@@ -36,7 +36,15 @@ export default function TeamInputArea({
 	}
 	let teamInfoArea;
 	if (team.type === "additional-info") {
-		teamInfoArea = <TeamInfoArea teamName={team.abbreviatedName} players={team.players} isLeft={isLeft} show={show} color={colorClass}></TeamInfoArea>;
+		teamInfoArea = (
+			<TeamInfoArea
+				teamName={team.abbreviatedName}
+				players={team.players}
+				isLeft={isLeft}
+				show={show}
+				color={team.color}
+			></TeamInfoArea>
+		);
 	}
 
 	return (
@@ -44,7 +52,7 @@ export default function TeamInputArea({
 			<div className="image-container" onClick={showTeamInfo}>
 				{image}
 			</div>
-			{teamInfoArea}	
+			{teamInfoArea}
 			<label htmlFor={inputId}>
 				<input
 					id={inputId}
@@ -66,4 +74,3 @@ export default function TeamInputArea({
 		</div>
 	);
 }
-

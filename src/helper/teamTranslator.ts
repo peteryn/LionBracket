@@ -29,6 +29,7 @@ export type TeamWithPlayerInfo = {
 	abbreviatedName: string;
 	path: string;
 	players: string[];
+	color: string;
 };
 
 export type Team = TeamBasic | TeamWithPlayerInfo;
@@ -842,44 +843,91 @@ export const ssa1v1 = getTranslated([
 	"Striker",
 ]);
 
-// Temporary player data for each team in major2Teams
-const major2Players: Record<string, string[]> = {
-	"Karmine Corp": ["Vatira", "Atow", "Drali"],
-	"NRG": ["Atomic", "Beastmode", "Daniel"],
-	"Team Falcons": ["trk511", "Rw9", "Kiileerrz"],
-	"Dignitas": ["stizzy", "ApparentlyJack", "Joreuz"],
-	"FURIA": ["yANXNZ", "Lostt", "DRUFINHO"],
-	"Team Vitality": ["zen", "M0nkey M00n", "ExoTiik"],
-	"Spacestation Gaming": ["Scrzbbles", "reveal", "kofyr"],
-	"Gentle Mates Alpine": ["Seikoo", "juicy", "yujin"],
-	"Wildcard": ["Fever", "Torsos", "bananahead"],
-	"Gen.G Mobil1 Racing": ["MaJicBear", "CHEESE.", "justin."],
-	"Team Secret": ["kv1", "swiftt", "Motta"],
-	"Twisted Minds": ["Nwpo", "rise.", "AtomiK"],
-	"TSM": ["Superlachie", "Amphis", "kaka"],
-	"The Ultimates": ["Firstkiller", "Lj", "Chronic"],
-	"Virtus.pro": ["Catalysm", "Sosa", "Sphinx"],
-	"FUT Esports": ["VKSailen", "Leoro", "TORRES8232"],
-};
-
-// Abbreviated names for each team in major2Teams
-const major2Abbreviated: Record<string, string> = {
-	"Karmine Corp": "Karmine Corp",
-	"NRG": "NRG",
-	"Team Falcons": "Falcons",
-	"Dignitas": "Dignitas",
-	"FURIA": "Furia",
-	"Team Vitality": "Vitality",
-	"Spacestation Gaming": "SSG",
-	"Gentle Mates Alpine": "M8s",
-	"Wildcard": "Wildcard",
-	"Gen.G Mobil1 Racing": "GEN.G",
-	"Team Secret": "Team Secret",
-	"Twisted Minds": "Twisted Minds",
-	"TSM": "TSM",
-	"The Ultimates": "The Ultimates",
-	"Virtus.pro": "Virtus.pro",
-	"FUT Esports": "FUT Esports",
+// Team data for each team in major2Teams, including players, abbreviated name, and team color
+const major2TeamData: Record<
+	string,
+	{ players: string[]; abbreviatedName: string; color: string }
+> = {
+	"Karmine Corp": {
+		players: ["Vatira", "Atow", "Drali"],
+		abbreviatedName: "Karmine Corp",
+		color: "#00ccff",
+	},
+	"NRG": {
+		players: ["Atomic", "Beastmode", "Daniel"],
+		abbreviatedName: "NRG",
+		color: "#F63B00",
+	},
+	"Team Falcons": {
+		players: ["trk511", "Rw9", "Kiileerrz"],
+		abbreviatedName: "Falcons",
+		color: "#00BD6D",
+	},
+	"Dignitas": {
+		players: ["stizzy", "ApparentlyJack", "Joreuz"],
+		abbreviatedName: "Dignitas",
+		color: "#87F6FA",
+	},
+	"FURIA": {
+		players: ["yANXNZ", "Lostt", "DRUFINHO"],
+		abbreviatedName: "Furia",
+		color: "#FFF",
+	},
+	"Team Vitality": {
+		players: ["zen", "M0nkey M00n", "ExoTiik"],
+		abbreviatedName: "Vitality",
+		color: "#FEFF00",
+	},
+	"Spacestation Gaming": {
+		players: ["Scrzbbles", "reveal", "kofyr"],
+		abbreviatedName: "SSG",
+		color: "#F5B11B",
+	},
+	"Gentle Mates Alpine": {
+		players: ["Seikoo", "juicy", "yujin"],
+		abbreviatedName: "M8s",
+		color: "#FFF",
+	},
+	"Wildcard": {
+		players: ["Fever", "Torsos", "bananahead"],
+		abbreviatedName: "Wildcard",
+		color: "#1DABF9",
+	},
+	"Gen.G Mobil1 Racing": {
+		players: ["MaJicBear", "CHEESE.", "justin."],
+		abbreviatedName: "GEN.G",
+		color: "#A4822E",
+	},
+	"Team Secret": {
+		players: ["kv1", "swiftt", "Motta"],
+		abbreviatedName: "Team Secret",
+		color: "#FFF",
+	},
+	"Twisted Minds": {
+		players: ["Nwpo", "rise.", "AtomiK"],
+		abbreviatedName: "Twisted Minds",
+		color: "#FA4968",
+	},
+	"TSM": {
+		players: ["Superlachie", "Amphis", "kaka"],
+		abbreviatedName: "TSM",
+		color: "#FFF",
+	},
+	"The Ultimates": {
+		players: ["Firstkiller", "Lj", "Chronic"],
+		abbreviatedName: "The Ultimates",
+		color: "#A90000",
+	},
+	"Virtus.pro": {
+		players: ["Catalysm", "Sosa", "Sphinx"],
+		abbreviatedName: "Virtus.pro",
+		color: "#FE4E00",
+	},
+	"FUT Esports": {
+		players: ["VKSailen", "Leoro", "TORRES8232"],
+		abbreviatedName: "FUT Esports",
+		color: "#ED1438",
+	},
 };
 
 export const major2Teams: TeamWithPlayerInfo[] = getTranslated([
@@ -899,9 +947,13 @@ export const major2Teams: TeamWithPlayerInfo[] = getTranslated([
 	"The Ultimates",
 	"Virtus.pro",
 	"FUT Esports",
-]).map((team) => ({
-	...team,
-	type: "additional-info",
-	players: major2Players[team.name] ?? [],
-	abbreviatedName: major2Abbreviated[team.name] ?? []
-}));
+]).map((team) => {
+	const data = major2TeamData[team.name];
+	return {
+		...team,
+		type: "additional-info",
+		players: data?.players ?? [],
+		abbreviatedName: data?.abbreviatedName ?? "",
+		color: data?.color ?? "#000000",
+	};
+});

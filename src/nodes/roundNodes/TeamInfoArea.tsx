@@ -19,8 +19,6 @@ export function TeamInfoArea({
 	};
 
 	const playerElements = players.map((player, index) => <li key={index}>{player}</li>)
-	console.log(color);
-	
 
 	return (
 		<>
@@ -28,7 +26,7 @@ export function TeamInfoArea({
 				className="team-info"
 				style={style}
 			>
-				<h3 className="bebas-neue-regular">{teamName}</h3>
+				<h3 className="bebas-neue-regular" style={{color: color}}>{teamName}</h3>
 				<ul className="players-list bebas-neue-regular">
 					{playerElements}
 				</ul>
