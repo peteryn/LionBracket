@@ -20,6 +20,7 @@ import {
 	sam4Combined, sam5Combined, sam6Combined, ssa1v1, ssa4Combined, ssa5Combined, ssa6Combined
 } from "./helper/teamTranslator.ts";
 import Major from "./formats/Major.tsx";
+import DynamicRegional from "./formats/DynamicRegional.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -133,6 +134,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route
 					path="/raleigh"
 					element={<Major teams={major2Teams} localSwissName="raleigh-sb" localAflName="raleigh-afl"></Major>}
+				></Route>
+				<Route
+					path="/b/:tournamentval"
+					element={<DynamicRegional teams={na4Combined} localStorageName={"na_open_4"}/>}
 				></Route>
 			</Routes>
 		</BrowserRouter>
