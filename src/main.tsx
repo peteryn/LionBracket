@@ -139,6 +139,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 					path="/b/:tournamentval"
 					element={<DynamicRegional teams={na4Combined} localStorageName={"na_open_4"}/>}
 				></Route>
+				<Route
+					path="/b/:tournamentval"
+					element={<DynamicRegional teams={na4Combined} localStorageName={"na_open_4"}/>}
+				></Route>
 			</Routes>
 		</BrowserRouter>
 	</React.StrictMode>
