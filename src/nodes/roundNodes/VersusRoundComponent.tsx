@@ -9,7 +9,6 @@ import { Seed } from "../../../LionBracketEngine/src/models/match_record";
 import { SwissBracketFlow } from "../../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 import { useRef } from "react";
 import { Team } from "../../helper/teamTranslator";
-import EmptyInputArea from "./EmptyInputArea";
 
 export default function VersusRoundComponent({
 	match,
