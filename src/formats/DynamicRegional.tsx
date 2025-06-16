@@ -35,7 +35,7 @@ export default function DynamicRegional({ teams, localStorageName, }: {
 	console.log(`value is ${tournamentval}`);
 	const [teamsData, setData] = useState(teams);
 	useEffect(() => {
-		fetch(`http://localhost:8080/greeting?name=${tournamentval}`)
+		fetch(`http://localhost:8080/api/v1/tournament_data?tournament_id=${tournamentval}`)
 			.then(res => res.json())
 			.then(json => console.log(json));
 	}, []);

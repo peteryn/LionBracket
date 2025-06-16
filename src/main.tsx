@@ -137,11 +137,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				></Route>
 				<Route
 					path="/b/:tournamentval"
-					element={<DynamicRegional teams={na4Combined} localStorageName={"na_open_4"}/>}
-				></Route>
-				<Route
-					path="/b/:tournamentval"
-					element={<DynamicRegional teams={na4Combined} localStorageName={"na_open_4"}/>}
+					element={<DynamicRegional teams={na4Combined} localStorageName={"na_open_4_test"}/>}
 				></Route>
 			</Routes>
 		</BrowserRouter>
