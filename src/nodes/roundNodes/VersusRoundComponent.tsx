@@ -113,21 +113,6 @@ export default function VersusRoundComponent({
 	} else if (upperScore < lowerScore) {
 		lowerClass = colorClass;
 	}
-	let team1Info = <div></div>
-	if (upperTeamName == "Karmine Corp") {
-		team1Info = (
-			<>
-				<div className="team-info team-info-left">
-					<h3 className="bebas-neue-regular">{upperTeamName}</h3>
-					<ul className="players-list bebas-neue-regular">
-						<li>Vatira</li>
-						<li>Atow</li>
-						<li>Drali</li>
-					</ul>
-				</div>
-			</>
-		);
-	}
 
 	return (
 		<div className="versus-container" key={match.id}>
@@ -138,7 +123,7 @@ export default function VersusRoundComponent({
 				imagePath={upperImagePath}
 				startingScore={upperScore}
 				colorClass={upperClass}
-				teamInfo={team1Info}
+				isLeft={true}
 			></TeamInputArea>
 			<div className="versus-section">
 				<h3 className={classes}>VS</h3>
@@ -150,7 +135,7 @@ export default function VersusRoundComponent({
 				imagePath={lowerImagePath}
 				startingScore={lowerScore}
 				colorClass={lowerClass}
-				teamInfo={<div></div>}
+				isLeft={false}
 			></TeamInputArea>
 		</div>
 	);

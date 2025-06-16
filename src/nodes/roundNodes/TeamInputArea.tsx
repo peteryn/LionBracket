@@ -8,7 +8,7 @@ export default function TeamInputArea({
 	imagePath,
 	startingScore,
 	colorClass,
-	teamInfo,
+	isLeft,
 }: {
 	updateFun: (e: React.FocusEvent<HTMLInputElement>) => void;
 	inputId: string;
@@ -16,7 +16,7 @@ export default function TeamInputArea({
 	imagePath: string;
 	startingScore: number | undefined;
 	colorClass: string;
-	teamInfo: JSX.Element;
+	isLeft: boolean;
 }) {
 	let score = "0";
 	if (startingScore) {
@@ -39,7 +39,7 @@ export default function TeamInputArea({
 			<div className="image-container" onClick={showTeamInfo}>
 				{image}
 			</div>
-			<TeamInfoArea teamName={teamName} isLeft={true} show={show}></TeamInfoArea>
+			<TeamInfoArea teamName={teamName} isLeft={isLeft} show={show}></TeamInfoArea>
 			<label htmlFor={inputId}>
 				<input
 					id={inputId}
