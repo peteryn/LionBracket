@@ -1,19 +1,18 @@
 import { JSX, useState } from "react";
 import { TeamInfoArea } from "./TeamInfoArea";
+import { Team } from "../../helper/teamTranslator";
 
 export default function TeamInputArea({
 	updateFun,
 	inputId,
-	teamName,
-	imagePath,
+	team,
 	startingScore,
 	colorClass,
 	isLeft,
 }: {
 	updateFun: (e: React.FocusEvent<HTMLInputElement>) => void;
 	inputId: string;
-	teamName: string;
-	imagePath: string;
+	team: Team;
 	startingScore: number | undefined;
 	colorClass: string;
 	isLeft: boolean;
@@ -26,20 +25,26 @@ export default function TeamInputArea({
 	const classes = `score-input ${colorClass} bourgeois `;
 
 	let image = null;
-	if (imagePath !== "") {
-		image = <img src={imagePath} alt={teamName} />;
+	if (team.path !== "") {
+		const fullPath = `/logos/${team.path}.png`;
+		image = <img src={fullPath} alt={team.name} />;
 	}
 
 	const [show, setShow] = useState(false);
 	function showTeamInfo() {
 		setShow(!show);
 	}
+	let teamInfoArea;
+	if (team.type === "additional-info") {
+		teamInfoArea = <TeamInfoArea teamName={team.abbreviatedName} players={team.players} isLeft={isLeft} show={show} color={colorClass}></TeamInfoArea>;
+	}
+
 	return (
 		<div className="team-container">
 			<div className="image-container" onClick={showTeamInfo}>
 				{image}
 			</div>
-			<TeamInfoArea teamName={teamName} isLeft={isLeft} show={show}></TeamInfoArea>
+			{teamInfoArea}	
 			<label htmlFor={inputId}>
 				<input
 					id={inputId}
@@ -54,7 +59,6 @@ export default function TeamInputArea({
 					onChange={updateFun}
 					value={score}
 					style={{
-						visibility: imagePath === "" ? "hidden" : "visible",
 						paddingTop: "5px",
 					}}
 				/>

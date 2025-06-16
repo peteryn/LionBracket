@@ -11,7 +11,10 @@ import { AppNode } from "../nodes/types.ts";
 import { nodeTypes } from "../nodes/index.ts";
 import { edgeTypes } from "../edges/index.ts";
 import { createAflEdges, createAflNodes } from "../layouts/aflLayout.ts";
-import { createGslLiteEdges, createGslLiteNodes } from "../layouts/gslLiteLayout.ts";
+import {
+	createGslLiteEdges,
+	createGslLiteNodes,
+} from "../layouts/gslLiteLayout.ts";
 import { useEffect, useState } from "react";
 import { initializeAFLBracket } from "../../LionBracketEngine/src/util/util.ts";
 import { Seed } from "../../LionBracketEngine/src/models/match_record.ts";
@@ -27,9 +30,9 @@ import { Team } from "../helper/teamTranslator.ts";
 import { BackButton } from "../components/BackButton.tsx";
 
 export default function Regional({
-									 teams,
-									 localStorageName,
-								 }: {
+	teams,
+	localStorageName,
+}: {
 	teams: Team[];
 	localStorageName: string;
 }) {
@@ -62,14 +65,37 @@ export default function Regional({
 		// [2, 4, 6, 8]
 		const GSL_B_results = tournament.gslB.getPromoted();
 
-		const promotedSeeds: (Seed | undefined)[] = GSL_A_results.flatMap((seed, index) => [
-			seed,
-			GSL_B_results[index],
-		]);
-		initializeAFLBracket(promotedSeeds, tournament.afl, 0, 3, "UpperQuarterFinal1");
-		initializeAFLBracket(promotedSeeds, tournament.afl, 1, 2, "UpperQuarterFinal2");
-		initializeAFLBracket(promotedSeeds, tournament.afl, 4, 7, "LowerBracketRound1");
-		initializeAFLBracket(promotedSeeds, tournament.afl, 5, 6, "LowerBracketRound2");
+		const promotedSeeds: (Seed | undefined)[] = GSL_A_results.flatMap(
+			(seed, index) => [seed, GSL_B_results[index]]
+		);
+		initializeAFLBracket(
+			promotedSeeds,
+			tournament.afl,
+			0,
+			3,
+			"UpperQuarterFinal1"
+		);
+		initializeAFLBracket(
+			promotedSeeds,
+			tournament.afl,
+			1,
+			2,
+			"UpperQuarterFinal2"
+		);
+		initializeAFLBracket(
+			promotedSeeds,
+			tournament.afl,
+			4,
+			7,
+			"LowerBracketRound1"
+		);
+		initializeAFLBracket(
+			promotedSeeds,
+			tournament.afl,
+			5,
+			6,
+			"LowerBracketRound2"
+		);
 
 		setAfl(tournament.afl.getAllMatchNodes());
 	};
@@ -128,19 +154,37 @@ export default function Regional({
 			minZoom={0.3}
 			maxZoom={4}
 		>
-			<Background color="#141414"/>
-			<Controls showInteractive={false}/>
+			<Background color="#141414" />
+			<Controls showInteractive={false} />
 
-			<BackButton/>
+			<BackButton />
 			<ResetButton resetBracket={resetBracket}></ResetButton>
-			<ReportButton/>
+			<ReportButton />
 		</ReactFlow>
 	);
 }
 
 function getAllNodes(tournament: RegionalTournament, teams: Team[]) {
-	const gslNodesA: AppNode[] = createGslLiteNodes("GSL_A", tournament.gslA, 0, 0, teams);
-	const gslNodesB: AppNode[] = createGslLiteNodes("GSL_B", tournament.gslB, 1050 + 100, 0, teams);
-	const aflNodes: AppNode[] = createAflNodes("AFL", tournament.afl, 290, 960, teams);
+	const gslNodesA: AppNode[] = createGslLiteNodes(
+		"GSL_A",
+		tournament.gslA,
+		0,
+		0,
+		teams
+	);
+	const gslNodesB: AppNode[] = createGslLiteNodes(
+		"GSL_B",
+		tournament.gslB,
+		1050 + 100,
+		0,
+		teams
+	);
+	const aflNodes: AppNode[] = createAflNodes(
+		"AFL",
+		tournament.afl,
+		290,
+		960,
+		teams
+	);
 	return [...gslNodesA, ...gslNodesB, ...aflNodes];
 }

@@ -1,4 +1,7 @@
-import { AflBracket, AflMatchNode } from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
+import {
+	AflBracket,
+	AflMatchNode,
+} from "../../LionBracketEngine/src/afl_bracket/afl_bracket.ts";
 import { AppNode } from "../nodes/types.ts";
 import { MatchNodeTypeConstructor } from "../nodes/MatchNodes/MatchNodeType.ts";
 import { ChampionNodeType } from "../nodes/ChampionNode/ChampionNodeType.ts";
@@ -7,7 +10,11 @@ import { GhostNodeType } from "../nodes/GhostNode/GhostNodeType.ts";
 import { Team } from "../helper/teamTranslator.ts";
 
 // total dimensions (1620, 680)
-export function createAflCoordinates(boundingXValue: number, boundingYValue: number, afl: AflBracket) {
+export function createAflCoordinates(
+	boundingXValue: number,
+	boundingYValue: number,
+	afl: AflBracket
+) {
 	const VERTICAL_GAP = 40;
 	const HORIZONTAL_GAP = 92;
 	const AFL_NODE_HEIGHT = 100;
@@ -15,19 +22,27 @@ export function createAflCoordinates(boundingXValue: number, boundingYValue: num
 	const HORIZONTAL_OFFSET = HORIZONTAL_GAP + AFL_NODE_WIDTH;
 	const VERTICAL_OFFSET = VERTICAL_GAP + AFL_NODE_HEIGHT;
 	const UPPER_BRACKET_GAP = AFL_NODE_HEIGHT + 20;
-	const UPPER_BRACKET_OFFSET = 2 * AFL_NODE_HEIGHT + VERTICAL_GAP + UPPER_BRACKET_GAP;
+	const UPPER_BRACKET_OFFSET =
+		2 * AFL_NODE_HEIGHT + VERTICAL_GAP + UPPER_BRACKET_GAP;
 	const NODE_RAISE_VALUE = -20;
 
-	const [uqf1, uqf2, lbr1, lbr2, lqf1, lqf2, sf1, sf2, gf] = afl.getAllMatchNodes();
+	const [uqf1, uqf2, lbr1, lbr2, lqf1, lqf2, sf1, sf2, gf] =
+		afl.getAllMatchNodes();
 
 	const nodeCoordinates: Map<string, [x: number, y: number]> = new Map();
-	nodeCoordinates.set(uqf1.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue]);
+	nodeCoordinates.set(uqf1.name, [
+		boundingXValue + HORIZONTAL_OFFSET,
+		boundingYValue,
+	]);
 	nodeCoordinates.set(uqf2.name, [
 		boundingXValue + HORIZONTAL_OFFSET,
 		boundingYValue + VERTICAL_OFFSET,
 	]);
 
-	nodeCoordinates.set(lbr1.name, [boundingXValue, boundingYValue + UPPER_BRACKET_OFFSET]);
+	nodeCoordinates.set(lbr1.name, [
+		boundingXValue,
+		boundingYValue + UPPER_BRACKET_OFFSET,
+	]);
 	nodeCoordinates.set(lbr2.name, [
 		boundingXValue,
 		boundingYValue + UPPER_BRACKET_OFFSET + VERTICAL_OFFSET,
@@ -43,7 +58,10 @@ export function createAflCoordinates(boundingXValue: number, boundingYValue: num
 	]);
 	nodeCoordinates.set(lqf2.name, [
 		boundingXValue + HORIZONTAL_OFFSET,
-		boundingYValue + UPPER_BRACKET_OFFSET + NODE_RAISE_VALUE + VERTICAL_OFFSET,
+		boundingYValue +
+			UPPER_BRACKET_OFFSET +
+			NODE_RAISE_VALUE +
+			VERTICAL_OFFSET,
 	]);
 	nodeCoordinates.set(`${lqf2.name}:Ghost`, [
 		boundingXValue + HORIZONTAL_OFFSET - 50,
@@ -60,35 +78,48 @@ export function createAflCoordinates(boundingXValue: number, boundingYValue: num
 	]);
 	nodeCoordinates.set(sf2.name, [
 		boundingXValue + 2 * HORIZONTAL_OFFSET,
-		boundingYValue + UPPER_BRACKET_OFFSET + 2 * NODE_RAISE_VALUE + VERTICAL_OFFSET,
+		boundingYValue +
+			UPPER_BRACKET_OFFSET +
+			2 * NODE_RAISE_VALUE +
+			VERTICAL_OFFSET,
 	]);
 	nodeCoordinates.set(`${sf2.name}:Ghost`, [
 		boundingXValue + 2 * HORIZONTAL_OFFSET - 50,
-		boundingYValue + UPPER_BRACKET_OFFSET + 1 * NODE_RAISE_VALUE + VERTICAL_OFFSET + 7.5,
+		boundingYValue +
+			UPPER_BRACKET_OFFSET +
+			1 * NODE_RAISE_VALUE +
+			VERTICAL_OFFSET +
+			7.5,
 	]);
 
 	nodeCoordinates.set(gf.name, [
 		boundingXValue + 3 * HORIZONTAL_OFFSET,
 		boundingYValue +
-		UPPER_BRACKET_OFFSET +
-		2 * NODE_RAISE_VALUE +
-		(AFL_NODE_HEIGHT + VERTICAL_GAP) / 2,
+			UPPER_BRACKET_OFFSET +
+			2 * NODE_RAISE_VALUE +
+			(AFL_NODE_HEIGHT + VERTICAL_GAP) / 2,
 	]);
 
 	nodeCoordinates.set("champion", [
 		boundingXValue + 4 * HORIZONTAL_OFFSET,
 		boundingYValue +
-		UPPER_BRACKET_OFFSET +
-		2 * NODE_RAISE_VALUE +
-		(AFL_NODE_HEIGHT + VERTICAL_GAP) / 2 +
-		AFL_NODE_HEIGHT / 2 -
-		100,
+			UPPER_BRACKET_OFFSET +
+			2 * NODE_RAISE_VALUE +
+			(AFL_NODE_HEIGHT + VERTICAL_GAP) / 2 +
+			AFL_NODE_HEIGHT / 2 -
+			100,
 	]);
 
 	return nodeCoordinates;
 }
 
-export function createAflNodes(bracketId: string, afl: AflBracket, xCoordinate: number, yCoordinate: number, teams: Team[]) {
+export function createAflNodes(
+	bracketId: string,
+	afl: AflBracket,
+	xCoordinate: number,
+	yCoordinate: number,
+	teams: Team[]
+) {
 	const allMatchNodes = afl.getAllMatchNodes();
 
 	const coordinates = createAflCoordinates(xCoordinate, yCoordinate, afl);
@@ -112,7 +143,11 @@ export function createAflNodes(bracketId: string, afl: AflBracket, xCoordinate: 
 		return appNode;
 	});
 
-	function createGhostNode(bracketId: string, node: AflMatchNode, coordinates: Map<string, [x: number, y: number]>) {
+	function createGhostNode(
+		bracketId: string,
+		node: AflMatchNode,
+		coordinates: Map<string, [x: number, y: number]>
+	) {
 		const ghostId = `${bracketId}:${node.name}:Ghost`;
 		let xCalc = 0;
 		let yCalc = 0;
@@ -131,8 +166,16 @@ export function createAflNodes(bracketId: string, afl: AflBracket, xCoordinate: 
 		initialAFLNodes.push(ghostNode);
 	}
 
-	createGhostNode(bracketId, afl.getBracketNode("LowerQuarterFinal1"), coordinates);
-	createGhostNode(bracketId, afl.getBracketNode("LowerQuarterFinal2"), coordinates);
+	createGhostNode(
+		bracketId,
+		afl.getBracketNode("LowerQuarterFinal1"),
+		coordinates
+	);
+	createGhostNode(
+		bracketId,
+		afl.getBracketNode("LowerQuarterFinal2"),
+		coordinates
+	);
 	createGhostNode(bracketId, afl.getBracketNode("SemiFinal1"), coordinates);
 	createGhostNode(bracketId, afl.getBracketNode("SemiFinal2"), coordinates);
 
@@ -150,10 +193,16 @@ export function createAflNodes(bracketId: string, afl: AflBracket, xCoordinate: 
 
 	if (gf.matchRecord?.type === "FullRecord") {
 		if (gf.matchRecord.upperSeedWins > gf.matchRecord.lowerSeedWins) {
-			championPathName = `/logos/${teams[gf.matchRecord.upperSeed - 1].path}.png`;
+			championPathName = `/logos/${
+				teams[gf.matchRecord.upperSeed - 1].path
+			}.png`;
 			championName = teams[gf.matchRecord.upperSeed - 1].name;
-		} else if (gf.matchRecord.upperSeedWins < gf.matchRecord.lowerSeedWins) {
-			championPathName = `/logos/${teams[gf.matchRecord.lowerSeed - 1].path}.png`;
+		} else if (
+			gf.matchRecord.upperSeedWins < gf.matchRecord.lowerSeedWins
+		) {
+			championPathName = `/logos/${
+				teams[gf.matchRecord.lowerSeed - 1].path
+			}.png`;
 			championName = teams[gf.matchRecord.lowerSeed - 1].name;
 		}
 	}
@@ -173,7 +222,10 @@ export function createAflEdges(bracketId: string, afl: AflBracket) {
 	const aflNodes = afl.getAllMatchNodes();
 	const edges: Edge[] = [];
 	aflNodes.forEach((node) => {
-		if (node.name === "UpperQuarterFinal1" || node.name === "UpperQuarterFinal2") {
+		if (
+			node.name === "UpperQuarterFinal1" ||
+			node.name === "UpperQuarterFinal2"
+		) {
 			return;
 		}
 

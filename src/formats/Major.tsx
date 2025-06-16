@@ -128,7 +128,7 @@ export default function Major({
 		>
 			<Background color="#141414" />
 			<Controls showInteractive={false} />
-			<BackButton/>
+			<BackButton />
 			<ResetButton resetBracket={resetBracket}></ResetButton>
 			<ReportButton></ReportButton>
 		</ReactFlow>

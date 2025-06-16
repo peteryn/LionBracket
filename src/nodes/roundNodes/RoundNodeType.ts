@@ -9,7 +9,9 @@ export class RoundNodeType {
 	name: string;
 	matches: Match[];
 	swissBracket: SwissBracketFlow;
-	updateSwissFun: React.Dispatch<React.SetStateAction<BracketNode>> | undefined;
+	updateSwissFun:
+		| React.Dispatch<React.SetStateAction<BracketNode>>
+		| undefined;
 	updatePromotedBracket: ((seeds: Seed[]) => void) | undefined;
 	inputHandleId: string;
 	outputHandleId: string;
@@ -22,7 +24,9 @@ export class RoundNodeType {
 		name: string,
 		matches: Match[] | SwissMatch[],
 		swissBracket: SwissBracketFlow,
-		updateSwissFun: React.Dispatch<React.SetStateAction<BracketNode>> | undefined,
+		updateSwissFun:
+			| React.Dispatch<React.SetStateAction<BracketNode>>
+			| undefined,
 		updatePromotedBracket: ((seeds: Seed[]) => void) | undefined,
 		inputHandleId: string,
 		outputHandleId: string,
