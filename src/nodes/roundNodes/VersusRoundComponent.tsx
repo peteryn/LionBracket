@@ -9,6 +9,7 @@ import { Seed } from "../../../LionBracketEngine/src/models/match_record";
 import { SwissBracketFlow } from "../../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 import { useRef } from "react";
 import { Team } from "../../helper/teamTranslator";
+import EmptyInputArea from "./EmptyInputArea";
 
 export default function VersusRoundComponent({
 	match,
@@ -27,7 +28,35 @@ export default function VersusRoundComponent({
 	swissBracketStorageName: string;
 	paths: Team[];
 }) {
+
 	const roundNodeName = match.id.split(".")[0];
+	let classes = "versus ";
+
+	classes = addColor(roundNodeName, classes, [
+		"round-winning-text",
+		"round-middle-text",
+		"round-losing-text",
+		"round-start-text",
+	]);
+
+	let colorClass = addColor(roundNodeName, "", [
+		"round-winning-text",
+		"round-middle-text",
+		"round-losing-text",
+		"round-start-text",
+	]);
+	if (match.matchRecord === undefined) {
+		return (
+			<div className="versus-container" key={match.id}>
+				<div className="team-container"></div>
+				<div className="versus-section">
+					<h3 className={classes}>VS</h3>
+				</div>
+				<div className="team-container"></div>
+			</div>
+		)
+	}
+
 
 	const upperInputId = `${match.id}upper`;
 	const lowerInputId = `${match.id}lower`;
@@ -91,21 +120,6 @@ export default function VersusRoundComponent({
 		upperTeamName = paths[match.matchRecord.upperSeed - 1].name;
 		lowerTeamName = paths[match.matchRecord.lowerSeed - 1].name;
 	}
-	let classes = "versus ";
-
-	classes = addColor(roundNodeName, classes, [
-		"round-winning-text",
-		"round-middle-text",
-		"round-losing-text",
-		"round-start-text",
-	]);
-
-	let colorClass = addColor(roundNodeName, "", [
-		"round-winning-text",
-		"round-middle-text",
-		"round-losing-text",
-		"round-start-text",
-	]);
 	let upperClass = "";
 	let lowerClass = "";
 	if (upperScore > lowerScore) {
@@ -113,6 +127,8 @@ export default function VersusRoundComponent({
 	} else if (upperScore < lowerScore) {
 		lowerClass = colorClass;
 	}
+
+
 
 	return (
 		<div className="versus-container" key={match.id}>
