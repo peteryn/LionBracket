@@ -122,7 +122,7 @@ export default function VersusRoundComponent({
 					team={upperTeam}
 					inputId={upperInputId}
 					startingScore={upperScore}
-					colorClass={colorClass}
+					colorClass={upperClass}
 					isLeft={true}
 				></TeamInputArea>
 				<div className="versus-section">
@@ -133,7 +133,7 @@ export default function VersusRoundComponent({
 					inputId={lowerInputId}
 					team={lowerTeam}
 					startingScore={lowerScore}
-					colorClass={colorClass}
+					colorClass={lowerClass}
 					isLeft={false}
 				></TeamInputArea>
 			</div>
