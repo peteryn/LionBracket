@@ -2,13 +2,13 @@ import { Match } from "../../../LionBracketEngine/src/models/match";
 
 import { getScore } from "../../helper/score";
 import TeamInputArea from "./TeamInputArea";
-import { addColor } from "./color";
+import { getColor } from "./color";
 import { serializeSwissBracket } from "../../helper/serializer";
 import { BracketNode } from "../../../LionBracketEngine/src/models/bracket_node";
 import { Seed } from "../../../LionBracketEngine/src/models/match_record";
 import { SwissBracketFlow } from "../../../LionBracketEngine/src/swiss_bracket/swiss_backet_flow";
 import { useRef } from "react";
-import { Team, TeamWithPlayerInfo } from "../../helper/teamTranslator";
+import { Team } from "../../helper/teamTranslator";
 
 export default function VersusRoundComponent({
 	match,
@@ -28,21 +28,7 @@ export default function VersusRoundComponent({
 	paths: Team[];
 }) {
 	const roundNodeName = match.id.split(".")[0];
-	let classes = "versus ";
 
-	classes = addColor(roundNodeName, classes, [
-		"round-winning-text",
-		"round-middle-text",
-		"round-losing-text",
-		"round-start-text",
-	]);
-
-	let colorClass = addColor(roundNodeName, "", [
-		"round-winning-text",
-		"round-middle-text",
-		"round-losing-text",
-		"round-start-text",
-	]);
 
 	if (match.matchRecord?.type === "FullRecord") {
 		const upperInputId = `${match.id}upper`;
@@ -50,13 +36,6 @@ export default function VersusRoundComponent({
 
 		const upperInputRef = useRef<string>("0");
 		const lowerInputRef = useRef<string>("0");
-
-		let upperScore = 0;
-		let lowerScore = 0;
-		if (match.matchRecord?.type === "FullRecord") {
-			upperScore = match.matchRecord.upperSeedWins;
-			lowerScore = match.matchRecord.lowerSeedWins;
-		}
 
 		function onChange(e: React.FocusEvent<HTMLInputElement>) {
 			if (e.target.id === upperInputId) {
@@ -93,27 +72,15 @@ export default function VersusRoundComponent({
 			}
 		}
 
-		let upperImagePath = "";
-		let lowerImagePath = "";
+		const upperScore = match.matchRecord.upperSeedWins;
+		const lowerScore = match.matchRecord.lowerSeedWins;
+
 		const upperTeam: Team = paths[match.matchRecord.upperSeed - 1];
 		const lowerTeam: Team = paths[match.matchRecord.lowerSeed - 1];
 
-		if (match.matchRecord?.type === "FullRecord") {
-			upperImagePath = `/logos/${
-				paths[match.matchRecord.upperSeed - 1].path
-			}.png`;
-			lowerImagePath = `/logos/${
-				paths[match.matchRecord.lowerSeed - 1].path
-			}.png`;
-		
-		}
-		let upperClass = "";
-		let lowerClass = "";
-		if (upperScore > lowerScore) {
-			upperClass = colorClass;
-		} else if (upperScore < lowerScore) {
-			lowerClass = colorClass;
-		}
+		const colorClass = getColor(roundNodeName);
+		const upperClass = upperScore > lowerScore ? colorClass : "#FFF";
+		const lowerClass = lowerScore > upperScore ? colorClass : "#FFF";
 
 		return (
 			<div className="versus-container" key={match.id}>
@@ -122,18 +89,18 @@ export default function VersusRoundComponent({
 					team={upperTeam}
 					inputId={upperInputId}
 					startingScore={upperScore}
-					colorClass={upperClass}
+					color={upperClass}
 					isLeft={true}
 				></TeamInputArea>
 				<div className="versus-section">
-					<h3 className={classes}>VS</h3>
+					<h3 className="versus" style={{ color: getColor(roundNodeName)}}>VS</h3>
 				</div>
 				<TeamInputArea
 					updateFun={onChange}
 					inputId={lowerInputId}
 					team={lowerTeam}
 					startingScore={lowerScore}
-					colorClass={lowerClass}
+					color={lowerClass}
 					isLeft={false}
 				></TeamInputArea>
 			</div>
@@ -143,7 +110,7 @@ export default function VersusRoundComponent({
 			<div className="versus-container" key={match.id}>
 				<div className="team-container"></div>
 				<div className="versus-section">
-					<h3 className={classes}>VS</h3>
+					<h3 className="versus" style={{ color: getColor(roundNodeName)}}>VS</h3>
 				</div>
 				<div className="team-container"></div>
 			</div>

@@ -7,22 +7,20 @@ export default function TeamInputArea({
 	inputId,
 	team,
 	startingScore,
-	colorClass,
+	color,
 	isLeft,
 }: {
 	updateFun: (e: React.FocusEvent<HTMLInputElement>) => void;
 	inputId: string;
 	team: Team;
 	startingScore: number | undefined;
-	colorClass: string;
+	color: string;
 	isLeft: boolean;
 }) {
 	let score = "0";
 	if (startingScore) {
 		score = startingScore.toString();
 	}
-
-	const classes = `score-input ${colorClass} bourgeois `;
 
 	let image = null;
 	if (team.path !== "") {
@@ -57,7 +55,7 @@ export default function TeamInputArea({
 				<input
 					id={inputId}
 					type="number"
-					className={classes}
+					className="score-input bourgeois"
 					onKeyDown={(e) => {
 						if (e.key.includes(".")) {
 							e.preventDefault();
@@ -67,6 +65,7 @@ export default function TeamInputArea({
 					onChange={updateFun}
 					value={score}
 					style={{
+						color: color,
 						paddingTop: "5px",
 					}}
 				/>
