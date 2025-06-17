@@ -9,7 +9,11 @@ import { Team } from "../helper/teamTranslator";
 
 export let initialNodes: AppNode[] = [];
 
-export function createSwissNodes(swiss: SwissBracketFlow, swissStorageName: string, teams: Team[]) {
+export function createSwissNodes(
+	swiss: SwissBracketFlow,
+	swissStorageName: string,
+	teams: Team[]
+) {
 	const coordinates = createCoordinates(0, 0, swiss);
 	const initialNodes: AppNode[] = [];
 	let idVal = 0;
@@ -94,7 +98,11 @@ export function createSwissNodes(swiss: SwissBracketFlow, swissStorageName: stri
 
 			initialNodes.push(obj);
 
-			if (node.name === "2-0" || node.name === "2-1" || node.name === "2-2") {
+			if (
+				node.name === "2-0" ||
+				node.name === "2-1" ||
+				node.name === "2-2"
+			) {
 				let xCalc = 0;
 				let yCalc = 0;
 				const res = coordinates.get(`${node.level}:Qualified`);
@@ -124,7 +132,11 @@ export function createSwissNodes(swiss: SwissBracketFlow, swissStorageName: stri
 				initialNodes.push(qualObj);
 			}
 
-			if (node.name === "0-2" || node.name === "1-2" || node.name === "2-2") {
+			if (
+				node.name === "0-2" ||
+				node.name === "1-2" ||
+				node.name === "2-2"
+			) {
 				let xCalc = 0;
 				let yCalc = 0;
 				const res = coordinates.get(`${node.level}:Eliminated`);
@@ -184,12 +196,17 @@ exit node width: 258px
 
 */
 
-function createCoordinates(boundingXValue: number, boundingYValue: number, swiss: SwissBracket) {
+function createCoordinates(
+	boundingXValue: number,
+	boundingYValue: number,
+	swiss: SwissBracket
+) {
 	const SWISS_HEIGHT = 960;
 	const VERTICAL_GAP = 20;
 	const SWISS_NODE_HORIZONTAL_GAP = 92;
 	const SWISS_NODE_WIDTH = 258;
-	const SWISS_HORIZONTAL_OFFSET = SWISS_NODE_WIDTH + SWISS_NODE_HORIZONTAL_GAP;
+	const SWISS_HORIZONTAL_OFFSET =
+		SWISS_NODE_WIDTH + SWISS_NODE_HORIZONTAL_GAP;
 	const EXIT_NODE_HEIGHT = 110;
 
 	const nodeCoordinates: Map<string, number[]> = new Map();
@@ -217,7 +234,10 @@ function createCoordinates(boundingXValue: number, boundingYValue: number, swiss
 		if (levelNumber === 4 || levelNumber === 5) {
 			const qualifiedExitHeight =
 				boundingYValue + heightOffset - VERTICAL_GAP - EXIT_NODE_HEIGHT;
-			nodeCoordinates.set(`${levelNumber - 1}:Qualified`, [xVal, qualifiedExitHeight]);
+			nodeCoordinates.set(`${levelNumber - 1}:Qualified`, [
+				xVal,
+				qualifiedExitHeight,
+			]);
 			nodeCoordinates.set(`${levelNumber - 1}:Eliminated`, [xVal, yVal]);
 		}
 
@@ -227,7 +247,10 @@ function createCoordinates(boundingXValue: number, boundingYValue: number, swiss
 	const finalExitHeight = EXIT_NODE_HEIGHT * 2 + VERTICAL_GAP;
 	const heightDiff = SWISS_HEIGHT - finalExitHeight;
 	const heightOffset = heightDiff / 2;
-	nodeCoordinates.set(`${5}:Qualified`, [xVal, boundingYValue + heightOffset]);
+	nodeCoordinates.set(`${5}:Qualified`, [
+		xVal,
+		boundingYValue + heightOffset,
+	]);
 	nodeCoordinates.set(`${5}:Eliminated`, [
 		xVal,
 		boundingYValue + heightOffset + EXIT_NODE_HEIGHT + VERTICAL_GAP,
@@ -237,4 +260,3 @@ function createCoordinates(boundingXValue: number, boundingYValue: number, swiss
 
 	return nodeCoordinates;
 }
-

@@ -10,7 +10,11 @@ import { Edge } from "@xyflow/react";
 import { GhostNodeType } from "../nodes/GhostNode/GhostNodeType.ts";
 
 // total dimensions (1050, 960)
-export function createGslCoordinates(boundingXValue: number, boundingYValue: number, gsl: GslLiteBracket) {
+export function createGslCoordinates(
+	boundingXValue: number,
+	boundingYValue: number,
+	gsl: GslLiteBracket
+) {
 	const VERTICAL_GAP = 40;
 	const HORIZONTAL_GAP = 92;
 	const NODE_HEIGHT = 100;
@@ -28,7 +32,8 @@ export function createGslCoordinates(boundingXValue: number, boundingYValue: num
 	const GHOST_VERTICAL_OFFSET = 27.5;
 	const GHOST_HORIZONTAL_OFFSET = 50;
 
-	const [uqf1, uqf2, uqf3, uqf4, usf1, usf2, lqf1, lqf2, lsf1, lsf2] = gsl.getAllMatchNodes();
+	const [uqf1, uqf2, uqf3, uqf4, usf1, usf2, lqf1, lqf2, lsf1, lsf2] =
+		gsl.getAllMatchNodes();
 	const nodeCoordinates: Map<string, [x: number, y: number]> = new Map();
 
 	let curY = boundingYValue;
@@ -38,28 +43,99 @@ export function createGslCoordinates(boundingXValue: number, boundingYValue: num
 	}
 
 	for (let i = 0; i < gsl.lowerMatches.length; i++) {
-		nodeCoordinates.set(gsl.lowerMatches[i].name, [boundingXValue, curY + UPPER_BRACKET_GAP + VERTICAL_OFFSET * (i + 1)]);
+		nodeCoordinates.set(gsl.lowerMatches[i].name, [
+			boundingXValue,
+			curY + UPPER_BRACKET_GAP + VERTICAL_OFFSET * (i + 1),
+		]);
 	}
 
-	nodeCoordinates.set(usf1.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue + (((2 * NODE_HEIGHT) + VERTICAL_GAP) / 2) - NODE_HEIGHT / 2]);
-	nodeCoordinates.set(usf2.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue + 2 * VERTICAL_OFFSET + (((2 * NODE_HEIGHT) + VERTICAL_GAP) / 2) - NODE_HEIGHT / 2]);
+	nodeCoordinates.set(usf1.name, [
+		boundingXValue + HORIZONTAL_OFFSET,
+		boundingYValue + (2 * NODE_HEIGHT + VERTICAL_GAP) / 2 - NODE_HEIGHT / 2,
+	]);
+	nodeCoordinates.set(usf2.name, [
+		boundingXValue + HORIZONTAL_OFFSET,
+		boundingYValue +
+			2 * VERTICAL_OFFSET +
+			(2 * NODE_HEIGHT + VERTICAL_GAP) / 2 -
+			NODE_HEIGHT / 2,
+	]);
 
-	nodeCoordinates.set(lsf1.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE]);
-	nodeCoordinates.set(lsf2.name, [boundingXValue + HORIZONTAL_OFFSET, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE]);
+	nodeCoordinates.set(lsf1.name, [
+		boundingXValue + HORIZONTAL_OFFSET,
+		boundingYValue +
+			4 * VERTICAL_OFFSET +
+			UPPER_BRACKET_GAP +
+			NODE_RAISE_VALUE,
+	]);
+	nodeCoordinates.set(lsf2.name, [
+		boundingXValue + HORIZONTAL_OFFSET,
+		boundingYValue +
+			5 * VERTICAL_OFFSET +
+			UPPER_BRACKET_GAP +
+			NODE_RAISE_VALUE,
+	]);
 
-	nodeCoordinates.set(`${usf1.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + (((2 * NODE_HEIGHT) + VERTICAL_GAP) / 2) - NODE_HEIGHT / 2 + PROMOTED_NODE_MIDDLE]);
-	nodeCoordinates.set(`${usf2.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 2 * VERTICAL_OFFSET + (((2 * NODE_HEIGHT) + VERTICAL_GAP) / 2) - NODE_HEIGHT / 2 + PROMOTED_NODE_MIDDLE]);
+	nodeCoordinates.set(`${usf1.name}:Promoted`, [
+		boundingXValue + 2 * HORIZONTAL_OFFSET,
+		boundingYValue +
+			(2 * NODE_HEIGHT + VERTICAL_GAP) / 2 -
+			NODE_HEIGHT / 2 +
+			PROMOTED_NODE_MIDDLE,
+	]);
+	nodeCoordinates.set(`${usf2.name}:Promoted`, [
+		boundingXValue + 2 * HORIZONTAL_OFFSET,
+		boundingYValue +
+			2 * VERTICAL_OFFSET +
+			(2 * NODE_HEIGHT + VERTICAL_GAP) / 2 -
+			NODE_HEIGHT / 2 +
+			PROMOTED_NODE_MIDDLE,
+	]);
 
-	nodeCoordinates.set(`${lsf1.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + PROMOTED_NODE_MIDDLE]);
-	nodeCoordinates.set(`${lsf2.name}:Promoted`, [boundingXValue + 2 * HORIZONTAL_OFFSET, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + PROMOTED_NODE_MIDDLE]);
+	nodeCoordinates.set(`${lsf1.name}:Promoted`, [
+		boundingXValue + 2 * HORIZONTAL_OFFSET,
+		boundingYValue +
+			4 * VERTICAL_OFFSET +
+			UPPER_BRACKET_GAP +
+			NODE_RAISE_VALUE +
+			PROMOTED_NODE_MIDDLE,
+	]);
+	nodeCoordinates.set(`${lsf2.name}:Promoted`, [
+		boundingXValue + 2 * HORIZONTAL_OFFSET,
+		boundingYValue +
+			5 * VERTICAL_OFFSET +
+			UPPER_BRACKET_GAP +
+			NODE_RAISE_VALUE +
+			PROMOTED_NODE_MIDDLE,
+	]);
 
-	nodeCoordinates.set(`${lsf1.name}:Ghost`, [boundingXValue + HORIZONTAL_OFFSET - GHOST_HORIZONTAL_OFFSET, boundingYValue + 4 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + GHOST_VERTICAL_OFFSET]);
-	nodeCoordinates.set(`${lsf2.name}:Ghost`, [boundingXValue + HORIZONTAL_OFFSET - GHOST_HORIZONTAL_OFFSET, boundingYValue + 5 * VERTICAL_OFFSET + UPPER_BRACKET_GAP + NODE_RAISE_VALUE + GHOST_VERTICAL_OFFSET]);
+	nodeCoordinates.set(`${lsf1.name}:Ghost`, [
+		boundingXValue + HORIZONTAL_OFFSET - GHOST_HORIZONTAL_OFFSET,
+		boundingYValue +
+			4 * VERTICAL_OFFSET +
+			UPPER_BRACKET_GAP +
+			NODE_RAISE_VALUE +
+			GHOST_VERTICAL_OFFSET,
+	]);
+	nodeCoordinates.set(`${lsf2.name}:Ghost`, [
+		boundingXValue + HORIZONTAL_OFFSET - GHOST_HORIZONTAL_OFFSET,
+		boundingYValue +
+			5 * VERTICAL_OFFSET +
+			UPPER_BRACKET_GAP +
+			NODE_RAISE_VALUE +
+			GHOST_VERTICAL_OFFSET,
+	]);
 
 	return nodeCoordinates;
 }
 
-export function createGslLiteNodes(bracketId: string, gsl: GslLiteBracket, xCoordinate: number, yCoordinate: number, teams: Team[]) {
+export function createGslLiteNodes(
+	bracketId: string,
+	gsl: GslLiteBracket,
+	xCoordinate: number,
+	yCoordinate: number,
+	teams: Team[]
+) {
 	const allMatchNodes = gsl.getAllMatchNodes();
 	const coordinates = createGslCoordinates(xCoordinate, yCoordinate, gsl);
 
@@ -82,18 +158,62 @@ export function createGslLiteNodes(bracketId: string, gsl: GslLiteBracket, xCoor
 		return appNode;
 	});
 
-	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("UpperSemiFinal1"), coordinates, teams));
-	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("UpperSemiFinal2"), coordinates, teams));
-	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("LowerSemiFinal1"), coordinates, teams));
-	initialNodes.push(createPromotedNode(bracketId, gsl.getBracketNode("LowerSemiFinal2"), coordinates, teams));
+	initialNodes.push(
+		createPromotedNode(
+			bracketId,
+			gsl.getBracketNode("UpperSemiFinal1"),
+			coordinates,
+			teams
+		)
+	);
+	initialNodes.push(
+		createPromotedNode(
+			bracketId,
+			gsl.getBracketNode("UpperSemiFinal2"),
+			coordinates,
+			teams
+		)
+	);
+	initialNodes.push(
+		createPromotedNode(
+			bracketId,
+			gsl.getBracketNode("LowerSemiFinal1"),
+			coordinates,
+			teams
+		)
+	);
+	initialNodes.push(
+		createPromotedNode(
+			bracketId,
+			gsl.getBracketNode("LowerSemiFinal2"),
+			coordinates,
+			teams
+		)
+	);
 
-	initialNodes.push(createGhostNode(bracketId, gsl.getBracketNode("LowerSemiFinal1"), coordinates));
-	initialNodes.push(createGhostNode(bracketId, gsl.getBracketNode("LowerSemiFinal2"), coordinates));
+	initialNodes.push(
+		createGhostNode(
+			bracketId,
+			gsl.getBracketNode("LowerSemiFinal1"),
+			coordinates
+		)
+	);
+	initialNodes.push(
+		createGhostNode(
+			bracketId,
+			gsl.getBracketNode("LowerSemiFinal2"),
+			coordinates
+		)
+	);
 
 	return initialNodes;
 }
 
-function createGhostNode(bracketId: string, node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>): AppNode {
+function createGhostNode(
+	bracketId: string,
+	node: GslLiteMatchNode,
+	coordinates: Map<string, [x: number, y: number]>
+): AppNode {
 	const ghostId = `${bracketId}:${node.name}:Ghost`;
 	let xCalc = 0;
 	let yCalc = 0;
@@ -111,7 +231,12 @@ function createGhostNode(bracketId: string, node: GslLiteMatchNode, coordinates:
 	};
 }
 
-function createPromotedNode(bracketId: string, node: GslLiteMatchNode, coordinates: Map<string, [x: number, y: number]>, teams: Team[]): AppNode {
+function createPromotedNode(
+	bracketId: string,
+	node: GslLiteMatchNode,
+	coordinates: Map<string, [x: number, y: number]>,
+	teams: Team[]
+): AppNode {
 	const res = coordinates.get(`${node.name}:Promoted`);
 	let xCalc = 0;
 	let yCalc = -200;
@@ -124,8 +249,13 @@ function createPromotedNode(bracketId: string, node: GslLiteMatchNode, coordinat
 	let promotedTeamName = "";
 	let promotedTeamPath = "";
 	if (promotedSeedOrUndefined) {
-		promotedTeamPath = `/logos/${teams[promotedSeedOrUndefined - 1].path}.png`;
-		promotedTeamName = teams[promotedSeedOrUndefined - 1].name.replace("_", " ");
+		promotedTeamPath = `/logos/${
+			teams[promotedSeedOrUndefined - 1].path
+		}.png`;
+		promotedTeamName = teams[promotedSeedOrUndefined - 1].name.replace(
+			"_",
+			" "
+		);
 	}
 
 	return {
@@ -148,7 +278,10 @@ export function createGslLiteEdges(bracketId: string, gsl: GslLiteBracket) {
 		const nodeId = `${bracketId}:${node.name}`;
 		if (node.upperRound) {
 			const upperNodeId = `${bracketId}:${node.upperRound.name}`;
-			if (node.name === "LowerQuarterFinal1" || node.name === "LowerQuarterFinal2") {
+			if (
+				node.name === "LowerQuarterFinal1" ||
+				node.name === "LowerQuarterFinal2"
+			) {
 				edges.push({
 					id: `${nodeId}->${upperNodeId}`,
 					source: nodeId,
@@ -187,7 +320,10 @@ export function createGslLiteEdges(bracketId: string, gsl: GslLiteBracket) {
 			});
 		}
 		// for ghost nodes
-		if (node.name === "LowerSemiFinal1" || node.name === "LowerSemiFinal2") {
+		if (
+			node.name === "LowerSemiFinal1" ||
+			node.name === "LowerSemiFinal2"
+		) {
 			edges.push({
 				id: `${nodeId}:Ghost->${nodeId}`,
 				source: `${nodeId}:Ghost`,

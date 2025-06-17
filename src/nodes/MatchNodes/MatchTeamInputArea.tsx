@@ -15,7 +15,7 @@ export default function MatchTeamInputArea({
 	imagePath: string;
 	startingScore: number | undefined;
 	colorClass: string;
-	inputRef: React.RefObject<HTMLInputElement>
+	inputRef: React.RefObject<string>
 }) {
 	const classes = `score-input bourgeois ${colorClass}`;
 	return (
@@ -27,7 +27,6 @@ export default function MatchTeamInputArea({
 			<div className="match-team-area-score">
 				<input
 					id={inputId}
-					ref={inputRef}
 					onChange={updateFun}
 					type="number"
 					onKeyDown={(e) => {

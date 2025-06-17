@@ -2,7 +2,10 @@ import { GenericMatchNode } from "../../../LionBracketEngine/src/models/generic_
 import { Bracket } from "../../../LionBracketEngine/src/models/bracket.ts";
 import { Team } from "../../helper/teamTranslator.ts";
 
-export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>> = {
+export type MatchNodeType<
+	NodeNames extends string,
+	B extends Bracket<NodeNames>
+> = {
 	bracketId: string;
 	matchNode: GenericMatchNode<NodeNames>;
 	bracket: B;
@@ -12,11 +15,18 @@ export type MatchNodeType<NodeNames extends string, B extends Bracket<NodeNames>
 	middleInputHandleId: string;
 	lowerInputHandleId: string;
 	outputHandleId: string;
-	teams: Team[]
-}
+	teams: Team[];
+};
 
-export function MatchNodeTypeConstructor<NodeNames extends string, B extends Bracket<NodeNames>>(
-	node: GenericMatchNode<NodeNames>, bracket: B, bracketId: string, team: Team[]): MatchNodeType<NodeNames, B> {
+export function MatchNodeTypeConstructor<
+	NodeNames extends string,
+	B extends Bracket<NodeNames>
+>(
+	node: GenericMatchNode<NodeNames>,
+	bracket: B,
+	bracketId: string,
+	team: Team[]
+): MatchNodeType<NodeNames, B> {
 	let nodeId = `${bracketId}:${node.name}`;
 	return {
 		bracketId: bracketId,
@@ -28,6 +38,6 @@ export function MatchNodeTypeConstructor<NodeNames extends string, B extends Bra
 		middleInputHandleId: `${nodeId}:MiddleInput`,
 		lowerInputHandleId: `${nodeId}:LowerInput`,
 		outputHandleId: `${nodeId}:Output`,
-		teams: team
+		teams: team,
 	};
 }
