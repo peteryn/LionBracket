@@ -853,7 +853,7 @@ const major2TeamData: Record<
 		abbreviatedName: "Karmine Corp",
 		color: "#00ccff",
 	},
-	"NRG": {
+	NRG: {
 		players: ["Atomic", "Beastmode", "Daniel"],
 		abbreviatedName: "NRG",
 		color: "#F63B00",
@@ -863,12 +863,12 @@ const major2TeamData: Record<
 		abbreviatedName: "Falcons",
 		color: "#00BD6D",
 	},
-	"Dignitas": {
+	Dignitas: {
 		players: ["stizzy", "ApparentlyJack", "Joreuz"],
 		abbreviatedName: "Dignitas",
 		color: "#87F6FA",
 	},
-	"FURIA": {
+	FURIA: {
 		players: ["yANXNZ", "Lostt", "DRUFINHO"],
 		abbreviatedName: "Furia",
 		color: "#FFF",
@@ -888,7 +888,7 @@ const major2TeamData: Record<
 		abbreviatedName: "M8s",
 		color: "#FFF",
 	},
-	"Wildcard": {
+	Wildcard: {
 		players: ["Fever", "Torsos", "bananahead"],
 		abbreviatedName: "Wildcard",
 		color: "#1DABF9",
@@ -908,7 +908,7 @@ const major2TeamData: Record<
 		abbreviatedName: "Twisted Minds",
 		color: "#FA4968",
 	},
-	"TSM": {
+	TSM: {
 		players: ["Superlachie", "Amphis", "kaka"],
 		abbreviatedName: "TSM",
 		color: "#FFF",
@@ -933,19 +933,19 @@ const major2TeamData: Record<
 export const major2Teams: TeamWithPlayerInfo[] = getTranslated([
 	"Karmine Corp",
 	"NRG",
+	"FURIA",
 	"Team Falcons",
 	"Dignitas",
-	"FURIA",
-	"Team Vitality",
 	"Spacestation Gaming",
+	"Team Vitality",
 	"Gentle Mates Alpine",
-	"Wildcard",
-	"Gen.G Mobil1 Racing",
-	"Team Secret",
 	"Twisted Minds",
-	"TSM",
-	"The Ultimates",
+	"Gen.G Mobil1 Racing",
+	"Wildcard",
+	"Team Secret",
 	"Virtus.pro",
+	"The Ultimates",
+	"TSM",
 	"FUT Esports",
 ]).map((team) => {
 	const data = major2TeamData[team.name];
