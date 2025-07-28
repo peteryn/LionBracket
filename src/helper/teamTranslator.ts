@@ -90,6 +90,18 @@ lookup.set(
 	"Netherlamericanada",
 	tc("Netherlamericanada", "netherlamericanada")
 );
+// LCQ
+lookup.set("NPL", tc("NPL", "default_dark"));
+lookup.set("Carl", tc("Carl", "default_dark"));
+lookup.set("100X35 Esports", tc("100X35 Esports", "100x35"));
+lookup.set("pepegashake", tc("pepegashake", "default_dark"));
+lookup.set("BOTB", tc("BOTB", "default_dark"));
+lookup.set("psycho rangers", tc("psycho rangers", "default_dark"));
+lookup.set("G.A.S.", tc("G.A.S.", "default_dark"));
+lookup.set("norms", tc("norms", "default_dark"));
+lookup.set("Ratopia", tc("Ratopia", "default_dark"));
+lookup.set("Affinity", tc("Affinity", "affinity"));
+lookup.set("hey bro", tc("hey bro", "hey_bro"));
 
 // SAM
 lookup.set("Godfidence", tc("Godfidence", "godfidence"));
@@ -423,6 +435,25 @@ export const na6Combined = getTranslated([
 	"Netherlamericanada",
 	"WASSUP",
 	"Deleted Gaming",
+]);
+
+export const naLcq = getTranslated([
+	"Complexity Gaming",
+	"Shopify Rebellion",
+	"NPL",
+	"The Boys",
+	"Carl",
+	"100X35 Esports",
+	"pepegashake",
+	"BOTB",
+	"psycho rangers",
+	"G.A.S.",
+	"norms",
+	"Ratopia",
+	"Affinity",
+	"Pirates on a Boat",
+	"Lil Step Bros",
+	"hey bro",
 ]);
 
 export const na1v1 = getTranslated([

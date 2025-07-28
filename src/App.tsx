@@ -31,6 +31,7 @@ export default function App() {
 						"/europe_open_6",
 					]}
 					data1v1={undefined}
+					datalcq={undefined}
 				/>
 				<RegionCard
 					regionName="North America"
@@ -41,6 +42,7 @@ export default function App() {
 						"/north_america_open_6",
 					]}
 					data1v1={"/north_america_open_1v1"}
+					datalcq={"/north_america_lcq"}
 				/>
 				<RegionCard
 					regionName="South America"
@@ -51,6 +53,7 @@ export default function App() {
 						"/south_america_open_6",
 					]}
 					data1v1={undefined}
+					datalcq={undefined}
 				/>
 				<RegionCard
 					regionName="Middle East & North Africa"
@@ -61,6 +64,7 @@ export default function App() {
 						"/middle_east_north_africa_open_6",
 					]}
 					data1v1={"/middle_east_north_africa_open_1v1"}
+					datalcq={undefined}
 				/>
 				<RegionCard
 					regionName="Oceania"
@@ -71,6 +75,7 @@ export default function App() {
 						"/oceania_open_6",
 					]}
 					data1v1={"/oceania_1v1"}
+					datalcq={undefined}
 				/>
 				<RegionCard
 					regionName="Asia-Pacific"
@@ -81,6 +86,7 @@ export default function App() {
 						"/asia_pacific_open_6",
 					]}
 					data1v1={undefined}
+					datalcq={undefined}
 				/>
 				<RegionCard
 					regionName="Sub-Saharan Africa"
@@ -91,6 +97,7 @@ export default function App() {
 						"/sub_saharan_africa_open_6",
 					]}
 					data1v1={"/sub_saharan_africa_1v1"}
+					datalcq={undefined}
 				/>
 			</div>
 		</div>

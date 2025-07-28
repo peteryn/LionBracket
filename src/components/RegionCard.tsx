@@ -5,11 +5,13 @@ export default function ({
 	data,
 	color,
 	data1v1,
+	datalcq,
 }: {
 	regionName: string;
 	data: string[];
 	color: string;
 	data1v1: string | undefined;
+	datalcq: string | undefined;
 }) {
 	const items = data.map((item, index) => (
 		<li key={index}>
@@ -20,6 +22,13 @@ export default function ({
 		items.push(
 			<li key={data.length}>
 				<NavLink to={data1v1}>1v1</NavLink>
+			</li>
+		);
+	}
+	if (datalcq) {
+		items.push(
+			<li key={data.length}>
+				<NavLink to={datalcq}>LCQ</NavLink>
 			</li>
 		);
 	}
