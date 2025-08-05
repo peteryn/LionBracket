@@ -9,6 +9,7 @@ import Regional from "./formats/Regional.tsx";
 import {
 	apac4Combined, apac5Combined, apac6Combined,
 	eu4Combined, eu5Combined, eu6Combined,
+	euLcq,
 	major1Teams,
 	major2Teams,
 	mena1v1,
@@ -37,6 +38,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route
 					path="/europe_open_6"
 					element={<Regional teams={eu6Combined} localStorageName="europe_open_6"/>}
+				></Route>
+				<Route
+					path="/europe_lcq"
+					element={<Regional teams={euLcq} localStorageName="europe_lcq"/>}
 				></Route>
 				<Route
 					path="/north_america_open_4"

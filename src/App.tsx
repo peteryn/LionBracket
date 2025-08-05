@@ -29,6 +29,7 @@ export default function App() {
 						["/europe_open_4", "Open #4"],
 						["/europe_open_5", "Open #5"],
 						["/europe_open_6", "Open #6"],
+						["/europe_lcq", "LCQ"],
 					]}
 				/>
 				<RegionCard

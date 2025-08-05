@@ -64,6 +64,16 @@ lookup.set(
 	"Los Leones de Montepinar",
 	tc("Los Leones de Monte...", "default_dark")
 );
+// LCQ
+lookup.set("German Hermanos", tc("German Hermanos", "default_dark"));
+lookup.set("Red Devils", tc("Red Devils", "default_dark"));
+lookup.set("Hogan Mode", tc("Hogan Mode", "hogan_mode"));
+lookup.set("2 Danes 1 Bruv", tc("2 Danes 1 Bruv", "default_dark"));
+lookup.set("Pirots 3", tc("Pirots 3", "default_dark"));
+lookup.set("123", tc("123", "default_dark"));
+lookup.set("Sick!", tc("Sick!", "sick"));
+lookup.set("Low Block", tc("Low Block", "low_block"));
+lookup.set("Team TSK", tc("Team TSK", "tsk"));
 
 // NA
 lookup.set("Gen.G Mobil1 Racing", tc("Gen.G Mobil1 Racing", "geng"));
@@ -530,6 +540,25 @@ export const eu6Combined = getTranslated([
 	"$ATM",
 	"Team BDS",
 	"Chippy Chips",
+]);
+
+export const euLcq = getTranslated([
+	"German Hermanos",
+	"Ninjas in Pyjamas",
+	"Team BSK",
+	"Gentle Mates Alpine",
+	"Tokyo Tigers",
+	"Red Devils",
+	"Chippy Chips",
+	"Hogan Mode",
+	"2 Danes 1 Bruv",
+	"CALIENTE",
+	"Team BDS",
+	"Pirots 3",
+	"123",
+	"Sick!",
+	"Low Block",
+	"Team TSK",
 ]);
 
 export const sam4Combined = getTranslated([
