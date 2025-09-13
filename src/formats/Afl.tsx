@@ -20,7 +20,7 @@ import { Team } from "../helper/teamTranslator.ts";
 
 const localStorageName = "test";
 
-export default function Afl({ teams }: { teams: Team[] }) {
+export default function Afl({ teams, localStorageName }: { teams: Team[], localStorageName: string }) {
 	const aflBracket = new AflBracket(true);
 
 	const aflMatchNodes = deserializeStoredAflBracket(localStorageName);

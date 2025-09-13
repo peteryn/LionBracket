@@ -18,9 +18,11 @@ import {
 	na1v1,
 	na4Combined,
 	na5Combined, na6Combined, naLcq, oce1v1, oce4Combined, oce5Combined, oce6Combined,
-	sam4Combined, sam5Combined, sam6Combined, ssa1v1, ssa4Combined, ssa5Combined, ssa6Combined
+	sam4Combined, sam5Combined, sam6Combined, ssa1v1, ssa4Combined, ssa5Combined, ssa6Combined,
+	worldsTop8
 } from "./helper/teamTranslator.ts";
 import Major from "./formats/Major.tsx";
+import Afl from "./formats/Afl.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -142,6 +144,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route
 					path="/raleigh"
 					element={<Major teams={major2Teams} localSwissName="raleigh-sb" localAflName="raleigh-afl"></Major>}
+				></Route>
+				<Route
+					path="/2025worlds"
+					element={<Afl teams={worldsTop8} localStorageName="worlds-2025"></Afl>}
 				></Route>
 			</Routes>
 		</BrowserRouter>

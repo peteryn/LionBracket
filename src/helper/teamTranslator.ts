@@ -390,6 +390,17 @@ export const major1Teams: Team[] = [
 	{ type: "default", name: "fut_esports", path: "fut_esports" },
 ];
 
+export const worldsTop8: Team[] = getTranslated([
+	"The Ultimates",
+	"Team Falcons",
+	"Wildcard",
+	"NRG",
+	"Karmine Corp",
+	"Spacestation Gaming",
+	"Geekay Esports",
+	"Ninjas in Pyjamas"
+])
+
 export const na4Combined = getTranslated([
 	"Gen.G Mobil1 Racing",
 	"Complexity Gaming",

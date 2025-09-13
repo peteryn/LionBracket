@@ -19,6 +19,13 @@ export default function App() {
 						<NavLink to="/raleigh">Raleigh Major</NavLink>
 					</h2>
 				</div>
+				<div>
+					<h2 className="bebas-neue-regular">
+						<NavLink to="/2025worlds">
+							World Championship Top 8
+						</NavLink>
+					</h2>
+				</div>
 			</div>
 
 			<div className="home-grid">
