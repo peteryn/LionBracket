@@ -14,14 +14,18 @@ import { edgeTypes } from "../edges/index.ts";
 import {
 	deserializeStoredAflBracket,
 	serializeAflBracket,
+	serializeRegionalTournament,
 } from "../helper/serializer.ts";
 
 import { Team } from "../helper/teamTranslator.ts";
+import ResetButton from "../components/ResetButton.tsx";
+import { BackButton } from "../components/BackButton.tsx";
+import ReportButton from "../components/ReportButton.tsx";
 
 const localStorageName = "test";
 
 export default function Afl({ teams, localStorageName }: { teams: Team[], localStorageName: string }) {
-	const aflBracket = new AflBracket(true);
+	let aflBracket = new AflBracket(true);
 
 	const aflMatchNodes = deserializeStoredAflBracket(localStorageName);
 	if (aflMatchNodes) {
@@ -48,6 +52,11 @@ export default function Afl({ teams, localStorageName }: { teams: Team[], localS
 		serializeAflBracket(aflBracket, localStorageName);
 	}, [afl]);
 
+	const resetBracket = () => {
+		setAfl(new AflBracket(true).getAllMatchNodes())
+		serializeAflBracket(aflBracket, localStorageName)
+	};
+
 	return (
 		<ReactFlow
 			colorMode="dark"
@@ -63,6 +72,10 @@ export default function Afl({ teams, localStorageName }: { teams: Team[], localS
 		>
 			<Background color="#141414" />
 			<Controls showInteractive={false} />
+
+			<BackButton />
+			<ResetButton resetBracket={resetBracket}></ResetButton>
+			<ReportButton />
 		</ReactFlow>
 	);
 }
